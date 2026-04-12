@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, Variants } from 'motion/react';
 import { CheckCircle2, Calendar, Layers, Award, CreditCard, ChevronRight, Info, ChevronLeft } from 'lucide-react';
 import { diplomasData } from '../../data/academy';
 
@@ -24,7 +24,7 @@ export const DiplomaSection: React.FC = () => {
 
   const currentDiploma = diplomasData[currentIndex];
 
-  const slideVariants = {
+  const slideVariants: Variants = {
     hidden: (dir: number) => ({
       opacity: 0,
       x: dir > 0 ? 50 : -50,

@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "client/dist/**"
+        ]
+      }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/server/index.ts"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/server/index.ts"
+    }
+  ]
+}

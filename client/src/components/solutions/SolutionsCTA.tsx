@@ -21,13 +21,15 @@ export const SolutionsCTA: React.FC = () => {
               size="lg"
               color="primary"
               iconTrailing={ArrowRight}
+              className='px-6 py-4'
             >
               Contact Us Today
             </Button>
             <Button
               href="/academy"
               size="lg"
-              color="secondary"
+              color="primary"
+              className='px-6 py-4'
             >
               Browse Courses
             </Button>

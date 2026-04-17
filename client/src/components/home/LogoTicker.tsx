@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { motion, useInView, animate } from 'motion/react';
+import { motion, useInView, animate } from 'framer-motion';
 import { Globe, Cloud, Brain, Code2, Star } from 'lucide-react';
 
 import logo1 from '/logo1.png';

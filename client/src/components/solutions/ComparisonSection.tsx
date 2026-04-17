@@ -28,7 +28,7 @@ export const ComparisonSection = () => {
               </div>
 
               {/* Table Body */}
-              <div className="divide-y divide-white/10">
+              <div className="divide-y divide-primary/20">
             <ComparisonRow 
               feature="System Architecture" 
               competitor="Monolithic & Rigid" 
@@ -83,8 +83,8 @@ const ComparisonRow = ({ feature, competitor, us, better }: { feature: string, c
         <X size={20} className="text-red-500/70" />
       </div>
       <div className="flex flex-col items-center justify-center text-primary font-medium gap-2">
-        <span className="text-sm text-center text-white">{us}</span>
-        <CheckCircle2 size={20} className="text-primary" />
+        <span className="text-sm text-center text-foreground">{us}</span>
+        <CheckCircle2 size={20} className="text-green-500" />
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useTransform, MotionValue, Variants } from 'motion/react';
+import { motion, AnimatePresence, Variants } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Cloud, Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import { AnimatedCounter } from './LogoTicker';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { DeviceMockupShowcase } from './DeviceMockupShowcase';
 
 const SLIDE_DATA = [
   {
@@ -45,12 +45,8 @@ const slideVariants: Variants = {
   })
 };
 
-interface HeroProps {
-  smoothX: MotionValue<number>;
-  smoothY: MotionValue<number>;
-}
 
-export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
+export const Hero: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [typedText, setTypedText] = useState('');
@@ -71,10 +67,6 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
     return () => clearInterval(t);
   }, [currentIndex]);
 
-  // Parallax transforms for the hero image
-  const imgX = useTransform(smoothX, [-1, 1], [-12, 12]);
-  const imgY = useTransform(smoothY, [-1, 1], [-8, 8]);
-
   const handleNext = () => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % SLIDE_DATA.length);
@@ -93,67 +85,67 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
   }, [currentIndex]);
 
   return (
-    <section className="relative flex items-center overflow-hidden bg-background">
-      {/* Absolute Left/Right Controls */}
+    <section className="relative flex items-center overflow-hidden" style={{ minHeight: '100vh', background: 'hsl(var(--background))' }}>
+      {/* Slide prev/next nav arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-2 sm:left-4 xl:left-8 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
         aria-label="Previous Slide"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
           borderWidth: '1px',
           color: 'var(--color-primary)',
-          background: 'color-mix(in srgb, var(--color-background) 80%, transparent)',
+          background: 'color-mix(in srgb, var(--color-background) 85%, transparent)',
           boxShadow: '0 4px 20px color-mix(in srgb, var(--color-primary) 15%, transparent)'
         }}
       >
-        <ChevronLeft className="w-5 sm:w-6 md:w-7 h-5 sm:h-6 md:h-7" />
+        <ChevronLeft className="w-5 sm:w-6 h-5 sm:h-6" />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute right-2 sm:right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
         aria-label="Next Slide"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
           borderWidth: '1px',
           color: 'var(--color-primary)',
-          background: 'color-mix(in srgb, var(--color-background) 80%, transparent)',
+          background: 'color-mix(in srgb, var(--color-background) 85%, transparent)',
           boxShadow: '0 4px 20px color-mix(in srgb, var(--color-primary) 15%, transparent)'
         }}
       >
-        <ChevronRight className="w-5 sm:w-6 md:w-7 h-5 sm:h-6 md:h-7" />
+        <ChevronRight className="w-5 sm:w-6 h-5 sm:h-6" />
       </button>
 
+      {/* Grid lines background — matches reference design */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          backgroundImage:
+            'linear-gradient(color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px)',
+          backgroundSize: '55px 55px',
+        }}
+      />
+
+      {/* Subtle top-right radial highlight */}
       <div
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            'radial-gradient(ellipse 80% 60% at 65% 50%, var(--color-primary) 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 10% 20%, var(--color-accent) 0%, transparent 60%)',
-          opacity: 0.1,
+            'radial-gradient(ellipse 55% 65% at 85% 40%, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, transparent 70%)',
         }}
       />
 
-      {/* Animated grid */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            'linear-gradient(var(--color-foreground) 2px, transparent 2px), linear-gradient(90deg, var(--color-foreground) 2px, transparent 2px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      <div className="container relative z-10 mx-auto px-6 xl:px-26 pt-28 pb-16 lg:pt-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 xl:gap-12 items-start">
-          <div className="flex flex-col gap-5 order-2 lg:order-1 text-center lg:text-left items-center lg:items-start w-full">
+      <div className="container relative z-10 mx-auto px-6 xl:px-20 pt-32 pb-20 lg:pt-24">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="flex flex-col gap-5 order-2 lg:order-1 text-left items-start w-full">
 
             {/* Pill badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="inline-flex items-center gap-2 self-center lg:self-start"
+              className="inline-flex items-center gap-2 self-start"
             >
               <span
                 className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-primary border"
@@ -170,7 +162,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               </span>
             </motion.div>
 
-            <div className="w-full flex flex-col items-center lg:items-start justify-center overflow-hidden py-2" style={{ minHeight: 'clamp(280px, 30vh, 360px)' }}>
+            <div className="w-full flex flex-col items-start justify-center overflow-hidden py-2" style={{ minHeight: 'clamp(240px, 28vh, 340px)' }}>
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={currentIndex}
@@ -179,7 +171,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="space-y-6 lg:space-y-8 flex flex-col items-center lg:items-start w-full"
+                  className="space-y-5 lg:space-y-7 flex flex-col items-start w-full"
                 >
                   <h1 className="font-sans font-bold leading-[1.1] tracking-tight text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-[3rem] xl:text-[3.5rem] min-h-[140px] sm:min-h-[160px] lg:min-h-[180px]">
                     <motion.div
@@ -206,8 +198,14 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                     </motion.div>
                     <br />{' '}
                     <span
-                      className="inline-block text-[2.5rem] xl:text-[3rem] pb-2 relative text-primary"
-                      style={{ minWidth: '2ch' }}
+                      className="inline-block text-[2.5rem] xl:text-[3rem] pb-2 relative"
+                      style={{
+                        background: 'var(--gradient-primary)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        minWidth: '2ch'
+                      }}
                     >
                       {typedText}
                       <motion.span
@@ -215,8 +213,8 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                         transition={{ repeat: Infinity, duration: 0.75, ease: 'linear' }}
                         className="inline-block align-middle ml-1"
                         style={{
-                          width: '3px',
-                          height: '1em',
+                          width: '4px',
+                          height: '1.1em',
                           background: 'var(--color-primary)',
                           borderRadius: '2px',
                           verticalAlign: 'middle',
@@ -226,7 +224,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   </h1>
 
                   <motion.p
-                    className="text-base sm:text-lg text-muted-foreground leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
+                    className="text-base sm:text-lg text-muted-foreground leading-relaxed font-light max-w-xl">
                     {SLIDE_DATA[currentIndex].desc}
                   </motion.p>
                 </motion.div>
@@ -241,168 +239,89 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               }}
               initial="hidden"
               animate="visible"
-              className="flex flex-col xl:flex-row flex-wrap items-center justify-center lg:justify-start gap-6 lg:gap-8 w-full z-20 relative"
+              className="flex flex-col sm:flex-row flex-wrap items-start justify-start gap-4 w-full z-20 relative"
             >
               {/* Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-auto">
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, x: -72 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'backOut' } }
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, x: -72 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'backOut' } }
+                }}
+              >
+                <Link
+                  to="/contact"
+                  className="group relative flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300"
+                  style={{
+                    background: 'var(--gradient-primary)',
+                    color: '#fff',
+                    boxShadow: '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)',
                   }}
-                  className="w-full sm:w-auto"
+                  onMouseEnter={e =>
+                    (e.currentTarget.style.boxShadow = '0 6px 32px color-mix(in srgb, var(--color-primary) 55%, transparent)')
+                  }
+                  onMouseLeave={e =>
+                    (e.currentTarget.style.boxShadow = '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)')
+                  }
                 >
-                  <Link
-                    to="/contact"
-                    className="group relative flex items-center justify-between gap-5 w-full sm:w-auto sm:min-w-[220px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300 bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20"
-                  >
-                    <span>Free Consultation</span>
-                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                      <ArrowRight size={17} className="-rotate-45" />
-                    </div>
-                  </Link>
-                </motion.div>
+                  <span>Free Consultation</span>
+                  <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                    <ArrowRight size={17} className="-rotate-45" />
+                  </div>
+                </Link>
+              </motion.div>
 
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, x: -72 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: 'backOut' } }
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, x: -72 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: 'backOut' } }
+                }}
+              >
+                <Link
+                  to="/solutions"
+                  className="group flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300 border"
+                  style={{
+                    color: 'var(--color-foreground)',
+                    borderColor: 'color-mix(in srgb, var(--color-foreground) 15%, transparent)',
+                    background: 'color-mix(in srgb, var(--color-foreground) 4%, transparent)',
                   }}
-                  className="w-full sm:w-auto"
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = 'var(--color-primary)';
+                    e.currentTarget.style.background = 'color-mix(in srgb, var(--color-primary) 15%, transparent)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-foreground) 15%, transparent)';
+                    e.currentTarget.style.background = 'color-mix(in srgb, var(--color-foreground) 4%, transparent)';
+                  }}
                 >
-                  <Link
-                    to="/solutions"
-                    className="group flex items-center justify-between gap-5 w-full sm:w-auto sm:min-w-[220px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300 border"
-                    style={{
-                      color: 'var(--color-foreground)',
-                      borderColor: 'color-mix(in srgb, var(--color-foreground) 15%, transparent)',
-                      background: 'color-mix(in srgb, var(--color-foreground) 4%, transparent)',
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.borderColor = 'var(--color-primary)';
-                      e.currentTarget.style.background = 'color-mix(in srgb, var(--color-primary) 20%, transparent)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-foreground) 15%, transparent)';
-                      e.currentTarget.style.background = 'color-mix(in srgb, var(--color-foreground) 4%, transparent)';
-                    }}
+                  <span>Our Services</span>
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center group-hover:scale-105 transition-all"
+                    style={{ background: 'color-mix(in srgb, var(--color-foreground) 8%, transparent)' }}
                   >
-                    <span>Our Services</span>
-                    <div
-                      className="w-9 h-9 rounded-full flex items-center justify-center group-hover:scale-105 transition-all"
-                      style={{ background: 'color-mix(in srgb, var(--color-foreground) 8%, transparent)' }}
-                    >
-                      <ArrowRight size={17} className="-rotate-45" />
-                    </div>
-                  </Link>
-                </motion.div>
-              </div>
+                    <ArrowRight size={17} className="-rotate-45" />
+                  </div>
+                </Link>
+              </motion.div>
 
             </motion.div>
           </div>
 
+          {/* Right: Device Mockup Showcase */}
           <motion.div
-            initial={{ opacity: 0, x: 60, scale: 0.95 }}
+            initial={{ opacity: 0, x: 50, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
-            className="relative order-1 lg:order-2 flex items-center justify-center lg:justify-end lg:pr-8"
+            transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
+            className="relative order-1 lg:order-2 flex items-center justify-center w-full"
+            style={{ minHeight: '480px' }}
           >
-            {/* Glow blob behind image */}
+            {/* Ambient glow */}
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] aspect-square rounded-full blur-[80px] opacity-40 z-0 pointer-events-none"
-              style={{
-                background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 80%)',
-              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] rounded-full blur-[90px] opacity-20 pointer-events-none z-0"
+              style={{ background: 'radial-gradient(ellipse, hsl(var(--primary)) 0%, hsl(var(--accent)) 60%, transparent 100%)' }}
             />
-
-            {/* Image frame */}
-            <motion.div
-              style={{
-                x: imgX,
-                y: imgY,
-                background: 'var(--color-surface)',
-                border: '1px solid color-mix(in srgb, var(--color-primary-foreground) 10%, transparent)',
-                boxShadow: '0 25px 50px -12px rgb(0, 0, 0, 0.5), 0 0 60px color-mix(in srgb, var(--color-primary) 15%, transparent)',
-              }}
-              className="relative z-10 h-[85vh] w-full max-w-[400px] aspect-[3/4] rounded-sm] sm:rounded-sm.5rem] p-2 sm:p-3 my-auto"
-            >
-              {/* Image Container */}
-              <div className="w-full h-full relative overflow-hidden rounded-sm.5rem] sm:rounded-sm]">
-                <AnimatePresence mode="popLayout" custom={direction}>
-                  <motion.img
-                    key={currentIndex}
-                    custom={direction}
-                    variants={slideVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    src={SLIDE_DATA[currentIndex].img}
-                    alt={SLIDE_DATA[currentIndex].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-
-                {/* Subtle overlay tint */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--color-primary) 0%, transparent 20%)',
-                  }}
-                />
-              </div>
-
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-4 sm:top-10 -left-6 sm:-left-12 lg:-left-16 z-20"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.2, ease: 'backOut' }}
-                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-sm backdrop-blur-xl"
-                  style={{
-                    background: 'var(--color-primary)',
-                    border: '1px solid color-mix(in srgb, var(--color-primary-foreground) 15%, transparent)',
-                    boxShadow: '0 16px 32px color-mix(in srgb, var(--color-primary) 15%, transparent)',
-                  }}
-                >
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'color-mix(in srgb, var(--color-primary-foreground) 20%, transparent)' }}>
-                    <Shield size={20} style={{ color: 'var(--color-primary-foreground)' }} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold leading-tight" style={{ color: 'var(--color-primary-foreground)' }}>System Secure</p>
-                    <p className="text-xs mt-0.5" style={{ color: 'color-mix(in srgb, var(--color-primary-foreground) 80%, transparent)' }}>Zero threats detected</p>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute bottom-6 sm:bottom-12 -right-4 sm:-right-10 lg:-right-12 z-20"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.4, ease: 'backOut' }}
-                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-sm backdrop-blur-xl shadow-[0_16px_32px_rgba(0,0,0,0.4)]"
-                  style={{
-                    background: 'color-mix(in srgb, var(--color-background) 85%, transparent)',
-                    border: '1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent)',
-                  }}
-                >
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'color-mix(in srgb, var(--color-primary) 10%, transparent)' }}>
-                    <Cloud size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-foreground leading-tight">99.9% Uptime</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">Cloud operations</p>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
+            <div className="relative z-10 w-full">
+              <DeviceMockupShowcase />
+            </div>
           </motion.div>
 
         </div>

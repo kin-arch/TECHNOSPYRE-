@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { RichTextEditor } from '../ui/RichTextEditor';
 
 const fadeLeft = {
   hidden: { opacity: 0, x: -40 },
@@ -20,8 +21,12 @@ export const ContactForm: React.FC = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) newErrors.email = 'Work email is required';
     else if (!emailRegex.test(formData.email)) newErrors.email = 'Please enter a valid work email';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-    else if (formData.message.trim().length < 10) newErrors.message = 'Please provide more details (min 10 characters)';
+    
+    // Strip HTML to count actual text content from the rich text editor
+    const cleanMessage = formData.message.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
+    if (!cleanMessage) newErrors.message = 'Message is required';
+    else if (cleanMessage.length < 50) newErrors.message = 'Please provide more details (min 50 characters)';
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -70,7 +75,7 @@ export const ContactForm: React.FC = () => {
       <form className="space-y-7" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
           <div className="space-y-2">
-            <label className="font-label text-sm text-on-surface-variant ml-1">Full Name</label>
+            <label className="font-label text-sm text-on-surface-variant ml-1">Full Name <span className="text-red-500 ml-0.5">*</span></label>
             <input
               name="name"
               value={formData.name}
@@ -82,7 +87,7 @@ export const ContactForm: React.FC = () => {
             {errors.name && <p className="text-red-400 text-xs ml-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.name}</p>}
           </div>
           <div className="space-y-2">
-            <label className="font-label text-sm text-on-surface-variant ml-1">Work Email</label>
+            <label className="font-label text-sm text-on-surface-variant ml-1">Work Email <span className="text-red-500 ml-0.5">*</span></label>
             <input
               name="email"
               value={formData.email}
@@ -111,14 +116,14 @@ export const ContactForm: React.FC = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="font-label text-sm text-on-surface-variant ml-1">Message</label>
-          <textarea
-            name="message"
+          <label className="font-label text-sm text-on-surface-variant ml-1">Message <span className="text-red-500 ml-0.5">*</span></label>
+          <RichTextEditor
             value={formData.message}
-            onChange={handleChange}
-            className={`w-full bg-surface-container-low border-0 border-b ${errors.message ? 'border-red-500' : 'border-outline-variant/40'} focus:border-primary focus:ring-0 transition-all px-4 py-3 text-on-surface placeholder:text-on-surface-variant/30 outline-none resize-none`}
-            placeholder="Describe your requirements..."
-            rows={5}
+            onChange={(val) => {
+              setFormData((prev) => ({ ...prev, message: val }));
+              if (errors.message) setErrors((prev) => { const n = { ...prev }; delete n.message; return n; });
+            }}
+            className={errors.message ? 'border border-red-500 ring-1 ring-red-500/20' : ''}
           />
           {errors.message && <p className="text-red-400 text-xs ml-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.message}</p>}
         </div>

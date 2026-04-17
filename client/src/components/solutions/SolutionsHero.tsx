@@ -44,9 +44,9 @@ export const SolutionsHero: React.FC = () => {
 
   return (
     <section className="relative min-h-[90vh] w-full flex items-center lg:items-start overflow-hidden">
-      
+
       {/* Absolute Edge Navigation Buttons */}
-      <button 
+      <button
         onClick={prevSlide}
         className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full border border-primary/20 text-primary bg-background/50 backdrop-blur-md hover:text-white hover:bg-primary transition-all shadow-lg"
         aria-label="Previous Slide"
@@ -54,7 +54,7 @@ export const SolutionsHero: React.FC = () => {
         <ChevronLeft size={28} />
       </button>
 
-      <button 
+      <button
         onClick={nextSlide}
         className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full border border-primary/20 text-primary bg-background/50 backdrop-blur-md hover:text-white hover:bg-primary transition-all shadow-lg"
         aria-label="Next Slide"
@@ -62,12 +62,21 @@ export const SolutionsHero: React.FC = () => {
         <ChevronRight size={28} />
       </button>
 
+      {/* Background Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.035]"
+        style={{
+          backgroundImage:
+            'linear-gradient(var(--color-foreground) 2px, transparent 2px), linear-gradient(90deg, var(--color-foreground) 2px, transparent 2px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
       <div className="relative z-10 mx-auto max-w-7xl px-12 sm:px-16 md:px-20 lg:px-24 w-full py-6 my-auto">
-        
+
         <div className="grid lg:grid-cols-2 gap-12 justify-center lg:justify-start items-center lg:items-start">
-          
+
           {/* Content Side */}
-          <motion.div 
+          <motion.div
             variants={containerVars}
             initial="initial"
             animate="animate"
@@ -75,9 +84,9 @@ export const SolutionsHero: React.FC = () => {
             className="flex flex-col items-start"
           >
             {/* Animated Badge */}
-            <motion.div 
+            <motion.div
               variants={itemVars}
-              className="group flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-foreground text-sm mb-4 hover:border-primary/50 transition-colors cursor-default mt-2"
+              className="group flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-foreground text-sm mb-6 hover:border-primary/50 transition-colors cursor-default mt-2"
             >
               <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
               <span className="font-medium tracking-wide uppercase text-[10px] md:text-xs">
@@ -86,9 +95,9 @@ export const SolutionsHero: React.FC = () => {
             </motion.div>
 
             {/* Separately Animated Heading */}
-            <motion.h1 
+            <motion.h1
               variants={itemVars}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.25rem] xl:text-[3rem] 2xl:text-[3.5rem] font-bold text-foreground tracking-tight leading-[1.15] mb-4 text-balance line-clamp-2"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.25rem] xl:text-[3rem] 2xl:text-[3.5rem] font-bold text-foreground tracking-tight leading-[1.15] mb-6 text-balance line-clamp-2"
               title={currentItem.name}
             >
               {currentItem.name.split(' ').map((word, i) => (
@@ -99,9 +108,9 @@ export const SolutionsHero: React.FC = () => {
             </motion.h1>
 
             {/* Separately Animated Description */}
-            <motion.p 
+            <motion.p
               variants={itemVars}
-              className="text-base sm:text-lg md:text-xl text-foreground/80 leading-relaxed max-w-lg mb-4 md:mb-4"
+              className="text-base sm:text-lg md:text-xl text-foreground/80 leading-relaxed max-w-lg mb-6"
             >
               {currentItem.shortDescription}
             </motion.p>
@@ -109,9 +118,9 @@ export const SolutionsHero: React.FC = () => {
             {/* CTA Section */}
             <motion.div variants={itemVars} className="w-full max-w-md">
               <form className="relative group flex flex-col sm:flex-row items-stretch sm:items-center p-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-sm focus-within:border-primary/50 transition-all shadow-2xl gap-2 sm:gap-0">
-                <input 
-                  type="email" 
-                  placeholder="Your work email..." 
+                <input
+                  type="email"
+                  placeholder="Your work email..."
                   className="flex-1 bg-transparent border border-white/10 sm:border-none rounded-sm sm:rounded-none text-white px-4 py-3 focus:ring-1 sm:focus:ring-0 focus:ring-primary placeholder:text-gray-500"
                 />
                 <button className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-sm font-bold flex justify-center items-center gap-2 transition-transform active:scale-95 shadow-lg shadow-primary/20 sm:ml-2">
@@ -119,7 +128,7 @@ export const SolutionsHero: React.FC = () => {
                 </button>
               </form>
               <p className="mt-4 text-xs text-gray-500 flex items-center gap-1">
-                <Sparkles size={12} className="text-primary" /> 
+                <Sparkles size={12} className="text-primary" />
                 Start your Journey with <b>TechnoSpyre</b>
               </p>
             </motion.div>
@@ -143,7 +152,7 @@ export const SolutionsHero: React.FC = () => {
                 />
               </motion.div>
             </AnimatePresence>
-            
+
             {/* Glassmorphism Decorative Elements */}
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-primary/30 blur-[60px] rounded-full animate-pulse pointer-events-none -z-10" />
             <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-blue-500/10 blur-[80px] rounded-full pointer-events-none -z-10" />
@@ -151,6 +160,13 @@ export const SolutionsHero: React.FC = () => {
 
         </div>
       </div>
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-10"
+        style={{
+          background:
+            'linear-gradient(to top, var(--color-background) 0%, transparent 100%)',
+        }}
+      />
     </section>
   );
 };

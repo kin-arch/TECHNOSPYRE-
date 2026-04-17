@@ -24,14 +24,9 @@ export const Navbar = () => {
     <nav className="relative w-full z-50 flex justify-between items-center px-4 md:px-8 py-3 bg-background border-b border-outline-variant/50">
       <div className="flex items-center gap-8">
         <Link to="/" className="flex items-center gap-2">
-          <motion.div
-            layoutId="site-logo"
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="flex items-center gap-2"
-          >
-            <img src="/logo1.svg" alt="Logo" className="w-8 h-8 rounded-sm" />
-            <span className="font-bold text-on-surface text-lg tracking-tight">Technospyre</span>
-          </motion.div>
+          <div className="flex items-center gap-2">
+            <img src="/logo1.png" alt="Logo" className="w-16 h-16" />
+          </div>
         </Link>
 
         {/* Desktop nav */}
@@ -56,8 +51,10 @@ export const Navbar = () => {
                 <div className="absolute top-full left-0 w-full h-6 opacity-0 pointer-events-auto" />
                 
                 {/* Mega Menu Dropdown */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[900px] max-w-[95vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out pointer-events-none group-hover:pointer-events-auto z-50">
-                  <div className="bg-surface rounded-sm border border-outline-variant/40 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] p-8">
+                <div className="absolute top-full -left-[10vw] xl:-left-24 pt-4 w-[900px] max-w-[95vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ease-out pointer-events-none group-hover:pointer-events-auto z-[60]">
+                  <div className="bg-background rounded-xl border border-outline-variant shadow-2xl p-8 isolate overflow-hidden">
+                    {/* Add a solid background layer internally to ensure it's never transparent/broken */}
+                    <div className="absolute inset-0 bg-surface-container/30 -z-10" />
                     <div className="grid grid-cols-4 gap-x-8 gap-y-8">
                     {courseCategories.map((category) => {
                       const shortTitle = category.title.replace(/ Courses| Development/g, '');
@@ -126,16 +123,10 @@ export const Navbar = () => {
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </button>
         <Link
-          to="/login"
-          className="text-on-surface font-semibold px-4 py-2.5 bg-surface text-[15px] rounded-sm border border-outline-variant hover:bg-surface-container transition-colors shadow-sm"
+          to="/contact"
+          className="bg-primary hover:bg-primary/95 text-primary-foreground font-semibold text-[15px] px-6 py-2.5 rounded-lg transition-colors shadow-md ml-2"
         >
-          Log in
-        </Link>
-        <Link
-          to="/signup"
-          className="bg-primary hover:bg-primary/95 text-white font-semibold text-[15px] px-4 py-2.5 rounded-sm transition-colors shadow-sm"
-        >
-          Sign up
+          Contact Us
         </Link>
       </div>
 
@@ -167,11 +158,11 @@ export const Navbar = () => {
       <AnimatePresence>
       {menuOpen && (
         <motion.div 
-          initial={{ opacity: 0, y: -20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20, scale: 0.95 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="absolute top-full mt-3 left-0 w-full max-h-[75vh] overflow-y-auto bg-surface-container/95 backdrop-blur-xl rounded-sm border border-outline-variant shadow-2xl p-6 flex flex-col gap-4 lg:hidden"
+          className="absolute top-full mt-3 left-4 right-4 w-auto max-h-[calc(100vh-100px)] overflow-y-auto overscroll-contain bg-surface-container/95 backdrop-blur-xl rounded-xl border border-outline-variant shadow-2xl p-6 flex flex-col gap-4 lg:hidden z-[60]"
         >
           {navLinks.map((link) => (
             link.isMegaMenu ? (

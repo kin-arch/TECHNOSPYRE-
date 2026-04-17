@@ -10,7 +10,7 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] bg-background flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[9999] bg-background flex flex-col items-center justify-center gap-5"
         >
           <motion.div
             layoutId="site-logo"
@@ -19,7 +19,7 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
             transition={{ duration: 1, ease: "easeOut" }}
             // className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-primary font-headline"
           >
-            <img src="/logo1.svg" alt="Logo" className="w-72 h-72" />
+            <img src="/logo1.png" alt="Logo" className="w-72 h-72" />
           </motion.div>
 
           

@@ -144,7 +144,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-6 xl:px-26 pt-28 pb-16 lg:pt-20">
+      <div className="container relative z-10 mx-auto px-6 xl:px-26 pt-28 pb-16 lg:pt-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 xl:gap-12 items-start">
           <div className="flex flex-col gap-5 order-2 lg:order-1 text-center lg:text-left items-center lg:items-start w-full">
 

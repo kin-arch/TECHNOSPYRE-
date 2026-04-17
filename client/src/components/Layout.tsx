@@ -21,7 +21,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 flex justify-between items-center px-6 py-1 bg-surface-container/60 backdrop-blur-xl rounded-full border border-outline-variant inner-highlight shadow-2xl">
+    <nav className="relative w-screen z-50 flex justify-between items-center px-6 py-2 bg-surface-container/60 backdrop-blur-xl border border-outline-variant inner-highlight shadow-2xl">
       <Link to="/" className="flex items-center">
         <motion.div
           layoutId="site-logo"

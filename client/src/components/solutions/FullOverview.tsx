@@ -24,7 +24,7 @@ export const FullOverview: React.FC<FullOverviewProps> = ({ activeCategory, setA
             viewport={{ once: true }}
             transition={{ delay: catIdx * 0.1 }}
             onClick={() => { setActiveCategory(cat.id); window.scrollTo({ top: 400, behavior: 'smooth' }); }}
-            className={`group rounded-lg overflow-hidden border transition-all duration-300 cursor-pointer hover:shadow-xl ${
+            className={`group rounded-sm overflow-hidden border transition-all duration-300 cursor-pointer hover:shadow-xl ${
               activeCategory === cat.id
                 ? 'border-primary shadow-[0_0_30px_rgba(251,146,60,0.15)]'
                 : 'border-outline-variant hover:border-primary/40'
@@ -37,11 +37,11 @@ export const FullOverview: React.FC<FullOverviewProps> = ({ activeCategory, setA
                 alt={cat.label}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary">
+              <div className="absolute top-4 left-4 w-10 h-10 rounded-sm bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary">
                 {cat.icon}
               </div>
               {activeCategory === cat.id && (
-                <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-lg">Active</div>
+                <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-sm">Active</div>
               )}
             </div>
 
@@ -49,7 +49,7 @@ export const FullOverview: React.FC<FullOverviewProps> = ({ activeCategory, setA
             <div className="bg-surface-container-low p-6">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-headline text-lg font-bold">{cat.label}</h4>
-                <span className="text-xs text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-lg border border-outline-variant">
+                <span className="text-xs text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-sm border border-outline-variant">
                   {cat.products.length} products
                 </span>
               </div>

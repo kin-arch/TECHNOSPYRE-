@@ -30,9 +30,9 @@ const CourseTable: React.FC<CourseTableProps> = ({
       className="space-y-6"
     >
       <h2 className="font-headline text-3xl font-bold flex items-center gap-3">
-        <span className={`w-1.5 h-8 ${accentClass} rounded-lg`}></span> {title}
+        <span className={`w-1.5 h-8 ${accentClass} rounded-sm`}></span> {title}
       </h2>
-      <div className="overflow-hidden rounded-lg glass-card border border-white/5">
+      <div className="overflow-hidden rounded-sm glass-card border border-white/5">
         <table className="w-full text-left border-collapse">
           <thead className={bgAccentClass}>
             <tr>
@@ -63,7 +63,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                 <td className="px-6 py-4 font-medium">{row.name}</td>
                 {showTechStack && (
                   <td className="px-6 py-4">
-                    <span className="px-2 py-1 bg-surface-container rounded-lg text-xs">
+                    <span className="px-2 py-1 bg-surface-container rounded-sm text-xs">
                       {row.techStack?.split(',')[0]}
                     </span>
                   </td>

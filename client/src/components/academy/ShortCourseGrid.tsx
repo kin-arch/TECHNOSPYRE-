@@ -17,7 +17,7 @@ const ShortCourseGrid: React.FC<ShortCourseGridProps> = ({ courses, onCourseClic
         viewport={{ once: true }}
         className="font-headline text-3xl font-bold flex items-center gap-3"
       >
-        <span className="w-1.5 h-8 bg-tertiary rounded-lg"></span> Professional Short Courses
+        <span className="w-1.5 h-8 bg-tertiary rounded-sm"></span> Professional Short Courses
       </motion.h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {courses.map((course, idx) => (
@@ -29,10 +29,10 @@ const ShortCourseGrid: React.FC<ShortCourseGridProps> = ({ courses, onCourseClic
             transition={{ delay: idx * 0.1 }}
             whileHover={{ y: -5 }}
             onClick={() => onCourseClick(course)}
-            className="p-6 rounded-lg bg-white/[0.03] border border-white/5 hover:border-tertiary/30 transition-all group cursor-pointer"
+            className="p-6 rounded-sm bg-white/[0.03] border border-white/5 hover:border-tertiary/30 transition-all group cursor-pointer"
           >
             <div className="flex justify-between items-start mb-4">
-              <span className="p-2 bg-tertiary/10 rounded-lg text-tertiary group-hover:scale-110 transition-transform">
+              <span className="p-2 bg-tertiary/10 rounded-sm text-tertiary group-hover:scale-110 transition-transform">
                 {course.name.includes('Cloud') ? <Zap /> : course.name.includes('Cyber') ? <Shield /> : <Code2 />}
               </span>
               <span className="text-xs font-mono text-on-surface-variant">{course.duration}</span>

@@ -21,10 +21,10 @@ export const ContactInfo: React.FC = () => {
             viewport={{ once: true }}
             custom={i * 0.12}
             whileHover={{ y: -6 }}
-            className="glass-card border border-outline-variant rounded-lg p-8 flex flex-col justify-between group hover:border-primary/30 transition-all duration-400 cursor-pointer inner-highlight"
+            className="glass-card border border-outline-variant rounded-sm p-8 flex flex-col justify-between group hover:border-primary/30 transition-all duration-400 cursor-pointer inner-highlight"
           >
             <div>
-              <div className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center mb-7 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center mb-7 group-hover:scale-110 transition-transform">
                 {item.icon}
               </div>
               <h3 className="font-headline text-xl font-bold mb-3 text-on-surface">{item.title}</h3>
@@ -46,7 +46,7 @@ export const ContactInfo: React.FC = () => {
         className="mt-6 flex flex-wrap gap-4 justify-center"
       >
         {features.map((f) => (
-          <div key={f.label} className="flex items-center gap-2 text-on-surface-variant text-sm bg-surface-container border border-outline-variant px-4 py-2.5 rounded-lg">
+          <div key={f.label} className="flex items-center gap-2 text-on-surface-variant text-sm bg-surface-container border border-outline-variant px-4 py-2.5 rounded-sm">
             <span className="text-primary">{f.icon}</span>
             {f.label}
           </div>

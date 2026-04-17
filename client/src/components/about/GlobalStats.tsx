@@ -21,7 +21,7 @@ export const GlobalStats: React.FC = () => {
             custom={i * 0.1}
             className="flex flex-col items-center text-center gap-2"
           >
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-1">{s.icon}</div>
+            <div className="w-10 h-10 rounded-sm bg-primary/10 flex items-center justify-center text-primary mb-1">{s.icon}</div>
             <p className="text-3xl font-headline font-bold text-primary">{s.value}</p>
             <p className="text-xs font-label uppercase tracking-widest text-on-surface-variant">{s.label}</p>
           </motion.div>

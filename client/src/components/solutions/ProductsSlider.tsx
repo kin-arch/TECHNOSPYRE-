@@ -6,15 +6,15 @@ import { getAllProducts } from '../../data/solutions';
 
 const ProfessionalProductCard = ({ product }: { product: any }) => {
   return (
-    <div className="group w-[280px] sm:w-[320px] md:w-[360px] flex-shrink-0 bg-surface-container border border-outline-variant rounded-lg overflow-hidden flex flex-col h-[400px] transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover hover:border-primary/50 relative">
+    <div className="overflow-x-hidden group w-[280px] sm:w-[320px] md:w-[360px] flex-shrink-0 bg-surface-container border border-outline-variant rounded-sm overflow-hidden flex flex-col h-[400px] transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover hover:border-primary/50 relative">
       <div className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
       <div className="p-6 md:p-8 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-8">
-          <div className="p-3 bg-primary/5 border border-primary/10 rounded-lg text-primary group-hover:text-white group-hover:bg-primary transition-colors duration-300">
+          <div className="p-3 bg-primary/5 border border-primary/10 rounded-sm text-primary group-hover:text-white group-hover:bg-primary transition-colors duration-300">
             {product.icon}
           </div>
-          <span className="text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-lg bg-white/5 text-white/70 uppercase tracking-widest border border-white/5">
+          <span className="text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-sm bg-white/5 text-white/70 uppercase tracking-widest border border-white/5">
             {product.category}
           </span>
         </div>

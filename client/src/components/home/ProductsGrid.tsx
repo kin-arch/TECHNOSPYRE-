@@ -46,7 +46,7 @@ export const ProductsGrid: React.FC = () => {
           >
             <Link
               to={`/solutions?category=${categories[0].id}`}
-              className="group block h-full rounded-3xl overflow-hidden border border-outline-variant inner-highlight bg-surface-container hover:border-primary/40 hover:shadow-2xl transition-all duration-500"
+              className="group block h-full rounded-sm overflow-hidden border border-outline-variant inner-highlight bg-surface-container hover:border-primary/40 hover:shadow-2xl transition-all duration-500"
             >
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -55,7 +55,7 @@ export const ProductsGrid: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 opacity-100"
                 />
                 <div className="absolute top-4 left-4 flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary">
+                  <div className="w-11 h-11 rounded-sm bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary">
                     {categories[0].icon}
                   </div>
                   <span className="bg-surface-container/80 backdrop-blur-md text-primary text-xs font-bold px-3 py-1.5 rounded-full border border-primary/20">
@@ -97,7 +97,7 @@ export const ProductsGrid: React.FC = () => {
               >
                 <Link
                   to={`/solutions?category=${cat.id}`}
-                  className="group flex overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-high inner-highlight hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-400 block"
+                  className="group flex overflow-hidden rounded-sm border border-outline-variant bg-surface-container-high inner-highlight hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-400 block"
                 >
                   <div className="w-44 shrink-0 overflow-hidden relative">
                     <img
@@ -106,7 +106,7 @@ export const ProductsGrid: React.FC = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 opacity-100"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-xl bg-primary/20 backdrop-blur-sm border border-primary/30 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                      <div className="w-10 h-10 rounded-sm bg-primary/20 backdrop-blur-sm border border-primary/30 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                         {cat.icon}
                       </div>
                     </div>

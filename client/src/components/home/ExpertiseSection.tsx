@@ -29,11 +29,11 @@ export const ExpertiseSection: React.FC = () => {
               viewport={{ once: true }}
               custom={i * 0.12}
               whileHover={{ y: -8 }}
-              className="group rounded-2xl overflow-hidden border border-outline-variant bg-surface-container inner-highlight transition-all duration-400 cursor-pointer"
+              className="group rounded-sm overflow-hidden border border-outline-variant bg-surface-container inner-highlight transition-all duration-400 cursor-pointer"
             >
               <div className="h-36 overflow-hidden relative">
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 opacity-50" />
-                <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-primary backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="absolute bottom-4 left-4 w-10 h-10 rounded-sm bg-primary backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
                   {service.icon}
                 </div>
               </div>

@@ -19,7 +19,7 @@ export const SolutionPanel: React.FC<SolutionPanelProps> = ({ activeCategory, se
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold font-headline transition-all duration-300 border ${
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm font-bold font-headline transition-all duration-300 border ${
               activeCategory === cat.id
                 ? 'bg-primary text-white border-primary shadow-[0_0_20px_rgba(251,146,60,0.25)]'
                 : 'bg-surface-container/60 text-on-surface-variant border-outline-variant hover:text-primary hover:border-primary/40'
@@ -37,7 +37,7 @@ export const SolutionPanel: React.FC<SolutionPanelProps> = ({ activeCategory, se
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="rounded-lg overflow-hidden border border-outline-variant bg-surface-container inner-highlight shadow-2xl"
+        className="rounded-sm overflow-hidden border border-outline-variant bg-surface-container inner-highlight shadow-2xl"
       >
         {/* Image banner */}
         <div className="relative h-52 md:h-64 overflow-hidden">
@@ -47,7 +47,7 @@ export const SolutionPanel: React.FC<SolutionPanelProps> = ({ activeCategory, se
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-6 left-8 flex items-center gap-4 p-4 bg-surface/5 border-surface/10">
-            <div className="w-14 h-14 rounded-lg bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary">
+            <div className="w-14 h-14 rounded-sm bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary">
               {active.icon}
             </div>
             <div>
@@ -68,9 +68,9 @@ export const SolutionPanel: React.FC<SolutionPanelProps> = ({ activeCategory, se
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.07 }}
                 whileHover={{ y: -4 }}
-                className="group flex items-center gap-4 p-5 rounded-lg bg-surface-container-high border border-outline-variant hover:border-primary/40 hover:bg-surface-container-highest transition-all duration-300 cursor-pointer"
+                className="group flex items-center gap-4 p-5 rounded-sm bg-surface-container-high border border-outline-variant hover:border-primary/40 hover:bg-surface-container-highest transition-all duration-300 cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
+                <div className="w-10 h-10 rounded-sm bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all">
                   {product.icon}
                 </div>
                 <span className="font-headline font-semibold text-on-surface text-sm leading-snug flex-1">{product.name}</span>

@@ -78,12 +78,12 @@ const CourseDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-bold tracking-wide uppercase mb-4 border border-primary/20">
+            <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-sm text-sm font-bold tracking-wide uppercase mb-4 border border-primary/20">
               {course.category}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tighter text-on-surface leading-tight mb-6 relative">
               {course.name}
-              <div className="absolute -inset-4 bg-primary/20 blur-3xl -z-10 rounded-lg opacity-30"></div>
+              <div className="absolute -inset-4 bg-primary/20 blur-3xl -z-10 rounded-sm opacity-30"></div>
             </h1>
             <p className="text-lg text-on-surface-variant leading-relaxed">
               {course.description} Expand your expertise and accelerate your career with our industry-leading {course.name} program, specifically tailored for aspiring professionals.
@@ -95,7 +95,7 @@ const CourseDetail = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full relative rounded-lg overflow-hidden aspect-video shadow-2xl border border-outline-variant/30"
+            className="w-full relative rounded-sm overflow-hidden aspect-video shadow-2xl border border-outline-variant/30"
           >
             <img 
               src={category.image} 
@@ -110,7 +110,7 @@ const CourseDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-surface-container p-8 rounded-lg border border-outline-variant"
+            className="bg-surface-container p-8 rounded-sm border border-outline-variant"
           >
             <h3 className="text-2xl font-headline font-bold text-on-surface mb-6">What you will learn</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-on-surface-variant">
@@ -131,12 +131,12 @@ const CourseDetail = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="lg:col-span-1"
         >
-          <div className="sticky top-32 bg-surface-container/60 backdrop-blur-xl border border-outline-variant rounded-lg p-8 shadow-2xl inner-highlight">
+          <div className="sticky top-32 bg-surface-container/60 backdrop-blur-xl border border-outline-variant rounded-sm p-8 shadow-2xl inner-highlight">
             <h3 className="text-xl font-headline font-bold mb-6 text-on-surface">Course Overview</h3>
             
             <div className="space-y-6 mb-8">
               <div className="flex items-center gap-4 text-on-surface-variant">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
+                <div className="w-12 h-12 rounded-sm bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
                   <Clock size={24} />
                 </div>
                 <div>
@@ -146,7 +146,7 @@ const CourseDetail = () => {
               </div>
               
               <div className="flex items-center gap-4 text-on-surface-variant">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
+                <div className="w-12 h-12 rounded-sm bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
                   <Banknote size={24} />
                 </div>
                 <div>
@@ -156,7 +156,7 @@ const CourseDetail = () => {
               </div>
 
               <div className="flex items-center gap-4 text-on-surface-variant">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
+                <div className="w-12 h-12 rounded-sm bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
                   <BookOpen size={24} />
                 </div>
                 <div>
@@ -169,13 +169,13 @@ const CourseDetail = () => {
             <div className="space-y-4 pt-6 border-t border-outline-variant/50">
               <Link 
                 to="/contact"
-                className="w-full py-4 bg-primary hover:bg-primary-hover text-on-primary font-bold rounded-lg transition-all duration-300 flex justify-center items-center gap-2 shadow-[0_0_20px_rgba(251,146,60,0.3)] hover:shadow-[0_0_30px_rgba(251,146,60,0.5)] active:scale-95"
+                className="w-full py-4 bg-primary hover:bg-primary-hover text-on-primary font-bold rounded-sm transition-all duration-300 flex justify-center items-center gap-2 shadow-[0_0_20px_rgba(251,146,60,0.3)] hover:shadow-[0_0_30px_rgba(251,146,60,0.5)] active:scale-95"
               >
                 Enroll Now
               </Link>
               <button 
                 onClick={() => {/* Implement share or download syllabus */}}
-                className="w-full py-4 bg-transparent border-2 border-primary/30 text-primary hover:bg-primary/5 font-bold rounded-lg transition-all duration-300 flex justify-center items-center gap-2"
+                className="w-full py-4 bg-transparent border-2 border-primary/30 text-primary hover:bg-primary/5 font-bold rounded-sm transition-all duration-300 flex justify-center items-center gap-2"
               >
                 Download Syllabus
               </button>

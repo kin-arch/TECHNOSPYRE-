@@ -39,7 +39,7 @@ export const JourneyTimeline: React.FC = () => {
                 <h4 className="font-bold text-xl mb-2">{item.title}</h4>
                 <p className="text-on-surface-variant text-sm">{item.desc}</p>
               </div>
-              <div className="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-lg bg-surface-container border-2 border-primary flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all z-10">
+              <div className="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-sm bg-surface-container border-2 border-primary flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all z-10">
                 {item.icon}
               </div>
               <div className="w-5/12" />

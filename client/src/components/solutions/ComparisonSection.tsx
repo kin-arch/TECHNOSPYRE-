@@ -17,7 +17,7 @@ export const ComparisonSection = () => {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto bg-white/5 border border-white/10 rounded-lg overflow-hidden backdrop-blur-md">
+        <div className="max-w-5xl mx-auto bg-white/5 border border-white/10 rounded-sm overflow-hidden backdrop-blur-md">
           <div className="overflow-x-auto">
             <div className="min-w-[600px]">
               {/* Table Header */}

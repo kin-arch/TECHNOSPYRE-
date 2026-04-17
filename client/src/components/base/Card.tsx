@@ -34,7 +34,7 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <div className={cn(
-      'rounded-2xl overflow-hidden transition-all duration-300',
+      'rounded-sm overflow-hidden transition-all duration-300',
       variants[variant],
       className
     )}>

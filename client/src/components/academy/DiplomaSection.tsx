@@ -67,14 +67,14 @@ export const DiplomaSection: React.FC = () => {
               <div className="flex gap-2">
                 <button 
                   onClick={handlePrev}
-                  className="cursor-pointer w-10 h-10 rounded-lg border border-primary flex items-center justify-center text-primary hover:bg-primary/10 hover:border-primary/30 transition-all active:scale-95"
+                  className="cursor-pointer w-10 h-10 rounded-sm border border-primary flex items-center justify-center text-primary hover:bg-primary/10 hover:border-primary/30 transition-all active:scale-95"
                   aria-label="Previous Diploma"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button 
                   onClick={handleNext}
-                  className="cursor-pointer w-10 h-10 rounded-lg border border-primary flex items-center justify-center text-primary hover:bg-primary/10 hover:border-primary/30 transition-all active:scale-95"
+                  className="cursor-pointer w-10 h-10 rounded-sm border border-primary flex items-center justify-center text-primary hover:bg-primary/10 hover:border-primary/30 transition-all active:scale-95"
                   aria-label="Next Diploma"
                 >
                   <ChevronRight size={20} />
@@ -96,7 +96,7 @@ export const DiplomaSection: React.FC = () => {
                   <h2 className="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">
                     {currentDiploma.title}
                   </h2>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary rounded-lg text-primary text-sm font-bold mb-8">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary rounded-sm text-primary text-sm font-bold mb-8">
                     <Calendar size={16} /> Total Duration: {currentDiploma.duration}
                   </div>
                   <p className="text-on-surface-variant text-lg leading-relaxed max-w-xl">
@@ -109,9 +109,9 @@ export const DiplomaSection: React.FC = () => {
                     <motion.div 
                       key={sem.title}
                       whileHover={{ y: -5 }}
-                      className="p-6 rounded-lg bg-surface-container border border-outline-variant inner-highlight group transition-all duration-300"
+                      className="p-6 rounded-sm bg-surface-container border border-outline-variant inner-highlight group transition-all duration-300"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-primary/5 flex items-center justify-center text-primary mb-5 border border-primary/10 group-hover:bg-primary/10 transition-colors">
+                      <div className="w-10 h-10 rounded-sm bg-primary/5 flex items-center justify-center text-primary mb-5 border border-primary/10 group-hover:bg-primary/10 transition-colors">
                         {i === 0 ? <Layers size={20} /> : <Award size={20} />}
                       </div>
                       <h3 className="text-xl font-bold font-headline mb-4 text-surface">{sem.title}</h3>
@@ -135,7 +135,7 @@ export const DiplomaSection: React.FC = () => {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-surface-container-high rounded-lg border border-outline-variant overflow-hidden"
+              className="bg-surface-container-high rounded-sm border border-outline-variant overflow-hidden"
             >
               <AnimatePresence mode="wait">
                 <motion.div 
@@ -164,7 +164,7 @@ export const DiplomaSection: React.FC = () => {
                         </div>
                       ))}
                     </div>
-                    <button className="w-full mt-8 py-4 bg-secondary text-on-secondary rounded-lg font-bold hover:shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2">
+                    <button className="w-full mt-8 py-4 bg-secondary text-on-secondary rounded-sm font-bold hover:shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2">
                       Enroll in Course <ChevronRight size={18} />
                     </button>
                     <p className="text-center text-[10px] text-on-surface-variant uppercase mt-12 tracking-widest flex items-center justify-center gap-2">

@@ -45,14 +45,14 @@ const Demo = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             whileHover={{ y: -5 }}
-            className="md:col-span-2 bg-surface-container-low rounded-lg p-10 border border-white/5 relative overflow-hidden group transition-all duration-500"
+            className="md:col-span-2 bg-surface-container-low rounded-sm p-10 border border-white/5 relative overflow-hidden group transition-all duration-500"
           >
             <div className="relative z-10">
               <h3 className="font-headline text-3xl font-bold mb-4 text-on-surface">Scalability Without Borders</h3>
               <p className="text-on-surface-variant max-w-md">Our global edge network ensures your applications perform with zero-lag, no matter where your users are located.</p>
               <div className="mt-12 flex gap-4">
-                <span className="px-4 py-2 rounded-lg bg-surface-container text-primary font-label text-sm">Edge Clusters</span>
-                <span className="px-4 py-2 rounded-lg bg-surface-container text-secondary font-label text-sm">Auto-Scale</span>
+                <span className="px-4 py-2 rounded-sm bg-surface-container text-primary font-label text-sm">Edge Clusters</span>
+                <span className="px-4 py-2 rounded-sm bg-surface-container text-secondary font-label text-sm">Auto-Scale</span>
               </div>
             </div>
             <img 
@@ -70,9 +70,9 @@ const Demo = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             whileHover={{ y: -5 }}
-            className="bg-surface-container-low rounded-lg p-10 border border-white/5 flex flex-col justify-between transition-all duration-500"
+            className="bg-surface-container-low rounded-sm p-10 border border-white/5 flex flex-col justify-between transition-all duration-500"
           >
-            <div className="w-14 h-14 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary mb-6 group-hover:scale-110 transition-transform">
+            <div className="w-14 h-14 rounded-sm bg-tertiary/10 flex items-center justify-center text-tertiary mb-6 group-hover:scale-110 transition-transform">
               <Shield className="w-8 h-8" />
             </div>
             <div>
@@ -82,8 +82,8 @@ const Demo = () => {
           </motion.div>
 
           {/* Small Feature 2 */}
-          <div className="bg-surface-container-low rounded-lg p-10 border border-white/5 flex flex-col justify-between">
-            <div className="w-14 h-14 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary mb-6">
+          <div className="bg-surface-container-low rounded-sm p-10 border border-white/5 flex flex-col justify-between">
+            <div className="w-14 h-14 rounded-sm bg-secondary/10 flex items-center justify-center text-secondary mb-6">
               <Terminal className="w-8 h-8" />
             </div>
             <div>
@@ -93,22 +93,22 @@ const Demo = () => {
           </div>
 
           {/* Wide Feature */}
-          <div className="md:col-span-2 rounded-lg p-10 border border-white/5 flex items-center gap-12 overflow-hidden">
+          <div className="md:col-span-2 rounded-sm p-10 border border-white/5 flex items-center gap-12 overflow-hidden">
             <div className="flex-1">
               <h3 className="font-headline text-3xl font-bold mb-4 text-on-surface">Precision Monitoring</h3>
               <p className="text-on-surface-variant">Visualize every packet, every request, and every user interaction through our high-fidelity dashboard.</p>
             </div>
             <div className="flex-1 hidden lg:block">
-              <div className="bg-background/80 p-4 rounded-lg border border-white/10 rotate-3">
+              <div className="bg-background/80 p-4 rounded-sm border border-white/10 rotate-3">
                 <div className="flex gap-2 mb-4">
-                  <div className="w-2 h-2 rounded-lg bg-error"></div>
-                  <div className="w-2 h-2 rounded-lg bg-secondary"></div>
-                  <div className="w-2 h-2 rounded-lg bg-primary"></div>
+                  <div className="w-2 h-2 rounded-sm bg-error"></div>
+                  <div className="w-2 h-2 rounded-sm bg-secondary"></div>
+                  <div className="w-2 h-2 rounded-sm bg-primary"></div>
                 </div>
                 <div className="space-y-2">
-                  <div className="h-2 w-full bg-white/5 rounded-lg"></div>
-                  <div className="h-2 w-3/4 bg-white/5 rounded-lg"></div>
-                  <div className="h-2 w-1/2 bg-primary/40 rounded-lg"></div>
+                  <div className="h-2 w-full bg-white/5 rounded-sm"></div>
+                  <div className="h-2 w-3/4 bg-white/5 rounded-sm"></div>
+                  <div className="h-2 w-1/2 bg-primary/40 rounded-sm"></div>
                 </div>
               </div>
             </div>
@@ -123,7 +123,7 @@ const Demo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="bg-surface-container-lowest rounded-lg] overflow-hidden border border-white/5 flex flex-col lg:flex-row shadow-2xl"
+          className="bg-surface-container-lowest rounded-sm] overflow-hidden border border-white/5 flex flex-col lg:flex-row shadow-2xl"
         >
           {/* Left: Content & Value Props */}
           <div className="flex-1 p-12 lg:p-16">
@@ -142,7 +142,7 @@ const Demo = () => {
                   transition={{ delay: idx * 0.1 }}
                   className="flex items-start gap-4"
                 >
-                  <div className="mt-1 w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <div className="mt-1 w-6 h-6 rounded-sm bg-primary/20 flex items-center justify-center flex-shrink-0">
                     <Check className="text-primary w-4 h-4" />
                   </div>
                   <div>
@@ -155,7 +155,7 @@ const Demo = () => {
             <div className="flex items-center gap-4 pt-8 border-t border-white/5">
               <img 
                 alt="Advisor" 
-                className="w-12 h-12 rounded-lg object-cover transition-all duration-500" 
+                className="w-12 h-12 rounded-sm object-cover transition-all duration-500" 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq-8uk5fNvD6CTRVdmhzB2krrmqS3tewLR7WL4Ie9GXDrYTzvOpGnshLjiR3dzlfojb8ffsmvC3U6xjJph05wRkv6B1EDcwFV6dRg41ByOTkF6uwhf41wXEnI94-5BFZz4jRudyPF0ep1ADbPeUg8UwpN8_zuTndx-jIVCm8S-Bxpod1H5XRgqIConXvwPz8MgCbkkzO9-0c9Nno13DiUommTNHMYhcHYK7sA_N9gs-A3CW3O-Xn1-qrlsR2rXO7DDX-wb3FCBCeE"
                 referrerPolicy="no-referrer"
               />
@@ -205,7 +205,7 @@ const Demo = () => {
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full text-on-primary font-bold py-4 rounded-lg shadow-[0_0_15px_rgba(164,230,255,0.3)] hover:opacity-90 transition-all" 
+                className="w-full text-on-primary font-bold py-4 rounded-sm shadow-[0_0_15px_rgba(164,230,255,0.3)] hover:opacity-90 transition-all" 
                 type="submit"
               >
                 Submit Request

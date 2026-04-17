@@ -324,10 +324,10 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                 border: '1px solid color-mix(in srgb, var(--color-primary-foreground) 10%, transparent)',
                 boxShadow: '0 25px 50px -12px rgb(0, 0, 0, 0.5), 0 0 60px color-mix(in srgb, var(--color-primary) 15%, transparent)',
               }}
-              className="relative z-10 h-[85vh] w-full max-w-[400px] aspect-[3/4] rounded-[2rem] sm:rounded-[2.5rem] p-2 sm:p-3 my-auto"
+              className="relative z-10 h-[85vh] w-full max-w-[400px] aspect-[3/4] rounded-sm] sm:rounded-sm.5rem] p-2 sm:p-3 my-auto"
             >
               {/* Image Container */}
-              <div className="w-full h-full relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
+              <div className="w-full h-full relative overflow-hidden rounded-sm.5rem] sm:rounded-sm]">
                 <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.img
                     key={currentIndex}
@@ -361,7 +361,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.2, ease: 'backOut' }}
-                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl backdrop-blur-xl"
+                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-sm backdrop-blur-xl"
                   style={{
                     background: 'var(--color-primary)',
                     border: '1px solid color-mix(in srgb, var(--color-primary-foreground) 15%, transparent)',
@@ -387,7 +387,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   initial={{ opacity: 0, y: -20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.4, ease: 'backOut' }}
-                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl backdrop-blur-xl shadow-[0_16px_32px_rgba(0,0,0,0.4)]"
+                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-sm backdrop-blur-xl shadow-[0_16px_32px_rgba(0,0,0,0.4)]"
                   style={{
                     background: 'color-mix(in srgb, var(--color-background) 85%, transparent)',
                     border: '1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent)',

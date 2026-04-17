@@ -32,12 +32,12 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
             <p className="text-on-surface-variant text-lg mt-6">From short specializations to intensive development tracks, choose the path that resonates with your career goals.</p>
           </div>
 
-          <div className="flex flex-wrap gap-2 bg-surface-container p-1 rounded-lg border border-outline-variant overflow-x-auto no-scrollbar">
+          <div className="flex flex-wrap gap-2 bg-surface-container p-1 rounded-sm border border-outline-variant overflow-x-auto no-scrollbar">
             {courseCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm transition-all whitespace-nowrap ${activeTab === cat.id
+                className={`flex items-center gap-2 px-6 py-3 rounded-sm font-bold text-sm transition-all whitespace-nowrap ${activeTab === cat.id
                     ? 'bg-primary text-on-primary shadow-lg shadow-primary/20'
                     : 'text-on-surface-variant hover:bg-white/5'
                   }`}
@@ -58,7 +58,7 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
             transition={{ duration: 0.4 }}
             className="grid lg:grid-cols-5 gap-12"
           >
-            <div className="lg:col-span-2 relative rounded-lg overflow-hidden group min-h-[400px] border border-outline-variant">
+            <div className="lg:col-span-2 relative rounded-sm overflow-hidden group min-h-[400px] border border-outline-variant">
               <img
                 src={activeCategory.image}
                 alt={activeCategory.title}
@@ -66,7 +66,7 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
               />
               <div className="absolute inset-0 z-10" />
               <div className="absolute inset-0 p-10 flex flex-col justify-end z-20">
-                <div className="w-12 h-12 rounded-lg bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary mb-6">
+                <div className="w-12 h-12 rounded-sm bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary mb-6">
                   {iconMap[activeCategory.icon]}
                 </div>
                 <h3 className="text-3xl font-headline font-bold mb-4">{activeCategory.title}</h3>
@@ -78,8 +78,8 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
             </div>
 
             <div className="lg:col-span-3">
-              <div className="bg-surface-container rounded-lg border border-outline-variant overflow-hidden">
-                <div className="bg-surface-container rounded-lg border border-outline-variant overflow-hidden flex flex-col">
+              <div className="bg-surface-container rounded-sm border border-outline-variant overflow-hidden">
+                <div className="bg-surface-container rounded-sm border border-outline-variant overflow-hidden flex flex-col">
                   <div className="divide-y divide-outline-variant/40">
                     {activeCategory.courses.map((course) => (
                       <motion.div
@@ -94,11 +94,11 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
                       >
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                           <div className="flex items-center gap-3 flex-1">
-                            <span className="w-1.5 h-1.5 rounded-lg bg-primary/40 group-hover:bg-primary transition-colors shrink-0" />
+                            <span className="w-1.5 h-1.5 rounded-sm bg-primary/40 group-hover:bg-primary transition-colors shrink-0" />
                             <span className="font-bold text-on-surface group-hover:text-primary transition-colors text-lg">{course.name}</span>
                           </div>
                           <div className="flex items-center gap-6 md:justify-end">
-                            <span className="text-xs font-label text-on-surface-variant px-3 py-1 rounded-lg bg-surface/50 border border-outline-variant/50 whitespace-nowrap">{course.duration}</span>
+                            <span className="text-xs font-label text-on-surface-variant px-3 py-1 rounded-sm bg-surface/50 border border-outline-variant/50 whitespace-nowrap">{course.duration}</span>
                             <span className="font-headline font-bold text-on-surface group-hover:scale-105 transition-transform origin-right w-24 text-right">
                               <span className="text-xs text-on-surface-variant/60 font-medium mr-1">PKR</span>{course.fee}
                             </span>
@@ -118,7 +118,7 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
                               </p>
                               <Link
                                 to={`/academy/course/${course.id}`}
-                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-on-primary font-bold rounded-lg text-sm transition-all shadow-[0_0_15px_rgba(251,146,60,0.3)] hover:shadow-[0_0_25px_rgba(251,146,60,0.5)] active:scale-95 shrink-0"
+                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-on-primary font-bold rounded-sm text-sm transition-all shadow-[0_0_15px_rgba(251,146,60,0.3)] hover:shadow-[0_0_25px_rgba(251,146,60,0.5)] active:scale-95 shrink-0"
                               >
                                 Read More
                               </Link>

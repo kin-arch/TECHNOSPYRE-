@@ -28,7 +28,7 @@ export const TestimonialsGrid: React.FC = () => {
               viewport={{ once: true }}
               custom={idx * 0.12}
               whileHover={{ y: -6 }}
-              className="glass-card p-8 rounded-2xl border border-outline-variant flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
+              className="glass-card p-8 rounded-sm border border-outline-variant flex flex-col justify-between hover:border-primary/30 transition-all duration-300 group"
             >
               <div className="space-y-5">
                 <div className="flex gap-1">

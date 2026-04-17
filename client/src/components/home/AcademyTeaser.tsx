@@ -29,12 +29,12 @@ export const AcademyTeaser: React.FC = () => {
               <img
                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80"
                 alt="Academy 1"
-                className="rounded-2xl h-64 w-full object-cover shadow-xl shadow-primary/15"
+                className="rounded-sm h-64 w-full object-cover shadow-xl shadow-primary/15"
               />
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=80"
                 alt="Academy 2"
-                className="rounded-2xl h-64 w-full object-cover mt-12 shadow-xl shadow-primary/15"
+                className="rounded-sm h-64 w-full object-cover mt-12 shadow-xl shadow-primary/15"
               />
             </div>
             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-secondary/6 blur-[80px]" />
@@ -44,7 +44,7 @@ export const AcademyTeaser: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="absolute -bottom-4 -right-4 bg-surface-container border border-outline-variant rounded-2xl p-5 shadow-2xl inner-highlight"
+              className="absolute -bottom-4 -right-4 bg-surface-container border border-outline-variant rounded-sm p-5 shadow-2xl inner-highlight"
             >
               <div className="flex items-center gap-3">
                 <Star className="text-primary" size={22} />
@@ -67,8 +67,8 @@ export const AcademyTeaser: React.FC = () => {
                 { icon: <Users size={18} />, value: '500+', label: 'Graduates Monthly' },
                 { icon: <Award size={18} />, value: '40+', label: 'Courses Available' },
               ].map((s) => (
-                <div key={s.label} className="flex-col sm:flex-row flex items-center max-md:text-center gap-3 p-5 rounded-xl bg-surface-container border border-outline-variant">
-                  <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-secondary shrink-0">{s.icon}</div>
+                <div key={s.label} className="flex-col sm:flex-row flex items-center max-md:text-center gap-3 p-5 rounded-sm bg-surface-container border border-outline-variant">
+                  <div className="w-9 h-9 rounded-sm bg-primary flex items-center justify-center text-secondary shrink-0">{s.icon}</div>
                   <div>
                     <p className="text-3xl font-headline font-bold text-primary">{s.value}</p>
                     <p className="text-xs font-label uppercase tracking-widest text-on-surface-variant">{s.label}</p>

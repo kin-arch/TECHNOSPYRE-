@@ -29,7 +29,7 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6">
+          <div className="w-16 h-16 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6">
             <PlayCircle size={28} className="text-primary" />
           </div>
           <h2 className="text-3xl font-bold mb-3">Product Not Found</h2>
@@ -51,7 +51,7 @@ const ProductDetail = () => {
   ];
 
   return (
-    <div className="pt-32 pb-32 md:pt-40 lg:pt-48 min-h-screen bg-background overflow-x-hidden">
+    <div className="pt-8 pb-20 md:pt-10 lg:pt-10 min-h-screen bg-background overflow-x-hidden">
       <SEO title={`${product.name} | Technospyre Solutions`} description={product.shortDescription} />
 
       {/* Ambient accent - restrained for better mobile layout */}
@@ -193,7 +193,7 @@ const ProductDetail = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.08 }}
-                    className="group rounded-xl overflow-hidden border border-white/8 bg-white/[0.02]"
+                    className="group rounded-sm overflow-hidden border border-white/8 bg-white/[0.02]"
                   >
                     <img
                       src={img}
@@ -212,7 +212,7 @@ const ProductDetail = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mt-20 p-8 rounded-2xl border border-white/8 bg-white/[0.02] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+            className="mt-20 p-8 rounded-sm border border-white/8 bg-white/[0.02] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
           >
             <div>
               <h4 className="text-xl font-bold mb-1">Ready to transform your operations?</h4>

@@ -28,9 +28,9 @@ export const MissionVision: React.FC = () => {
               viewport={{ once: true }}
               custom={i * 0.2}
               whileHover={{ y: -5 }}
-              className="relative p-8 rounded-lg bg-surface-container border border-outline-variant hover:border-primary/30 transition-all duration-500 group"
+              className="relative p-8 rounded-sm bg-surface-container border border-outline-variant hover:border-primary/30 transition-all duration-500 group"
             >
-              <div className={`w-12 h-12 bg-${item.color}/15 rounded-lg flex items-center justify-center mb-5 group-hover:scale-110 transition-transform text-${item.color}`}>
+              <div className={`w-12 h-12 bg-${item.color}/15 rounded-sm flex items-center justify-center mb-5 group-hover:scale-110 transition-transform text-${item.color}`}>
                 {item.icon}
               </div>
               <h2 className="font-headline text-2xl font-bold mb-3">{item.title}</h2>
@@ -43,10 +43,10 @@ export const MissionVision: React.FC = () => {
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=80"
             alt="Team vision"
-            className="rounded-lg shadow-2xl border border-outline-variant w-full object-cover transition-all duration-700"
+            className="rounded-sm shadow-2xl border border-outline-variant w-full object-cover transition-all duration-700"
           />
-          <div className="absolute -top-6 -right-6 w-48 h-48 bg-primary/10 blur-3xl rounded-lg" />
-          <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary/10 blur-3xl rounded-lg" />
+          <div className="absolute -top-6 -right-6 w-48 h-48 bg-primary/10 blur-3xl rounded-sm" />
+          <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary/10 blur-3xl rounded-sm" />
         </motion.div>
       </div>
     </section>

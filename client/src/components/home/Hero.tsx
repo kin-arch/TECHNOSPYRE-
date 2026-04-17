@@ -206,14 +206,8 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                     </motion.div>
                     <br />{' '}
                     <span
-                      className="inline-block text-[2.5rem] xl:text-[3rem] pb-2 relative"
-                      style={{
-                        background: 'var(--gradient-primary)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        minWidth: '2ch'
-                      }}
+                      className="inline-block text-[2.5rem] xl:text-[3rem] pb-2 relative text-primary"
+                      style={{ minWidth: '2ch' }}
                     >
                       {typedText}
                       <motion.span
@@ -221,8 +215,8 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                         transition={{ repeat: Infinity, duration: 0.75, ease: 'linear' }}
                         className="inline-block align-middle ml-1"
                         style={{
-                          width: '4px',
-                          height: '1.1em',
+                          width: '3px',
+                          height: '1em',
                           background: 'var(--color-primary)',
                           borderRadius: '2px',
                           verticalAlign: 'middle',
@@ -260,18 +254,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                 >
                   <Link
                     to="/contact"
-                    className="group relative flex items-center justify-between gap-5 w-full sm:w-auto sm:min-w-[220px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300"
-                    style={{
-                      background: 'var(--gradient-primary)',
-                      color: '#fff',
-                      boxShadow: '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)',
-                    }}
-                    onMouseEnter={e =>
-                      (e.currentTarget.style.boxShadow = '0 6px 32px color-mix(in srgb, var(--color-primary) 55%, transparent)')
-                    }
-                    onMouseLeave={e =>
-                      (e.currentTarget.style.boxShadow = '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)')
-                    }
+                    className="group relative flex items-center justify-between gap-5 w-full sm:w-auto sm:min-w-[220px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300 bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20"
                   >
                     <span>Free Consultation</span>
                     <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">

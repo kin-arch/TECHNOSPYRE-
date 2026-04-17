@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 import { Globe, Linkedin, Mail, Twitter, Github, Menu, X, Moon, Sun, ChevronDown, ArrowRight } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { courseCategories } from '../data/academy';
@@ -55,15 +55,15 @@ export const Navbar = () => {
               
               {/* Mega Menu Dropdown */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[900px] max-w-[95vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out pointer-events-none group-hover:pointer-events-auto">
-                <div className="bg-surface-container/95 backdrop-blur-2xl border border-outline-variant/60 rounded-3xl shadow-[0_20px_60px_-15px_rgba(251,146,60,0.15)] p-6">
+                <div className="bg-surface-container/95 backdrop-blur-2xl border border-outline-variant/60 rounded-lg shadow-[0_20px_60px_-15px_rgba(251,146,60,0.15)] p-6">
                   <div className="grid grid-cols-4 gap-x-6 gap-y-6">
                   {courseCategories.map((category) => {
                     const shortTitle = category.title.replace(/ Courses| Development/g, '');
                     return (
                       <div key={category.id} className="flex flex-col">
                         <div className="flex items-center gap-2 mb-3 pb-2 border-b border-outline-variant/50">
-                          <span className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center border border-primary/20">
-                             <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(251,146,60,0.8)]" />
+                          <span className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                             <div className="w-1.5 h-1.5 rounded-lg bg-primary shadow-[0_0_6px_rgba(251,146,60,0.8)]" />
                           </span>
                           <h4 className="font-headline font-bold text-on-surface text-xs uppercase tracking-widest truncate">{shortTitle}</h4>
                         </div>
@@ -124,7 +124,7 @@ export const Navbar = () => {
         </button>
         <Link
           to="/contact"
-          className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full font-bold text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] active:scale-95"
+          className="text-white px-6 py-2 rounded-lg font-bold text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] active:scale-95"
         >
           Get In Touch
         </Link>
@@ -141,7 +141,7 @@ export const Navbar = () => {
         </button>
         <Link
           to="/contact"
-          className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full font-bold text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] active:scale-95 hidden md:flex"
+          className="text-white px-6 py-2 rounded-lg font-bold text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] active:scale-95 hidden md:flex"
         >
           Get In Touch
         </Link>
@@ -162,7 +162,7 @@ export const Navbar = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.95 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="absolute top-full mt-3 left-0 w-full max-h-[75vh] overflow-y-auto bg-surface-container/95 backdrop-blur-xl rounded-2xl border border-outline-variant shadow-2xl p-6 flex flex-col gap-4 lg:hidden"
+          className="absolute top-full mt-3 left-0 w-full max-h-[75vh] overflow-y-auto bg-surface-container/95 backdrop-blur-xl rounded-lg border border-outline-variant shadow-2xl p-6 flex flex-col gap-4 lg:hidden"
         >
           {navLinks.map((link) => (
             link.isMegaMenu ? (
@@ -250,7 +250,7 @@ export const Navbar = () => {
           <Link
             to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full font-bold text-sm text-center transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] active:scale-95 mt-2 flex md:hidden"
+            className="text-white px-6 py-2 rounded-lg font-bold text-sm text-center transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,146,60,0.4)] active:scale-95 mt-2 flex md:hidden"
           >
             Get In Touch
           </Link>
@@ -298,19 +298,19 @@ export const Footer = () => {
               Architecting digital futures through premium IT services and elite engineering education.
             </p>
             <div className="flex gap-3">
-              <a href="#" aria-label="Website" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
+              <a href="#" aria-label="Website" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
                 <Globe size={16} />
               </a>
-              <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
+              <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
                 <Linkedin size={16} />
               </a>
-              <a href="#" aria-label="Twitter" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
+              <a href="#" aria-label="Twitter" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
                 <Twitter size={16} />
               </a>
-              <a href="mailto:info@technospyre.com" aria-label="Email" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
+              <a href="mailto:info@technospyre.com" aria-label="Email" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
                 <Mail size={16} />
               </a>
-              <a href="#" aria-label="GitHub" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
+              <a href="#" aria-label="GitHub" className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
                 <Github size={16} />
               </a>
             </div>
@@ -341,7 +341,7 @@ export const Footer = () => {
           <p>© {new Date().getFullYear()} Technospyre IT Solutions & Academy. All rights reserved.</p>
           <div className="flex gap-6 items-center">
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-lg bg-green-400 animate-pulse"></span>
               System Status: Operational
             </span>
           </div>

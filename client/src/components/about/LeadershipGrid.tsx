@@ -29,15 +29,15 @@ export const LeadershipGrid: React.FC = () => {
               whileHover={{ y: -8 }}
               className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-2xl mb-6">
+              <div className="relative overflow-hidden rounded-lg mb-6">
                 <img
                   src={member.img}
                   alt={member.name}
                   className="w-full aspect-[4/5] object-cover transition-all duration-700 scale-105 group-hover:scale-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent opacity-70" />
+                <div className="absolute inset-0 opacity-70" />
                 <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Link to="/contact" className="inline-flex items-center gap-2 text-xs font-bold text-primary border border-primary/30 px-3 py-1.5 rounded-full bg-surface-container/80 backdrop-blur-md">
+                  <Link to="/contact" className="inline-flex items-center gap-2 text-xs font-bold text-primary border border-primary/30 px-3 py-1.5 rounded-lg bg-surface-container/80 backdrop-blur-md">
                     Connect <ArrowRight size={12} />
                   </Link>
                 </div>

@@ -26,7 +26,7 @@ export const AcademyStats: React.FC = () => {
             custom={i * 0.1}
             className="flex flex-col items-center text-center gap-2"
           >
-            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">{s.icon}</div>
+            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">{s.icon}</div>
             <div>
               <p className="text-4xl font-headline font-bold text-primary">{s.value}</p>
               <p className="text-[10px] font-label uppercase tracking-[0.2em] text-surface mt-1">{s.label}</p>

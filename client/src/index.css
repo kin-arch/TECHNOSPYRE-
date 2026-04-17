@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+/* Theme must come before globals (plugins) so @apply in base.css can resolve */
 @import "./styles/theme.css";
+@import "./styles/globals.css";
 @import "./styles/base.css";
 @import "./styles/components.css";
 @import "./styles/animations.css";

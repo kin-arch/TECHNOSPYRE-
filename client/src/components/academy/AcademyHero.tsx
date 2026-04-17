@@ -6,7 +6,7 @@ export const AcademyHero: React.FC = () => {
   return (
     <section className="relative pt-48 pb-28 overflow-hidden px-8">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background z-10" />
+        <div className="absolute inset-0 z-10" />
         <motion.img
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.15 }}
@@ -15,19 +15,14 @@ export const AcademyHero: React.FC = () => {
           alt="Academy hero"
           className="w-full h-full object-cover mix-blend-luminosity"
         />
-        <div
-          className="absolute inset-0 z-20 pointer-events-none opacity-[0.035]"
-          style={{
-            backgroundImage:
-              'linear-gradient(var(--color-foreground) 1px, transparent 1px), linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          }}
-        />
+        {/* Grid pattern removed to achieve 100% gradient-free flat design */}
+        <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.02] bg-primary/5" />
       </div>
       
       {/* Glow orbs */}
-      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary/10 blur-[160px] rounded-full pointer-events-none z-10" />
-      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-secondary/8 blur-[120px] rounded-full pointer-events-none z-10" />
+      {/* Solid subtle accent orbs */}
+      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full pointer-events-none z-10" />
+      <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-secondary/3 rounded-full pointer-events-none z-10" />
 
       <div className="container mx-auto relative z-30">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="max-w-4xl">

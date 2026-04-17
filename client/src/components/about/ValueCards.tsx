@@ -27,7 +27,7 @@ export const ValueCards: React.FC = () => {
               viewport={{ once: true }}
               custom={i * 0.1}
               whileHover={{ y: -6 }}
-              className={`group p-8 rounded-2xl border border-outline-variant inner-highlight transition-all duration-300 hover:border-primary/40 cursor-pointer ${
+              className={`group p-8 rounded-lg border border-outline-variant inner-highlight transition-all duration-300 hover:border-primary/40 cursor-pointer ${
                 v.featured ? 'md:col-span-2 bg-surface-container-high min-h-[280px] flex flex-col justify-end relative overflow-hidden' : 'bg-surface-container'
               }`}
             >
@@ -36,7 +36,7 @@ export const ValueCards: React.FC = () => {
                   <Lightbulb size={100} className="text-primary" />
                 </div>
               )}
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-5 group-hover:scale-110 transition-transform">
                 {v.icon}
               </div>
               <h3 className={`font-headline font-bold mb-3 ${v.featured ? 'text-3xl' : 'text-xl'}`}>{v.title}</h3>

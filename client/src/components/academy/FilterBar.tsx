@@ -24,7 +24,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="glass-card p-6 rounded-2xl border border-white/5 flex flex-col md:flex-row gap-8 items-center justify-between"
+      className="glass-card p-6 rounded-lg border border-white/5 flex flex-col md:flex-row gap-8 items-center justify-between"
     >
       <div className="flex items-center gap-4 w-full md:w-auto">
         <Filter className="text-primary w-5 h-5" />

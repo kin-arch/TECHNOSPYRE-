@@ -19,7 +19,7 @@ export const HomeCTA: React.FC = () => {
         <h2 className="text-4xl md:text-6xl font-headline font-bold mb-6">Let's build something <span className="text-primary italic">extraordinary.</span></h2>
         <p className="text-on-surface-variant text-lg mb-10">From first consultation to global deployment — we're with you every step of the way.</p>
         <div className="flex max-sm:flex-col gap-4 justify-center">
-          <Link to="/contact" className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-white px-10 py-4 rounded-full font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95 text-center">
+          <Link to="/contact" className="inline-flex items-center gap-2 text-white px-10 py-4 rounded-full font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95 text-center">
             Get In Touch <ArrowRight size={16} />
           </Link>
           <Link to="/solutions" className="inline-flex items-center gap-2 bg-surface-container border border-outline-variant text-on-surface px-10 py-4 rounded-full font-bold text-sm transition-all duration-300 hover:border-primary/40 hover:text-primary active:scale-95 text-center">

@@ -18,9 +18,9 @@ export const AdvantagesSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group p-8 rounded-2xl bg-surface-container border border-outline-variant hover:border-primary/40 inner-highlight transition-all duration-300 hover:shadow-xl"
+              className="group p-8 rounded-lg bg-surface-container border border-outline-variant hover:border-primary/40 inner-highlight transition-all duration-300 hover:shadow-xl"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
                 {item.icon}
               </div>
               <h4 className="font-headline font-bold text-xl mb-3">{item.title}</h4>
@@ -37,7 +37,7 @@ export const AdvantagesSection: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 p-4 rounded-xl bg-surface-container border border-outline-variant"
+              className="flex items-center gap-3 p-4 rounded-lg bg-surface-container border border-outline-variant"
             >
               <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
                 {cat.icon}

@@ -125,13 +125,13 @@ export const ContactForm: React.FC = () => {
 
         <AnimatePresence mode="wait">
           {status === 'success' && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="p-4 bg-primary/10 border border-primary/20 rounded-xl flex items-center gap-3 text-primary">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="p-4 bg-primary/10 border border-primary/20 rounded-lg flex items-center gap-3 text-primary">
               <CheckCircle2 className="w-5 h-5" />
               <span className="font-bold text-sm">Inquiry sent successfully. Our team will reach out shortly.</span>
             </motion.div>
           )}
           {status === 'error' && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 text-red-400">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-3 text-red-400">
               <AlertCircle className="w-5 h-5" />
               <span className="font-bold text-sm">{errorMessage}</span>
             </motion.div>
@@ -140,7 +140,7 @@ export const ContactForm: React.FC = () => {
 
         <button
           disabled={status === 'loading'}
-          className="w-full lg:w-max bg-gradient-to-r from-primary to-accent text-white font-bold py-4 px-12 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(251,146,60,0.45)] hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full lg:w-max text-white font-bold py-4 px-12 rounded-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(251,146,60,0.45)] hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
           type="submit"
         >
           {status === 'loading' ? (<>Sending... <Loader2 className="w-5 h-5 animate-spin" /></>) : (<>Send Message <Send className="w-5 h-5" /></>)}

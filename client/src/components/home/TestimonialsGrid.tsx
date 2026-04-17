@@ -11,7 +11,7 @@ const fadeUp = {
 export const TestimonialsGrid: React.FC = () => {
   return (
     <section className="py-28 px-8 bg-surface-container-low border-t border-outline-variant relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px" />
       <div className="max-w-7xl mx-auto">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-16">
           <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Client Feedback</span>

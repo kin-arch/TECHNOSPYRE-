@@ -13,8 +13,8 @@ const Contact = () => {
         description="Have a question or looking for a custom IT solution? Contact TechnoSpyre today and let's engineer your digital future."
       />
       {/* ambient glows */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-secondary/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[140px] rounded-lg pointer-events-none" />
+      <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-secondary/5 blur-[100px] rounded-lg pointer-events-none" />
 
       <ContactHero />
       <ContactInfo />

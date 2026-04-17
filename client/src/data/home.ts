@@ -52,7 +52,7 @@ export const categories = [
     tag: 'ERP SYSTEMS',
     icon: React.createElement(Settings, { size: 22 }),
     count: 6,
-    desc: 'End-to-end ERP solutions for healthcare, finance, HR, and logistics.',
+    desc: 'End- ERP solutions for healthcare, finance, HR, and logistics.',
     image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=900&auto=format&fit=crop&q=80',
     items: ['Hospital ERP Solutions', 'General Ledger', 'Human Resource ERP', 'Inventory & Procurement', 'Insurance ERP', 'School Management'],
     itemIcons: [

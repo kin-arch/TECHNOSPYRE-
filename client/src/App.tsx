@@ -12,6 +12,7 @@ import Solutions from './pages/Solutions';
 import Academy from './pages/Academy';
 import Contact from './pages/Contact';
 import CourseDetail from './pages/CourseDetail';
+import ProductDetail from './pages/ProductDetail';
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -98,6 +99,7 @@ export default function App() {
                       <Route path="/" element={<Home />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/solutions" element={<Solutions />} />
+                      <Route path="/solutions/product/:id" element={<ProductDetail />} />
                       <Route path="/academy" element={<Academy />} />
                       <Route path="/academy/course/:id" element={<CourseDetail />} />
                       <Route path="/contact" element={<Contact />} />

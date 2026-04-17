@@ -5,23 +5,23 @@ import { ArrowRight, Shield, Cloud, Star, ChevronLeft, ChevronRight } from 'luci
 import { AnimatedCounter } from './LogoTicker';
 
 const SLIDE_DATA = [
-  { 
+  {
     title: 'Empowering Enterprise With',
     highlight: 'Next-Gen Technology',
     desc: 'We engineer, scale, and manage resilient technology ecosystems that empower modern businesses to operate securely and efficiently.',
-    img: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=1200' 
+    img: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=1200'
   },
-  { 
+  {
     title: 'Architecting the Future of',
     highlight: 'Cloud Infrastructure',
     desc: 'Seamlessly migrate, optimize, and secure your enterprise operations with our state-of-the-art cloud management solutions.',
-    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200' 
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200'
   },
-  { 
+  {
     title: 'Driving Innovation Through',
     highlight: 'Intelligent Systems',
     desc: 'Harness the power of AI-driven analytics, automation, and intelligent pipelines to unlock new business dimensions today.',
-    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200' 
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200'
   }
 ];
 
@@ -88,16 +88,16 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
   useEffect(() => {
     const t = setInterval(() => {
       handleNext();
-    }, 5000);
+    }, 3000);
     return () => clearInterval(t);
   }, [currentIndex]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
+    <section className="relative flex items-center overflow-hidden bg-background">
       {/* Absolute Left/Right Controls */}
-      <button 
-        onClick={handlePrev} 
-        className="absolute left-2 sm:left-4 xl:left-8 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md" 
+      <button
+        onClick={handlePrev}
+        className="absolute left-2 sm:left-4 xl:left-8 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
         aria-label="Previous Slide"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
@@ -110,9 +110,9 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
         <ChevronLeft className="w-5 sm:w-6 md:w-7 h-5 sm:h-6 md:h-7" />
       </button>
 
-      <button 
-        onClick={handleNext} 
-        className="absolute right-2 sm:right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md" 
+      <button
+        onClick={handleNext}
+        className="absolute right-2 sm:right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
         aria-label="Next Slide"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
@@ -144,9 +144,9 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-6 xl:px-12 pt-28 pb-16 lg:pt-36 lg:pb-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 xl:gap-12 items-center">
-          <div className="flex flex-col gap-8 lg:gap-10 order-2 lg:order-1 text-center lg:text-left items-center lg:items-start w-full">
+      <div className="container relative z-10 mx-auto px-6 xl:px-26 pt-28 pb-16 lg:pt-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 xl:gap-12 items-start">
+          <div className="flex flex-col gap-5 order-2 lg:order-1 text-center lg:text-left items-center lg:items-start w-full">
 
             {/* Pill badge */}
             <motion.div
@@ -181,7 +181,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   exit="exit"
                   className="space-y-6 lg:space-y-8 flex flex-col items-center lg:items-start w-full"
                 >
-                  <h1 className="font-sans font-bold leading-[1.1] tracking-tight text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-[3rem] xl:text-[4rem] min-h-[140px] sm:min-h-[160px] lg:min-h-[180px]">
+                  <h1 className="font-sans font-bold leading-[1.1] tracking-tight text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-[3rem] xl:text-[3.5rem] min-h-[140px] sm:min-h-[160px] lg:min-h-[180px]">
                     <motion.div
                       variants={{
                         hidden: {},
@@ -230,10 +230,11 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                       />
                     </span>
                   </h1>
-                  
-                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
+
+                  <motion.p
+                    className="text-base sm:text-lg text-muted-foreground leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
                     {SLIDE_DATA[currentIndex].desc}
-                  </p>
+                  </motion.p>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -315,59 +316,6 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               </div>
 
             </motion.div>
-
-            {/* Fade In Stats */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 72 },
-                visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2, delayChildren: 1.0 } }
-              }}
-              initial="hidden"
-              animate="visible"
-              className="pt-2 lg:pt-6 mb-10 grid grid-cols-3 items-center lg:items-start justify-center lg:justify-start gap-8 md:gap-12 xl:gap-16 w-full"
-            >
-              {/* Avatars & Rating */}
-              <motion.div 
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-                }}
-                className="flex flex-col items-center lg:items-start gap-3"
-              >
-                <div className="flex -space-x-3">
-                  <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="User 1" />
-                  <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" alt="User 2" />
-                  <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="User 3" />
-                  <div className="w-10 h-10 rounded-full border-2 border-background bg-primary text-primary-foreground flex items-center justify-center text-lg font-bold z-10 shadow-lg">+</div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <AnimatedCounter from={0} to={5} decimals={1} duration={2} className="font-bold text-foreground text-lg" />
-                  <div className="flex text-primary">
-                    {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} className="fill-primary" />)}
-                  </div>
-                </div>
-              </motion.div>
-              <motion.div 
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-                }}
-                className="space-y-1 text-center lg:text-left"
-              >
-                <p className="text-xs text-surface uppercase tracking-widest max-w-[120px] leading-tight mx-auto lg:mx-0">Businesses Served</p>
-                <AnimatedCounter from={0} to={500} suffix="+" duration={2.5} className="block text-4xl font-sans font-medium text-primary tracking-tight" />
-              </motion.div>
-              <motion.div 
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-                }}
-                className="space-y-1 text-center lg:text-left"
-              >
-                <p className="text-xs text-surface uppercase tracking-widest max-w-[120px] leading-tight mx-auto lg:mx-0">System Uptime</p>
-                <AnimatedCounter from={0} to={99.9} decimals={1} suffix="%" duration={2.5} className="block text-4xl font-sans font-medium text-primary tracking-tight" />
-              </motion.div>
-            </motion.div>
           </div>
 
           <motion.div
@@ -393,7 +341,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                 border: '1px solid color-mix(in srgb, var(--color-primary-foreground) 10%, transparent)',
                 boxShadow: '0 25px 50px -12px rgb(0, 0, 0, 0.5), 0 0 60px color-mix(in srgb, var(--color-primary) 15%, transparent)',
               }}
-              className="relative z-10 h-full w-full max-w-[500px] aspect-[3/4] rounded-[2rem] sm:rounded-[2.5rem] p-2 sm:p-3 mb-10"
+              className="relative z-10 h-[85vh] w-full max-w-[400px] aspect-[3/4] rounded-[2rem] sm:rounded-[2.5rem] p-2 sm:p-3 my-auto"
             >
               {/* Image Container */}
               <div className="w-full h-full relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">

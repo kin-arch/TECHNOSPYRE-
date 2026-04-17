@@ -26,9 +26,9 @@ export const Navbar = () => {
         <motion.div
           layoutId="site-logo"
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="text-2xl font-bold tracking-tighter text-primary font-headline"
+          // className="text-2xl font-bold tracking-tighter text-primary font-headline"
         >
-          Technospyre
+          <img src="/logo1.svg" alt="Logo" className="w-12 h-12" />
         </motion.div>
       </Link>
 

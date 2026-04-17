@@ -17,9 +17,9 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-primary font-headline"
+            // className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-primary font-headline"
           >
-            Technospyre
+            <img src="/logo1.svg" alt="Logo" className="w-72 h-72" />
           </motion.div>
 
           
@@ -27,7 +27,7 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-            className="text-surface font-headline tracking-[0.2em] uppercase text-sm mt-5"
+            className="text-surface font-headline tracking-[0.2em] uppercase text-sm"
           >
             Initializing Experience...
           </motion.div>

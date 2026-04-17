@@ -52,7 +52,8 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            'radial-gradient(ellipse 80% 60% at 65% 50%, hsl(24 95% 53% / 0.07) 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 10% 20%, hsl(24 60% 50% / 0.05) 0%, transparent 60%)',
+            'radial-gradient(ellipse 80% 60% at 65% 50%, var(--color-primary) 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 10% 20%, var(--color-accent) 0%, transparent 60%)',
+          opacity: 0.1,
         }}
       />
 
@@ -61,14 +62,14 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
         className="pointer-events-none absolute inset-0 z-0 opacity-[0.035]"
         style={{
           backgroundImage:
-            'linear-gradient(var(--color-foreground) 1px, transparent 1px), linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)',
+            'linear-gradient(var(--color-foreground) 2px, transparent 2px), linear-gradient(90deg, var(--color-foreground) 2px, transparent 2px)',
           backgroundSize: '60px 60px',
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-6 sm:px-8 lg:px-12 pt-28 pb-16 lg:pt-36 lg:pb-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          <div className="flex flex-col gap-7 lg:gap-8 order-2 lg:order-1 text-center lg:text-left">
+      <div className="container relative z-10 mx-auto px-6 xl:px-12 pt-28 pb-16 lg:pt-36 lg:pb-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 xl:gap-12 items-center">
+          <div className="flex flex-col gap-8 lg:gap-10 order-2 lg:order-1 text-center lg:text-left items-center lg:items-start w-full">
 
             {/* Pill badge */}
             <motion.div
@@ -78,11 +79,10 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               className="inline-flex items-center gap-2 self-center lg:self-start"
             >
               <span
-                className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
+                className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-primary border"
                 style={{
-                  background: 'hsl(24 95% 53% / 0.12)',
-                  border: '1px solid hsl(24 95% 53% / 0.3)',
-                  color: 'hsl(24 95% 53%)',
+                  background: 'color-mix(in srgb, var(--color-primary) 10%, transparent)',
+                  borderColor: 'color-mix(in srgb, var(--color-primary) 20%, transparent)'
                 }}
               >
                 <span className="relative flex h-2 w-2">
@@ -104,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               <span
                 className="inline-block text-[2.5rem] xl:text-[3rem]"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(24 95% 53%), hsl(30 100% 65%))',
+                  background: 'var(--gradient-primary)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -119,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   style={{
                     width: '3px',
                     height: '0.9em',
-                    background: 'hsl(24 95% 53%)',
+                    background: 'var(--color-primary) ',
                     borderRadius: '2px',
                     verticalAlign: 'middle',
                   }}
@@ -143,21 +143,21 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.9, ease: 'backOut' }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
+              className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-4 w-full sm:w-auto"
             >
               <Link
                 to="/contact"
-                className="group relative flex items-center justify-between gap-5 pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300"
+                className="group relative flex items-center justify-between gap-5 w-full sm:w-auto sm:min-w-[220px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300"
                 style={{
                   background: 'var(--gradient-primary)',
                   color: '#fff',
-                  boxShadow: '0 4px 24px var(--color-primary/35)',
+                  boxShadow: '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)',
                 }}
                 onMouseEnter={e =>
-                  (e.currentTarget.style.boxShadow = '0 6px 32px var(--color-primary/55)')
+                  (e.currentTarget.style.boxShadow = '0 6px 32px color-mix(in srgb, var(--color-primary) 55%, transparent)')
                 }
                 onMouseLeave={e =>
-                  (e.currentTarget.style.boxShadow = '0 4px 24px var(--color-primary/35)')
+                  (e.currentTarget.style.boxShadow = '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)')
                 }
               >
                 <span>Free Consultation</span>
@@ -168,25 +168,25 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
 
               <Link
                 to="/solutions"
-                className="group flex items-center justify-between gap-5 pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300 border"
+                className="group flex items-center justify-between gap-5 w-full sm:w-auto sm:min-w-[220px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300 border"
                 style={{
                   color: 'var(--color-foreground)',
-                  borderColor: 'var(--color-foreground/15)',
-                  background: 'var(--color-foreground/4)',
+                  borderColor: 'color-mix(in srgb, var(--color-foreground) 15%, transparent)',
+                  background: 'color-mix(in srgb, var(--color-foreground) 4%, transparent)',
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.borderColor = 'var(--color-primary)';
-                  e.currentTarget.style.background = 'var(--color-primary/20)';
+                  e.currentTarget.style.background = 'color-mix(in srgb, var(--color-primary) 20%, transparent)';
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'var(--color-foreground/15)';
-                  e.currentTarget.style.background = 'var(--color-foreground/4)';
+                  e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-foreground) 15%, transparent)';
+                  e.currentTarget.style.background = 'color-mix(in srgb, var(--color-foreground) 4%, transparent)';
                 }}
               >
                 <span>Our Services</span>
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center group-hover:scale-105 transition-all"
-                  style={{ background: 'var(--color-foreground/8)' }}
+                  style={{ background: 'color-mix(in srgb, var(--color-foreground) 8%, transparent)' }}
                 >
                   <ArrowRight size={17} className="-rotate-45" />
                 </div>
@@ -198,7 +198,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.7 }}
-              className="pt-2 lg:pt-6 mb-10 flex flex-col xl:flex-row items-center xl:items-start justify-center lg:justify-start gap-8 md:gap-12 xl:gap-16 w-full"
+              className="pt-2 lg:pt-6 mb-10 grid grid-cols-3 items-center lg:items-start justify-center lg:justify-start gap-8 md:gap-12 xl:gap-16 w-full"
             >
               {/* Avatars & Rating */}
               <div className="flex flex-col items-center lg:items-start gap-3">
@@ -209,22 +209,19 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   <div className="w-10 h-10 rounded-full border-2 border-background bg-primary text-primary-foreground flex items-center justify-center text-lg font-bold z-10 shadow-lg">+</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <AnimatedCounter from={0} to={5} decimals={1} duration={2} className="font-bold text-white text-lg" />
+                  <AnimatedCounter from={0} to={5} decimals={1} duration={2} className="font-bold text-foreground text-lg" />
                   <div className="flex text-primary">
                     {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} className="fill-primary" />)}
                   </div>
                 </div>
               </div>
-
-              <div className="flex justify-center gap-8 sm:gap-12">
-                <div className="space-y-1 text-center lg:text-left">
-                  <p className="text-xs text-surface uppercase tracking-widest max-w-[120px] leading-tight mx-auto lg:mx-0">Businesses Served</p>
-                  <AnimatedCounter from={0} to={500} suffix="+" duration={2.5} className="block text-4xl font-sans font-medium text-primary tracking-tight" />
-                </div>
-                <div className="space-y-1 text-center lg:text-left">
-                  <p className="text-xs text-surface uppercase tracking-widest max-w-[120px] leading-tight mx-auto lg:mx-0">System Uptime</p>
-                  <AnimatedCounter from={0} to={99.9} decimals={1} suffix="%" duration={2.5} className="block text-4xl font-sans font-medium text-primary tracking-tight" />
-                </div>
+              <div className="space-y-1 text-center lg:text-left">
+                <p className="text-xs text-surface uppercase tracking-widest max-w-[120px] leading-tight mx-auto lg:mx-0">Businesses Served</p>
+                <AnimatedCounter from={0} to={500} suffix="+" duration={2.5} className="block text-4xl font-sans font-medium text-primary tracking-tight" />
+              </div>
+              <div className="space-y-1 text-center lg:text-left">
+                <p className="text-xs text-surface uppercase tracking-widest max-w-[120px] leading-tight mx-auto lg:mx-0">System Uptime</p>
+                <AnimatedCounter from={0} to={99.9} decimals={1} suffix="%" duration={2.5} className="block text-4xl font-sans font-medium text-primary tracking-tight" />
               </div>
             </motion.div>
           </div>
@@ -239,7 +236,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] aspect-square rounded-full blur-[80px] opacity-40 z-0 pointer-events-none"
               style={{
-                background: 'radial-gradient(circle, hsl(24 95% 53%) 0%, transparent 80%)',
+                background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 80%)',
               }}
             />
 
@@ -248,11 +245,11 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
               style={{
                 x: imgX,
                 y: imgY,
-                background: 'linear-gradient(145deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.02) 100%)',
-                border: '1px solid hsl(0 0% 100% / 0.1)',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 60px hsl(24 95% 53% / 0.15)',
+                background: 'var(--color-surface)',
+                border: '1px solid color-mix(in srgb, var(--color-primary-foreground) 10%, transparent)',
+                boxShadow: '0 25px 50px -12px rgb(0, 0, 0, 0.5), 0 0 60px color-mix(in srgb, var(--color-primary) 15%, transparent)',
               }}
-              className="relative z-10 w-[85vw] sm:w-[70vw] md:w-[420px] aspect-[3/4] sm:aspect-[4/5] rounded-[2rem] sm:rounded-[2.5rem] p-2 sm:p-3"
+              className="relative z-10 h-full w-full max-w-[500px] aspect-[3/4] rounded-[2rem] sm:rounded-[2.5rem] p-2 sm:p-3 mb-10"
             >
               {/* Image Container */}
               <div className="w-full h-full relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
@@ -273,7 +270,7 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: 'linear-gradient(135deg, hsl(24 95% 53% / 0.08) 0%, transparent 20%)',
+                    background: 'linear-gradient(135deg, var(--color-primary) 0%, transparent 20%)',
                   }}
                 />
               </div>
@@ -288,18 +285,19 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.2, ease: 'backOut' }}
-                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl backdrop-blur-xl shadow-[0_16px_32px_rgba(0,0,0,0.4)]"
+                  className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl backdrop-blur-xl"
                   style={{
-                    background: 'hsl(0 0% 10% / 0.65)',
-                    border: '1px solid hsl(0 0% 100% / 0.15)',
+                    background: 'var(--color-primary)',
+                    border: '1px solid color-mix(in srgb, var(--color-primary-foreground) 15%, transparent)',
+                    boxShadow: '0 16px 32px color-mix(in srgb, var(--color-primary) 15%, transparent)',
                   }}
                 >
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg, hsl(24 95% 53%), hsl(30 100% 65%))' }}>
-                    <Shield size={20} className="text-white" />
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'color-mix(in srgb, var(--color-primary-foreground) 20%, transparent)' }}>
+                    <Shield size={20} style={{ color: 'var(--color-primary-foreground)' }} />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-white leading-tight">System Secure</p>
-                    <p className="text-xs text-white/70 mt-0.5">Zero threats detected</p>
+                    <p className="text-sm font-bold leading-tight" style={{ color: 'var(--color-primary-foreground)' }}>System Secure</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'color-mix(in srgb, var(--color-primary-foreground) 80%, transparent)' }}>Zero threats detected</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -315,16 +313,16 @@ export const Hero: React.FC<HeroProps> = ({ smoothX, smoothY }) => {
                   transition={{ duration: 0.5, delay: 1.4, ease: 'backOut' }}
                   className="flex items-center gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl backdrop-blur-xl shadow-[0_16px_32px_rgba(0,0,0,0.4)]"
                   style={{
-                    background: 'hsl(0 0% 10% / 0.65)',
-                    border: '1px solid hsl(0 0% 100% / 0.15)',
+                    background: 'color-mix(in srgb, var(--color-background) 85%, transparent)',
+                    border: '1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent)',
                   }}
                 >
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'hsl(0 0% 100% / 0.1)' }}>
-                    <Cloud size={20} className="text-white" />
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'color-mix(in srgb, var(--color-primary) 10%, transparent)' }}>
+                    <Cloud size={20} className="text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-white leading-tight">99.9% Uptime</p>
-                    <p className="text-xs text-white/70 mt-0.5">Cloud operations</p>
+                    <p className="text-sm font-bold text-foreground leading-tight">99.9% Uptime</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Cloud operations</p>
                   </div>
                 </motion.div>
               </motion.div>

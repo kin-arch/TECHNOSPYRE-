@@ -1,290 +1,479 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, PlayCircle, ChevronDown, CheckCircle2, ArrowRight } from 'lucide-react';
-import { categories } from '../data/solutions';
+import { motion, AnimatePresence } from 'motion/react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Calendar,
+  CheckCircle2,
+  ChevronDown,
+  CreditCard,
+  LayoutDashboard,
+  PlayCircle,
+  Shield,
+  Sparkles,
+  Zap,
+} from 'lucide-react';
+import { categories, type Product } from '../data/solutions';
 import SEO from '../components/SEO';
+import { VideoPlayer } from '@/components/solutions/VideoPlayer';
 
-// -- Mock data for layout matching --
+const DEFAULT_VIDEO = '/solution.mp4';
+
 const integrations = [
-  { name: 'Notion integration', desc: 'Work faster and smarter by integrating directly with Notion, right in the app.', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png' },
-  { name: 'Slack integration', desc: 'Work faster and smarter by integrating directly with Slack, right in the app.', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg' },
-  { name: 'Google Drive integration', desc: 'Work faster and smarter by integrating directly with Google, right in the app.', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Google_Drive_icon_%282020%29.svg' },
-  { name: 'Intercom integration', desc: 'Work faster and smarter by integrating directly with Intercom, right in the app.', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Intercom_logo.svg/512px-Intercom_logo.svg.png' },
-  { name: 'Jira integration', desc: 'Work faster and smarter by integrating directly with Jira, right in the app.', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Jira_Logo.svg' },
-  { name: 'Dropbox integration', desc: 'Work faster and smarter by integrating directly with Dropbox, right in the app.', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/78/Dropbox_Icon.svg' },
+  { name: 'Biometric Integration', desc: 'Sync attendance data directly from hardware devices.', iconUrl: 'https://cdn-icons-png.flaticon.com/512/2432/2432320.png' },
+  { name: 'Payment Gateways', desc: 'Connect with local and international processors for instant billing.', iconUrl: 'https://cdn-icons-png.flaticon.com/512/1084/1084033.png' },
+  { name: 'Accounting APIs', desc: 'Export ledger data to standard accounting software like Tally or SAP.', iconUrl: 'https://cdn-icons-png.flaticon.com/512/2618/2618245.png' },
+  { name: 'Insurance Providers', desc: 'Real-time claim verification with major insurance carriers.', iconUrl: 'https://cdn-icons-png.flaticon.com/512/2966/2966486.png' },
 ];
 
-const metrics = [
-  { value: '400+', label: 'Projects completed' },
-  { value: '600%', label: 'Return on investment' },
-  { value: '10k', label: 'Global downloads' },
+const comparisonRows = [
+  { capability: 'Implementation', us: 'Rapid, pre-configured modules', them: 'Long-term custom development' },
+  { capability: 'Customization', us: 'Highly flexible industry templates', them: 'Rigid off-the-shelf software' },
+  { capability: 'Support', us: '24/7 dedicated enterprise support', them: 'Standard ticketing queues' },
+  { capability: 'Integration', us: 'Plug-and-play API ecosystem', them: 'Manual, expensive integration hooks' },
+  { capability: 'User Experience', us: 'Modern, role-based dashboards', them: 'Legacy, complex interfaces' },
 ];
 
-const faqs = [
-  { q: 'Is there a free trial available?', a: "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible." },
-  { q: 'Can I change my plan later?', a: 'Absolutely, you can upgrade or downgrade your plan at any time from your account settings.' },
-  { q: 'What is your cancellation policy?', a: 'You can cancel your subscription at any time. Your access will remain active until the end of your current billing cycle.' },
-  { q: 'Can other info be added to an invoice?', a: 'Yes, you can add custom details like your VAT number or company address in the billing settings.' },
-  { q: 'How does billing work?', a: 'We bill you securely via credit card on a monthly or annual basis depending on your selected plan.' },
-  { q: 'How do I change my account email?', a: 'You can update your account email directly from the profile settings panel.' },
+const clientRows = [
+  { name: 'City Hospital', hint: 'Healthcare', color: 'bg-emerald-600' },
+  { name: 'Retail Nexus', hint: 'Logistics', color: 'bg-blue-600' },
+  { name: 'Global Logistics', hint: 'Supply Chain', color: 'bg-orange-600' },
+  { name: 'Apex Finance', hint: 'Professional Services', color: 'bg-teal-600' },
+  { name: 'Prime Resorts', hint: 'Hospitality', color: 'bg-sky-600' },
 ];
 
-// -- FAQ Accordion Item --
-const FAQItem = ({ faq }: { faq: typeof faqs[0] }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const baseFaqs = [
+  { q: 'Is the data stored securely?', a: 'Yes, we use industry-standard encryption and secure cloud hosting providers, ensuring your data is protected at rest and in transit.' },
+  { q: 'Can we migrate data from our old system?', a: 'Absolutely. We provide data migration tools and specialist support to ensure a smooth transition from your legacy software.' },
+  { q: 'Does it support multi-branch operations?', a: 'Yes, our solutions are built for scale, supporting multi-location synchronization and centralized management.' },
+  { q: 'What kind of training do you provide?', a: 'We offer comprehensive on-site and remote training for your team, along with detailed documentation and a dedicated support portal.' },
+  { q: 'Are there personalized modules for our specific needs?', a: 'Yes, our ERP systems are modular and highly customizable to fit your unique business workflows.' },
+];
+
+function FAQItem({ faq }: { faq: (typeof baseFaqs)[0] }) {
+  const [open, setOpen] = useState(false);
   return (
     <div className="border-b border-outline-variant py-5">
-      <button 
-        onClick={() => setIsOpen(!isOpen)} 
-        className="w-full flex justify-between items-center text-left focus:outline-none"
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between gap-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
       >
-        <span className="font-semibold text-lg text-foreground">{faq.q}</span>
-        <div className="w-6 h-6 rounded-full border border-outline-variant flex flex-shrink-0 items-center justify-center ml-4">
-          <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
-            <ChevronDown size={14} className="text-muted-foreground" />
-          </motion.div>
-        </div>
+        <span className="font-semibold text-lg text-on-surface">{faq.q}</span>
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-outline-variant">
+          <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+            <ChevronDown size={16} className="text-on-surface-variant" />
+          </motion.span>
+        </span>
       </button>
-      <AnimatePresence>
-        {isOpen && (
+      <AnimatePresence initial={false}>
+        {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden text-muted-foreground mt-3 pr-12"
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="overflow-hidden"
           >
-            {faq.a}
+            <p className="mt-3 pr-10 text-on-surface-variant leading-relaxed">{faq.a}</p>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
-};
-
-const DashedPattern = ({ className }: { className?: string }) => (
-  <svg className={`pointer-events-none ${className}`} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-    <defs>
-      <pattern id="slash-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M 12 28 L 20 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#slash-pattern)" />
-  </svg>
-);
+}
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<any>(null);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    let found = null;
+  const { product, categoryLabel } = useMemo(() => {
     for (const cat of categories) {
       const p = cat.products.find((prod) => prod.id === id);
-      if (p) { found = p; break; }
+      if (p) return { product: p as Product, categoryLabel: cat.label };
     }
-    setProduct(found);
+    return { product: null as Product | null, categoryLabel: null as string | null };
   }, [id]);
 
-  if (!product) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+  const videoSrc = product?.demoVideo || DEFAULT_VIDEO;
+  const poster = product?.softwareImages?.[0];
+  const dashboardImages =
+    product?.softwareImages?.length ? product.softwareImages : [
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop&q=80',
+    ];
+
+  const featureList = product?.features?.length
+    ? product.features
+    : [
+      'Role-based access & audit trails',
+      'Real-time dashboards & exports',
+      'Workflow automation & approvals',
+      'API-first integrations',
+    ];
+
+  const faqs = useMemo(() => {
+    if (!product) return baseFaqs;
+    return baseFaqs.map((f, i) =>
+      i === 0
+        ? {
+          q: `How does ${product.name} fit our stack?`,
+          a: `${product.shortDescription} We map your systems in discovery, then connect through secure APIs and governed data contracts—not rip-and-replace by default.`,
+        }
+        : f
+    );
+  }, [product]);
+
+  if (!product || !categoryLabel) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="flex min-h-screen items-center justify-center bg-background px-6">
         <div className="text-center">
-          <div className="w-16 h-16 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
             <PlayCircle size={28} className="text-primary" />
           </div>
-          <h2 className="text-3xl font-bold mb-3">Product Not Found</h2>
-          <p className="text-muted-foreground mb-8 max-w-sm mx-auto">The solution you're looking for doesn't exist or may have been moved.</p>
-          <Link to="/solutions" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium">
-            <ArrowLeft size={16} /> Back to Solutions
+          <h2 className="mb-3 text-3xl font-bold font-headline text-on-surface">Product not found</h2>
+          <p className="mx-auto mb-8 max-w-sm text-on-surface-variant">
+            This solution may have moved. Browse all offerings on the solutions hub.
+          </p>
+          <Link
+            to="/solutions"
+            className="inline-flex items-center gap-2 font-medium text-primary transition-colors hover:text-primary/80"
+          >
+            <ArrowLeft size={16} /> Back to solutions
           </Link>
         </div>
       </div>
     );
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: product.name,
+    description: product.shortDescription,
+    applicationCategory: 'BusinessApplication',
+    offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
+  };
+
   return (
-    <div className="pb-20 min-h-screen bg-background overflow-x-hidden font-sans relative">
-      <SEO title={`${product.name} | Technospyre`} description={product.shortDescription} />
+    <div className="min-h-screen bg-background">
+      <SEO title={`${product.name} | TechnoSpyre`} description={product.shortDescription} jsonLd={jsonLd} />
 
-      {/* External background pattern - light colored */}
-      <div className="absolute top-20 left-0 w-full h-[800px] pointer-events-none opacity-[0.03] text-foreground z-0">
-        <DashedPattern />
-      </div>
+      <div className="mx-auto max-w-7xl px-6 pt-10 md:px-12">
+        <motion.div
+          initial={{ opacity: 0, x: -16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45 }}
+          className="mb-8"
+        >
+          <Link
+            to="/solutions"
+            className="group inline-flex items-center gap-2 font-medium text-on-surface-variant transition-colors hover:text-primary"
+          >
+            <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
+            Back to solutions — all products
+          </Link>
+        </motion.div>
 
-      {/* ── Hero Block mimicing Screenshot 1 ── */}
-      <div className="px-4 sm:px-6 lg:px-8 mt-6 relative z-10">
-        <div className="bg-primary/95 pt-28 pb-56 px-6 md:px-12 rounded-[2rem] text-center relative max-w-[1400px] mx-auto overflow-hidden shadow-2xl">
-           
-           {/* Internal background pattern - white colored */}
-           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-10 text-white pointer-events-none -translate-x-12 translate-y-12">
-             <DashedPattern />
-           </div>
+        <div className="flex flex-col gap-12">
 
-           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] max-w-4xl mx-auto tracking-tight relative z-10">
-             {product.name}
-           </h1>
-           <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto">
-             {product.shortDescription}
-           </p>
-           
-           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-md mx-auto">
-             <input 
-               type="email" 
-               placeholder="Enter your email" 
-               className="w-full sm:w-auto flex-1 px-4 py-3.5 rounded-lg border border-transparent focus:border-white focus:outline-none text-gray-900 bg-white"
-             />
-             <button className="bg-primary-foreground hover:bg-white text-primary px-6 py-3.5 rounded-lg font-semibold transition-colors w-full sm:w-auto">
-               Get started
-             </button>
-           </div>
-           <p className="text-white/70 text-xs mt-4">
-             We care about your data in our <Link to="#" className="underline underline-offset-2 hover:text-white transition-colors">privacy policy</Link>.
-           </p>
-        </div>
-      </div>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+            <motion.div
+              initial={{ opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, delay: 0.1 }}
+              className="lg:col-span-1 lg:order-2"
+            >
+              <div className="sticky top-10 space-y-6 rounded-sm border border-outline-variant bg-surface-container/70 p-8 shadow-xl backdrop-blur-xl inner-highlight">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.65, delay: 0.08 }}
+                >
+                  <div className="mb-4 flex items-center justify-between text-sm font-semibold text-on-surface">
+                    <PlayCircle size={18} className="text-primary" />
+                    <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95 text-center">
+                      Get In Touch <ArrowRight size={16} />
+                    </Link>
+                  </div>
 
-      {/* Dashboard Image overlapping */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-40 relative z-20">
-         <img 
-           src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" 
-           alt="Dashboard Preview" 
-           className="w-full h-auto rounded-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] border border-outline-variant bg-surface"
-         />
-      </div>
+                  <div className="relative h-[360px] w-full rounded-sm overflow-hidden border border-outline-variant bg-black shadow-2xl ring-1 ring-white/10">
+                    <VideoPlayer src={videoSrc} poster={poster} />
+                  </div>
 
-      {/* ── Integrations / Get More Value ── */}
-      <div className="max-w-7xl mx-auto px-6 mt-32 mb-40 text-center">
-        <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider mb-6 inline-block">Integrations</span>
-        <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">Get more value from your tools</h2>
-        <p className="text-muted-foreground text-xl max-w-3xl mx-auto mb-20">
-          Connect your tools, connect your teams. With over 100 apps already available in our directory, your team's favorite tools are just a click away.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 mt-12 w-full max-w-5xl mx-auto">
-          {integrations.map((item, i) => (
-            <div key={i} className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-surface rounded-2xl flex items-center justify-center p-3 mb-6 shadow-sm border border-outline-variant bg-white">
-                 <img src={item.iconUrl} alt={item.name} className="w-full h-full object-contain" />
+                  <p className="mt-3 text-xs text-on-surface-variant italic">
+                    Experience the {product.name} interface.
+                  </p>
+                </motion.div>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-foreground">{item.name}</h3>
-              <p className="text-muted-foreground text-center mb-4 leading-relaxed">{item.desc}</p>
-              <Link to="#" className="text-primary font-semibold inline-flex items-center gap-1 hover:text-primary/80 transition-colors group">
-                View integration <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+            </motion.div>
+
+            {/* —— Main column —— */}
+            <div className="space-y-16 lg:col-span-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55 }}
+              >
+                <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                  <Sparkles size={14} />
+                  {categoryLabel}
+                </div>
+                <h1 className="relative mb-6 font-headline text-3xl font-bold leading-tight tracking-tighter text-on-surface md:text-4xl lg:text-4xl">
+                  {product.name}
+                  <span className="absolute -inset-6 -z-10 rounded-sm bg-primary/15 opacity-40 blur-3xl" aria-hidden />
+                </h1>
+                <div className="max-w-3xl">
+                  <p className="text-lg leading-relaxed text-on-surface-variant">{product.shortDescription}</p>
+                  <p className="mt-4 text-base leading-relaxed text-on-surface-variant/90">{product.longDetails}</p>
+                </div>
+              </motion.div>
+
+              {/* Feature Section */}
+              <section className="rounded-sm border border-outline-variant bg-gradient-to-br from-surface-container-low to-surface-container p-8 md:p-10">
+                <div className="mb-2 flex items-center gap-2 text-primary">
+                  <Zap size={20} />
+                  <span className="text-xs font-bold uppercase tracking-widest">Key Features</span>
+                </div>
+                <h2 className="mb-8 font-headline text-2xl font-bold text-on-surface md:text-3xl">Built for scale</h2>
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <div className="flex gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
+                      <Shield size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 text-lg font-bold text-on-surface">Enterprise Security</h3>
+                      <p className="text-sm leading-relaxed text-on-surface-variant">SOC2-compliant with end-to-end encryption, role-based access control, and comprehensive audit trails.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
+                      <Zap size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 text-lg font-bold text-on-surface">Lightning Fast</h3>
+                      <p className="text-sm leading-relaxed text-on-surface-variant">Optimized performance with sub-second response times and real-time data synchronization across all endpoints.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
+                      <LayoutDashboard size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 text-lg font-bold text-on-surface">Intuitive Dashboard</h3>
+                      <p className="text-sm leading-relaxed text-on-surface-variant">Customizable dashboards with drag-and-drop widgets, advanced filtering, and actionable insights at a glance.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
+                      <CheckCircle2 size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 text-lg font-bold text-on-surface">Seamless Integrations</h3>
+                      <p className="text-sm leading-relaxed text-on-surface-variant">Connect with 100+ pre-built integrations and custom APIs to fit your existing tech stack perfectly.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Highlights */}
+              <section className="rounded-sm border border-outline-variant bg-surface-container p-8 md:p-10">
+                <h2 className="mb-6 font-headline text-2xl font-bold text-on-surface md:text-3xl">What you get</h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {featureList.map((item, i) => (
+                    <div key={i} className="flex gap-3 text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                      <span className="leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Dashboard gallery */}
+              <section>
+                <div className="mb-2 inline-flex items-center gap-2 text-primary">
+                  <LayoutDashboard size={20} />
+                  <span className="text-xs font-bold uppercase tracking-widest">Live-style previews</span>
+                </div>
+                <h2 className="mb-3 font-headline text-2xl font-bold text-on-surface md:text-3xl">Dashboards & workspaces</h2>
+                <p className="mb-8 max-w-2xl text-on-surface-variant">
+                  Representative UI layers your teams interact with daily—analytics, operations, and collaboration in one
+                  coherent experience.
+                </p>
+                <div className="grid gap-6 md:grid-cols-2">
+                  {dashboardImages.map((src, i) => (
+                    <motion.figure
+                      key={`${src}-${i}`}
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.45, delay: i * 0.06 }}
+                      className="overflow-hidden rounded-sm border border-outline-variant bg-surface shadow-lg"
+                    >
+                      <img src={src} alt={`${product.name} dashboard preview ${i + 1}`} className="h-full w-full object-cover" loading="lazy" />
+                      <figcaption className="border-t border-outline-variant/60 px-4 py-3 text-xs font-medium uppercase tracking-wide text-on-surface-variant">
+                        {i === 0 ? 'Executive overview' : i === 1 ? 'Operations console' : 'Insights & reporting'}
+                      </figcaption>
+                    </motion.figure>
+                  ))}
+                </div>
+              </section>
+
+              {/* CTA Section */}
+              <section className="rounded-sm border border-outline-variant bg-gradient-to-br from-primary/10 via-primary/5 to-surface-container px-6 py-12 md:px-12">
+                <div className="mx-auto max-w-3xl text-center">
+                  <h2 className="mb-3 font-headline text-2xl font-bold text-on-surface md:text-3xl">
+                    Ready to transform your {product.category?.toLowerCase() || 'business'} workflows?
+                  </h2>
+                  <p className="mb-6 text-on-surface-variant md:text-lg">
+                    Join hundreds of teams already using TechnoSpyre to streamline operations and drive growth.
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center gap-4">
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-sm font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95"
+                    >
+                      Start Your Journey <ArrowRight size={16} />
+                    </Link>
+                    <Link
+                      to="/solutions"
+                      className="inline-flex items-center gap-2 border border-outline-variant text-on-surface px-8 py-3 rounded-sm font-bold text-sm transition-all duration-300 hover:border-primary/50 hover:text-primary active:scale-95"
+                    >
+                      Explore Other Solutions
+                    </Link>
+                  </div>
+                </div>
+              </section>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Deep Dive Header & Metrics ── */}
-      <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-foreground">Unleash the full power of data</h2>
-        <p className="text-xl text-muted-foreground mb-16 max-w-2xl mx-auto">
-          Everything you need to build modern UI and great products.
-        </p>
-        
-        <div className="bg-surface-container rounded-2xl py-12 px-8 flex flex-col md:flex-row justify-around gap-10 md:gap-4 mb-32 border border-outline-variant shadow-sm max-w-5xl mx-auto">
-           {metrics.map((m, i) => (
-             <div key={i} className="text-center flex-1">
-               <div className="text-5xl md:text-6xl font-bold text-primary mb-3 tracking-tight">{m.value}</div>
-               <div className="text-lg font-medium text-foreground">{m.label}</div>
-             </div>
-           ))}
-        </div>
-
-        {/* Deep dive Features & Image */}
-        <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold tracking-wider mb-6 inline-block">Features</span>
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground tracking-tight">Cutting-edge features for advanced analytics</h2>
-        <p className="text-muted-foreground text-xl max-w-3xl mx-auto mb-16">
-          Powerful, self-serve product and growth intelligence to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
-        </p>
-
-        <div className="relative mb-24 max-w-6xl mx-auto">
-          <img 
-           src={product.softwareImages?.[1] || product.softwareImages?.[0] || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200'} 
-           alt="Features Dashboard" 
-           className="w-full h-auto rounded-xl shadow-2xl border border-outline-variant bg-surface"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto text-center md:text-center">
-           {(product.features?.slice(0,3) || ['Share team inboxes', 'Deliver instant answers', 'Manage your team with reports']).map((f: string, i: number) => (
-             <div key={i} className="flex flex-col items-center">
-               <div className="w-14 h-14 rounded-full bg-surface border border-outline-variant flex items-center justify-center text-foreground mb-6 shadow-sm">
-                 <CheckCircle2 size={24} className="text-foreground" />
-               </div>
-               <h3 className="text-xl font-bold mb-3 text-foreground">{f}</h3>
-               <p className="text-muted-foreground mb-4 leading-relaxed">
-                 Whether you have a team of 2 or 200, our shared infrastructure keeps everyone on the same page and in the loop.
-               </p>
-               <Link to="#" className="text-primary font-semibold inline-flex items-center gap-1 hover:text-primary/80 transition-colors group">
-                 Learn more <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-               </Link>
-             </div>
-           ))}
-        </div>
-      </div>
-
-      {/* ── FAQ ── */}
-      <div className="max-w-3xl mx-auto px-6 mb-24 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-foreground">Frequently asked questions</h2>
-        <p className="text-xl text-muted-foreground mb-12">
-          Everything you need to know about the product and billing.
-        </p>
-
-        <div className="text-left bg-background">
-          {faqs.map((faq, i) => (
-            <FAQItem key={i} faq={faq} />
-          ))}
-        </div>
-      </div>
-
-      {/* ── CTA / Still Have Questions ── */}
-      <div className="max-w-5xl mx-auto px-6 mb-12">
-        <div className="bg-surface-container rounded-3xl p-12 text-center border border-outline-variant">
-          {/* Avatar stack */}
-          <div className="flex justify-center -space-x-4 mb-8">
-            <img src="https://i.pravatar.cc/100?img=68" alt="Team member" className="w-14 h-14 rounded-full border-4 border-surface-container object-cover" />
-            <img src="https://i.pravatar.cc/100?img=47" alt="Team member" className="w-16 h-16 rounded-full border-4 border-surface-container z-10 -mt-1 object-cover shadow-sm" />
-            <img src="https://i.pravatar.cc/100?img=45" alt="Team member" className="w-14 h-14 rounded-full border-4 border-surface-container object-cover" />
           </div>
-          <h3 className="text-2xl font-bold mb-3 text-foreground">Still have questions?</h3>
-          <p className="text-muted-foreground mb-8 text-lg">
-            Can't find the answer you're looking for? Please chat to our friendly team.
-          </p>
-          <button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3.5 rounded-lg transition-colors shadow-sm">
-            Get in touch
-          </button>
+
+          <div className="flex flex-col gap-20">
+            {/* Pricing Section */}
+            <section className="rounded-sm border border-outline-variant bg-gradient-to-br from-surface-container-low to-surface-container p-8 md:p-10">
+              <div className="mb-2 flex items-center gap-2 text-primary">
+                <CreditCard size={20} />
+                <span className="text-xs font-bold uppercase tracking-widest">Pricing Plans</span>
+              </div>
+              <h2 className="mb-8 font-headline text-2xl font-bold text-on-surface md:text-3xl">Choose your plan</h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {/* Lifetime Plan */}
+                <div className="relative overflow-hidden rounded-sm border-2 border-primary bg-surface-container p-6 shadow-lg">
+                  <div className="absolute right-0 top-0 rounded-bl-sm bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
+                    BEST VALUE
+                  </div>
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 text-lg font-bold text-on-surface">
+                      <Calendar size={20} className="text-primary" />
+                      <span>Lifetime Access</span>
+                    </div>
+                    <p className="mt-1 text-sm text-on-surface-variant">One-time payment, perpetual access</p>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-on-surface">₨ 699,999</span>
+                    <span className="ml-2 text-sm text-on-surface-variant line-through">₨ 1,119,999</span>
+                    <span className="ml-2 text-sm font-bold text-emerald-600">Save 37%</span>
+                  </div>
+                  <ul className="mb-6 space-y-3">
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Full software license (perpetual)</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>All future updates included</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Priority 24/7 support</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Custom onboarding session</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Source code included</span>
+                    </li>
+                  </ul>
+                  <Link
+                    to="/contact"
+                    className="flex w-full items-center justify-center gap-2 bg-primary py-3 rounded-sm font-bold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95"
+                  >
+                    Get Lifetime Access <ArrowRight size={16} />
+                  </Link>
+                </div>
+
+                {/* Monthly Plan */}
+                <div className="relative overflow-hidden rounded-sm border border-outline-variant bg-surface p-6 shadow-lg">
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 text-lg font-bold text-on-surface">
+                      <Zap size={20} className="text-primary" />
+                      <span>Monthly Plan</span>
+                    </div>
+                    <p className="mt-1 text-sm text-on-surface-variant">Flexible subscription, cancel anytime</p>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-on-surface">₨ 41,999</span>
+                    <span className="ml-2 text-sm text-on-surface-variant">/month</span>
+                  </div>
+                  <ul className="mb-6 space-y-3">
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Full feature access</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Regular updates & new features</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Email & chat support</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Standard onboarding</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>Cloud hosting included</span>
+                    </li>
+                  </ul>
+                  <Link
+                    to="/contact"
+                    className="flex w-full items-center justify-center gap-2 border border-primary py-3 rounded-sm font-bold text-primary transition-all duration-300 hover:bg-primary/10 active:scale-95"
+                  >
+                    Start Monthly Plan <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+              <p className="mt-6 text-center text-sm text-on-surface-variant">
+                Need a custom enterprise solution? <Link to="/contact" className="text-primary hover:underline">Contact us</Link> for tailored pricing.
+              </p>
+            </section>
+
+            {/* Clients */}
+            <section className="px-6 py-12 text-center md:px-12">
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant">Trusted by teams like yours</p>
+              <h2 className="mb-8 font-headline text-2xl font-bold text-on-surface md:text-3xl">Companies shipping with TechnoSpyre</h2>
+              <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 opacity-90 grayscale transition-all duration-500 hover:grayscale-0 md:gap-x-14">
+                {clientRows.map((c) => (
+                  <div key={c.name} className="flex items-center gap-2.5">
+                    <span className={`h-9 w-9 shrink-0 rounded-sm ${c.color}`} aria-hidden />
+                    <div className="text-left">
+                      <div className="font-headline text-lg font-bold tracking-tight text-on-surface">{c.name}</div>
+                      <div className="text-[10px] font-medium uppercase tracking-wider text-on-surface-variant">{c.hint}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-
-      {/* ── Trusted Logos ── */}
-      <div className="max-w-5xl mx-auto px-6 mb-24">
-        <div className="bg-surface-container rounded-3xl p-12 text-center border border-outline-variant flex flex-col items-center">
-           <p className="text-muted-foreground font-medium mb-10">Trusted by 4,000+ companies</p>
-           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-              {/* Fake Logos mapping typical startup names */}
-              <div className="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-foreground">
-                <div className="w-8 h-8 rounded-full bg-blue-600 shrink-0"/>Catalxg
-              </div>
-              <div className="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-foreground">
-                <div className="w-8 h-8 clip-star bg-teal-500 shrink-0" style={{ clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' }}/>PictelAI
-              </div>
-              <div className="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-foreground">
-                <div className="w-8 h-8 rounded-lg bg-orange-500 rotate-12 shrink-0"/>Leapyear
-              </div>
-              <div className="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-foreground">
-                <div className="w-8 h-8 rounded-sm bg-green-500 shrink-0"/>Peregrin
-              </div>
-              <div className="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-foreground">
-                <div className="w-8 h-8 rounded-full bg-blue-400 rounded-bl-none shrink-0"/>EasyTax
-              </div>
-           </div>
-        </div>
-      </div>
-
     </div>
   );
 };

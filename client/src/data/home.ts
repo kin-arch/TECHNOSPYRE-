@@ -1,10 +1,15 @@
 import React from 'react';
 import { 
   Users, Award, Globe, TrendingUp, Code2, Cloud, Brain, 
-  Settings, CreditCard, Smartphone, HeartPulse, Building2, 
-  Package, Shield, School, ShoppingCart, FileText, 
-  Home as HomeIcon, Hotel, Stethoscope, Briefcase, Scale, 
-  Palette, GraduationCap, Tv2 
+  Settings, CreditCard, Smartphone, HeartPulse, 
+  Shield, School, ShoppingCart, 
+  Home as HomeIcon, Hotel, Scale,
+  Truck,
+  ClipboardCheck,
+  Wallet,
+  UserCheck,
+  Clock,
+  Search
 } from 'lucide-react';
 
 export const stats = [
@@ -48,68 +53,64 @@ export const services = [
 export const categories = [
   {
     id: 'operations',
-    label: 'Operations',
+    label: 'Enterprise Operations',
     tag: 'ERP SYSTEMS',
     icon: React.createElement(Settings, { size: 22 }),
-    count: 6,
-    desc: 'End- ERP solutions for healthcare, finance, HR, and logistics.',
+    count: 12,
+    desc: 'Complete digital solutions to manage hospitals, HR, supply chains, and industrial workflows efficiently.',
     image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=900&auto=format&fit=crop&q=80',
-    items: ['Hospital ERP Solutions', 'General Ledger', 'Human Resource ERP', 'Inventory & Procurement', 'Insurance ERP', 'School Management'],
+    items: ['Hospital Management', 'HR Management', 'Supply Chain Management', 'Finance System', 'Project Management', 'School Management'],
     itemIcons: [
       React.createElement(HeartPulse, { size: 14 }), 
-      React.createElement(Building2, { size: 14 }), 
       React.createElement(Users, { size: 14 }), 
-      React.createElement(Package, { size: 14 }), 
-      React.createElement(Shield, { size: 14 }), 
+      React.createElement(Truck, { size: 14 }), 
+      React.createElement(Wallet, { size: 14 }), 
+      React.createElement(ClipboardCheck, { size: 14 }), 
       React.createElement(School, { size: 14 })
     ],
   },
   {
     id: 'sales',
-    label: 'Sales',
-    tag: 'POS & REVENUE',
+    label: 'Sales & Hospitality',
+    tag: 'RETAIL & BOOKING',
     icon: React.createElement(CreditCard, { size: 22 }),
-    count: 4,
-    desc: 'POS, invoicing, real estate, and hotel management tools built for speed.',
+    count: 2,
+    desc: 'Fast POS systems and comprehensive hotel management tools built for speed and guest satisfaction.',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&auto=format&fit=crop&q=80',
-    items: ['Point of Sales', 'Invoicing', 'Real Estate', 'Hotel Management'],
+    items: ['Point of Sales (POS)', 'Hotel Management'],
     itemIcons: [
       React.createElement(ShoppingCart, { size: 14 }), 
-      React.createElement(FileText, { size: 14 }), 
-      React.createElement(HomeIcon, { size: 14 }), 
       React.createElement(Hotel, { size: 14 })
     ],
   },
   {
     id: 'websites',
-    label: 'Websites',
-    tag: 'WEB DESIGN',
+    label: 'Specialized Enterprise',
+    tag: 'LEGAL & LOGISTICS',
     icon: React.createElement(Globe, { size: 22 }),
-    count: 5,
-    desc: 'Premium digital experiences for business, legal, creative, and educational sectors.',
+    count: 4,
+    desc: 'Bespoke systems for legal case management, logistics, and insurance integration.',
     image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&auto=format&fit=crop&q=80',
-    items: ['Business-Oriented', 'Professional & Legal', 'Creative & Personal', 'Educational', 'Media & Entertainment'],
+    items: ['Legal Management', 'Goods Transport', 'Insurance System', 'Lost & Found'],
     itemIcons: [
-      React.createElement(Briefcase, { size: 14 }), 
       React.createElement(Scale, { size: 14 }), 
-      React.createElement(Palette, { size: 14 }), 
-      React.createElement(GraduationCap, { size: 14 }), 
-      React.createElement(Tv2, { size: 14 })
+      React.createElement(Truck, { size: 14 }), 
+      React.createElement(Shield, { size: 14 }), 
+      React.createElement(Search, { size: 14 })
     ],
   },
   {
     id: 'mobile',
-    label: 'Mobile Apps',
-    tag: 'iOS & ANDROID',
+    label: 'Employee Ecosystem',
+    tag: 'PORTALS & TRACKING',
     icon: React.createElement(Smartphone, { size: 22 }),
-    count: 3,
-    desc: 'Native iOS & Android apps for POS, healthcare, and hospital management.',
+    count: 2,
+    desc: 'Mobile-first portals for employee self-service and real-time attendance monitoring.',
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&auto=format&fit=crop&q=80',
-    items: ['POS Mobile App', 'Health Mobile App', 'Hospital Mobile App'],
+    items: ['Employee Portal', 'Attendance Management'],
     itemIcons: [
-      React.createElement(ShoppingCart, { size: 14 }), 
-      React.createElement(HeartPulse, { size: 14 }), 
-      React.createElement(Stethoscope, { size: 14 })
+      React.createElement(UserCheck, { size: 14 }), 
+      React.createElement(Clock, { size: 14 })
     ],
   },
 ];

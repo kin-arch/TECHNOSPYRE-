@@ -1,15 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../base/buttons/button';
 
 export const SolutionsCTA: React.FC = () => {
   return (
     <section className="px-8 py-28 text-center relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/5 rounded-full" />
-      </div>
       <div className="max-w-3xl mx-auto relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Let's Build Together</span>
@@ -19,17 +15,15 @@ export const SolutionsCTA: React.FC = () => {
             <Button
               href="/contact"
               size="lg"
-              color="primary"
               iconTrailing={ArrowRight}
-              className='px-6 py-4'
+              className='max-sm:w-full flex items-center justify-center gap-3 bg-primary hover:bg-foreground border border-primary hover:border-foreground transition-all duration-200 text-primary-foreground font-semibold px-10 py-4 rounded-sm text-sm shadow-sm hover:scale-105'
             >
               Contact Us Today
             </Button>
             <Button
               href="/academy"
               size="lg"
-              color="primary"
-              className='px-6 py-4'
+              className='max-sm:w-full flex items-center justify-center gap-3 hover:bg-primary bg-primary/10 border border-primary hover:text-primary-foreground transition-all duration-200 text-primary font-semibold px-10 py-4 rounded-sm text-sm shadow-sm hover:scale-105'
             >
               Browse Courses
             </Button>

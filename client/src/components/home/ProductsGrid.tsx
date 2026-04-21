@@ -67,7 +67,7 @@ export const ProductsGrid: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="relative rounded-3xl overflow-hidden border border-outline-variant bg-surface-container min-h-[300px] lg:min-h-[480px] group"
+                className="relative rounded-sm overflow-hidden border border-outline-variant bg-surface-container min-h-[300px] lg:min-h-[480px] group"
               >
                 <img
                   src={cat.image}
@@ -76,14 +76,14 @@ export const ProductsGrid: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-background/80 via-background/30 to-transparent" />
                 <div className="absolute top-5 left-5 flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary/25 backdrop-blur-md border border-primary/40 flex items-center justify-center text-primary">
+                  <div className="w-12 h-12 rounded-sm bg-primary/25 backdrop-blur-md border border-primary/40 flex items-center justify-center text-primary">
                     {cat.icon}
                   </div>
-                  <span className="bg-background/70 backdrop-blur-md text-primary text-xs font-bold px-3 py-1.5 rounded-full border border-primary/30">
+                  <span className="bg-background/70 backdrop-blur-md text-primary text-xs font-bold px-3 py-1.5 rounded-sm border border-primary/30">
                     {cat.count} Products
                   </span>
                 </div>
-                <span className="absolute top-5 right-5 bg-primary/15 border border-primary/30 text-primary text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-md">
+                <span className="absolute top-5 right-5 bg-primary/15 border border-primary/30 text-primary text-[10px] font-bold px-2.5 py-1 rounded-sm backdrop-blur-md">
                   {cat.tag}
                 </span>
                 <div className="absolute bottom-5 left-5 right-5 lg:hidden">
@@ -111,9 +111,9 @@ export const ProductsGrid: React.FC = () => {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 + i * 0.05 }}
-                      className="group flex items-center gap-3 p-3 rounded-xl border border-outline-variant bg-surface-container hover:border-primary/40 hover:bg-surface-container-high hover:-translate-y-0.5 transition-all duration-300"
+                      className="group flex items-center gap-3 p-3 rounded-sm border border-outline-variant bg-surface-container hover:border-primary/40 hover:bg-surface-container-high hover:-translate-y-0.5 transition-all duration-300"
                     >
-                      <span className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                      <span className="w-8 h-8 rounded-sm bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors">
                         {cat.itemIcons[i]}
                       </span>
                       <span className="text-sm font-medium">{item}</span>
@@ -123,7 +123,7 @@ export const ProductsGrid: React.FC = () => {
 
                 <Link
                   to={`/solutions?category=${cat.id}`}
-                  className="inline-flex items-center gap-2 self-start bg-primary text-on-primary px-6 py-3 rounded-full font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 transition-all"
+                  className="inline-flex items-center gap-2 self-start bg-primary text-on-primary px-6 py-3 rounded-sm font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 transition-all"
                 >
                   Explore {cat.label} <ArrowRight size={16} />
                 </Link>
@@ -139,7 +139,7 @@ export const ProductsGrid: React.FC = () => {
                   key={c.id}
                   onClick={() => setActive(i)}
                   aria-label={`Show ${c.label}`}
-                  className={`h-2 rounded-full transition-all duration-500 ${
+                  className={`h-2 rounded-sm transition-all duration-500 ${
                     i === active ? 'w-10 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'
                   }`}
                 />
@@ -152,14 +152,14 @@ export const ProductsGrid: React.FC = () => {
               <button
                 onClick={prev}
                 aria-label="Previous"
-                className="w-11 h-11 rounded-full border border-outline-variant bg-surface-container hover:bg-primary hover:text-on-primary hover:border-primary flex items-center justify-center transition-all hover:-translate-x-0.5"
+                className="w-11 h-11 rounded-sm border border-outline-variant bg-surface-container hover:bg-primary hover:text-on-primary hover:border-primary flex items-center justify-center transition-all hover:-translate-x-0.5"
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 onClick={next}
                 aria-label="Next"
-                className="w-11 h-11 rounded-full border border-outline-variant bg-surface-container hover:bg-primary hover:text-on-primary hover:border-primary flex items-center justify-center transition-all hover:translate-x-0.5"
+                className="w-11 h-11 rounded-sm border border-outline-variant bg-surface-container hover:bg-primary hover:text-on-primary hover:border-primary flex items-center justify-center transition-all hover:translate-x-0.5"
               >
                 <ChevronRight size={18} />
               </button>
@@ -172,7 +172,7 @@ export const ProductsGrid: React.FC = () => {
               <button
                 key={`chip-${c.id}`}
                 onClick={() => setActive(i)}
-                className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
+                className={`px-4 py-2 rounded-sm text-xs font-bold uppercase tracking-wider border transition-all ${
                   i === active
                     ? 'bg-primary text-on-primary border-primary'
                     : 'border-outline-variant text-on-surface-variant hover:border-primary/50 hover:text-primary'

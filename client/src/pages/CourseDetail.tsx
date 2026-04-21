@@ -20,14 +20,6 @@ const CourseDetail = () => {
     return { course: null, category: null };
   }, [id]);
 
-  useEffect(() => {
-    if (!course) {
-      // Optional: Handle 404
-      navigate('/academy');
-    }
-    window.scrollTo(0, 0);
-  }, [course, navigate]);
-
   if (!course || !category) return null;
 
   const courseJsonLd = {
@@ -38,7 +30,7 @@ const CourseDetail = () => {
     "provider": {
       "@type": "Organization",
       "name": "TechnoSpyre Academy",
-      "sameAs": "https://technospyre.io/academy"
+      "sameAs": "https://technospyre.com/academy"
     },
     "offers": {
       "@type": "Offer",
@@ -54,21 +46,25 @@ const CourseDetail = () => {
 
   return (
     <div className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
-      <SEO 
+      <SEO
         title={course.name}
         description={course.description}
         jsonLd={courseJsonLd}
       />
-      <motion.button
+      <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium mb-8 group"
+        className="mb-8 flex flex-wrap items-center gap-4"
       >
-        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-        Back to Courses
-      </motion.button>
+        <Link
+          to="/academy"
+          className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium group"
+        >
+          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+          Back to Academy — all courses
+        </Link>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Main Content Area */}
@@ -81,7 +77,7 @@ const CourseDetail = () => {
             <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-sm text-sm font-bold tracking-wide uppercase mb-4 border border-primary/20">
               {course.category}
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tighter text-on-surface leading-tight mb-6 relative">
+            <h1 className="text-3xl lg:text-4xl font-bold font-headline tracking-tighter text-on-surface leading-tight mb-6 relative">
               {course.name}
               <div className="absolute -inset-4 bg-primary/20 blur-3xl -z-10 rounded-sm opacity-30"></div>
             </h1>
@@ -97,8 +93,8 @@ const CourseDetail = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full relative rounded-sm overflow-hidden aspect-video shadow-2xl border border-outline-variant/30"
           >
-            <img 
-              src={category.image} 
+            <img
+              src={category.image}
               alt={course.name}
               className="w-full h-full object-cover"
             />
@@ -131,9 +127,9 @@ const CourseDetail = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="lg:col-span-1"
         >
-          <div className="sticky top-32 bg-surface-container/60 backdrop-blur-xl border border-outline-variant rounded-sm p-8 shadow-2xl inner-highlight">
+          <div className="sticky top-12 bg-surface-container/60 backdrop-blur-xl border border-outline-variant rounded-sm p-8 shadow-2xl inner-highlight">
             <h3 className="text-xl font-headline font-bold mb-6 text-on-surface">Course Overview</h3>
-            
+
             <div className="space-y-6 mb-8">
               <div className="flex items-center gap-4 text-on-surface-variant">
                 <div className="w-12 h-12 rounded-sm bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
@@ -144,7 +140,7 @@ const CourseDetail = () => {
                   <p className="text-lg font-bold text-on-surface">{course.duration}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4 text-on-surface-variant">
                 <div className="w-12 h-12 rounded-sm bg-primary/10 text-primary flex items-center justify-center shrink-0 border border-primary/20">
                   <Banknote size={24} />
@@ -167,18 +163,18 @@ const CourseDetail = () => {
             </div>
 
             <div className="space-y-4 pt-6 border-t border-outline-variant/50">
-              <Link 
+              <Link
                 to="/contact"
-                className="w-full py-4 bg-primary hover:bg-primary-hover text-on-primary font-bold rounded-sm transition-all duration-300 flex justify-center items-center gap-2 shadow-[0_0_20px_rgba(251,146,60,0.3)] hover:shadow-[0_0_30px_rgba(251,146,60,0.5)] active:scale-95"
+                className="w-full py-4 bg-primary hover:bg-primary-hover text-primary-foreground font-bold rounded-sm outline outline-primary/30 transition-all duration-300 flex justify-center items-center gap-2 shadow-md hover:shadow-xl shadow-primary/10 hover:shadow-primary/50 active:scale-95 hover:scale-105"
               >
                 Enroll Now
               </Link>
-              <button 
-                onClick={() => {/* Implement share or download syllabus */}}
-                className="w-full py-4 bg-transparent border-2 border-primary/30 text-primary hover:bg-primary/5 font-bold rounded-sm transition-all duration-300 flex justify-center items-center gap-2"
+              <Link
+                to="/academy#courses"
+                className="w-full py-4 bg-transparent border-2 border-primary/30 text-primary hover:bg-primary/10 font-bold rounded-sm transition-all duration-300 flex justify-center items-center gap-2"
               >
-                Download Syllabus
-              </button>
+                Browse all courses
+              </Link>
             </div>
           </div>
         </motion.div>

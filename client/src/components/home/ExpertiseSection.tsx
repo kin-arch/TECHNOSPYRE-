@@ -33,7 +33,7 @@ export const ExpertiseSection: React.FC = () => {
               viewport={{ once: true }}
               custom={i * 0.1}
               whileHover={{ y: -10 }}
-              className="group relative rounded-2xl overflow-hidden border border-outline-variant bg-surface-container transition-all duration-500 cursor-pointer hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_color-mix(in_srgb,var(--color-primary)_30%,transparent)]"
+              className="group relative rounded-sm overflow-hidden border border-outline-variant bg-surface-container transition-all duration-500 cursor-pointer hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_color-mix(in_srgb,var(--color-primary)_30%,transparent)]"
             >
               <div className="h-44 overflow-hidden relative">
                 <img
@@ -42,10 +42,10 @@ export const ExpertiseSection: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 opacity-70 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface-container via-surface-container/30 to-transparent" />
-                <div className="absolute bottom-4 left-4 w-11 h-11 rounded-xl bg-primary backdrop-blur-sm flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                <div className="absolute bottom-4 left-4 w-11 h-11 rounded-sm bg-primary backdrop-blur-sm flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
                   {service.icon}
                 </div>
-                <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-background/70 backdrop-blur-md border border-outline-variant flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-2 transition-all duration-500">
+                <div className="absolute top-4 right-4 w-9 h-9 rounded-sm bg-background/70 backdrop-blur-md border border-outline-variant flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-2 transition-all duration-500">
                   <ArrowUpRight size={16} className="text-primary" />
                 </div>
               </div>

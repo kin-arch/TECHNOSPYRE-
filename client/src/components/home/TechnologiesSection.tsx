@@ -38,7 +38,7 @@ export const TechnologiesSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.04 }}
               whileHover={{ y: -6, scale: 1.05 }}
-              className="group flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-outline-variant bg-surface-container hover:border-primary/40 hover:bg-surface-container-high transition-all duration-300 hover:shadow-[0_10px_30px_-10px_color-mix(in_srgb,var(--color-primary)_30%,transparent)]"
+              className="group flex flex-col items-center justify-center gap-3 p-5 rounded-sm border border-outline-variant bg-surface-container hover:border-primary/40 hover:bg-surface-container-high transition-all duration-300 hover:shadow-[0_10px_30px_-10px_color-mix(in_srgb,var(--color-primary)_30%,transparent)]"
             >
               <div className="w-12 h-12 flex items-center justify-center">
                 <img

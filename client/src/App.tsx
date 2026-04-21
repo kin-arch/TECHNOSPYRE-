@@ -77,7 +77,7 @@ export default function App() {
 
   return (
     <HelmetProvider>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider defaultTheme="light">
         <Router>
           <ScrollToTop />
           <LoadingScreen loading={loading} />

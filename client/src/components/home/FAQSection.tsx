@@ -9,7 +9,7 @@ export const FAQSection: React.FC = () => {
 
   return (
     <section className="py-28 px-6 sm:px-8 relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 items-start">
@@ -32,7 +32,7 @@ export const FAQSection: React.FC = () => {
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-sm font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 transition-all"
             >
               Still confused? Talk to us
             </Link>
@@ -49,7 +49,7 @@ export const FAQSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  className={`rounded-sm border transition-all duration-300 overflow-hidden ${
                     isOpen
                       ? 'border-primary/40 bg-surface-container shadow-[0_10px_40px_-20px_color-mix(in_srgb,var(--color-primary)_40%,transparent)]'
                       : 'border-outline-variant bg-surface-container/60 hover:border-primary/30'
@@ -62,7 +62,7 @@ export const FAQSection: React.FC = () => {
                   >
                     <span className="font-headline font-bold text-base md:text-lg">{f.q}</span>
                     <span
-                      className={`shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      className={`shrink-0 w-9 h-9 rounded-sm flex items-center justify-center transition-all duration-300 ${
                         isOpen ? 'bg-primary text-on-primary rotate-45' : 'bg-surface-container-high text-primary'
                       }`}
                     >

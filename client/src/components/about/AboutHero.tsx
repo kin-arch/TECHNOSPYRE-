@@ -16,7 +16,7 @@ export const AboutHero: React.FC = () => {
         <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.02] bg-primary/5" />
       </div>
       {/* Flat background accent using branding primary tint */}
-      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full pointer-events-none z-10" />
+      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-sm pointer-events-none z-10" />
 
       <div className="max-w-7xl mx-auto relative z-20">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="max-w-4xl">

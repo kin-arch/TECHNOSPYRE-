@@ -31,7 +31,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   return (
     <div className={cn(
-      'inline-flex items-center gap-1.5 font-bold uppercase tracking-[0.15em] rounded-full border shadow-xs-skeuomorphic',
+      'inline-flex items-center gap-1.5 font-bold uppercase tracking-[0.15em] rounded-sm border shadow-xs-skeuomorphic',
       variants[variant],
       sizes[size],
       className

@@ -19,11 +19,11 @@ export const ContactVisual: React.FC = () => {
 
         {/* Ping dots */}
         <div className="absolute top-[25%] left-[32%] group">
-          <div className="w-3 h-3 bg-primary rounded-full animate-pulse shadow-[0_0_10px_var(--theme-primary)]" />
+          <div className="w-3 h-3 bg-primary rounded-sm animate-pulse shadow-[0_0_10px_var(--theme-primary)]" />
           <div className="absolute left-6 top-1/2 -translate-y-1/2 bg-surface-container/90 backdrop-blur-md px-3 py-1 rounded-sm text-[10px] font-bold text-primary border border-primary/20 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap uppercase tracking-widest">HEADQUARTERS</div>
         </div>
         <div className="absolute top-[52%] left-[62%] group">
-          <div className="w-3 h-3 bg-accent rounded-full animate-pulse shadow-[0_0_10px_var(--theme-accent)]" />
+          <div className="w-3 h-3 bg-accent rounded-sm animate-pulse shadow-[0_0_10px_var(--theme-accent)]" />
           <div className="absolute left-6 top-1/2 -translate-y-1/2 bg-surface-container/90 backdrop-blur-md px-3 py-1 rounded-sm text-[10px] font-bold text-accent border border-accent/20 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap uppercase tracking-widest">INNOVATION HUB</div>
         </div>
 

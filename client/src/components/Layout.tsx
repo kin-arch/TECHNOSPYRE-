@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
@@ -10,7 +10,30 @@ export const Navbar = () => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [coursesMegaOpen, setCoursesMegaOpen] = useState(false);
+  const coursesMegaRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setCoursesMegaOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!coursesMegaOpen) return;
+    const onDocMouseDown = (e: MouseEvent) => {
+      const el = coursesMegaRef.current;
+      if (el && !el.contains(e.target as Node)) setCoursesMegaOpen(false);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setCoursesMegaOpen(false);
+    };
+    document.addEventListener('mousedown', onDocMouseDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onDocMouseDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [coursesMegaOpen]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -33,26 +56,45 @@ export const Navbar = () => {
         <div className="hidden lg:flex gap-6 items-center">
           {navLinks.map((link) => (
             link.isMegaMenu ? (
-              <div key={link.name} className="relative group">
-                <Link
-                  to={link.path}
+              <div key={link.name} ref={coursesMegaRef} className="relative">
+                <button
+                  type="button"
+                  aria-expanded={coursesMegaOpen}
+                  aria-haspopup="true"
+                  aria-controls="courses-mega-menu"
+                  id="courses-mega-trigger"
+                  onClick={() => setCoursesMegaOpen((o) => !o)}
                   className={cn(
-                    "flex items-center gap-1 text-[15px] font-semibold transition-colors duration-200",
+                    "flex items-center gap-1 text-[15px] font-semibold transition-colors duration-200 rounded-sm px-1 -mx-1 py-1",
                     location.pathname.startsWith(link.path)
                       ? "text-primary"
-                      : "text-on-surface-variant hover:text-on-surface"
+                      : "text-on-surface-variant hover:text-on-surface",
+                    coursesMegaOpen && "text-on-surface"
                   )}
                 >
                   {link.name}
-                  <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300 text-on-surface-variant" />
-                </Link>
-                
-                {/* Invisible Hover Bridge */}
-                <div className="absolute top-full left-0 w-full h-6 opacity-0 pointer-events-auto" />
-                
-                {/* Mega Menu Dropdown */}
-                <div className="absolute top-full -left-[10vw] xl:-left-24 pt-4 w-[900px] max-w-[95vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ease-out pointer-events-none group-hover:pointer-events-auto z-[60]">
-                  <div className="bg-background rounded-xl border border-outline-variant shadow-2xl p-8 isolate overflow-hidden">
+                  <ChevronDown
+                    size={16}
+                    className={cn(
+                      'transition-transform duration-300 text-on-surface-variant',
+                      coursesMegaOpen && 'rotate-180'
+                    )}
+                  />
+                </button>
+
+                {/* Mega Menu Dropdown (click to open) */}
+                <div
+                  id="courses-mega-menu"
+                  role="region"
+                  aria-labelledby="courses-mega-trigger"
+                  className={cn(
+                    'absolute top-full -left-[10vw] xl:-left-24 pt-4 w-[900px] max-w-[95vw] z-[60] transition-opacity duration-200 ease-out',
+                    coursesMegaOpen
+                      ? 'visible opacity-100 pointer-events-auto'
+                      : 'invisible opacity-0 pointer-events-none'
+                  )}
+                >
+                  <div className="bg-background rounded-sm border border-outline-variant shadow-2xl p-8 isolate overflow-hidden">
                     {/* Add a solid background layer internally to ensure it's never transparent/broken */}
                     <div className="absolute inset-0 bg-surface-container/30 -z-10" />
                     <div className="grid grid-cols-4 gap-x-8 gap-y-8">
@@ -61,8 +103,8 @@ export const Navbar = () => {
                       return (
                         <div key={category.id} className="flex flex-col">
                           <div className="flex items-center gap-3 mb-4 pb-3 border-b border-outline-variant/30">
-                            <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                               <div className="w-2 h-2 rounded-full bg-primary" />
+                            <span className="w-8 h-8 rounded-sm bg-primary/10 flex items-center justify-center text-primary">
+                               <div className="w-2 h-2 rounded-sm bg-primary" />
                             </span>
                             <h4 className="font-semibold text-on-surface text-sm">{shortTitle}</h4>
                           </div>
@@ -71,6 +113,7 @@ export const Navbar = () => {
                               <li key={course.id}>
                                 <Link 
                                   to={`/academy/course/${course.id}`} 
+                                  onClick={() => setCoursesMegaOpen(false)}
                                   className="group/item flex items-center py-1.5 px-3 -mx-3 rounded-sm hover:bg-surface-container transition-colors"
                                 >
                                   <span className="text-sm font-medium text-on-surface-variant group-hover/item:text-primary transition-colors line-clamp-1">{course.name}</span>
@@ -117,14 +160,14 @@ export const Navbar = () => {
       <div className="hidden lg:flex gap-4 items-center">
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"
+          className="w-10 h-10 rounded-sm flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </button>
         <Link
           to="/contact"
-          className="bg-primary hover:bg-primary/95 text-primary-foreground font-semibold text-[15px] px-6 py-2.5 rounded-lg transition-colors shadow-md ml-2"
+          className="bg-primary hover:bg-primary/95 text-primary-foreground font-semibold text-[15px] px-6 py-2.5 rounded-sm transition-colors shadow-md ml-2"
         >
           Contact Us
         </Link>
@@ -134,7 +177,7 @@ export const Navbar = () => {
       <div className="flex lg:hidden items-center gap-2">
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"
+          className="w-10 h-10 rounded-sm flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
@@ -146,7 +189,7 @@ export const Navbar = () => {
           Log in
         </Link>
         <button
-          className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors ml-1"
+          className="w-10 h-10 rounded-sm flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors ml-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -162,7 +205,7 @@ export const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="absolute top-full mt-3 left-4 right-4 w-auto max-h-[calc(100vh-100px)] overflow-y-auto overscroll-contain bg-surface-container/95 backdrop-blur-xl rounded-xl border border-outline-variant shadow-2xl p-6 flex flex-col gap-4 lg:hidden z-[60]"
+          className="absolute top-full mt-3 left-4 right-4 w-auto max-h-[calc(100vh-100px)] overflow-y-auto overscroll-contain bg-surface-container/95 backdrop-blur-xl rounded-sm border border-outline-variant shadow-2xl p-6 flex flex-col gap-4 lg:hidden z-[60]"
         >
           {navLinks.map((link) => (
             link.isMegaMenu ? (
@@ -275,10 +318,11 @@ export const Footer = () => {
       { name: 'Cybersecurity', to: '/solutions' },
     ],
     Courses: [
-      { name: 'Full-Stack Immersive', to: '/academy' },
-      { name: 'Cloud Engineering', to: '/academy' },
-      { name: 'UI/UX Design', to: '/academy' },
-      { name: 'Cyber Bootcamps', to: '/academy' },
+      { name: 'Academy — all courses', to: '/academy' },
+      { name: 'Full-Stack Immersive', to: '/academy#courses' },
+      { name: 'Cloud Engineering', to: '/academy#courses' },
+      { name: 'UI/UX Design', to: '/academy#courses' },
+      { name: 'Cyber Bootcamps', to: '/academy#courses' },
     ],
     Legal: [
       { name: 'Privacy Policy', to: '#' },

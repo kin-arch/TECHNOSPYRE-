@@ -1,16 +1,16 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Globe } from 'lucide-react';
+import { LogoConnect } from './LogoConnect';
 
 export const ContactHero: React.FC = () => {
   return (
     <section className="relative pt-48 pb-20 overflow-hidden px-8 text-center">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 z-10" />
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&auto=format&fit=crop&q=80"
-          alt="Contact hero"
-          className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity"
+      <div className="absolute inset-0 z-0 bg-background">
+        <LogoConnect className="z-0" />
+        <div
+          className="absolute inset-0 z-[1] bg-gradient-to-b from-background/85 via-background/70 to-background"
+          aria-hidden
         />
       </div>
 

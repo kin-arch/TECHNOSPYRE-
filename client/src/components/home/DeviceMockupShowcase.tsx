@@ -639,12 +639,12 @@ export const DeviceMockupShowcase: React.FC = () => {
     <div className="w-full flex flex-col items-center gap-5" style={{ userSelect: 'none' }}>
 
       {/* Tabs / labels */}
-      <div className="flex items-center gap-2 p-1 rounded-full" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <div className="flex items-center gap-2 p-1 rounded-sm" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
         {DEVICES.map((d, i) => (
           <button
             key={d.id}
             onClick={() => goTo(i)}
-            className="relative px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-300 outline-none"
+            className="relative px-4 py-1.5 rounded-sm text-sm font-semibold transition-all duration-300 outline-none"
             style={{
               color: i === current ? '#fff' : 'rgba(255,255,255,0.45)',
               background: i === current ? 'var(--gradient-primary, linear-gradient(135deg,#0d1b8f,#0066ff,#00cfff))' : 'transparent',
@@ -702,7 +702,7 @@ export const DeviceMockupShowcase: React.FC = () => {
           <button
             key={i}
             onClick={() => goTo(i)}
-            className="rounded-full transition-all duration-300 outline-none"
+            className="rounded-sm transition-all duration-300 outline-none"
             style={{
               width: i === current ? '24px' : '8px',
               height: '8px',

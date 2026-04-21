@@ -17,7 +17,7 @@ export const TestimonialsGrid: React.FC = () => {
   return (
     <section className="py-28 px-6 sm:px-8 bg-surface-container-low border-t border-outline-variant relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -38,7 +38,7 @@ export const TestimonialsGrid: React.FC = () => {
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-stretch">
           {/* Featured quote */}
-          <div className="relative rounded-3xl border border-outline-variant bg-surface-container p-8 md:p-12 overflow-hidden min-h-[360px] flex flex-col justify-between">
+          <div className="relative rounded-sm border border-outline-variant bg-surface-container p-8 md:p-12 overflow-hidden min-h-[360px] flex flex-col justify-between">
             <Quote size={120} className="absolute -top-4 -right-4 text-primary/10" strokeWidth={1} />
             <AnimatePresence mode="wait">
               <motion.div
@@ -58,7 +58,7 @@ export const TestimonialsGrid: React.FC = () => {
                   "{t.quote}"
                 </p>
                 <div className="flex items-center gap-4 pt-6 border-t border-outline-variant">
-                  <img src={t.img} alt={t.author} className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/30" />
+                  <img src={t.img} alt={t.author} className="w-14 h-14 rounded-sm object-cover ring-2 ring-primary/30" />
                   <div>
                     <h4 className="font-bold text-base">{t.author}</h4>
                     <p className="text-xs text-on-surface-variant uppercase tracking-widest mt-1">{t.role}</p>
@@ -74,7 +74,7 @@ export const TestimonialsGrid: React.FC = () => {
                     key={i}
                     onClick={() => setActive(i)}
                     aria-label={`Testimonial ${i + 1}`}
-                    className={`h-2 rounded-full transition-all ${
+                    className={`h-2 rounded-sm transition-all ${
                       i === active ? 'w-8 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'
                     }`}
                   />
@@ -84,14 +84,14 @@ export const TestimonialsGrid: React.FC = () => {
                 <button
                   onClick={() => setActive((p) => (p - 1 + total) % total)}
                   aria-label="Previous"
-                  className="w-10 h-10 rounded-full border border-outline-variant hover:border-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-all"
+                  className="w-10 h-10 rounded-sm border border-outline-variant hover:border-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-all"
                 >
                   <ChevronLeft size={16} />
                 </button>
                 <button
                   onClick={() => setActive((p) => (p + 1) % total)}
                   aria-label="Next"
-                  className="w-10 h-10 rounded-full border border-outline-variant hover:border-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-all"
+                  className="w-10 h-10 rounded-sm border border-outline-variant hover:border-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-all"
                 >
                   <ChevronRight size={16} />
                 </button>
@@ -106,13 +106,13 @@ export const TestimonialsGrid: React.FC = () => {
                 key={tm.author}
                 onClick={() => setActive(i)}
                 whileHover={{ x: 6 }}
-                className={`text-left flex gap-4 p-5 rounded-2xl border transition-all duration-300 ${
+                className={`text-left flex gap-4 p-5 rounded-sm border transition-all duration-300 ${
                   i === active
                     ? 'border-primary/50 bg-surface-container shadow-[0_10px_30px_-15px_color-mix(in_srgb,var(--color-primary)_50%,transparent)]'
                     : 'border-outline-variant bg-surface-container/50 hover:border-primary/30'
                 }`}
               >
-                <img src={tm.img} alt={tm.author} className="w-12 h-12 rounded-full object-cover shrink-0" />
+                <img src={tm.img} alt={tm.author} className="w-12 h-12 rounded-sm object-cover shrink-0" />
                 <div className="min-w-0">
                   <h4 className="font-bold text-sm truncate">{tm.author}</h4>
                   <p className="text-xs text-on-surface-variant truncate">{tm.role}</p>

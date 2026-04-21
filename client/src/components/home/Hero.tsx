@@ -89,7 +89,7 @@ export const Hero: React.FC = () => {
       {/* Slide prev/next nav arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-sm flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
         aria-label="Previous Slide"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
@@ -104,7 +104,7 @@ export const Hero: React.FC = () => {
 
       <button
         onClick={handleNext}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-full flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-sm flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
         aria-label="Next Slide"
         style={{
           borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
@@ -148,15 +148,15 @@ export const Hero: React.FC = () => {
               className="inline-flex items-center gap-2 self-start"
             >
               <span
-                className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-primary border"
+                className="flex items-center gap-2 px-4 py-1.5 rounded-sm text-xs font-semibold tracking-widest uppercase text-primary border"
                 style={{
                   background: 'color-mix(in srgb, var(--color-primary) 10%, transparent)',
                   borderColor: 'color-mix(in srgb, var(--color-primary) 20%, transparent)'
                 }}
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-sm bg-primary opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-sm bg-primary" />
                 </span>
                 Trusted by 100+ Enterprises
               </span>
@@ -250,7 +250,7 @@ export const Hero: React.FC = () => {
               >
                 <Link
                   to="/contact"
-                  className="group relative flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300"
+                  className="group relative flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300"
                   style={{
                     background: 'var(--gradient-primary)',
                     color: '#fff',
@@ -264,7 +264,7 @@ export const Hero: React.FC = () => {
                   }
                 >
                   <span>Free Consultation</span>
-                  <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                  <div className="w-9 h-9 rounded-sm bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                     <ArrowRight size={17} className="-rotate-45" />
                   </div>
                 </Link>
@@ -278,7 +278,7 @@ export const Hero: React.FC = () => {
               >
                 <Link
                   to="/solutions"
-                  className="group flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-full font-bold transition-all duration-300 border"
+                  className="group flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300 border"
                   style={{
                     color: 'var(--color-foreground)',
                     borderColor: 'color-mix(in srgb, var(--color-foreground) 15%, transparent)',
@@ -295,7 +295,7 @@ export const Hero: React.FC = () => {
                 >
                   <span>Our Services</span>
                   <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center group-hover:scale-105 transition-all"
+                    className="w-9 h-9 rounded-sm flex items-center justify-center group-hover:scale-105 transition-all"
                     style={{ background: 'color-mix(in srgb, var(--color-foreground) 8%, transparent)' }}
                   >
                     <ArrowRight size={17} className="-rotate-45" />
@@ -316,7 +316,7 @@ export const Hero: React.FC = () => {
           >
             {/* Ambient glow */}
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] rounded-full blur-[90px] opacity-20 pointer-events-none z-0"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] rounded-sm blur-[90px] opacity-20 pointer-events-none z-0"
               style={{ background: 'radial-gradient(ellipse, hsl(var(--primary)) 0%, hsl(var(--accent)) 60%, transparent 100%)' }}
             />
             <div className="relative z-10 w-full">

@@ -24,7 +24,7 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
   }, [activeTab]);
 
   return (
-    <section className="py-24 px-8 relative bg-surface">
+    <section id="courses" className="py-24 px-8 relative bg-surface scroll-mt-28">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="max-w-2xl">

@@ -84,21 +84,21 @@ const MenuBar = ({ editor }: { editor: any }) => {
     <div className="flex flex-wrap items-center gap-1 p-2 border-b border-outline-variant/40 bg-surface-container-low/50 rounded-t-lg">
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleBold().run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive('bold') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive('bold') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Bold"
       >
         <Bold size={18} />
       </button>
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleItalic().run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive('italic') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive('italic') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Italic"
       >
         <Italic size={18} />
       </button>
         <button
           onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleUnderline().run(); }}
-          className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive('underline') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+          className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive('underline') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
           title="Underline"
         >
           <UnderlineIcon size={18} />
@@ -109,14 +109,14 @@ const MenuBar = ({ editor }: { editor: any }) => {
         {/* Headings */}
         <button
           onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleHeading({ level: 1 }).run(); }}
-          className={`p-1.5 rounded-md hover:bg-surface-container transition-colors font-bold ${editor.isActive('heading', { level: 1 }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+          className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors font-bold ${editor.isActive('heading', { level: 1 }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
           title="Heading 1"
         >
           H1
         </button>
         <button
           onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleHeading({ level: 2 }).run(); }}
-          className={`p-1.5 rounded-md hover:bg-surface-container transition-colors font-bold ${editor.isActive('heading', { level: 2 }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+          className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors font-bold ${editor.isActive('heading', { level: 2 }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
           title="Heading 2"
         >
           H2
@@ -126,28 +126,28 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().setTextAlign('left').run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'left' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'left' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Align Left"
       >
         <AlignLeft size={18} />
       </button>
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().setTextAlign('center').run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'center' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'center' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Align Center"
       >
         <AlignCenter size={18} />
       </button>
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().setTextAlign('right').run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'right' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'right' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Align Right"
       >
         <AlignRight size={18} />
       </button>
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().setTextAlign('justify').run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'justify' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive({ textAlign: 'justify' }) ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Align Justify"
       >
         <AlignJustify size={18} />
@@ -157,14 +157,14 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleBulletList().run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive('bulletList') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive('bulletList') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Bullet List"
       >
         <List size={18} />
       </button>
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleOrderedList().run(); }}
-        className={`p-1.5 rounded-md hover:bg-surface-container transition-colors ${editor.isActive('orderedList') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
+        className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive('orderedList') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
         title="Ordered List"
       >
         <ListOrdered size={18} />
@@ -173,7 +173,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <div className="w-px h-6 bg-outline-variant/40 mx-2" />
       
       {/* Color Picker */}
-      <div className="relative flex items-center p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant cursor-pointer group shadow-sm bg-background border border-outline-variant/30" title="Text Color">
+      <div className="relative flex items-center p-1.5 rounded-sm hover:bg-surface-container text-on-surface-variant cursor-pointer group shadow-sm bg-background border border-outline-variant/30" title="Text Color">
         <Palette size={16} className="text-primary mb-0.5" />
         <input
           type="color"
@@ -182,17 +182,17 @@ const MenuBar = ({ editor }: { editor: any }) => {
           value={editor.getAttributes('textStyle').color || '#ffffff'}
           className="w-5 h-5 ml-1 opacity-0 absolute cursor-pointer"
         />
-        <div className="w-4 h-4 rounded-full border border-outline-variant ml-1 pointer-events-none" style={{ backgroundColor: editor.getAttributes('textStyle').color || 'transparent' }} />
+        <div className="w-4 h-4 rounded-sm border border-outline-variant ml-1 pointer-events-none" style={{ backgroundColor: editor.getAttributes('textStyle').color || 'transparent' }} />
       </div>
 
       {/* Font Size Setup */}
       <div className="flex items-center gap-1 group relative ml-1">
-        <div className="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant flex items-center gap-1 cursor-pointer border border-outline-variant/30 bg-background shadow-sm">
+        <div className="p-1.5 rounded-sm hover:bg-surface-container text-on-surface-variant flex items-center gap-1 cursor-pointer border border-outline-variant/30 bg-background shadow-sm">
           <Type size={16} /> 
           <span className="text-xs font-semibold px-1">Size</span>
         </div>
         {/* Simple popout for sizes */}
-        <div className="absolute top-full left-0 mt-1 bg-surface-container border border-outline-variant rounded-md shadow-xl p-1 flex-col gap-1 hidden group-hover:flex z-50 w-36">
+        <div className="absolute top-full left-0 mt-1 bg-surface-container border border-outline-variant rounded-sm shadow-xl p-1 flex-col gap-1 hidden group-hover:flex z-50 w-36">
            <button onClick={(e) => { e.preventDefault(); setFontSize('12px'); }} className="text-left px-3 py-2 text-[12px] font-medium hover:bg-primary/10 hover:text-primary transition-colors rounded-sm">Small</button>
            <button onClick={(e) => { e.preventDefault(); setFontSize('16px'); }} className="text-left px-3 py-2 text-[16px] font-medium hover:bg-primary/10 hover:text-primary transition-colors rounded-sm">Medium</button>
            <button onClick={(e) => { e.preventDefault(); setFontSize('20px'); }} className="text-left px-3 py-2 text-[20px] font-medium hover:bg-primary/10 hover:text-primary transition-colors rounded-sm">Large</button>
@@ -234,10 +234,10 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange,
   const charCount = editor?.storage.characterCount.characters() || 0;
 
   return (
-    <div className={`w-full bg-surface-container-low border border-outline-variant/40 rounded-xl flex flex-col focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all shadow-sm overflow-hidden ${className || ''}`}>
+    <div className={`w-full bg-surface-container-low border border-outline-variant/40 rounded-sm flex flex-col focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all shadow-sm overflow-hidden ${className || ''}`}>
       <style>{`
         .tiptap-editor-content { 
-            min-height: 300px; 
+            min-height: 150px; 
             font-family: inherit; 
             padding: 1.5rem; 
             outline: none; 

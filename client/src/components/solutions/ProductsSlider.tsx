@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'motion/react';
 import { getAllProducts } from '../../data/solutions';
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 60, scale: 0.95 },
   visible: (index: number) => ({
     opacity: 1,
@@ -20,82 +20,82 @@ const cardVariants = {
 
 const ProductCard = ({ product, index }: { product: any; index: number }) => {
   return (
-    <motion.div
-      className="group relative bg-surface-container border border-outline-variant rounded-sm overflow-hidden h-full flex flex-col cursor-pointer shadow-md hover:shadow-2xl transition-shadow"
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
-      custom={index}
-      whileHover={{
-        y: -10,
-        scale: 1.03,
-        transition: { duration: 0.35, ease: [0.23, 1, 0.32, 1] },
-      }}
-      whileTap={{ scale: 0.97 }}
-      layout
-    >
-      {/* Content - Compact */}
-      <div className="p-7 flex flex-col flex-1">
-        <div className="flex items-start justify-between mb-5">
-          <motion.div
-            className="text-6xl flex-shrink-0"
-            whileHover={{
-              scale: 1.15,
-              rotate: [0, -8, 8, 0],
-              transition: { duration: 0.5 },
-            }}
-          >
-            {product.icon}
-          </motion.div>
+    <Link to={`/solutions/product/${product.id}`} className="block h-full">
+      <motion.div
+        className="group relative bg-surface-container border border-outline-variant rounded-sm overflow-hidden h-full flex flex-col cursor-pointer shadow-md hover:shadow-2xl transition-shadow"
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        custom={index}
+        whileHover={{
+          y: -10,
+          scale: 1.03,
+          transition: { duration: 0.35, ease: [0.23, 1, 0.32, 1] },
+        }}
+        whileTap={{ scale: 0.97 }}
+        layout
+      >
+        {/* Content */}
+        <div className="p-7 flex flex-col flex-1">
+          <div className="flex items-start justify-between mb-5">
+            <motion.div
+              className="text-6xl flex-shrink-0"
+              whileHover={{
+                scale: 1.15,
+                rotate: [0, -8, 8, 0],
+                transition: { duration: 0.5 },
+              }}
+            >
+              {product.icon}
+            </motion.div>
 
-          {/* Category Badge - Subtle & professional */}
-          <div className="px-4 py-1.5 text-xs tracking-widest bg-primary/5 border border-primary rounded-sm text-primary backdrop-blur-sm">
-            {product.category}
+            {/* Category Badge */}
+            <div className="px-4 py-1.5 text-xs tracking-widest bg-primary/5 border border-primary rounded-sm text-primary backdrop-blur-sm">
+              {product.category}
+            </div>
           </div>
-        </div>
 
-        {/* Title */}
-        <motion.h3
-          className="text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors"
-          whileHover={{ x: 4 }}
-          transition={{ duration: 0.25 }}
-        >
-          {product.name}
-        </motion.h3>
+          {/* Title */}
+          <motion.h3
+            className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors"
+            whileHover={{ x: 4 }}
+            transition={{ duration: 0.25 }}
+          >
+            {product.name}
+          </motion.h3>
 
-        {/* Short description - Kept compact */}
-        <p className="text-muted-foreground text-[15px] leading-relaxed flex-1 line-clamp-4">
-          {product.shortDescription}
-        </p>
+          {/* Short description */}
+          <p className="text-muted-foreground text-[15px] leading-relaxed flex-1 line-clamp-4">
+            {product.shortDescription}
+          </p>
 
-        {/* Button - Clean & modern */}
-        <motion.div className="mt-auto pt-7">
-          <Link to={`/solutions/product/${product.id}`}>
+          {/* Button */}
+          <motion.div className="mt-auto pt-7">
             <motion.button
-              className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 rounded-sm text-sm shadow-sm"
+              className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary/10 border hover:border-primary hover:text-primary transition-all duration-300 text-primary-foreground font-semibold py-4 rounded-sm text-sm shadow-sm"
               whileHover={{
                 scale: 1.03,
                 gap: "16px",
               }}
               whileTap={{ scale: 0.96 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3 }}
             >
               Explore Solution
               <ArrowRight size={19} className="transition-transform group-hover:rotate-45" />
             </motion.button>
-          </Link>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
 
-      {/* Subtle bottom accent line */}
-      <motion.div
-        className="h-1 bg-gradient-to-r from-primary/70 to-transparent"
-        initial={{ scaleX: 0 }}
-        whileHover={{ scaleX: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      />
-    </motion.div>
+        {/* Subtle bottom accent line */}
+        <motion.div
+          className="h-1 bg-gradient-to-r from-primary/70 to-transparent"
+          initial={{ scaleX: 0 }}
+          whileHover={{ scaleX: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+      </motion.div>
+    </Link>
   );
 };
 

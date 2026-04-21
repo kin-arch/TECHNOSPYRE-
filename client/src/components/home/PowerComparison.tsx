@@ -6,7 +6,7 @@ import { powerComparison } from '../../data/home';
 export const PowerComparison: React.FC = () => {
   return (
     <section className="py-24 px-6 sm:px-8 bg-surface-container-low border-y border-outline-variant relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-primary/5 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -29,7 +29,7 @@ export const PowerComparison: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="rounded-3xl border border-outline-variant bg-surface-container overflow-hidden shadow-[0_20px_60px_-30px_color-mix(in_srgb,var(--color-primary)_25%,transparent)]"
+          className="rounded-sm border border-outline-variant bg-surface-container overflow-hidden shadow-[0_20px_60px_-30px_color-mix(in_srgb,var(--color-primary)_25%,transparent)]"
         >
           {/* Header */}
           <div className="grid grid-cols-[1.5fr_1fr_1fr] bg-surface-container-high border-b border-outline-variant">
@@ -55,11 +55,11 @@ export const PowerComparison: React.FC = () => {
               <div className="p-5 text-sm font-medium">{row.feature}</div>
               <div className="p-5 flex items-center justify-center bg-primary/5 border-x border-outline-variant">
                 {row.us ? (
-                  <span className="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-sm bg-primary text-on-primary flex items-center justify-center">
                     <Check size={16} strokeWidth={3} />
                   </span>
                 ) : (
-                  <span className="w-8 h-8 rounded-full bg-muted text-muted-foreground flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-sm bg-muted text-muted-foreground flex items-center justify-center">
                     <X size={16} />
                   </span>
                 )}
@@ -68,7 +68,7 @@ export const PowerComparison: React.FC = () => {
                 {row.others ? (
                   <Check size={18} className="text-primary" />
                 ) : (
-                  <span className="w-8 h-8 rounded-full bg-muted/50 text-muted-foreground flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-sm bg-muted/50 text-muted-foreground flex items-center justify-center">
                     <X size={16} />
                   </span>
                 )}

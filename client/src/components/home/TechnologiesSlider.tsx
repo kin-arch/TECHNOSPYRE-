@@ -201,7 +201,7 @@ export const ProductsSlider: React.FC = () => {
               <Sparkles className="h-4 w-4" aria-hidden />
               Technology Stack
             </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-headline font-bold tracking-tight text-foreground">
+            <h2 className="text-4xl md:text-5xl font-headline font-bold tracking-tight text-foreground">
               Modern <span className="text-primary">Technologies</span>
             </h2>
             <p className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed max-w-2xl">

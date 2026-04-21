@@ -151,7 +151,7 @@ const About = () => {
         title="Why Choose TechnoSpyre"
         description="Learn why TechnoSpyre is the best choice for your business. Expert team, proven results, and dedicated support."
       />
-      <div data-about-reveal data-about-float>
+      <div data-about-reveal>
         <AboutHero />
       </div>
       <SectionLines />

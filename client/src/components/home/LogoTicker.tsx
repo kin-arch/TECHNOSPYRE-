@@ -71,14 +71,14 @@ export const AnimatedCounter: React.FC<{ from: number; to: number; duration?: nu
 
 export const LogoTicker: React.FC = () => {
   const totalLogos = logos.length;
-  // Duplicate logos twice for infinite scroll
-  const duplicatedLogos = [...logos, ...logos];
+  // Use 3 copies for seamless infinite scroll
+  const duplicatedLogos = [...logos, ...logos, ...logos];
   
   return (
     <div className="w-full flex flex-col items-center py-16">
       <div className="container mx-auto px-8 mb-12 text-center">
-        <h2 className="text-xl sm:text-3xl uppercase tracking-[0.35em] font-semibold mb-3 text-primary">
-          Trusted by industry leaders
+        <h2 className="text-3xl md:text-3xl uppercase tracking-[0.35em] font-bold mb-3 text-foregorund">
+          Trusted by industry <span className='text-primary'>leaders</span>
         </h2>
         <p className="text-lg sm:text-xl font-medium text-muted-foreground max-w-2xl mx-auto text-pretty">
           Join Us Be Part of Our Growing Network of Partners.
@@ -87,13 +87,14 @@ export const LogoTicker: React.FC = () => {
 
       <div className="w-full overflow-hidden relative py-5 border-y border-border/50 bg-muted/25">
         <motion.div
-          animate={{ x: ['0%', '-50%'] }}
+          animate={{ x: [0, -100 / 3 + '%'] }}
           transition={{ 
-            duration: totalLogos * 0.5, 
+            duration: 50, 
             repeat: Infinity, 
             ease: 'linear' 
           }}
           className="flex items-center gap-6 md:gap-7 whitespace-nowrap will-change-transform"
+          style={{ width: 'fit-content' }}
         >
           {duplicatedLogos.map((logo, idx) => (
             <div

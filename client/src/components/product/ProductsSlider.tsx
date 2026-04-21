@@ -1,6 +1,6 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'motion/react';
 import { getAllProducts } from '../../data/product';
 
@@ -22,78 +22,70 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
   return (
     <Link to={`/products/${product.id}`} className="block h-full">
       <motion.div
-        className="group relative bg-surface-container border border-outline-variant rounded-sm overflow-hidden h-full flex flex-col cursor-pointer shadow-md hover:shadow-2xl transition-shadow"
+        className="product-card group relative rounded-sm border border-outline-variant bg-surface-container overflow-hidden h-full flex flex-col cursor-pointer hover:border-primary/45 hover:bg-surface-container-high transition-all duration-300 min-h-[280px]"
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
         custom={index}
         whileHover={{
-          y: -10,
+          y: -12,
           scale: 1.03,
           transition: { duration: 0.35, ease: [0.23, 1, 0.32, 1] },
         }}
         whileTap={{ scale: 0.97 }}
         layout
+        data-home-glow
       >
+        {/* Spotlight Effect Overlay */}
+        <div 
+          className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+          style={{
+            background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(251, 146, 60, 0.15), transparent 40%)`,
+          }}
+        />
+        
         {/* Content */}
-        <div className="p-7 flex flex-col flex-1">
+        <div className="p-7 sm:p-8 flex flex-col flex-1 relative z-10">
           <div className="flex items-start justify-between mb-5">
             <motion.div
-              className="text-6xl flex-shrink-0"
+              className="card-icon w-16 h-16 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-300 shadow-sm"
               whileHover={{
-                scale: 1.15,
-                rotate: [0, -8, 8, 0],
-                transition: { duration: 0.5 },
+                scale: 1.2,
+                rotate: 12,
+                transition: { duration: 0.4, ease: [0.23, 1, 0.32, 1] },
               }}
             >
               {product.icon}
             </motion.div>
 
             {/* Category Badge */}
-            <div className="px-4 py-1.5 text-xs tracking-widest bg-primary/5 border border-primary rounded-sm text-primary backdrop-blur-sm">
+            <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-on-surface-variant border border-outline-variant bg-background/60 px-3 py-1.5 rounded-sm backdrop-blur-sm">
               {product.category}
-            </div>
+            </span>
           </div>
 
           {/* Title */}
-          <motion.h3
-            className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors"
-            whileHover={{ x: 4 }}
-            transition={{ duration: 0.25 }}
-          >
+          <h3 className="card-title font-headline text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors mb-2">
             {product.name}
-          </motion.h3>
+          </h3>
 
           {/* Short description */}
-          <p className="text-muted-foreground text-[15px] leading-relaxed flex-1 line-clamp-4">
+          <p className="text-sm text-muted-foreground leading-relaxed font-medium flex-1">
             {product.shortDescription}
           </p>
 
-          {/* Button */}
-          <motion.div className="mt-auto pt-7">
-            <motion.button
-              className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary/10 border hover:border-primary hover:text-primary transition-all duration-300 text-primary-foreground font-semibold py-4 rounded-sm text-sm shadow-sm"
-              whileHover={{
-                scale: 1.03,
-                gap: "16px",
-              }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ duration: 0.3 }}
-            >
-              Explore Solution
-              <ArrowRight size={19} className="transition-transform group-hover:rotate-45" />
-            </motion.button>
+          {/* Link */}
+          <motion.div 
+            className="card-link mt-6"
+            whileHover={{ x: 8 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+              Learn More <ArrowRight size={16} className="transition-transform" />
+            </span>
           </motion.div>
         </div>
-
-        {/* Subtle bottom accent line */}
-        <motion.div
-          className="h-1 bg-gradient-to-r from-primary/70 to-transparent"
-          initial={{ scaleX: 0 }}
-          whileHover={{ scaleX: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        />
       </motion.div>
     </Link>
   );
@@ -101,12 +93,36 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
 
 export const ProductsSlider = () => {
   const products = getAllProducts();
-  const [showAll, setShowAll] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const displayedProducts = showAll ? products : products.slice(0, 7);
+  const displayedProducts = products.slice(0, 10);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    
+    const cards = sectionRef.current.querySelectorAll('.product-card');
+    
+    cards.forEach((card) => {
+      const handleMouseMove = (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      };
+      
+      card.addEventListener('mousemove', handleMouseMove);
+    });
+    
+    return () => {
+      cards.forEach((card) => {
+        card.removeEventListener('mousemove', () => {});
+      });
+    };
+  }, [displayedProducts]);
 
   return (
-    <section className="py-20 md:py-28 bg-background border-y border-white/5">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-background border-y border-white/5">
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
@@ -144,7 +160,7 @@ export const ProductsSlider = () => {
 
         {/* Products Grid */}
         <AnimatePresence mode="popLayout">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
             {displayedProducts.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -159,32 +175,6 @@ export const ProductsSlider = () => {
             ))}
           </div>
         </AnimatePresence>
-
-        {/* View More / View Less */}
-        {products.length > 7 && (
-          <motion.div
-            className="flex justify-center mt-16"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <motion.button
-              onClick={() => setShowAll(!showAll)}
-              className="group inline-flex items-center gap-4 px-9 py-6 rounded-sm bg-primary/1 hover:bg-primary/10 border border-primary text-primary font-medium text-lg backdrop-blur-xl transition-all active:scale-95"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-            >
-              {showAll ? 'View less' : 'View more'}
-              <motion.div
-                animate={{ rotate: showAll ? 180 : 0 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <ChevronDown size={24} />
-              </motion.div>
-            </motion.button>
-          </motion.div>
-        )}
       </div>
     </section>
   );

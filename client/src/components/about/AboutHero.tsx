@@ -35,8 +35,8 @@ export const AboutHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[82vh] flex items-center overflow-hidden px-6 sm:px-8 bg-background border-b border-border/60">
-      <div className="max-w-7xl mx-auto relative z-10 w-full pt-28 pb-20">
+    <section className="relative flex items-center overflow-hidden px-6 sm:px-8 bg-background border-b border-border/60">
+      <div className="max-w-7xl mx-auto relative z-10 w-full pt-10 pb-20">
         <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
           <Link to="/" className="hover:text-foreground transition-colors">
             Home
@@ -54,7 +54,7 @@ export const AboutHero: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm text-[11px] font-semibold tracking-widest uppercase text-primary border border-primary/25 bg-primary/5 mb-6"
             >
               <Calendar size={11} />
-              Founded in 2013 Â· 12+ years
+              Founded in 2013· 12+ years
             </motion.span>
 
             <h1 className="font-headline text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.08] tracking-tight text-foreground mb-6 text-balance">
@@ -112,20 +112,6 @@ export const AboutHero: React.FC = () => {
                 width={800}
                 height={600}
               />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {stats.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.18 + i * 0.05 }}
-                  className="rounded-sm border border-border bg-card px-4 py-4 shadow-sm hover:border-primary/25 transition-colors"
-                >
-                  <p className="font-headline text-2xl md:text-3xl font-bold text-primary tabular-nums">{s.value}</p>
-                  <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground font-medium mt-1">{s.label}</p>
-                </motion.div>
-              ))}
             </div>
           </motion.div>
         </div>

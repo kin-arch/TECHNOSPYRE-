@@ -1,10 +1,8 @@
-﻿import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { motion, AnimatePresence, Variants, useScroll, useTransform } from 'framer-motion';
+﻿import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { DeviceMockupShowcase } from './DeviceMockupShowcase';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { DeviceMockupShowcase } from './DeviceMockupShowcase'; // Keep this import accurate to your structure
 
 const SLIDE_DATA = [
   {
@@ -27,34 +25,11 @@ const SLIDE_DATA = [
   }
 ];
 
-const slideVariants: Variants = {
-  hidden: (dir: number) => ({
-    opacity: 0,
-    x: dir > 0 ? 20 : -20,
-  }),
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: 'spring', stiffness: 280, damping: 32, mass: 1 },
-  },
-  exit: (dir: number) => ({
-    opacity: 0,
-    x: dir > 0 ? -20 : 20,
-    transition: { duration: 0.22 },
-  }),
-};
-
-
 export const Hero: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [typedText, setTypedText] = useState('');
-  const heroImageRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll();
-  const imageY = useTransform(scrollYProgress, [0, 0.3], [0, -50]);
-  const imageScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
 
-  // Typewriter effect synchronized with slider
   useEffect(() => {
     setTypedText('');
     let len = 0;
@@ -70,55 +45,56 @@ export const Hero: React.FC = () => {
     return () => clearInterval(t);
   }, [currentIndex]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % SLIDE_DATA.length);
-  };
+  }, []);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + SLIDE_DATA.length) % SLIDE_DATA.length);
-  };
+  }, []);
 
   useEffect(() => {
-    const t = setInterval(() => {
-      handleNext();
-    }, 2500);
+    const t = setInterval(handleNext, 3500);
     return () => clearInterval(t);
-  }, [currentIndex]);
+  }, [handleNext]);
+
+  const slideVariants: Variants = {
+    hidden: (dir: number) => ({ opacity: 0, x: dir > 0 ? 20 : -20 }),
+    visible: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 280, damping: 32, mass: 1 } },
+    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -20 : 20, transition: { duration: 0.22 } }),
+  };
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden w-full bg-background min-h-[100vh] border-b border-border/50">
+    <section className="relative flex items-center justify-center overflow-hidden w-full bg-background border-b border-border/50">
+      
       <button
         onClick={handlePrev}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-10 sm:w-11 h-10 sm:h-11 rounded-sm flex items-center justify-center border border-border bg-card text-primary shadow-sm hover:bg-muted transition-colors active:scale-[0.98]"
-        aria-label="Previous slide"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-sm flex items-center justify-center border border-border bg-card/50 text-primary shadow-sm active:scale-[0.98] hidden sm:flex"
       >
-        <ChevronLeft className="w-5 sm:w-5 h-5 sm:h-5" />
+        <ChevronLeft className="w-5 h-5" />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-10 sm:w-11 h-10 sm:h-11 rounded-sm flex items-center justify-center border border-border bg-card text-primary shadow-sm hover:bg-muted transition-colors active:scale-[0.98]"
-        aria-label="Next slide"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-sm flex items-center justify-center border border-border bg-card/50 text-primary shadow-sm active:scale-[0.98] hidden sm:flex"
       >
-        <ChevronRight className="w-5 sm:w-5 h-5 sm:h-5" />
+        <ChevronRight className="w-5 h-5" />
       </button>
 
-     
-
-      <div className="container relative z-10 mx-auto px-6 xl:px-20 w-full py-12 lg:py-16">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-16 lg:gap-24 items-center justify-center">
-          <div className="flex flex-col gap-5 order-2 lg:order-1 text-center items-center justify-center w-full mx-auto">
-
-            {/* Pill badge */}
+      <div className="container relative z-10 mx-auto px-4 sm:px-8 w-full">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center justify-center h-full">
+          
+          {/* Left: Text Content */}
+          <div className="flex flex-col gap-4 lg:gap-6 order-2 lg:order-1 text-center lg:text-start items-center lg:items-start justify-center w-full mx-auto z-20">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="inline-flex items-center justify-center gap-2"
+              className="inline-flex"
             >
-              <span className="flex items-center gap-2 px-4 py-1.5 rounded-sm text-xs font-semibold tracking-widest uppercase text-primary border border-primary/20 bg-primary/5">
+              <span className="flex items-center gap-2 px-3 py-1.5 rounded-sm text-xs font-semibold tracking-widest uppercase text-primary border border-primary/20 bg-primary/5">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-sm bg-primary opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-sm bg-primary" />
@@ -127,7 +103,7 @@ export const Hero: React.FC = () => {
               </span>
             </motion.div>
 
-            <div className="w-full flex flex-col items-start justify-center overflow-hidden py-2" style={{ minHeight: 'clamp(240px, 28vh, 340px)' }}>
+            <div className="w-full flex flex-col items-center lg:items-start justify-center">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={currentIndex}
@@ -136,156 +112,60 @@ export const Hero: React.FC = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="space-y-5 lg:space-y-7 flex flex-col items-center justify-center w-full"
+                  className="flex flex-col items-center lg:items-start w-full absolute lg:relative"
                 >
-                  <h1 className="font-sans font-bold leading-[1.1] tracking-tight text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-[3rem] xl:text-[3.5rem] min-h-[140px] sm:min-h-[160px] lg:min-h-[180px] text-balance">
-                    <motion.div
-                      variants={{
-                        hidden: {},
-                        visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
-                      }}
-                      initial="hidden"
-                      animate="visible"
-                      className="inline-block"
-                    >
-                      {SLIDE_DATA[currentIndex].title.split(' ').map((word, i) => (
-                        <motion.span
-                          key={i}
-                          variants={{
-                            hidden: { opacity: 0, y: 15 },
-                            visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
-                          }}
-                          className="inline-block mr-3"
-                        >
-                          {word}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-                    <br />{' '}
-                    <span className="inline-block text-[2.5rem] xl:text-[3rem] pb-2 relative text-primary min-w-[2ch]">
-                      {typedText}
-                      <motion.span
-                        animate={{ opacity: [1, 0] }}
-                        transition={{ repeat: Infinity, duration: 0.75, ease: 'linear' }}
-                        className="inline-block align-middle ml-1"
-                        style={{
-                          width: '4px',
-                          height: '1.1em',
-                          background: 'var(--color-primary)',
-                          borderRadius: '2px',
-                          verticalAlign: 'middle',
-                        }}
-                      />
-                    </span>
+                  <h1 className="font-sans font-bold leading-tight tracking-tight text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-balance">
+                    <span className="block">{SLIDE_DATA[currentIndex].title}</span>
+                    <span className="block text-primary pt-1 min-h-[1.2em]">{typedText}</span>
                   </h1>
-
-                  <motion.p
-                    className="text-base sm:text-lg text-muted-foreground leading-relaxed font-light max-w-xl mx-auto">
+                  <motion.p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-light max-w-lg mt-3">
                     {SLIDE_DATA[currentIndex].desc}
                   </motion.p>
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* CTA & Controls */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.8 } }
-              }}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-row flex-wrap items-center justify-center gap-4 w-full z-20 relative mt-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-row flex-wrap items-center justify-start lg:items-start gap-3 sm:gap-4 w-full mt-2"
             >
-              {/* Buttons */}
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, x: -72 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'backOut' } }
-                }}
-              >
-                <MagneticButton>
-                  <Link
-                    to="/contact"
-                    className="group relative flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300 bg-primary text-primary-foreground shadow-md hover:opacity-95 hover:shadow-lg"
-                  >
-                    <span>Free Consultation</span>
-                    <div className="w-9 h-9 rounded-sm bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                      <ArrowRight size={17} className="-rotate-45" />
-                    </div>
-                  </Link>
-                </MagneticButton>
-              </motion.div>
-
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, x: -72 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: 'backOut' } }
-                }}
-              >
-                <MagneticButton>
-                  <Link
-                    to="/solutions"
-                    className="group flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300 border border-border bg-card text-foreground hover:border-primary/40 hover:bg-muted/80"
-                  >
-                    <span>Our Services</span>
-                    <div className="w-9 h-9 rounded-sm flex items-center justify-center group-hover:scale-105 transition-all bg-muted">
-                      <ArrowRight size={17} className="-rotate-45" />
-                    </div>
-                  </Link>
-                </MagneticButton>
-              </motion.div>
-
+              <Link to="/contact" className="flex items-center justify-center gap-2 sm:min-w-[180px] px-5 py-2.5 rounded-sm font-bold transition-all duration-300 bg-primary text-primary-foreground shadow-md hover:opacity-95">
+                <span className="text-sm sm:text-base">Free Consultation</span>
+                <ArrowRight size={16} className="rotate-[-45deg]" />
+              </Link>
+              <Link to="/products" className="flex items-center justify-center gap-2 sm:min-w-[180px] px-5 py-2.5 rounded-sm font-bold transition-all duration-300 border border-border bg-card text-foreground hover:border-primary/40 hover:bg-muted/80">
+                <span className="text-sm sm:text-base">Our Services</span>
+                <ArrowRight size={16} className="rotate-[-45deg]" />
+              </Link>
             </motion.div>
           </div>
-
-          {/* Right: Device Mockup Showcase */}
           <motion.div
-            style={{ y: imageY, scale: imageScale, minHeight: '520px' }}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.25, ease: 'easeOut' }}
-            className="relative order-1 lg:order-2 flex items-center justify-center w-full max-w-[850px] mx-auto lg:scale-[1.02]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.65, delay: 0.25 }}
+            className="relative order-1 lg:order-2 flex items-center justify-center w-full mx-auto h-full min-h-[300px] lg:min-h-[500px]"
           >
-            <div className="relative z-10 w-full">
-              <DeviceMockupShowcase />
-            </div>
+            <DeviceMockupShowcase />
           </motion.div>
 
         </div>
       </div>
 
+      {/* Mobile dot indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex sm:hidden gap-2 z-50">
+        {SLIDE_DATA.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              setDirection(idx > currentIndex ? 1 : -1);
+              setCurrentIndex(idx);
+            }}
+            className={`w-2 h-2 rounded-full transition-colors ${idx === currentIndex ? 'bg-primary' : 'bg-muted-foreground/30'}`}
+          />
+        ))}
+      </div>
     </section>
   );
 };
-
-const MagneticButton: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const ref = useRef<HTMLDivElement>(null);
-
-  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
-    const x = (clientX - (left + width / 2)) * 0.35;
-    const y = (clientY - (top + height / 2)) * 0.35;
-    setPosition({ x, y });
-  };
-
-  const reset = () => setPosition({ x: 0, y: 0 });
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-
-

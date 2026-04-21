@@ -3,10 +3,9 @@ import { Hero } from '../components/home/Hero';
 import { SectionLines } from '../components/SectionLines';
 import { LogoTicker } from '../components/home/LogoTicker';
 import { ProductsGrid } from '../components/home/ProductsGrid';
-import { ProductsSlider } from '../components/home/ProductsSlider';
+import { ProductsSlider } from '../components/home/TechnologiesSlider';
 import { TestimonialsGrid } from '../components/home/TestimonialsGrid';
 import { HomeCTA } from '../components/home/HomeCTA';
-import { ScrollProgress } from '../components/ScrollProgress';
 import SEO from '../components/SEO';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -160,12 +159,11 @@ const Home = () => {
 
   return (
     <div className="overflow-x-hidden" ref={pageRef}>
-      <ScrollProgress />
       <SEO
-        title="Leading AI & Cloud Solutions"
+        title="TechnoSpyre | Leading AI & Cloud Solutions"
         description="TechnoSpyre Inc. specializes in engineering, scaling, and managing resilient technology ecosystems for modern businesses."
       />
-      <div data-home-reveal data-home-float>
+      <div data-home-reveal>
         <Hero />
       </div>
       <SectionLines />

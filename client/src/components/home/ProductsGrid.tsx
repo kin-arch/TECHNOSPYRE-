@@ -151,18 +151,18 @@ export const ProductsGrid: React.FC = () => {
             <div
               key={c.id}
               data-home-item
-              className="product-card group relative rounded-sm border border-outline-variant bg-surface-container p-7 sm:p-8 min-h-[280px] flex flex-col justify-between hover:border-primary/45 hover:bg-surface-container-high transition-all duration-300 cursor-pointer overflow-hidden"
+              className="product-card group relative rounded-sm border border-outline-variant bg-surface-container p-7 sm:p-8 min-h-[280px] flex flex-col justify-between hover:border-primary/45 transition-all duration-300 cursor-pointer overflow-hidden"
               data-home-glow
             >
               {/* Spotlight Effect Overlay */}
               <div 
                 className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                 style={{
-                  background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(251, 146, 60, 0.15), transparent 40%)`,
+                  background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(233, 100%, 18%, 0.08), transparent 40%)`,
                 }}
               />
               <div className="flex items-center justify-between">
-                <div className="card-icon w-16 h-16 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-300 shadow-sm">
+                <div className="card-icon w-16 h-16 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 shadow-sm">
                   {c.icon}
                 </div>
                 <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-on-surface-variant border border-outline-variant bg-background/60 px-3 py-1.5 rounded-sm backdrop-blur-sm">

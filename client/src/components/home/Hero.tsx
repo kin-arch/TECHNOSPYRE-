@@ -114,7 +114,7 @@ export const Hero: React.FC = () => {
                   exit="exit"
                   className="flex flex-col items-center lg:items-start w-full absolute lg:relative"
                 >
-                  <h1 className="font-sans font-bold leading-tight tracking-tight text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-balance">
+                  <h1 className="font-sans font-bold leading-tight tracking-tight text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] text-balance">
                     <span className="block">{SLIDE_DATA[currentIndex].title}</span>
                     <span className="block text-primary pt-1 min-h-[1.2em]">{typedText}</span>
                   </h1>
@@ -131,13 +131,13 @@ export const Hero: React.FC = () => {
               transition={{ delay: 0.8 }}
               className="flex flex-row flex-wrap items-center justify-start lg:items-start gap-3 sm:gap-4 w-full mt-2"
             >
-              <Link to="/contact" className="flex items-center justify-center gap-2 sm:min-w-[180px] px-5 py-2.5 rounded-sm font-bold transition-all duration-300 bg-primary text-primary-foreground shadow-md hover:opacity-95">
+              <Link to="/contact" className="group flex items-center justify-center gap-2 sm:min-w-[180px] px-8 py-3 rounded-sm font-bold transition-all duration-200 bg-primary hover:bg-foreground text-primary-foreground hover:scale-105">
                 <span className="text-sm sm:text-base">Free Consultation</span>
-                <ArrowRight size={16} className="rotate-[-45deg]" />
+                <ArrowRight size={16} className="rotate-[-45deg] group-hover:rotate-0 transition-all duration-200" />
               </Link>
-              <Link to="/products" className="flex items-center justify-center gap-2 sm:min-w-[180px] px-5 py-2.5 rounded-sm font-bold transition-all duration-300 border border-border bg-card text-foreground hover:border-primary/40 hover:bg-muted/80">
+              <Link to="/products" className="group flex items-center justify-center gap-2 sm:min-w-[180px] px-8 py-3 rounded-sm font-bold transition-all duration-200 border border-border bg-card text-foreground hover:bg-primary/10 hover:scale-105">
                 <span className="text-sm sm:text-base">Our Services</span>
-                <ArrowRight size={16} className="rotate-[-45deg]" />
+                <ArrowRight size={16} className="rotate-[-45deg] group-hover:rotate-0 transition-all duration-200" />
               </Link>
             </motion.div>
           </div>

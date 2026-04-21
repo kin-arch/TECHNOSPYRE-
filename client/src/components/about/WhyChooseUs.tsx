@@ -42,7 +42,7 @@ export const WhyChooseUs: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-primary/10 text-primary ring-1 ring-primary/15 group-hover:bg-primary group-hover:text-on-primary transition-colors shrink-0">
+                <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-primary/10 text-primary ring-1 ring-primary/15 group-hover:bg-primary group-hover:text-primary-foreground transition-colors shrink-0">
                   {item.icon}
                 </div>
                 <div>

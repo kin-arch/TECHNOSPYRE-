@@ -15,7 +15,7 @@ const items = [
     icon: <Eye size={20} />,
     label: 'Our vision',
     title: 'Build a smarter Pakistan, then a smarter world.',
-    desc: 'We want to be the first name people think of when they need digital tools â€” and the place where the next generation of developers learns to build them.',
+    desc: 'We want to be the first name people think of when they need digital tools and the place where the next generation of developers learns to build them.',
     points: ['World-class quality', 'Local-first thinking', 'Train future talent'],
   },
 ];
@@ -30,7 +30,7 @@ export const MissionVision: React.FC = () => {
         <SectionHeading
           eyebrow="Purpose"
           title="Mission & vision"
-          description="What we optimize for every day â€” and where we're headed as a company."
+          description="What we optimize for every day and where we're headed as a company."
           align="center"
         />
         <div className="grid lg:grid-cols-[1fr_1.12fr] gap-10 lg:gap-14 items-start">

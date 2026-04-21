@@ -1,4 +1,4 @@
-import { CourseCategory } from '../types/academy';
+import { CourseCategory } from '../types/courses';
 
 export const courseCategories: CourseCategory[] = [
   {

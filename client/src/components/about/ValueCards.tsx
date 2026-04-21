@@ -11,7 +11,7 @@ const fadeUp = {
 const values = [
   { icon: <Lightbulb size={22} />, title: 'Fresh Ideas', desc: 'We don\'t just copy what others do. We think hard about your problem and design real solutions that fit you.', featured: true },
   { icon: <ShieldCheck size={22} />, title: 'Honest Work', desc: 'Clear pricing, clear timelines, no hidden fees. What we promise is what you get.' },
-  { icon: <Star size={22} />, title: 'Top Quality', desc: 'Clean code, beautiful design, careful testing â€” every time.' },
+  { icon: <Star size={22} />, title: 'Top Quality', desc: 'Clean code, beautiful design, careful testing every time.' },
   { icon: <Zap size={22} />, title: 'Fast Support', desc: 'When something needs help, we reply quickly and fix it properly.' },
 ];
 

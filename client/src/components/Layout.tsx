@@ -167,7 +167,7 @@ export const Navbar = () => {
         </button>
         <Link
           to="/contact"
-          className="bg-primary hover:bg-primary/95 text-primary-foreground font-semibold text-[15px] px-6 py-2.5 rounded-sm transition-colors shadow-md ml-2"
+          className="bg-primary text-primary-foreground font-semibold text-[15px] px-8 py-2.5 rounded-sm transition-all duration-200 hover:scale-105 hover:bg-foreground ml-2"
         >
           Contact Us
         </Link>
@@ -318,7 +318,7 @@ export const Footer = () => {
       { name: 'Cybersecurity', to: '/products' },
     ],
     Courses: [
-      { name: 'Academy â€” all courses', to: '/courses' },
+      { name: 'Academy all courses', to: '/courses' },
       { name: 'Full-Stack Immersive', to: '/courses#courses' },
       { name: 'Cloud Engineering', to: '/courses#courses' },
       { name: 'UI/UX Design', to: '/courses#courses' },

@@ -177,7 +177,6 @@ const MenuBar = ({ editor }: { editor: any }) => {
         <Palette size={16} className="text-primary mb-0.5" />
         <input
           type="color"
-          onInput={handleColorChange}
           onChange={handleColorChange}
           value={editor.getAttributes('textStyle').color || '#ffffff'}
           className="w-5 h-5 ml-1 opacity-0 absolute cursor-pointer"

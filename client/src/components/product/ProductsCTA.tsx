@@ -23,7 +23,7 @@ export const SolutionsCTA: React.FC = () => {
             <Button
               href="/courses"
               size="lg"
-              className='max-sm:w-full flex items-center justify-center gap-3 hover:bg-primary bg-primary/10 border border-primary hover:text-primary-foreground transition-all duration-200 text-primary font-semibold px-10 py-4 rounded-sm text-sm shadow-sm hover:scale-105'
+              className='max-sm:w-full flex items-center justify-center gap-3 hover:bg-primary/20 bg-primary/10 border border-primary transition-all duration-200 text-primary font-semibold px-10 py-4 rounded-sm text-sm shadow-sm hover:scale-105'
             >
               Browse Courses
             </Button>

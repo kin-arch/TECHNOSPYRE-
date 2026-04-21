@@ -54,7 +54,7 @@ export const AboutCompany: React.FC = () => {
               Build great products, faster than ever
             </h3>
             <p className="text-muted-foreground leading-relaxed max-w-xl">
-              Technospyre combines product thinking, solid engineering, and hands-on training so your organization gets software people actually use â€” not shelf-ware.
+              Technospyre combines product thinking, solid engineering, and hands-on training so your organization gets software people actually use not shelf-ware.
             </p>
 
             <dl className="grid grid-cols-2 gap-4 sm:gap-6 pt-2">

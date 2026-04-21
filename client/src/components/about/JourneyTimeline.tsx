@@ -8,7 +8,7 @@ const fadeLeft = {
   visible: { 
     opacity: 1, 
     x: 0, 
-    transition: { type: 'spring', stiffness: 100, damping: 20, mass: 1 } 
+    transition: { type: 'spring', stiffness: 100, damping: 20, mass: 1 } as const
   },
 };
 const fadeRight = {
@@ -16,7 +16,7 @@ const fadeRight = {
   visible: { 
     opacity: 1, 
     x: 0, 
-    transition: { type: 'spring', stiffness: 100, damping: 20, mass: 1 } 
+    transition: { type: 'spring', stiffness: 100, damping: 20, mass: 1 } as const
   },
 };
 

@@ -100,7 +100,7 @@ export const DeviceMockupShowcase: React.FC = () => {
 
   const slideVariants = {
     enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 28 : -28 }),
-    center: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+    center: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
     exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -28 : 28, transition: { duration: 0.3 } }),
   };
 

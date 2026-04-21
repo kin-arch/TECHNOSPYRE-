@@ -139,28 +139,28 @@ export const globalStats = [
 export const services = [
   {
     title: '20+ Years Experience',
-    icon: React.createElement(Award, { className: 'text-secondary' }),
+    icon: React.createElement(Award, { className: 'text-primary-foreground' }),
     items: ['Building apps since 2004', 'Expert team members', 'Over 500 projects done'],
     accent: 'primary',
     image: 'https://images.unsplash.com/photo-1552581234-26160f608093?w=600',
   },
   {
     title: 'Happy Clients',
-    icon: React.createElement(HeartHandshake, { className: 'text-secondary' }),
+    icon: React.createElement(HeartHandshake, { className: 'text-primary-foreground' }),
     items: ['99% of people love us', 'Clients stay for years', 'Helpful and friendly'],
     accent: 'secondary',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600',
   },
   {
     title: 'Fast Problem Solving',
-    icon: React.createElement(Zap, { className: 'text-secondary' }),
+    icon: React.createElement(Zap, { className: 'text-primary-foreground' }),
     items: ['We fix things quickly', 'Work finishes on time', 'No long waiting'],
     accent: 'primary',
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600',
   },
   {
     title: 'Best Support Combo',
-    icon: React.createElement(Headphones, { className: 'text-secondary' }),
+    icon: React.createElement(Headphones, { className: 'text-primary-foreground' }),
     items: ['24/7 help available', 'Easy to talk to us', 'We care about you'],
     accent: 'secondary',
     image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600',
@@ -175,10 +175,6 @@ export const faqs = [
   {
     q: 'Do you provide installation and training?',
     a: 'Yes, we provide setup, staff training, and complete onboarding.',
-  },
-  {
-    q: 'Is support included?',
-    a: 'Yes, free support is included after launch with optional monthly plans.',
   },
   {
     q: 'Can I use it online and offline?',

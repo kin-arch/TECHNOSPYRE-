@@ -62,7 +62,7 @@ const CourseDetail = () => {
           className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium group"
         >
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-          Back to Academy â€” all courses
+          Back to Academy all courses
         </Link>
       </motion.div>
 

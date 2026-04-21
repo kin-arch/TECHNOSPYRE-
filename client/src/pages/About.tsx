@@ -8,7 +8,6 @@ import { FAQSection } from '../components/about/FAQSection';
 import { JourneyTimeline } from '../components/about/JourneyTimeline';
 import { AboutCTA } from '../components/about/AboutCTA';
 import { SectionLines } from '../components/SectionLines';
-import { ScrollProgress } from '../components/ScrollProgress';
 
 import SEO from '../components/SEO';
 import gsap from 'gsap';
@@ -146,7 +145,6 @@ const About = () => {
 
   return (
     <div className="overflow-x-hidden" ref={pageRef}>
-      <ScrollProgress />
       <SEO
         title="Why Choose TechnoSpyre"
         description="Learn why TechnoSpyre is the best choice for your business. Expert team, proven results, and dedicated support."

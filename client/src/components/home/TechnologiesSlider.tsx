@@ -298,7 +298,7 @@ export const ProductsSlider: React.FC = () => {
                         aria-label="Previous"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-10 h-10 rounded-sm border border-outline-variant bg-surface-container hover:bg-primary hover:text-on-primary hover:border-primary flex items-center justify-center transition-all"
+                        className="w-10 h-10 rounded-sm border border-outline-variant bg-surface-container hover:bg-primary hover:text-primary-foreground hover:border-primary flex items-center justify-center transition-all"
                       >
                         <ChevronLeft size={18} />
                       </motion.button>
@@ -307,7 +307,7 @@ export const ProductsSlider: React.FC = () => {
                         aria-label="Next"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-10 h-10 rounded-sm border border-outline-variant bg-surface-container hover:bg-primary hover:text-on-primary hover:border-primary flex items-center justify-center transition-all"
+                        className="w-10 h-10 rounded-sm border border-outline-variant bg-surface-container hover:bg-primary hover:text-primary-foreground hover:border-primary flex items-center justify-center transition-all"
                       >
                         <ChevronRight size={18} />
                       </motion.button>

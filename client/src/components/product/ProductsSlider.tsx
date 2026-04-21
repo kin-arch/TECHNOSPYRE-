@@ -1,6 +1,6 @@
-﻿import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'motion/react';
 import { getAllProducts } from '../../data/product';
 
@@ -41,7 +41,7 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
         <div 
           className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
           style={{
-            background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(251, 146, 60, 0.15), transparent 40%)`,
+            background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsla(233, 100%, 18%, 0.08), transparent 40%)`,
           }}
         />
         
@@ -49,7 +49,7 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
         <div className="p-7 sm:p-8 flex flex-col flex-1 relative z-10">
           <div className="flex items-start justify-between mb-5">
             <motion.div
-              className="card-icon w-16 h-16 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all duration-300 shadow-sm"
+              className="card-icon w-16 h-16 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 shadow-sm"
               whileHover={{
                 scale: 1.2,
                 rotate: 12,
@@ -94,13 +94,14 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
 export const ProductsSlider = () => {
   const products = getAllProducts();
   const sectionRef = useRef<HTMLElement>(null);
-
-  const displayedProducts = products.slice(0, 10);
+  const [showAll, setShowAll] = useState(false);
+  const initialDisplayCount = 5;
+  const displayedProducts = showAll ? products : products.slice(0, initialDisplayCount);
 
   useEffect(() => {
     if (!sectionRef.current) return;
     
-    const cards = sectionRef.current.querySelectorAll('.product-card');
+    const cards = sectionRef.current.querySelectorAll('.product-card') as NodeListOf<HTMLElement>;
     
     cards.forEach((card) => {
       const handleMouseMove = (e: MouseEvent) => {
@@ -175,6 +176,32 @@ export const ProductsSlider = () => {
             ))}
           </div>
         </AnimatePresence>
+
+        {/* View More / View Less */}
+        {products.length > initialDisplayCount && (
+          <motion.div
+            className="flex justify-center mt-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-sm bg-primary/10 border border-primary/30 text-primary font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer hover:scale-105"
+            >
+              {showAll ? (
+                <>
+                  View Less <ChevronUp size={18} />
+                </>
+              ) : (
+                <>
+                  View More ({products.length - initialDisplayCount} More) <ChevronDown size={18} />
+                </>
+              )}
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

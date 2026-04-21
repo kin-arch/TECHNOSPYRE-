@@ -6,7 +6,7 @@ import { leadership } from '../../data/about';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] } }),
+  visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const } }),
 };
 
 export const LeadershipGrid: React.FC = () => {
@@ -28,7 +28,7 @@ export const LeadershipGrid: React.FC = () => {
             Meet Our Team
           </h2>
           <p className="mt-4 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            We're a cross-functional crew â€” product, engineering, design, and customer success â€” working as one team with our clients.
+            We're a cross-functional crew product, engineering, design, and customer success working as one team with our clients.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
@@ -54,7 +54,6 @@ export const LeadershipGrid: React.FC = () => {
               onMouseMove={handleMouseMove}
               className="h-full group relative overflow-hidden rounded-sm"
             >
-              {/* Spotlight Effect Overlay */}
               <div 
                 className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                 style={{

@@ -72,13 +72,13 @@ export const AboutHero: React.FC = () => {
             </h1>
 
             <p className="max-w-xl text-muted-foreground text-base md:text-[1.05rem] leading-relaxed mb-8 text-pretty">
-              Technospyre is a Pakistani-rooted, globally trusted software company. We build practical tools â€” from hospital systems to mobile apps â€” and we train the next generation of developers.
+              Technospyre is a Pakistani-rooted, globally trusted software company. We build practical tools from hospital systems to mobile apps and we train the next generation of developers.
             </p>
 
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-3 pl-6 pr-2 py-2.5 rounded-sm font-semibold text-sm bg-primary text-primary-foreground shadow-md hover:opacity-95 transition-opacity"
+                className="group inline-flex items-center gap-3 px-6 py-2.5 rounded-sm font-semibold text-sm border border-border bg-primary hover:bg-foreground text-primary-foreground  transition-all duration-200 hover:scale-105"
               >
                 <span>Work with us</span>
                 <div className="w-8 h-8 rounded-sm bg-primary-foreground/15 flex items-center justify-center group-hover:bg-primary-foreground/25 transition-colors">
@@ -87,7 +87,7 @@ export const AboutHero: React.FC = () => {
               </Link>
               <Link
                 to="/solutions"
-                className="inline-flex items-center gap-3 pl-6 pr-2 py-2.5 rounded-sm font-semibold text-sm border border-border bg-card hover:bg-muted/80 transition-colors shadow-sm"
+                className="inline-flex items-center gap-3 px-6 py-2.5 rounded-sm font-semibold text-sm border border-primary bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-200 hover:scale-105"
               >
                 <span>See products</span>
                 <div className="w-8 h-8 rounded-sm bg-muted flex items-center justify-center">

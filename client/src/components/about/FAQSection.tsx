@@ -61,7 +61,7 @@ export const FAQSection: React.FC = () => {
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-sm font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 transition-all text-white"
+              className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-sm font-bold text-sm hover:scale-105 transition-all duration-200 text-primary-foreground hover:bg-foreground"
             >
               Still confused? Talk to us
             </Link>
@@ -79,9 +79,9 @@ export const FAQSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className={`rounded-sm border transition-all duration-300 overflow-hidden ${
+                  className={`rounded-sm border hover:bg-primary/10 transition-all duration-300 overflow-hidden ${
                     isOpen
-                      ? 'border-primary/40 bg-surface-container shadow-[0_10px_40px_-20px_color-mix(in_srgb,var(--color-primary)_40%,transparent)]'
+                      ? 'bg-primary'
                       : 'border-outline-variant bg-surface-container/60 hover:border-primary/30'
                   }`}
                 >
@@ -90,10 +90,10 @@ export const FAQSection: React.FC = () => {
                     className="w-full flex items-center justify-between gap-4 p-5 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-headline font-bold text-base md:text-lg">{f.q}</span>
+                    <span className={`font-headline font-bold text-base md:text-lg ${isOpen ? 'text-primary-foreground' : 'text-on-surface'}`}>{f.q}</span>
                     <span
                       className={`shrink-0 w-9 h-9 rounded-sm flex items-center justify-center transition-all duration-300 ${
-                        isOpen ? 'bg-primary text-on-primary rotate-45' : 'bg-surface-container-high text-primary'
+                        isOpen ? 'bg-primary text-primary-foreground rotate-45' : 'bg-surface-container-high text-primary'
                       }`}
                     >
                       <Plus size={18} />
@@ -108,7 +108,7 @@ export const FAQSection: React.FC = () => {
                         transition={{ duration: 0.3, ease: 'easeOut' }}
                         className="overflow-hidden"
                       >
-                        <p className="px-5 pb-5 text-on-surface-variant leading-relaxed">{f.a}</p>
+                        <p className={`px-5 pb-5 text-on-surface-variant leading-relaxed ${isOpen ? 'text-primary-foreground/80' : 'text-on-surface'}`}>{f.a}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>

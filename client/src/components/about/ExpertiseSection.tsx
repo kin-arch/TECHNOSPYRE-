@@ -24,7 +24,7 @@ const itemVariants = {
     scale: 1,
     transition: { 
       duration: 0.7, 
-      ease: [0.25, 0.46, 0.45, 0.94] 
+      ease: [0.25, 0.46, 0.45, 0.94] as const
     }
   }
 };
@@ -34,7 +34,7 @@ const headingVariants = {
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.8, ease: 'easeOut' }
+    transition: { duration: 0.8, ease: 'easeOut' as const }
   }
 };
 
@@ -129,7 +129,7 @@ export const ExpertiseSection: React.FC = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-90 pointer-events-none" />
-                <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-sm bg-primary text-primary-foreground shadow-md ring-2 ring-background">
+                <div className="absolute bottom-3 left-3 flex h-12 w-12 items-center justify-center rounded-sm bg-primary text-primary-foreground">
                   {service.icon}
                 </div>
                 <div className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-sm border border-border bg-background/90 opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">

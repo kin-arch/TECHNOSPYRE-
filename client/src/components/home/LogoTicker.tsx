@@ -1,7 +1,6 @@
 ﻿import React, { useRef, useEffect } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
 
-/** All partner image paths â€” keep in sync with files in /public/partners */
 const partnerLogos = [
   '/partners/50ba9f98aaf8f8ded4d576a6969668f0.jpg',
   '/partners/AREAA Construction North Pvt. Ltd..jpg',
@@ -99,7 +98,7 @@ export const LogoTicker: React.FC = () => {
           {duplicatedLogos.map((logo, idx) => (
             <div
               key={`logo-${idx}`}
-              className="flex shrink-0 items-center justify-center px-4 py-4 bg-card border border-border rounded-sm shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-300 w-[168px] h-[88px] md:w-[176px] md:h-[92px]"
+              className="flex shrink-0 items-center justify-center px-4 py-4 bg-card border border-border rounded-sm shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-300 w-[168px] h-[88px] md:w-[200px] md:h-[100px]"
             >
               <img
                 src={logo.src}

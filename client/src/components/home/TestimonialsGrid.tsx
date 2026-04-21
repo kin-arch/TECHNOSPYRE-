@@ -115,14 +115,14 @@ export const TestimonialsGrid: React.FC = () => {
                 <button
                   onClick={() => setActive((p) => (p - 1 + total) % total)}
                   aria-label="Previous"
-                  className="w-10 h-10 rounded-sm border border-outline-variant hover:border-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-all"
+                  className="w-10 h-10 rounded-sm border border-outline-variant hover:border-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all"
                 >
                   <ChevronLeft size={16} />
                 </button>
                 <button
                   onClick={() => setActive((p) => (p + 1) % total)}
                   aria-label="Next"
-                  className="w-10 h-10 rounded-sm border border-outline-variant hover:border-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-all"
+                  className="w-10 h-10 rounded-sm border border-outline-variant hover:border-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all"
                 >
                   <ChevronRight size={16} />
                 </button>
@@ -139,7 +139,7 @@ export const TestimonialsGrid: React.FC = () => {
                 whileHover={{ x: 6 }}
                 className={`text-left flex gap-4 p-5 rounded-sm border transition-all duration-300 ${
                   i === active
-                    ? 'border-primary/50 bg-surface-container shadow-[0_10px_30px_-15px_color-mix(in_srgb,var(--color-primary)_50%,transparent)]'
+                    ? 'border-primary/50 bg-surface-container'
                     : 'border-outline-variant bg-surface-container/50 hover:border-primary/30'
                 }`}
               >

@@ -74,27 +74,67 @@ const TabletMockup: React.FC = () => (
   </div>
 );
 
+const TabletLandscapeMockup: React.FC<{ imageUrl?: string }> = ({ imageUrl }) => (
+  <div className="flex flex-col items-center justify-center w-full max-w-[340px] lg:max-w-[440px] select-none">
+    <div className="relative w-full flex">
+      {/* Left side physical buttons (volume) */}
+      <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 lg:gap-1.5 z-10">
+        <div className="w-1 h-5 lg:h-6 rounded-l-sm bg-zinc-700 border border-r-0 border-zinc-600" aria-hidden />
+        <div className="w-1 h-8 lg:h-10 rounded-l-sm bg-zinc-700 border border-r-0 border-zinc-600" aria-hidden />
+        <div className="w-1 h-5 lg:h-6 rounded-l-sm bg-zinc-700 border border-r-0 border-zinc-600" aria-hidden />
+      </div>
+      
+      {/* Main tablet body - rounded top and bottom */}
+      <div className="flex flex-col w-full rounded-xl lg:rounded-2xl border-[4px] lg:border-[5px] border-zinc-800 bg-zinc-900 shadow-lg" style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+        {/* Top bezel with camera only */}
+        <div className="relative w-full px-2.5 lg:px-3 pt-2 lg:pt-2.5 pb-1">
+          <div className="absolute top-2 lg:top-2.5 left-1/2 -translate-x-1/2 w-2 h-2 lg:w-2.5 lg:h-2.5 rounded-full bg-zinc-950 border border-zinc-700 z-10" aria-hidden />
+        </div>
+        
+        {/* Screen */}
+        <div className="w-full bg-zinc-900 shadow-inner relative">
+          <div className="overflow-hidden aspect-[4/3] relative bg-black">
+            <ScreenImage src={imageUrl || SCREEN_IMAGES.tablet} alt="Tablet Landscape" className="block w-full h-full object-cover object-center" />
+          </div>
+        </div>
+        
+        {/* Bottom bezel */}
+        <div className="w-full bg-zinc-900 px-2.5 lg:px-3 pt-1 pb-2 lg:pb-2.5" />
+      </div>
+      
+      {/* Right side physical button (power) */}
+      <div className="absolute right-0 top-1/3 -translate-x-1/2 z-10">
+        <div className="w-1 h-6 lg:h-8 rounded-r-sm bg-zinc-700 border border-l-0 border-zinc-600" aria-hidden />
+      </div>
+    </div>
+    
+    {/* Tablet stand/shadow */}
+    <div className="w-1/3 h-1 bg-black/30 blur-md rounded-sm mt-1" aria-hidden />
+  </div>
+);
+
 const COMPONENTS = [LaptopMockup, MobileMockup, TabletMockup];
 
 // --- MAIN EXPORT ---
-export const DeviceMockupShowcase: React.FC = () => {
+export const DeviceMockupShowcase: React.FC<{ imageUrl?: string; direction?: number }> = ({ imageUrl, direction = 1 }) => {
   const [current, setCurrent] = useState(0);
-  const [dir, setDir] = useState(1);
+  const [internalDir, setInternalDir] = useState(1);
 
   const goTo = useCallback((idx: number) => {
-    setDir(idx > current ? 1 : -1);
+    setInternalDir(idx > current ? 1 : -1);
     setCurrent(idx);
   }, [current]);
 
   const next = useCallback(() => {
-    setDir(1);
+    setInternalDir(1);
     setCurrent((n) => (n + 1) % DEVICES.length);
   }, []);
 
   useEffect(() => {
+    if (imageUrl) return; // Disable timer when showing hero images
     const id = window.setTimeout(next, 5500);
     return () => window.clearTimeout(id);
-  }, [current, next]);
+  }, [current, next, imageUrl]);
 
   const Device = COMPONENTS[current];
 
@@ -104,24 +144,42 @@ export const DeviceMockupShowcase: React.FC = () => {
     exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -28 : 28, transition: { duration: 0.3 } }),
   };
 
+  // Use Hero's direction when showing image, otherwise use internal direction
+  const activeDir = imageUrl ? direction : internalDir;
+
   return (
     <div className="w-full flex flex-col items-center gap-4 select-none h-full justify-center">
-      {/* FIXED HEIGHT CONTAINER */}
+      {/* Main Image Display */}
       <div className="relative w-full h-[280px] sm:h-[350px] lg:h-[450px] overflow-hidden flex items-center justify-center">
-        <AnimatePresence mode="wait" custom={dir}>
-          <motion.div
-            key={current}
-            custom={dir}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className="absolute inset-0 flex justify-center items-center px-2"
-          >
-            {/* Direct render, no more InteractiveTiltContainer (floating) */}
-            <Device />
-          </motion.div>
-        </AnimatePresence>
+        {imageUrl ? (
+          <AnimatePresence mode="wait" custom={activeDir}>
+            <motion.div
+              key={imageUrl}
+              custom={activeDir}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="absolute inset-0 flex justify-center items-center"
+            >
+              <TabletLandscapeMockup imageUrl={imageUrl} />
+            </motion.div>
+          </AnimatePresence>
+        ) : (
+          <AnimatePresence mode="wait" custom={internalDir}>
+            <motion.div
+              key={current}
+              custom={internalDir}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="absolute inset-0 flex justify-center items-center px-2"
+            >
+              <Device />
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
 
       <div className="flex flex-col items-center gap-2 mt-2">
@@ -132,24 +190,27 @@ export const DeviceMockupShowcase: React.FC = () => {
           transition={{ duration: 0.35 }}
           className="text-xs font-medium tracking-wide text-muted-foreground h-4"
         >
-          {DEVICES[current].subtitle}
+          {imageUrl ? '' : DEVICES[current].subtitle}
         </motion.p>
-        <div className="flex items-center gap-2">
-          {DEVICES.map((d, i) => (
-            <button
-              key={d.id}
-              type="button"
-              onClick={() => goTo(i)}
-              aria-label={`Show ${d.label}`}
-              className="rounded-sm transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              style={{
-                width: i === current ? '22px' : '7px',
-                height: '7px',
-                background: i === current ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground) / 0.35)',
-              }}
-            />
-          ))}
-        </div>
+        {/* Only show device dots when no image is provided */}
+        {!imageUrl && (
+          <div className="flex items-center gap-2">
+            {DEVICES.map((d, i) => (
+              <button
+                key={d.id}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Show ${d.label}`}
+                className="rounded-sm transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                style={{
+                  width: i === current ? '22px' : '7px',
+                  height: '7px',
+                  background: i === current ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground) / 0.35)',
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

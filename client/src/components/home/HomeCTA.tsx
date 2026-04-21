@@ -49,7 +49,7 @@ export const HomeCTA: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-20 px-8 text-center relative overflow-hidden bg-background border-t border-border/50">
+    <section ref={sectionRef} className="pt-20 py-4 px-8 text-center relative overflow-hidden bg-background border-t border-border/50">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
@@ -92,7 +92,7 @@ export const HomeCTA: React.FC = () => {
             </div>
           </Link>
           <Link
-            to="/solutions"
+            to="/products"
             className="inline-flex items-center gap-3 px-10 py-4 rounded-sm font-bold text-primary border border-primary hover:border-primary hover:bg-primary/10 hover:scale-105 transition-all duration-200"
           >
             View Products

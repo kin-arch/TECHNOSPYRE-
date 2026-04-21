@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -122,7 +122,7 @@ const ProductDetail = () => {
       i === 0
         ? {
           q: `How does ${product.name} fit our stack?`,
-          a: `${product.shortDescription} We map your systems in discovery, then connect through secure APIs and governed data contractsÃ¢â‚¬â€not rip-and-replace by default.`,
+          a: `${product.shortDescription} We map your systems in discovery, then connect through secure APIs and governed data contracts not rip-and-replace by default.`,
         }
         : f
     );
@@ -175,7 +175,7 @@ const ProductDetail = () => {
             className="group inline-flex items-center gap-2 font-medium text-on-surface-variant transition-colors hover:text-primary"
           >
             <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
-            Back to products Ã¢â‚¬â€ all products
+            Back to products all products
           </Link>
         </motion.div>
 
@@ -415,8 +415,8 @@ const ProductDetail = () => {
                     <p className="mt-1 text-sm text-on-surface-variant">One-time payment, perpetual access</p>
                   </div>
                   <div className="mb-4">
-                    <span className="text-3xl font-bold text-on-surface">Ã¢â€šÂ¨ 699,999</span>
-                    <span className="ml-2 text-sm text-on-surface-variant line-through">Ã¢â€šÂ¨ 1,119,999</span>
+                    <span className="text-3xl font-bold text-on-surface">Rs. 699,999</span>
+                    <span className="ml-2 text-sm text-on-surface-variant line-through">Rs. 1,119,999</span>
                     <span className="ml-2 text-sm font-bold text-emerald-600">Save 37%</span>
                   </div>
                   <ul className="mb-6 space-y-3">
@@ -465,7 +465,7 @@ const ProductDetail = () => {
                     <p className="mt-1 text-sm text-on-surface-variant">Flexible subscription, cancel anytime</p>
                   </div>
                   <div className="mb-4">
-                    <span className="text-3xl font-bold text-on-surface">Ã¢â€šÂ¨ 41,999</span>
+                    <span className="text-3xl font-bold text-on-surface">Rs. 41,999</span>
                     <span className="ml-2 text-sm text-on-surface-variant">/month</span>
                   </div>
                   <ul className="mb-6 space-y-3">

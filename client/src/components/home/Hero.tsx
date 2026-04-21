@@ -2,7 +2,7 @@
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { DeviceMockupShowcase } from './DeviceMockupShowcase'; // Keep this import accurate to your structure
+import { DeviceMockupShowcase } from './DeviceMockupShowcase';
 
 const SLIDE_DATA = [
   {
@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-8 w-full">
+      <div className="container relative z-10 mx-auto px-4 sm:px-20 w-full">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center justify-center h-full">
           
           {/* Left: Text Content */}
@@ -141,14 +141,14 @@ export const Hero: React.FC = () => {
               </Link>
             </motion.div>
           </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.65, delay: 0.25 }}
-            className="relative order-1 lg:order-2 flex items-center justify-center w-full mx-auto h-full min-h-[300px] lg:min-h-[500px]"
-          >
-            <DeviceMockupShowcase />
-          </motion.div>
+           <motion.div
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             transition={{ duration: 0.65, delay: 0.25 }}
+             className="relative order-1 lg:order-2 flex items-center justify-center w-full mx-auto h-full min-h-[300px] lg:min-h-[500px]"
+           >
+             <DeviceMockupShowcase imageUrl={SLIDE_DATA[currentIndex].img} direction={direction} />
+           </motion.div>
 
         </div>
       </div>

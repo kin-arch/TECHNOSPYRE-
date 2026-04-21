@@ -153,8 +153,8 @@ export function ProductDetailPricing({}: ProductDetailPricingProps) {
             <p className="mt-1 text-sm text-on-surface-variant">One-time payment, perpetual access</p>
           </div>
           <div className="mb-4">
-            <span className="text-3xl font-bold text-on-surface">â‚¨ 699,999</span>
-            <span className="ml-2 text-sm text-on-surface-variant line-through">â‚¨ 1,119,999</span>
+            <span className="text-3xl font-bold text-on-surface">699,999</span>
+            <span className="ml-2 text-sm text-on-surface-variant line-through">1,119,999</span>
             <span className="ml-2 text-sm font-bold text-emerald-600">Save 37%</span>
           </div>
           <ul className="mb-6 space-y-3">
@@ -202,7 +202,7 @@ export function ProductDetailPricing({}: ProductDetailPricingProps) {
             <p className="mt-1 text-sm text-on-surface-variant">Flexible subscription, cancel anytime</p>
           </div>
           <div className="mb-4">
-            <span className="text-3xl font-bold text-on-surface">â‚¨ 41,999</span>
+            <span className="text-3xl font-bold text-on-surface">41,999</span>
             <span className="ml-2 text-sm text-on-surface-variant">/month</span>
           </div>
           <ul className="mb-6 space-y-3">

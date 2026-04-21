@@ -1,8 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 
-const companyImage =
-  'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1200';
+import companyImage from '/CompanyImg.avif';
 
 const metrics = [
   { value: '200+', label: 'Projects delivered' },

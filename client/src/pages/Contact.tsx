@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { ContactHero } from '../components/contact/ContactHero';
 import { ContactInfo } from '../components/contact/ContactInfo';
 import { ContactForm } from '../components/contact/ContactForm';
@@ -19,7 +19,7 @@ const Contact = () => {
       <ContactHero />
       <ContactInfo />
 
-      {/* ── Form + Visual ── */}
+      {/* â”€â”€ Form + Visual â”€â”€ */}
       <section className="max-w-7xl mx-auto px-8 mb-32">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           <ContactForm />
@@ -31,3 +31,6 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+

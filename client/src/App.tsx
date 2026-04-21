@@ -8,8 +8,8 @@ import LoadingScreen from './components/LoadingScreen';
 import { ThemeProvider } from './components/ThemeProvider';
 import Home from './pages/Home';
 import About from './pages/About';
-import Solutions from './pages/Solutions';
-import Academy from './pages/Academy';
+import Products from './pages/Products';
+import Courses from './pages/Courses';
 import Contact from './pages/Contact';
 import CourseDetail from './pages/CourseDetail';
 import ProductDetail from './pages/ProductDetail';
@@ -98,10 +98,10 @@ export default function App() {
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/about" element={<About />} />
-                      <Route path="/solutions" element={<Solutions />} />
-                      <Route path="/solutions/product/:id" element={<ProductDetail />} />
-                      <Route path="/academy" element={<Academy />} />
-                      <Route path="/academy/course/:id" element={<CourseDetail />} />
+                      <Route path="/products" element={<Products />} />
+                      <Route path="/products/:id" element={<ProductDetail />} />
+                      <Route path="/courses" element={<Courses />} />
+                      <Route path="/courses/:id" element={<CourseDetail />} />
                       <Route path="/contact" element={<Contact />} />
                     </Routes>
                   </MainLayout>

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { contacts, features } from '../../data/contact';
@@ -55,3 +55,6 @@ export const ContactInfo: React.FC = () => {
     </section>
   );
 };
+
+
+

@@ -1,44 +1,193 @@
-import React, { useEffect } from 'react';
-import { useMotionValue, useSpring } from 'motion/react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { Hero } from '../components/home/Hero';
+import { SectionLines } from '../components/SectionLines';
 import { LogoTicker } from '../components/home/LogoTicker';
 import { ProductsGrid } from '../components/home/ProductsGrid';
-import { ExpertiseSection } from '../components/home/ExpertiseSection';
-import { AcademyTeaser } from '../components/home/AcademyTeaser';
+import { ProductsSlider } from '../components/home/ProductsSlider';
 import { TestimonialsGrid } from '../components/home/TestimonialsGrid';
 import { HomeCTA } from '../components/home/HomeCTA';
+import { ScrollProgress } from '../components/ScrollProgress';
 import SEO from '../components/SEO';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Home = () => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const pageRef = useRef<HTMLDivElement | null>(null);
 
-  const springConfig = { damping: 25, stiffness: 150 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
+  useLayoutEffect(() => {
+    if (!pageRef.current) return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>('[data-home-reveal]').forEach((section) => {
+        gsap.fromTo(
+          section,
+          { opacity: 1, y: 0 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0,
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 90%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-home-stagger]').forEach((el) => {
+        const children = el.querySelectorAll('[data-home-item]');
+        gsap.fromTo(
+          children,
+          { opacity: 0, y: 50, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 80%',
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-home-float]').forEach((el) => {
+        gsap.to(el, {
+          y: -15,
+          duration: 2.5,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        });
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-home-glow]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { boxShadow: '0 0 0 0 rgba(0,0,0,0)' },
+          {
+            boxShadow: '0 0 35px -8px rgba(139, 92, 246, 0.35)',
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-home-slide-left]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, x: -60 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-home-slide-right]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, x: 60 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-home-scale]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, scale: 0.9 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: 'back.out(1.2)',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-home-blur]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, filter: 'blur(10px)' },
+          {
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+            },
+          },
+        );
+      });
+    }, pageRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div className="overflow-x-hidden">
-      <SEO 
+    <div className="overflow-x-hidden" ref={pageRef}>
+      <ScrollProgress />
+      <SEO
         title="Leading AI & Cloud Solutions"
         description="TechnoSpyre Inc. specializes in engineering, scaling, and managing resilient technology ecosystems for modern businesses."
       />
-      <Hero smoothX={smoothX} smoothY={smoothY} />
-      <LogoTicker />
-      <ProductsGrid />
-      <ExpertiseSection />
-      <AcademyTeaser />
-      <TestimonialsGrid />
-      <HomeCTA />
+      <div data-home-reveal data-home-float>
+        <Hero />
+      </div>
+      <SectionLines />
+      <div data-home-reveal>
+        <LogoTicker />
+      </div>
+      <SectionLines />
+      <div data-home-reveal>
+        <ProductsGrid />
+      </div>
+      <SectionLines />
+      <div data-home-reveal>
+        <ProductsSlider />
+      </div>
+      <SectionLines />
+      <div data-home-reveal>
+        <TestimonialsGrid />
+      </div>
+      <SectionLines />
+      <div data-home-reveal>
+        <HomeCTA />
+      </div>
     </div>
   );
 };

@@ -1,122 +1,291 @@
 import React from 'react';
-import { 
-  Users, Award, Globe, TrendingUp, Code2, Cloud, Brain, 
-  Settings, CreditCard, Smartphone, HeartPulse, 
-  Shield, School, ShoppingCart, 
-  Home as HomeIcon, Hotel, Scale,
-  Truck,
-  ClipboardCheck,
-  Wallet,
-  UserCheck,
-  Clock,
-  Search
+import {
+  Users, Award, Globe, TrendingUp, Code2, Cloud, Brain,
+  Settings, CreditCard, Smartphone, HeartPulse, Building2,
+  Package, Shield, School, ShoppingCart, FileText,
+  Home as HomeIcon, Hotel, Stethoscope, Briefcase, Scale,
+  Palette, GraduationCap, Tv2, Headphones, Clock,
+  HeartHandshake, BadgeCheck, Trophy, Target, Zap,
+  Landmark, Store, ClipboardList, Warehouse, Building, UserCheck
 } from 'lucide-react';
 
 export const stats = [
-  { icon: React.createElement(Users, { size: 20 }), value: '500+', label: 'Graduates Monthly' },
-  { icon: React.createElement(Award, { size: 20 }), value: '98%', label: 'Placement Rate' },
-  { icon: React.createElement(Globe, { size: 20 }), value: '4', label: 'Continents' },
-  { icon: React.createElement(TrendingUp, { size: 20 }), value: '200+', label: 'Enterprise Clients' },
+  { icon: React.createElement(Users, { size: 20 }), value: '300+', label: 'Businesses Served' },
+  { icon: React.createElement(Award, { size: 20 }), value: '99%', label: 'Client Satisfaction' },
+  { icon: React.createElement(Globe, { size: 20 }), value: '10+', label: 'Industries Covered' },
+  { icon: React.createElement(TrendingUp, { size: 20 }), value: '500+', label: 'Projects Delivered' },
 ];
 
 export const services = [
   {
-    title: 'Custom Development',
-    icon: React.createElement(Code2, { className: "text-secondary" }),
-    items: ['Mobile Engineering', 'Web Ecosystems', 'Desktop Apps'],
+    title: '20+ Years Experience',
+    icon: React.createElement(Award, { className: 'text-secondary' }),
+    items: ['Building apps since 2004', 'Expert team members', 'Over 500 projects done'],
     accent: 'primary',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1552581234-26160f608093?w=600',
   },
   {
-    title: 'DevOps & Cloud',
-    icon: React.createElement(Cloud, { className: "text-secondary" }),
-    items: ['AWS / Azure / GCP', 'CI/CD Pipelines', 'Serverless Architecture'],
+    title: 'Happy Clients',
+    icon: React.createElement(HeartHandshake, { className: 'text-secondary' }),
+    items: ['99% of people love us', 'Clients stay for years', 'Helpful and friendly'],
     accent: 'secondary',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600',
   },
   {
-    title: 'AI & Big Data',
-    icon: React.createElement(Brain, { className: "text-secondary" }),
-    items: ['LLM Integration', 'Data Visualization', 'Predictive Models'],
+    title: 'Fast Problem Solving',
+    icon: React.createElement(Zap, { className: 'text-secondary' }),
+    items: ['We fix things quickly', 'Work finishes on time', 'No long waiting'],
     accent: 'primary',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600',
   },
   {
-    title: 'Consulting',
-    icon: React.createElement(Users, { className: "text-secondary" }),
-    items: ['Tech Audits', 'Roadmap Design', 'Team Augmentation'],
+    title: 'Best Support Combo',
+    icon: React.createElement(Headphones, { className: 'text-secondary' }),
+    items: ['24/7 help available', 'Easy to talk to us', 'We care about you'],
     accent: 'secondary',
-    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600',
   },
 ];
 
 export const categories = [
   {
-    id: 'operations',
-    label: 'Enterprise Operations',
-    tag: 'ERP SYSTEMS',
-    icon: React.createElement(Settings, { size: 22 }),
-    count: 12,
-    desc: 'Complete digital solutions to manage hospitals, HR, supply chains, and industrial workflows efficiently.',
-    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=900&auto=format&fit=crop&q=80',
-    items: ['Hospital Management', 'HR Management', 'Supply Chain Management', 'Finance System', 'Project Management', 'School Management'],
-    itemIcons: [
-      React.createElement(HeartPulse, { size: 14 }), 
-      React.createElement(Users, { size: 14 }), 
-      React.createElement(Truck, { size: 14 }), 
-      React.createElement(Wallet, { size: 14 }), 
-      React.createElement(ClipboardCheck, { size: 14 }), 
-      React.createElement(School, { size: 14 })
-    ],
-  },
-  {
-    id: 'sales',
-    label: 'Sales & Hospitality',
-    tag: 'RETAIL & BOOKING',
-    icon: React.createElement(CreditCard, { size: 22 }),
-    count: 2,
-    desc: 'Fast POS systems and comprehensive hotel management tools built for speed and guest satisfaction.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&auto=format&fit=crop&q=80',
-    items: ['Point of Sales (POS)', 'Hotel Management'],
-    itemIcons: [
-      React.createElement(ShoppingCart, { size: 14 }), 
-      React.createElement(Hotel, { size: 14 })
-    ],
-  },
-  {
-    id: 'websites',
-    label: 'Specialized Enterprise',
-    tag: 'LEGAL & LOGISTICS',
-    icon: React.createElement(Globe, { size: 22 }),
+    id: 'frontend',
+    label: 'Making Websites',
+    tag: 'WEB',
+    icon: React.createElement(Code2, { size: 22 }),
     count: 4,
-    desc: 'Bespoke systems for legal case management, logistics, and insurance integration.',
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&auto=format&fit=crop&q=80',
-    items: ['Legal Management', 'Goods Transport', 'Insurance System', 'Lost & Found'],
+    desc: 'We build beautiful websites for you.',
+    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=900',
+    items: ['React', 'Next.js', 'Vue', 'TypeScript'],
     itemIcons: [
-      React.createElement(Scale, { size: 14 }), 
-      React.createElement(Truck, { size: 14 }), 
-      React.createElement(Shield, { size: 14 }), 
-      React.createElement(Search, { size: 14 })
+      React.createElement(Code2, { size: 16 }),
+      React.createElement(Zap, { size: 16 }),
+      React.createElement(Globe, { size: 16 }),
+      React.createElement(Settings, { size: 16 }),
+    ],
+  },
+  {
+    id: 'backend',
+    label: 'Servers & Data',
+    tag: 'SERVER',
+    icon: React.createElement(Settings, { size: 22 }),
+    count: 4,
+    desc: 'Strong systems to keep your app running.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900',
+    items: ['Node.js', 'Python', 'Java', 'Go'],
+    itemIcons: [
+      React.createElement(Code2, { size: 16 }),
+      React.createElement(Brain, { size: 16 }),
+      React.createElement(Building, { size: 16 }),
+      React.createElement(Zap, { size: 16 }),
+    ],
+  },
+  {
+    id: 'cloud',
+    label: 'Cloud Tools',
+    tag: 'INFRA',
+    icon: React.createElement(Cloud, { size: 22 }),
+    count: 4,
+    desc: 'Moving your business to the cloud.',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900',
+    items: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'],
+    itemIcons: [
+      React.createElement(Cloud, { size: 16 }),
+      React.createElement(Package, { size: 16 }),
+      React.createElement(Globe, { size: 16 }),
+      React.createElement(Zap, { size: 16 }),
     ],
   },
   {
     id: 'mobile',
-    label: 'Employee Ecosystem',
-    tag: 'PORTALS & TRACKING',
+    label: 'Phone Apps',
+    tag: 'APP',
     icon: React.createElement(Smartphone, { size: 22 }),
-    count: 2,
-    desc: 'Mobile-first portals for employee self-service and real-time attendance monitoring.',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&auto=format&fit=crop&q=80',
-    items: ['Employee Portal', 'Attendance Management'],
+    count: 4,
+    desc: 'Apps for your iPhone or Android.',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900',
+    items: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
     itemIcons: [
-      React.createElement(UserCheck, { size: 14 }), 
-      React.createElement(Clock, { size: 14 })
+      React.createElement(Smartphone, { size: 16 }),
+      React.createElement(Zap, { size: 16 }),
+      React.createElement(Code2, { size: 16 }),
+      React.createElement(Settings, { size: 16 }),
+    ],
+  },
+  {
+    id: 'ai',
+    label: 'Smart AI Tools',
+    tag: 'INTELLIGENCE',
+    icon: React.createElement(Brain, { size: 22 }),
+    count: 4,
+    desc: 'Using AI to help your business.',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900',
+    items: ['TensorFlow', 'PyTorch', 'OpenAI', 'Data Eng'],
+    itemIcons: [
+      React.createElement(Brain, { size: 16 }),
+      React.createElement(TrendingUp, { size: 16 }),
+      React.createElement(Globe, { size: 16 }),
+      React.createElement(Settings, { size: 16 }),
+    ],
+  },
+  {
+    id: 'database',
+    label: 'Saving Data',
+    tag: 'STORAGE',
+    icon: React.createElement(Package, { size: 22 }),
+    count: 4,
+    desc: 'Storing your details safely.',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900',
+    items: ['PostgreSQL', 'MongoDB', 'Redis', 'MySQL'],
+    itemIcons: [
+      React.createElement(Package, { size: 16 }),
+      React.createElement(FileText, { size: 16 }),
+      React.createElement(Zap, { size: 16 }),
+      React.createElement(Settings, { size: 16 }),
     ],
   },
 ];
 
+export const productOffers = [
+  {
+    id: 'hospital',
+    label: 'Hospital App',
+    tag: 'HEALTH',
+    tagline: 'Patients, Bills, and Pharmacy.',
+    to: '/products/hospital',
+    icon: React.createElement(HeartPulse, { size: 22 }),
+  },
+  {
+    id: 'pos',
+    label: 'Shop System',
+    tag: 'RETAIL',
+    tagline: 'Sales, Stock, and Receipts.',
+    to: '/products/pos',
+    icon: React.createElement(Store, { size: 22 }),
+  },
+  {
+    id: 'school',
+    label: 'School App',
+    tag: 'EDUCATION',
+    tagline: 'Students, Fees, and Exams.',
+    to: '/products/school',
+    icon: React.createElement(School, { size: 22 }),
+  },
+  {
+    id: 'realestate',
+    label: 'Home Sales App',
+    tag: 'PROPERTY',
+    tagline: 'Leads, Listings, and Deals.',
+    to: '/products/realestate',
+    icon: React.createElement(HomeIcon, { size: 22 }),
+  },
+  {
+    id: 'erp',
+    label: 'Business Tools',
+    tag: 'BUSINESS',
+    tagline: 'HR, Money, and Inventory.',
+    to: '/products/erp',
+    icon: React.createElement(Building2, { size: 22 }),
+  },
+  {
+    id: 'custom',
+    label: 'Special Software',
+    tag: 'TAILORED',
+    tagline: 'Apps built just for you.',
+    to: '/products/custom',
+    icon: React.createElement(Code2, { size: 22 }),
+  },
+];
+
+export const whyChooseUs = [
+  {
+    title: 'Ready Products',
+    desc: 'Launch quickly with tested systems.',
+    icon: React.createElement(Zap, { size: 22 }),
+  },
+  {
+    title: 'Easy to Use',
+    desc: 'Simple design for every staff member.',
+    icon: React.createElement(BadgeCheck, { size: 22 }),
+  },
+  {
+    title: 'Affordable',
+    desc: 'Best pricing for startups & enterprises.',
+    icon: React.createElement(CreditCard, { size: 22 }),
+  },
+  {
+    title: 'Secure',
+    desc: 'Data backups and security included.',
+    icon: React.createElement(Shield, { size: 22 }),
+  },
+  {
+    title: 'Customizable',
+    desc: 'Features tailored to your business.',
+    icon: React.createElement(Settings, { size: 22 }),
+  },
+  {
+    title: 'Support',
+    desc: 'We help before and after launch.',
+    icon: React.createElement(Headphones, { size: 22 }),
+  },
+];
+
 export const testimonials = [
-  { quote: "Technospyre didn't just build our infrastructure; they redefined how we think about scalability. Their AI-driven approach is a game-changer.", author: 'Sarah Jenkins', role: 'CTO, Global Logistics Corp', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80' },
-  { quote: "The Academy graduates we've hired are among the most technically proficient engineers in our team. The curriculum is truly industry-aligned.", author: 'Marcus Thorne', role: 'VP of Engineering, FinTech Solutions', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80' },
-  { quote: "Their precision-engineered digital infrastructure allowed us to scale from 10k to 1M users without a single second of downtime.", author: 'Elena Rodriguez', role: 'Founder, Streamline AI', img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&auto=format&fit=crop&q=80' },
+  {
+    quote: 'Our hospital is now fully digital and fast.',
+    author: 'Dr. Ahmed Khan',
+    role: 'CEO',
+    company: 'Care Hospital',
+    img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=280',
+  },
+  {
+    quote: 'Sales doubled after switching to their POS.',
+    author: 'Maria Lopez',
+    role: 'Store Owner',
+    company: 'Retail Hub',
+    img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=280',
+  },
+  {
+    quote: 'School fee and attendance work became effortless.',
+    author: 'James Robert',
+    role: 'Principal',
+    company: 'Bright Future School',
+    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=280',
+  },
+];
+
+export const faqs = [
+  {
+    q: 'Can I customize the software?',
+    a: 'Yes, all products can be customized to match your workflow and branding.',
+  },
+  {
+    q: 'Do you provide installation and training?',
+    a: 'Yes, we provide setup, staff training, and complete onboarding.',
+  },
+  {
+    q: 'Is support included?',
+    a: 'Yes, free support is included after launch with optional monthly plans.',
+  },
+  {
+    q: 'Can I use it online and offline?',
+    a: 'Most systems support cloud access, and selected modules can work offline.',
+  },
+  {
+    q: 'How much does it cost?',
+    a: 'Pricing depends on modules and users. Contact us for a custom quote.',
+  },
+  {
+    q: 'Can I get a demo first?',
+    a: 'Yes, we offer a free live demo before purchase.',
+  },
+];
+
+export const powerComparison = [
+  { feature: 'Ready-made industry solutions', us: true, others: false },
+  { feature: 'Custom branding & modules', us: true, others: false },
+  { feature: 'Free training included', us: true, others: false },
+  { feature: 'Affordable one-time pricing', us: true, others: false },
+  { feature: 'Fast deployment', us: true, others: false },
+  { feature: 'Local support team', us: true, others: false },
 ];

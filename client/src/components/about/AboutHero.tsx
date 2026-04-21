@@ -1,36 +1,139 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Calendar } from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Calendar, ArrowRight, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const words = ['Real Software', 'Smarter Systems', 'Better Futures'];
+
+const stats = [
+  { value: '12+', label: 'Years building' },
+  { value: '200+', label: 'Happy clients' },
+  { value: '500+', label: 'Students trained' },
+  { value: '4', label: 'Countries' },
+];
 
 export const AboutHero: React.FC = () => {
-  return (
-    <section className="relative pt-40 pb-24 overflow-hidden px-8">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 z-10" />
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&auto=format&fit=crop&q=80"
-          alt="About hero"
-          className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity"
-        />
-        {/* Grid pattern removed to achieve 100% gradient-free flat design */}
-        <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.02] bg-primary/5" />
-      </div>
-      {/* Flat background accent using branding primary tint */}
-      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-sm pointer-events-none z-10" />
+  const [wordIndex, setWordIndex] = useState(0);
+  const [typedText, setTypedText] = useState('');
 
-      <div className="max-w-7xl mx-auto relative z-20">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="max-w-4xl">
-          <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-6 block flex items-center gap-2">
-            <Calendar size={12} /> Established 2013
-          </span>
-          <h1 className="font-headline text-5xl md:text-7xl font-bold leading-tight tracking-tight text-on-surface mb-8">
-            Driving Digital <span className="text-primary italic">Transformation</span> <br />with Unwavering Precision.
-          </h1>
-          <p className="max-w-2xl text-on-surface-variant text-xl leading-relaxed font-light">
-            Technospyre is an elite technology firm dedicated to bridging the gap between legacy infrastructure and the future of autonomous intelligence.
-          </p>
-        </motion.div>
+  useEffect(() => {
+    setTypedText('');
+    let len = 0;
+    const word = words[wordIndex];
+    const t = setInterval(() => {
+      if (len < word.length) {
+        len++;
+        setTypedText(word.substring(0, len));
+      } else clearInterval(t);
+    }, 55);
+    return () => clearInterval(t);
+  }, [wordIndex]);
+
+  useEffect(() => {
+    const t = setInterval(() => setWordIndex((p) => (p + 1) % words.length), 4000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <section className="relative min-h-[82vh] flex items-center overflow-hidden px-6 sm:px-8 bg-background border-b border-border/60">
+      <div className="max-w-7xl mx-auto relative z-10 w-full pt-28 pb-20">
+        <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+          <Link to="/" className="hover:text-foreground transition-colors">
+            Home
+          </Link>
+          <ChevronRight className="w-4 h-4 shrink-0 opacity-45" aria-hidden />
+          <span className="font-medium text-foreground">About us</span>
+        </nav>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] gap-12 lg:gap-16 items-center">
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.12 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm text-[11px] font-semibold tracking-widest uppercase text-primary border border-primary/25 bg-primary/5 mb-6"
+            >
+              <Calendar size={11} />
+              Founded in 2013 Â· 12+ years
+            </motion.span>
+
+            <h1 className="font-headline text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.08] tracking-tight text-foreground mb-6 text-balance">
+              We build{' '}
+              <span className="text-primary inline-block min-w-[3ch]">
+                {typedText}
+                <motion.span
+                  animate={{ opacity: [1, 0] }}
+                  transition={{ repeat: Infinity, duration: 0.75, ease: 'linear' }}
+                  className="inline-block align-middle ml-0.5 w-0.5 h-[0.85em] bg-primary rounded-sm"
+                  aria-hidden
+                />
+              </span>{' '}
+              for real businesses.
+            </h1>
+
+            <p className="max-w-xl text-muted-foreground text-base md:text-[1.05rem] leading-relaxed mb-8 text-pretty">
+              Technospyre is a Pakistani-rooted, globally trusted software company. We build practical tools â€” from hospital systems to mobile apps â€” and we train the next generation of developers.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-3 pl-6 pr-2 py-2.5 rounded-sm font-semibold text-sm bg-primary text-primary-foreground shadow-md hover:opacity-95 transition-opacity"
+              >
+                <span>Work with us</span>
+                <div className="w-8 h-8 rounded-sm bg-primary-foreground/15 flex items-center justify-center group-hover:bg-primary-foreground/25 transition-colors">
+                  <ArrowRight size={15} className="-rotate-45" />
+                </div>
+              </Link>
+              <Link
+                to="/solutions"
+                className="inline-flex items-center gap-3 pl-6 pr-2 py-2.5 rounded-sm font-semibold text-sm border border-border bg-card hover:bg-muted/80 transition-colors shadow-sm"
+              >
+                <span>See products</span>
+                <div className="w-8 h-8 rounded-sm bg-muted flex items-center justify-center">
+                  <ArrowRight size={15} className="-rotate-45" />
+                </div>
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="space-y-5"
+          >
+            <div className="relative overflow-hidden rounded-sm border border-border bg-muted/30 shadow-xl ring-1 ring-black/[0.04] aspect-[4/3]">
+              <img
+                src="/mockups/mockup-laptop.png"
+                alt="Technospyre enterprise software dashboard preview"
+                className="w-full h-full object-cover"
+                loading="eager"
+                width={800}
+                height={600}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.18 + i * 0.05 }}
+                  className="rounded-sm border border-border bg-card px-4 py-4 shadow-sm hover:border-primary/25 transition-colors"
+                >
+                  <p className="font-headline text-2xl md:text-3xl font-bold text-primary tabular-nums">{s.value}</p>
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground font-medium mt-1">{s.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 };
+
+
+
+

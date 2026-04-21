@@ -1,54 +1,90 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Rocket, Eye } from 'lucide-react';
+﻿import React from 'react';
+import { motion } from 'framer-motion';
+import { Rocket, Eye, Target } from 'lucide-react';
+import { SectionHeading } from './SectionHeading';
 
-const fadeLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' as const } },
-};
-const fadeRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' as const } },
-};
+const items = [
+  {
+    icon: <Rocket size={20} />,
+    label: 'Our mission',
+    title: 'Make powerful software simple for everyone.',
+    desc: 'We help hospitals, shops, schools, and growing businesses use technology without stress. Our software is easy to learn, fast to use, and built around how your team actually works.',
+    points: ['Easy for non-tech users', 'Fast onboarding', 'Real local support'],
+  },
+  {
+    icon: <Eye size={20} />,
+    label: 'Our vision',
+    title: 'Build a smarter Pakistan, then a smarter world.',
+    desc: 'We want to be the first name people think of when they need digital tools â€” and the place where the next generation of developers learns to build them.',
+    points: ['World-class quality', 'Local-first thinking', 'Train future talent'],
+  },
+];
+
+const showcaseSrc =
+  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200';
 
 export const MissionVision: React.FC = () => {
   return (
-    <section className="py-28 bg-surface-container-low relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-6">
-          {[
-            { icon: <Rocket size={22} />, color: 'primary', title: 'Our Mission', desc: 'To empower enterprises through disruptive engineering, fostering a world where technology and human intuition synergize to solve the most complex challenges of our generation.' },
-            { icon: <Eye size={22} />, color: 'primary', title: 'Our Vision', desc: 'Becoming the global epicenter for digital literacy and high-end technological architecture, setting the standard for the next industrial revolution.' },
-          ].map((item, i) => (
-            <motion.div
-              key={item.title}
-              variants={fadeLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={i * 0.2}
-              whileHover={{ y: -5 }}
-              className="relative p-8 rounded-sm bg-surface-container border border-outline-variant hover:border-primary/30 transition-all duration-500 group"
-            >
-              <div className={`w-12 h-12 bg-${item.color}/15 rounded-sm flex items-center justify-center mb-5 group-hover:scale-110 transition-transform text-${item.color}`}>
-                {item.icon}
-              </div>
-              <h2 className="font-headline text-2xl font-bold mb-3">{item.title}</h2>
-              <p className="text-on-surface-variant leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+    <section id="mission" className="py-24 md:py-28 bg-muted/30 border-b border-border/50 scroll-mt-28">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <SectionHeading
+          eyebrow="Purpose"
+          title="Mission & vision"
+          description="What we optimize for every day â€” and where we're headed as a company."
+          align="center"
+        />
+        <div className="grid lg:grid-cols-[1fr_1.12fr] gap-10 lg:gap-14 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            className="relative rounded-sm overflow-hidden border border-border bg-card shadow-sm aspect-video"
+          >
+            <img src={showcaseSrc} alt="Team collaboration" className="w-full h-full object-cover" loading="lazy" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-background/90 border-t border-border backdrop-blur-sm">
+              <span className="text-[10px] uppercase tracking-widest font-semibold text-primary">How we work</span>
+              <p className="text-sm text-muted-foreground mt-1">Small teams, clear ownership, shipping in the open.</p>
+            </div>
+          </motion.div>
 
-        <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="relative">
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=80"
-            alt="Team vision"
-            className="rounded-sm shadow-2xl border border-outline-variant w-full object-cover transition-all duration-700"
-          />
-          <div className="absolute -top-6 -right-6 w-48 h-48 bg-primary/10 blur-3xl rounded-sm" />
-          <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-secondary/10 blur-3xl rounded-sm" />
-        </motion.div>
+          <div className="grid gap-5">
+            {items.map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
+                className="group p-6 rounded-sm bg-card border border-border shadow-sm hover:border-primary/25 transition-colors"
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-sm-lg flex items-center justify-center text-primary">
+                    {item.icon}
+                  </div>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">{item.label}</span>
+                </div>
+                <h3 className="font-headline text-xl font-bold mb-2 leading-tight text-foreground">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{item.desc}</p>
+                <ul className="flex flex-wrap gap-2">
+                  {item.points.map((p) => (
+                    <li
+                      key={p}
+                      className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/80 px-3 py-1 rounded-sm border border-border"
+                    >
+                      <Target size={10} className="text-primary shrink-0" /> {p}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 };
+
+
+
+

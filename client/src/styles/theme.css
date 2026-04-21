@@ -64,9 +64,9 @@
   --color-sidebar-ring: var(--theme-sidebar-ring);
 
   /* Radius */
-  --radius: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-md: 0.75rem;
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-md: 0.125rem;
   --radius-sm: 0.5rem;
 
   /* Shadows */

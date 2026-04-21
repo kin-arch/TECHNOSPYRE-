@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { Globe, Linkedin, Mail, Twitter, Github, Menu, X, Moon, Sun, ChevronDown, ArrowRight } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
-import { courseCategories } from '../data/academy';
+import { courseCategories } from '../data/courses';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -38,8 +38,8 @@ export const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Courses', path: '/academy', isMegaMenu: true },
-    { name: 'Products', path: '/solutions' },
+    { name: 'Courses', path: '/courses', isMegaMenu: true },
+    { name: 'Products', path: '/products' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -112,7 +112,7 @@ export const Navbar = () => {
                             {category.courses.slice(0, 3).map(course => (
                               <li key={course.id}>
                                 <Link 
-                                  to={`/academy/course/${course.id}`} 
+                                  to={`/courses/${course.id}`} 
                                   onClick={() => setCoursesMegaOpen(false)}
                                   className="group/item flex items-center py-1.5 px-3 -mx-3 rounded-sm hover:bg-surface-container transition-colors"
                                 >
@@ -123,7 +123,7 @@ export const Navbar = () => {
                             {category.courses.length > 3 && (
                               <li className="pt-2 mt-2">
                                 <Link 
-                                  to="/academy" 
+                                  to="/courses" 
                                   className="w-full inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
                                 >
                                   View all {shortTitle} <ArrowRight size={14} />
@@ -247,7 +247,7 @@ export const Navbar = () => {
                               {category.courses.slice(0, 3).map((course) => (
                                 <li key={course.id}>
                                   <Link
-                                    to={`/academy/course/${course.id}`}
+                                    to={`/courses/course/${course.id}`}
                                     onClick={() => setMenuOpen(false)}
                                     className="text-xs text-on-surface-variant hover:text-primary block line-clamp-1"
                                   >
@@ -258,7 +258,7 @@ export const Navbar = () => {
                               {category.courses.length > 3 && (
                                 <li>
                                   <Link 
-                                    to="/academy" 
+                                    to="/courses" 
                                     onClick={() => setMenuOpen(false)}
                                     className="text-[10px] text-primary/60 italic hover:text-primary block"
                                   >
@@ -312,17 +312,17 @@ export const Footer = () => {
       { name: 'Contact Us', to: '/contact' },
     ],
     Products: [
-      { name: 'Enterprise Cloud', to: '/solutions' },
-      { name: 'AI & Data Science', to: '/solutions' },
-      { name: 'Custom Software', to: '/solutions' },
-      { name: 'Cybersecurity', to: '/solutions' },
+      { name: 'Enterprise Cloud', to: '/products' },
+      { name: 'AI & Data Science', to: '/products' },
+      { name: 'Custom Software', to: '/products' },
+      { name: 'Cybersecurity', to: '/products' },
     ],
     Courses: [
-      { name: 'Academy — all courses', to: '/academy' },
-      { name: 'Full-Stack Immersive', to: '/academy#courses' },
-      { name: 'Cloud Engineering', to: '/academy#courses' },
-      { name: 'UI/UX Design', to: '/academy#courses' },
-      { name: 'Cyber Bootcamps', to: '/academy#courses' },
+      { name: 'Academy â€” all courses', to: '/courses' },
+      { name: 'Full-Stack Immersive', to: '/courses#courses' },
+      { name: 'Cloud Engineering', to: '/courses#courses' },
+      { name: 'UI/UX Design', to: '/courses#courses' },
+      { name: 'Cyber Bootcamps', to: '/courses#courses' },
     ],
     Legal: [
       { name: 'Privacy Policy', to: '#' },
@@ -382,7 +382,7 @@ export const Footer = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-sm">
-          <p>© {new Date().getFullYear()} Technospyre IT Solutions & Academy. All rights reserved.</p>
+          <p>Â© {new Date().getFullYear()} Technospyre IT Solutions & Academy. All rights reserved.</p>
           <div className="flex gap-6 items-center">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-sm bg-green-400 animate-pulse"></span>
@@ -394,3 +394,6 @@ export const Footer = () => {
     </footer>
   );
 };
+
+
+

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Variants } from 'motion/react';
+﻿import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { motion, AnimatePresence, Variants, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { DeviceMockupShowcase } from './DeviceMockupShowcase';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const SLIDE_DATA = [
   {
@@ -28,21 +30,18 @@ const SLIDE_DATA = [
 const slideVariants: Variants = {
   hidden: (dir: number) => ({
     opacity: 0,
-    x: dir > 0 ? 30 : -30,
-    filter: 'blur(8px)',
+    x: dir > 0 ? 20 : -20,
   }),
   visible: {
     opacity: 1,
     x: 0,
-    filter: 'blur(0px)',
-    transition: { type: 'spring', stiffness: 300, damping: 30, mass: 1 }
+    transition: { type: 'spring', stiffness: 280, damping: 32, mass: 1 },
   },
   exit: (dir: number) => ({
     opacity: 0,
-    x: dir > 0 ? -30 : 30,
-    filter: 'blur(8px)',
-    transition: { duration: 0.2 }
-  })
+    x: dir > 0 ? -20 : 20,
+    transition: { duration: 0.22 },
+  }),
 };
 
 
@@ -50,6 +49,10 @@ export const Hero: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [typedText, setTypedText] = useState('');
+  const heroImageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
+  const imageY = useTransform(scrollYProgress, [0, 0.3], [0, -50]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
 
   // Typewriter effect synchronized with slider
   useEffect(() => {
@@ -80,85 +83,47 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     const t = setInterval(() => {
       handleNext();
-    }, 3000);
+    }, 2500);
     return () => clearInterval(t);
   }, [currentIndex]);
 
   return (
-    <section className="relative flex items-center overflow-hidden" style={{ minHeight: '100vh', background: 'hsl(var(--background))' }}>
-      {/* Slide prev/next nav arrows */}
+    <section className="relative flex items-center justify-center overflow-hidden w-full bg-background min-h-[100vh] border-b border-border/50">
       <button
         onClick={handlePrev}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-sm flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
-        aria-label="Previous Slide"
-        style={{
-          borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
-          borderWidth: '1px',
-          color: 'var(--color-primary)',
-          background: 'color-mix(in srgb, var(--color-background) 85%, transparent)',
-          boxShadow: '0 4px 20px color-mix(in srgb, var(--color-primary) 15%, transparent)'
-        }}
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-10 sm:w-11 h-10 sm:h-11 rounded-sm flex items-center justify-center border border-border bg-card text-primary shadow-sm hover:bg-muted transition-colors active:scale-[0.98]"
+        aria-label="Previous slide"
       >
-        <ChevronLeft className="w-5 sm:w-6 h-5 sm:h-6" />
+        <ChevronLeft className="w-5 sm:w-5 h-5 sm:h-5" />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 cursor-pointer w-10 sm:w-12 h-10 sm:h-12 rounded-sm flex items-center justify-center hover:scale-110 transition-all active:scale-95 backdrop-blur-md"
-        aria-label="Next Slide"
-        style={{
-          borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)',
-          borderWidth: '1px',
-          color: 'var(--color-primary)',
-          background: 'color-mix(in srgb, var(--color-background) 85%, transparent)',
-          boxShadow: '0 4px 20px color-mix(in srgb, var(--color-primary) 15%, transparent)'
-        }}
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-10 sm:w-11 h-10 sm:h-11 rounded-sm flex items-center justify-center border border-border bg-card text-primary shadow-sm hover:bg-muted transition-colors active:scale-[0.98]"
+        aria-label="Next slide"
       >
-        <ChevronRight className="w-5 sm:w-6 h-5 sm:h-6" />
+        <ChevronRight className="w-5 sm:w-5 h-5 sm:h-5" />
       </button>
 
-      {/* Grid lines background — matches reference design */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            'linear-gradient(color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px)',
-          backgroundSize: '55px 55px',
-        }}
-      />
+     
 
-      {/* Subtle top-right radial highlight */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 55% 65% at 85% 40%, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, transparent 70%)',
-        }}
-      />
-
-      <div className="container relative z-10 mx-auto px-6 xl:px-20 pt-32 pb-20 lg:pt-24">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="flex flex-col gap-5 order-2 lg:order-1 text-left items-start w-full">
+      <div className="container relative z-10 mx-auto px-6 xl:px-20 w-full py-12 lg:py-16">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-16 lg:gap-24 items-center justify-center">
+          <div className="flex flex-col gap-5 order-2 lg:order-1 text-center items-center justify-center w-full mx-auto">
 
             {/* Pill badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="inline-flex items-center gap-2 self-start"
+              className="inline-flex items-center justify-center gap-2"
             >
-              <span
-                className="flex items-center gap-2 px-4 py-1.5 rounded-sm text-xs font-semibold tracking-widest uppercase text-primary border"
-                style={{
-                  background: 'color-mix(in srgb, var(--color-primary) 10%, transparent)',
-                  borderColor: 'color-mix(in srgb, var(--color-primary) 20%, transparent)'
-                }}
-              >
+              <span className="flex items-center gap-2 px-4 py-1.5 rounded-sm text-xs font-semibold tracking-widest uppercase text-primary border border-primary/20 bg-primary/5">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-sm bg-primary opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-sm bg-primary" />
                 </span>
-                Trusted by 100+ Enterprises
+                Trusted by 100+ enterprises
               </span>
             </motion.div>
 
@@ -171,9 +136,9 @@ export const Hero: React.FC = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="space-y-5 lg:space-y-7 flex flex-col items-start w-full"
+                  className="space-y-5 lg:space-y-7 flex flex-col items-center justify-center w-full"
                 >
-                  <h1 className="font-sans font-bold leading-[1.1] tracking-tight text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-[3rem] xl:text-[3.5rem] min-h-[140px] sm:min-h-[160px] lg:min-h-[180px]">
+                  <h1 className="font-sans font-bold leading-[1.1] tracking-tight text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-[3rem] xl:text-[3.5rem] min-h-[140px] sm:min-h-[160px] lg:min-h-[180px] text-balance">
                     <motion.div
                       variants={{
                         hidden: {},
@@ -197,16 +162,7 @@ export const Hero: React.FC = () => {
                       ))}
                     </motion.div>
                     <br />{' '}
-                    <span
-                      className="inline-block text-[2.5rem] xl:text-[3rem] pb-2 relative"
-                      style={{
-                        background: 'var(--gradient-primary)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        minWidth: '2ch'
-                      }}
-                    >
+                    <span className="inline-block text-[2.5rem] xl:text-[3rem] pb-2 relative text-primary min-w-[2ch]">
                       {typedText}
                       <motion.span
                         animate={{ opacity: [1, 0] }}
@@ -224,7 +180,7 @@ export const Hero: React.FC = () => {
                   </h1>
 
                   <motion.p
-                    className="text-base sm:text-lg text-muted-foreground leading-relaxed font-light max-w-xl">
+                    className="text-base sm:text-lg text-muted-foreground leading-relaxed font-light max-w-xl mx-auto">
                     {SLIDE_DATA[currentIndex].desc}
                   </motion.p>
                 </motion.div>
@@ -239,7 +195,7 @@ export const Hero: React.FC = () => {
               }}
               initial="hidden"
               animate="visible"
-              className="flex flex-col sm:flex-row flex-wrap items-start justify-start gap-4 w-full z-20 relative"
+              className="flex flex-row flex-wrap items-center justify-center gap-4 w-full z-20 relative mt-4"
             >
               {/* Buttons */}
               <motion.div
@@ -248,26 +204,17 @@ export const Hero: React.FC = () => {
                   visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'backOut' } }
                 }}
               >
-                <Link
-                  to="/contact"
-                  className="group relative flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300"
-                  style={{
-                    background: 'var(--gradient-primary)',
-                    color: '#fff',
-                    boxShadow: '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)',
-                  }}
-                  onMouseEnter={e =>
-                    (e.currentTarget.style.boxShadow = '0 6px 32px color-mix(in srgb, var(--color-primary) 55%, transparent)')
-                  }
-                  onMouseLeave={e =>
-                    (e.currentTarget.style.boxShadow = '0 4px 24px color-mix(in srgb, var(--color-primary) 35%, transparent)')
-                  }
-                >
-                  <span>Free Consultation</span>
-                  <div className="w-9 h-9 rounded-sm bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                    <ArrowRight size={17} className="-rotate-45" />
-                  </div>
-                </Link>
+                <MagneticButton>
+                  <Link
+                    to="/contact"
+                    className="group relative flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300 bg-primary text-primary-foreground shadow-md hover:opacity-95 hover:shadow-lg"
+                  >
+                    <span>Free Consultation</span>
+                    <div className="w-9 h-9 rounded-sm bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                      <ArrowRight size={17} className="-rotate-45" />
+                    </div>
+                  </Link>
+                </MagneticButton>
               </motion.div>
 
               <motion.div
@@ -276,31 +223,17 @@ export const Hero: React.FC = () => {
                   visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: 'backOut' } }
                 }}
               >
-                <Link
-                  to="/solutions"
-                  className="group flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300 border"
-                  style={{
-                    color: 'var(--color-foreground)',
-                    borderColor: 'color-mix(in srgb, var(--color-foreground) 15%, transparent)',
-                    background: 'color-mix(in srgb, var(--color-foreground) 4%, transparent)',
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.borderColor = 'var(--color-primary)';
-                    e.currentTarget.style.background = 'color-mix(in srgb, var(--color-primary) 15%, transparent)';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-foreground) 15%, transparent)';
-                    e.currentTarget.style.background = 'color-mix(in srgb, var(--color-foreground) 4%, transparent)';
-                  }}
-                >
-                  <span>Our Services</span>
-                  <div
-                    className="w-9 h-9 rounded-sm flex items-center justify-center group-hover:scale-105 transition-all"
-                    style={{ background: 'color-mix(in srgb, var(--color-foreground) 8%, transparent)' }}
+                <MagneticButton>
+                  <Link
+                    to="/solutions"
+                    className="group flex items-center justify-between gap-5 sm:min-w-[210px] pl-7 pr-2 py-2 rounded-sm font-bold transition-all duration-300 border border-border bg-card text-foreground hover:border-primary/40 hover:bg-muted/80"
                   >
-                    <ArrowRight size={17} className="-rotate-45" />
-                  </div>
-                </Link>
+                    <span>Our Services</span>
+                    <div className="w-9 h-9 rounded-sm flex items-center justify-center group-hover:scale-105 transition-all bg-muted">
+                      <ArrowRight size={17} className="-rotate-45" />
+                    </div>
+                  </Link>
+                </MagneticButton>
               </motion.div>
 
             </motion.div>
@@ -308,17 +241,12 @@ export const Hero: React.FC = () => {
 
           {/* Right: Device Mockup Showcase */}
           <motion.div
-            initial={{ opacity: 0, x: 50, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
-            className="relative order-1 lg:order-2 flex items-center justify-center w-full"
-            style={{ minHeight: '480px' }}
+            style={{ y: imageY, scale: imageScale, minHeight: '520px' }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.25, ease: 'easeOut' }}
+            className="relative order-1 lg:order-2 flex items-center justify-center w-full max-w-[850px] mx-auto lg:scale-[1.02]"
           >
-            {/* Ambient glow */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] rounded-sm blur-[90px] opacity-20 pointer-events-none z-0"
-              style={{ background: 'radial-gradient(ellipse, hsl(var(--primary)) 0%, hsl(var(--accent)) 60%, transparent 100%)' }}
-            />
             <div className="relative z-10 w-full">
               <DeviceMockupShowcase />
             </div>
@@ -327,13 +255,37 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-10"
-        style={{
-          background:
-            'linear-gradient(to top, var(--color-background) 0%, transparent 100%)',
-        }}
-      />
     </section>
   );
 };
+
+const MagneticButton: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const x = (clientX - (left + width / 2)) * 0.35;
+    const y = (clientY - (top + height / 2)) * 0.35;
+    setPosition({ x, y });
+  };
+
+  const reset = () => setPosition({ x: 0, y: 0 });
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+
+

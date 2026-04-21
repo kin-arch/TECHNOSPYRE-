@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Underline } from '@tiptap/extension-underline';
@@ -81,7 +81,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-1 p-2 border-b border-outline-variant/40 bg-surface-container-low/50 rounded-t-lg">
+    <div className="flex flex-wrap items-center gap-1 p-2 border-b border-outline-variant/40 bg-surface-container-low/50 rounded-t-sm">
       <button
         onClick={(e) => { e.preventDefault(); editor.chain().focus().toggleBold().run(); }}
         className={`p-1.5 rounded-sm hover:bg-surface-container transition-colors ${editor.isActive('bold') ? 'bg-primary/20 text-primary' : 'text-on-surface-variant'}`}
@@ -269,3 +269,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange,
     </div>
   );
 };
+
+
+
+

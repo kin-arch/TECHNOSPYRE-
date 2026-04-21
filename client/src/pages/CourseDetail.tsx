@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from 'react';
+﻿import React, { useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Clock, Banknote, BookOpen, CheckCircle, MonitorPlay, Users, Award } from 'lucide-react';
-import { courseCategories } from '../data/academy';
+import { courseCategories } from '../data/courses';
 import SEO from '../components/SEO';
 
 const CourseDetail = () => {
@@ -30,7 +30,7 @@ const CourseDetail = () => {
     "provider": {
       "@type": "Organization",
       "name": "TechnoSpyre Academy",
-      "sameAs": "https://technospyre.com/academy"
+      "sameAs": "https://technospyre.com/courses"
     },
     "offers": {
       "@type": "Offer",
@@ -58,11 +58,11 @@ const CourseDetail = () => {
         className="mb-8 flex flex-wrap items-center gap-4"
       >
         <Link
-          to="/academy"
+          to="/courses"
           className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium group"
         >
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-          Back to Academy — all courses
+          Back to Academy â€” all courses
         </Link>
       </motion.div>
 
@@ -170,7 +170,7 @@ const CourseDetail = () => {
                 Enroll Now
               </Link>
               <Link
-                to="/academy#courses"
+                to="/courses#courses"
                 className="w-full py-4 bg-transparent border-2 border-primary/30 text-primary hover:bg-primary/10 font-bold rounded-sm transition-all duration-300 flex justify-center items-center gap-2"
               >
                 Browse all courses
@@ -184,3 +184,6 @@ const CourseDetail = () => {
 };
 
 export default CourseDetail;
+
+
+

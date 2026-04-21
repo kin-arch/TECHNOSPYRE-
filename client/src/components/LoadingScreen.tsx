@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const LoadingScreen = ({ loading }: { loading: boolean }) => {
@@ -52,3 +52,6 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
 };
 
 export default LoadingScreen;
+
+
+

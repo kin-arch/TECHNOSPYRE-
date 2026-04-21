@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'motion/react';
 
 const fadeRight = {
@@ -43,3 +43,6 @@ export const ContactVisual: React.FC = () => {
     </motion.div>
   );
 };
+
+
+

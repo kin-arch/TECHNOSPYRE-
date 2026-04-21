@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+﻿import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import { motion, AnimatePresence } from 'motion/react';
@@ -85,3 +85,6 @@ export const ScrollToTopButton = () => {
     </AnimatePresence>
   );
 };
+
+
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'motion/react';
 import { Bolt, ArrowRight, Monitor, Shield, Terminal, Check } from 'lucide-react';
 
@@ -123,7 +123,7 @@ const Demo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="bg-surface-container-lowest rounded-sm] overflow-hidden border border-white/5 flex flex-col lg:flex-row shadow-2xl"
+          className="bg-surface-container-lowest rounded-sm overflow-hidden border border-white/5 flex flex-col lg:flex-row shadow-2xl"
         >
           {/* Left: Content & Value Props */}
           <div className="flex-1 p-12 lg:p-16">
@@ -222,3 +222,6 @@ const Demo = () => {
 };
 
 export default Demo;
+
+
+

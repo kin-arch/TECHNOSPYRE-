@@ -1,21 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+﻿import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonials } from '../../data/home';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export const TestimonialsGrid: React.FC = () => {
   const [active, setActive] = useState(0);
   const total = testimonials.length;
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const t = setInterval(() => setActive((p) => (p + 1) % total), 5000);
     return () => clearInterval(t);
   }, [total]);
 
+  useLayoutEffect(() => {
+    if (!sectionRef.current) return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>('[data-testimonial-card]').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+            },
+          },
+        );
+      });
+    }, sectionRef.current);
+
+    return () => ctx.revert();
+  }, []);
+
   const t = testimonials[active];
 
   return (
-    <section className="py-28 px-6 sm:px-8 bg-surface-container-low border-t border-outline-variant relative overflow-hidden">
+    <section ref={sectionRef} className="py-28 px-6 sm:px-8 bg-surface-container-low border-t border-outline-variant relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
 
@@ -29,16 +59,16 @@ export const TestimonialsGrid: React.FC = () => {
         >
           <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Client Stories</span>
           <h2 className="text-4xl md:text-5xl font-headline font-bold">
-            Loved by <span className="text-primary italic">Real Businesses</span>
+            Trusted by <span className="text-primary italic">Real Businesses</span>
           </h2>
           <p className="text-on-surface-variant mt-4 max-w-xl mx-auto">
-            Don't just take our word for it — here's what our clients say after working with us.
+            Short feedback from clients who used our services.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-stretch">
           {/* Featured quote */}
-          <div className="relative rounded-sm border border-outline-variant bg-surface-container p-8 md:p-12 overflow-hidden min-h-[360px] flex flex-col justify-between">
+          <div data-testimonial-card className="relative rounded-sm border border-outline-variant bg-surface-container p-8 md:p-12 overflow-hidden min-h-[360px] flex flex-col justify-between">
             <Quote size={120} className="absolute -top-4 -right-4 text-primary/10" strokeWidth={1} />
             <AnimatePresence mode="wait">
               <motion.div
@@ -62,6 +92,7 @@ export const TestimonialsGrid: React.FC = () => {
                   <div>
                     <h4 className="font-bold text-base">{t.author}</h4>
                     <p className="text-xs text-on-surface-variant uppercase tracking-widest mt-1">{t.role}</p>
+                    <p className="text-xs text-on-surface-variant mt-1">{t.company}</p>
                   </div>
                 </div>
               </motion.div>
@@ -115,7 +146,7 @@ export const TestimonialsGrid: React.FC = () => {
                 <img src={tm.img} alt={tm.author} className="w-12 h-12 rounded-sm object-cover shrink-0" />
                 <div className="min-w-0">
                   <h4 className="font-bold text-sm truncate">{tm.author}</h4>
-                  <p className="text-xs text-on-surface-variant truncate">{tm.role}</p>
+                  <p className="text-xs text-on-surface-variant truncate">{tm.role} - {tm.company}</p>
                   <p className="text-xs text-on-surface-variant mt-2 line-clamp-2">"{tm.quote.slice(0, 80)}..."</p>
                 </div>
               </motion.button>
@@ -126,3 +157,7 @@ export const TestimonialsGrid: React.FC = () => {
     </section>
   );
 };
+
+
+
+

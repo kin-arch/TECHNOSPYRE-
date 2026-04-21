@@ -27,5 +27,5 @@ html {
 ::-webkit-scrollbar-track { background: var(--theme-surface-dark); }
 ::-webkit-scrollbar-thumb {
   background: var(--theme-primary);
-  border-radius: 3px;
+  border-radius: 2px;
 }

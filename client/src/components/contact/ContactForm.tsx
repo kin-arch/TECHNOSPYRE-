@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, Check, AlertCircle, Loader2, Sparkles, Mail } from 'lucide-react';
 import { RichTextEditor } from '../ui/RichTextEditor';
@@ -272,7 +272,7 @@ export const ContactForm: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.34, duration: 0.45 }}
                 >
-                  Thank you for reaching out. Your message is on its way to our team—we typically respond within one business day.
+                  Thank you for reaching out. Your message is on its way to our teamâ€”we typically respond within one business day.
                 </motion.p>
 
                 <motion.div
@@ -312,3 +312,6 @@ export const ContactForm: React.FC = () => {
     </motion.div>
   );
 };
+
+
+

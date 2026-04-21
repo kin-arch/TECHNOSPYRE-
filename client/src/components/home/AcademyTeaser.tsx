@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+﻿import React, { useRef, useEffect, useState } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Award, Star } from 'lucide-react';
 
@@ -14,8 +14,14 @@ const fadeRight = {
 };
 
 export const AcademyTeaser: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const y1 = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [-20, 60]);
+
   return (
-    <section className="py-28 px-8">
+    <section ref={sectionRef} className="py-28 px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -26,12 +32,14 @@ export const AcademyTeaser: React.FC = () => {
             className="relative"
           >
             <div className="grid grid-cols-2 gap-4">
-              <img
+              <motion.img
+                style={{ y: y1 }}
                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80"
                 alt="Academy 1"
                 className="rounded-sm h-64 w-full object-cover shadow-xl shadow-primary/15"
               />
-              <img
+              <motion.img
+                style={{ y: y2 }}
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=80"
                 alt="Academy 2"
                 className="rounded-sm h-64 w-full object-cover mt-12 shadow-xl shadow-primary/15"
@@ -64,13 +72,15 @@ export const AcademyTeaser: React.FC = () => {
             </p>
             <div className="grid grid-cols-2 gap-6">
               {[
-                { icon: <Users size={18} />, value: '500+', label: 'Graduates Monthly' },
-                { icon: <Award size={18} />, value: '40+', label: 'Courses Available' },
+                { icon: <Users size={18} />, raw: 500, suffix: '+', label: 'Graduates Monthly' },
+                { icon: <Award size={18} />, raw: 40, suffix: '+', label: 'Courses Available' },
               ].map((s) => (
                 <div key={s.label} className="flex-col sm:flex-row flex items-center max-md:text-center gap-3 p-5 rounded-sm bg-surface-container border border-outline-variant">
-                  <div className="w-9 h-9 rounded-sm bg-primary flex items-center justify-center text-secondary shrink-0">{s.icon}</div>
+                  <div className="w-9 h-9 rounded-sm-lg bg-primary flex items-center justify-center text-secondary shrink-0">{s.icon}</div>
                   <div>
-                    <p className="text-3xl font-headline font-bold text-primary">{s.value}</p>
+                    <p className="text-3xl font-headline font-bold text-primary">
+                      <AnimatedStat target={s.raw} suffix={s.suffix} active={isInView} />
+                    </p>
                     <p className="text-xs font-label uppercase tracking-widest text-on-surface-variant">{s.label}</p>
                   </div>
                 </div>
@@ -85,3 +95,25 @@ export const AcademyTeaser: React.FC = () => {
     </section>
   );
 };
+
+const AnimatedStat: React.FC<{ target: number; suffix: string; active: boolean }> = ({ target, suffix, active }) => {
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    const duration = 2000;
+    const startTime = Date.now();
+    const step = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCurrent(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [active, target]);
+  return <>{current}{suffix}</>;
+};
+
+
+
+

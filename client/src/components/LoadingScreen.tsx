@@ -19,7 +19,7 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
             transition={{ duration: 1, ease: "easeOut" }}
             // className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-primary font-headline"
           >
-            <img src="/logo1.png" alt="Logo" className="w-72 h-72" />
+            <img src="/CompanyLogo.png" alt="Logo" className="w-72 h-72" />
           </motion.div>
 
           

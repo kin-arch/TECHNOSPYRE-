@@ -4,6 +4,7 @@ import { SectionLines } from '../components/SectionLines';
 import { LogoTicker } from '../components/home/LogoTicker';
 import { ProductsGrid } from '../components/home/ProductsGrid';
 import { ProductsSlider } from '../components/home/TechnologiesSlider';
+import { SpecialOffer } from '../components/home/SpecialOffer';
 import { TestimonialsGrid } from '../components/home/TestimonialsGrid';
 import { HomeCTA } from '../components/home/HomeCTA';
 import SEO from '../components/SEO';
@@ -169,6 +170,10 @@ const Home = () => {
       <SectionLines />
       <div data-home-reveal>
         <LogoTicker />
+      </div>
+      <SectionLines />
+      <div data-home-reveal>
+        <SpecialOffer />
       </div>
       <SectionLines />
       <div data-home-reveal>

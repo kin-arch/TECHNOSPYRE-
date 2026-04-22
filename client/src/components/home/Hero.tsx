@@ -9,19 +9,22 @@ const SLIDE_DATA = [
     title: 'Empowering Enterprise With',
     highlight: 'Next-Gen Technology',
     desc: 'We engineer, scale, and manage resilient technology ecosystems that empower modern businesses to operate securely and efficiently.',
-    img: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=1200'
+    img: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=1200',
+    device: 'monitor'
   },
   {
     title: 'Architecting the Future of',
     highlight: 'Cloud Infrastructure',
     desc: 'Seamlessly migrate, optimize, and secure your enterprise operations with our state-of-the-art cloud management solutions.',
-    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200'
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
+    device: 'mobile'
   },
   {
     title: 'Driving Innovation Through',
     highlight: 'Intelligent Systems',
     desc: 'Harness the power of AI-driven analytics, automation, and intelligent pipelines to unlock new business dimensions today.',
-    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200'
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200',
+    device: 'laptop'
   }
 ];
 
@@ -61,9 +64,21 @@ export const Hero: React.FC = () => {
   }, [handleNext]);
 
   const slideVariants: Variants = {
-    hidden: (dir: number) => ({ opacity: 0, x: dir > 0 ? 20 : -20 }),
+    hidden: (dir: number) => ({ opacity: 0, x: dir > 0 ? -60 : 60 }),
     visible: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 280, damping: 32, mass: 1 } },
-    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -20 : 20, transition: { duration: 0.22 } }),
+    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? 60 : -60, transition: { duration: 0.22 } }),
+  };
+
+  const imageVariants: Variants = {
+    hidden: { opacity: 0, x: 80 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, delay: 0.1 } },
+    exit: { opacity: 0, x: -80, transition: { duration: 0.3 } },
+  };
+
+  const buttonVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.4 } },
+    exit: { opacity: 0, y: 20, transition: { duration: 0.2 } },
   };
 
   return (
@@ -71,14 +86,14 @@ export const Hero: React.FC = () => {
       
       <button
         onClick={handlePrev}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-sm flex items-center justify-center border border-border bg-card/50 text-primary shadow-sm active:scale-[0.98] hidden sm:flex"
+        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-sm flex items-center justify-center border border-border bg-card/50 text-primary shadow-sm active:scale-[0.98] hidden md:flex"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-sm flex items-center justify-center border border-border bg-card/50 text-primary shadow-sm active:scale-[0.98] hidden sm:flex"
+        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-sm flex items-center justify-center border border-border bg-card/50 text-primary shadow-sm active:scale-[0.98] hidden md:flex"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
@@ -112,7 +127,7 @@ export const Hero: React.FC = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="flex flex-col items-center lg:items-start w-full absolute lg:relative"
+                  className="flex flex-col items-center lg:items-start w-full"
                 >
                   <h1 className="font-sans font-bold leading-tight tracking-tight text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] text-balance">
                     <span className="block">{SLIDE_DATA[currentIndex].title}</span>
@@ -147,14 +162,14 @@ export const Hero: React.FC = () => {
              transition={{ duration: 0.65, delay: 0.25 }}
              className="relative order-1 lg:order-2 flex items-center justify-center w-full mx-auto h-full min-h-[300px] lg:min-h-[500px]"
            >
-             <DeviceMockupShowcase imageUrl={SLIDE_DATA[currentIndex].img} direction={direction} />
+             <DeviceMockupShowcase imageUrl={SLIDE_DATA[currentIndex].img} direction={direction} device={SLIDE_DATA[currentIndex].device as 'laptop' | 'mobile' | 'tablet' | 'monitor'} />
            </motion.div>
 
         </div>
       </div>
 
       {/* Mobile dot indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex sm:hidden gap-2 z-50">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex sm:hidden gap-2 z-50">
         {SLIDE_DATA.map((_, idx) => (
           <button
             key={idx}

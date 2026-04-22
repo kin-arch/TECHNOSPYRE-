@@ -91,6 +91,81 @@ export const courseCategories: CourseCategory[] = [
   }
 ];
 
+export const monthlyOffers = [
+  {
+    id: 'april-2026',
+    month: 'April 2026',
+    title: 'React Learning Festival',
+    discount: '50%',
+    validUntil: 'April 30, 2026',
+    courses: [
+      { id: 'react-beginner', name: 'React.js Beginner Course', originalFee: '16,000', discountedFee: '7,999' },
+    ],
+  },
+];
+
+export const reactCourse = {
+  id: 'react',
+  name: 'React Development',
+  title: 'Master React.js from fundamentals to advanced concepts. Build modern, interactive user interfaces with hooks, context API, and state management.',
+  beginner: {
+    name: 'React.js Beginner',
+    duration: '08 Weeks',
+    originalFee: '16,000',
+    discountedFee: '7,999',
+    discount: '50%',
+    description: 'Start your React journey! Learn the fundamentals of React.js, JSX, hooks, and build your first interactive web applications.',
+    highlights: [
+      'React Fundamentals & JSX',
+      'Hooks (useState, useEffect, useContext)',
+      'React Router Basics',
+      'Component Architecture',
+      'Building Mini Projects',
+      'CSS & Styling in React',
+    ],
+    requirements: [
+      'Basic HTML, CSS, and JavaScript knowledge',
+      'Understanding of ES6+ JavaScript features',
+      'A computer with internet access',
+    ],
+    syllabus: [
+      { week: 'Week 1-2', topic: 'React Fundamentals & JSX' },
+      { week: 'Week 3-4', topic: 'Hooks & State Management' },
+      { week: 'Week 5-6', topic: 'React Router & Navigation' },
+      { week: 'Week 7-8', topic: 'Real-world Projects' },
+    ],
+    certificate: 'React.js Beginner Certificate',
+  },
+  professional: {
+    name: 'React.js Professional',
+    duration: '12 Weeks',
+    originalFee: '50,000',
+    discountedFee: '24,999',
+    discount: '51%',
+    description: 'Master advanced React.js concepts including Redux Toolkit, TypeScript, testing, performance optimization, and enterprise-grade application development.',
+    highlights: [
+      'Advanced Redux & Redux Toolkit',
+      'TypeScript with React',
+      'Testing with Jest & React Testing Library',
+      'Performance Optimization',
+      'Server Components & Next.js',
+      'Enterprise Architecture Patterns',
+    ],
+    requirements: [
+      'Completed React Beginner course or equivalent knowledge',
+      'Strong JavaScript/ES6+ skills',
+      'Experience with web development fundamentals',
+    ],
+    syllabus: [
+      { week: 'Week 1-3', topic: 'Advanced State Management (Redux)' },
+      { week: 'Week 4-6', topic: 'TypeScript & Modern Patterns' },
+      { week: 'Week 7-9', topic: 'Testing & Performance' },
+      { week: 'Week 10-12', topic: 'Next.js & Enterprise Projects' },
+    ],
+    certificate: 'React.js Professional Certificate',
+  },
+};
+
 export const diplomasData = [
   {
     title: 'Diploma in Information Technology (DIT)',

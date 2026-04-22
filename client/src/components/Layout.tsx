@@ -48,7 +48,7 @@ export const Navbar = () => {
       <div className="flex items-center gap-8">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex items-center gap-2">
-            <img src="/logo1.png" alt="Logo" className="w-16 h-16" />
+            <img src="/CompanyLogo.png" alt="Logo" className="w-16 h-16" />
           </div>
         </Link>
 
@@ -337,7 +337,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           {/* Brand column */}
           <div className="md:col-span-1">
-            <div className="text-xl font-bold text-primary mb-4 font-headline tracking-tighter">Technospyre</div>
+            <div className="text-xl font-bold text-primary mb-4 font-headline tracking-tighter"><img src="/CompanyLogo.png" alt="" className='h-20 w-20' /></div>
             <p className="text-on-surface-variant text-sm leading-relaxed mb-6">
               Architecting digital futures through premium IT services and elite engineering education.
             </p>

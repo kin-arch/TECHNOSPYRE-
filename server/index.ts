@@ -10,6 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import contactRoutes from "./routes/contactRoutes.ts";
+import adminRoutes from "./routes/adminRoutes.ts";
+import offerRoutes from "./routes/offerRoutes.ts";
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.use(express.json());
 
 // API Routes
 app.use("/api", contactRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/offer", offerRoutes);
 
 // Serve Static Frontend in Production
 if (process.env.NODE_ENV === "production" || process.env.VERCEL) {

@@ -13,6 +13,13 @@ import Courses from './pages/Courses';
 import Contact from './pages/Contact';
 import CourseDetail from './pages/CourseDetail';
 import ProductDetail from './pages/ProductDetail';
+import OfferDetail from './pages/OfferDetail';
+import { AdminAuthProvider } from './context/AdminAuthContext';
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminOfferEditor from './pages/admin/AdminOfferEditor';
+import AdminProtectedRoute from './components/admin/AdminProtectedRoute';
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -78,38 +85,63 @@ export default function App() {
   return (
     <HelmetProvider>
       <ThemeProvider defaultTheme="light">
-        <Router>
-          <ScrollToTop />
-          <LoadingScreen loading={loading} />
-          
-          {/* Render main content conditionally, ensuring it mounts only when loading is done to allow smooth layoutId transition */}
-          <AnimatePresence>
-            {!loading && (
-              <motion.div
-                key="main-content"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                onAnimationComplete={() => setTransitionDone(true)}
+        <AdminAuthProvider>
+          <Router>
+            <ScrollToTop />
+            <Routes>
+              {/* ── Admin routes (no navbar/footer) ── */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route
+                path="/admin"
+                element={
+                  <AdminProtectedRoute>
+                    <AdminLayout />
+                  </AdminProtectedRoute>
+                }
               >
-                <ScrollToTopButton />
-                <SmoothScroll>
-                  <MainLayout>
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/products" element={<Products />} />
-                      <Route path="/products/:id" element={<ProductDetail />} />
-                      <Route path="/courses" element={<Courses />} />
-                      <Route path="/courses/:id" element={<CourseDetail />} />
-                      <Route path="/contact" element={<Contact />} />
-                    </Routes>
-                  </MainLayout>
-                </SmoothScroll>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </Router>
+                <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="offer-editor" element={<AdminOfferEditor />} />
+              </Route>
+
+              {/* ── Public routes (with navbar/footer + loading screen) ── */}
+              <Route
+                path="/*"
+                element={
+                  <>
+                    <LoadingScreen loading={loading} />
+                    <AnimatePresence>
+                      {!loading && (
+                        <motion.div
+                          key="main-content"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.8 }}
+                          onAnimationComplete={() => setTransitionDone(true)}
+                        >
+                          <ScrollToTopButton />
+                          <SmoothScroll>
+                            <MainLayout>
+                              <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/products" element={<Products />} />
+                                <Route path="/products/:id" element={<ProductDetail />} />
+                                <Route path="/courses" element={<Courses />} />
+                                <Route path="/courses/:id" element={<CourseDetail />} />
+                                <Route path="/offers/:id" element={<OfferDetail />} />
+                                <Route path="/contact" element={<Contact />} />
+                              </Routes>
+                            </MainLayout>
+                          </SmoothScroll>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                }
+              />
+            </Routes>
+          </Router>
+        </AdminAuthProvider>
       </ThemeProvider>
     </HelmetProvider>
   );

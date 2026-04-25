@@ -431,39 +431,9 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-20">
+          <div className="flex flex-col gap-20 mb-16">
             {/* Pricing Section */}
             <ProductDetailPricing productId={product.id} />
-
-            {/* Clients */}
-            <motion.section
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55 }}
-              className="px-6 py-12 text-center md:px-12"
-            >
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant">Trusted by teams like yours</p>
-              <h2 className="mb-8 font-headline text-2xl font-bold text-on-surface md:text-3xl">Companies shipping with TechnoSpyre</h2>
-              <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 opacity-90 grayscale transition-all duration-500 hover:grayscale-0 md:gap-x-14">
-                {clientRows.map((c, i) => (
-                  <motion.div
-                    key={c.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="flex items-center gap-2.5"
-                  >
-                    <span className={`h-9 w-9 shrink-0 rounded-sm ${c.color}`} aria-hidden />
-                    <div className="text-left">
-                      <div className="font-headline text-lg font-bold tracking-tight text-on-surface">{c.name}</div>
-                      <div className="text-[10px] font-medium uppercase tracking-wider text-on-surface-variant">{c.hint}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.section>
           </div>
         </div>
       </div>

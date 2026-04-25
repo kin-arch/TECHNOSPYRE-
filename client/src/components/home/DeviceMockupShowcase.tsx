@@ -50,7 +50,7 @@ const LaptopMockup: React.FC = () => (
 );
 
 const MobileMockup: React.FC = () => (
-  <div className="flex justify-center items-center w-[160px] lg:w-[220px] relative">
+  <div className="flex justify-center items-center w-[160px] lg:w-[200px] relative">
     <div className="w-full rounded-[24px] lg:rounded-[38px] border-[3px] border-zinc-700 bg-zinc-900 p-1.5 lg:p-2.5 shadow-2xl relative">
       <div className="absolute top-2 lg:top-3 left-1/2 -translate-x-1/2 w-[32%] h-[14px] lg:h-[22px] bg-black rounded-b-md lg:rounded-b-xl z-10" aria-hidden />
       <div className="rounded-[18px] lg:rounded-[28px] overflow-hidden aspect-[390/844] border border-black relative bg-black">

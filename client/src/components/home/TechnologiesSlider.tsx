@@ -1,15 +1,8 @@
-﻿import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { categories } from '../../data/home';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay, ease: 'easeOut' as const } }),
-};
 
 const slideInLeft = {
   hidden: { opacity: 0, x: -40 },
@@ -21,11 +14,6 @@ const slideInRight = {
   visible: (delay = 0) => ({ opacity: 1, x: 0, transition: { duration: 0.6, delay, ease: 'easeOut' as const } }),
 };
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: (delay = 0) => ({ opacity: 1, scale: 1, transition: { duration: 0.5, delay, ease: 'easeOut' as const } }),
-};
-
 const AUTOPLAY_MS = 2500;
 
 export const ProductsSlider: React.FC = () => {
@@ -33,10 +21,6 @@ export const ProductsSlider: React.FC = () => {
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const total = categories.length;
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const rootRef = useRef<HTMLElement | null>(null);
-  const imageRef = useRef<HTMLImageElement | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;
@@ -48,18 +32,11 @@ export const ProductsSlider: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (paused || reduceMotion) {
-      if (timerRef.current) clearInterval(timerRef.current);
-      return;
-    }
-    
-    timerRef.current = setInterval(() => {
+    if (paused || reduceMotion) return;
+    const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % total);
     }, AUTOPLAY_MS);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
+    return () => clearInterval(timer);
   }, [paused, total, reduceMotion]);
 
   const next = () => setActive((p) => (p + 1) % total);
@@ -69,117 +46,8 @@ export const ProductsSlider: React.FC = () => {
   const highlights = cat.items.slice(0, 3);
   const highlightIcons = cat.itemIcons.slice(0, 3);
 
-  useLayoutEffect(() => {
-    if (!rootRef.current || !imageRef.current || !cardRef.current) return;
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      // Section header reveal animation
-      gsap.fromTo(
-        '[data-slider-heading]',
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: rootRef.current!,
-            start: 'top 80%',
-          },
-        }
-      );
-
-      // Staggered card reveals
-      gsap.fromTo(
-        '[data-slider-card]',
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power3.out',
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: rootRef.current!,
-            start: 'top 75%',
-          },
-        },
-      );
-
-      // Parallax effect on image
-      gsap.fromTo(
-        imageRef.current!,
-        { y: -20, scale: 1.02 },
-        {
-          y: 20,
-          scale: 1.08,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: rootRef.current!,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        },
-      );
-
-      // Dot indicators animation
-      gsap.fromTo(
-        '[data-dot-indicator]',
-        { scaleY: 0.4 },
-        {
-          scaleY: 1,
-          duration: 0.3,
-          stagger: 0.05,
-          ease: 'back.out(1.7)',
-        }
-      );
-
-      // Enhanced hover animations for the image card
-      const imageCard = cardRef.current;
-      gsap.set(imageCard, { transformOrigin: 'center center' });
-
-      imageCard.addEventListener('mouseenter', () => {
-        gsap.to(imageCard, {
-          scale: 1.05,
-          rotationY: 3,
-          rotationX: -2,
-          duration: 0.5,
-          ease: 'power2.out',
-        });
-        gsap.to(imageRef.current!, {
-          scale: 1.12,
-          duration: 0.5,
-          ease: 'power2.out',
-        });
-      });
-
-
-      imageCard.addEventListener('mouseleave', () => {
-        gsap.to(imageCard, {
-          scale: 1,
-          rotationY: 0,
-          duration: 0.4,
-          ease: 'power2.out',
-        });
-        gsap.to(imageRef.current!, {
-          scale: 1,
-          duration: 0.4,
-          ease: 'power2.out',
-        });
-      });
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={(el) => {
-        rootRef.current = el;
-      }}
       className="py-16 md:py-20 px-6 sm:px-8 relative overflow-hidden bg-background border-y border-border/60"
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -188,30 +56,48 @@ export const ProductsSlider: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6"
-          data-slider-heading
-        >
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary mb-3 inline-flex items-center gap-2">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              className="text-xs font-semibold uppercase tracking-[0.22em] text-primary mb-3 inline-flex items-center gap-2"
+            >
               <Sparkles className="h-4 w-4" aria-hidden />
               Technology Stack
-            </p>
-            <h2 className="text-4xl md:text-5xl font-headline font-bold tracking-tight text-foreground">
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              className="text-4xl md:text-5xl font-headline font-bold tracking-tight text-foreground"
+            >
               Modern <span className="text-primary">Technologies</span>
-            </h2>
-            <p className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed max-w-2xl">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed max-w-2xl"
+            >
               Cutting-edge tools and frameworks that power exceptional digital experiences.
-            </p>
+            </motion.p>
           </div>
-          <Link to="/solutions" className="text-primary font-bold flex items-center gap-2 group whitespace-nowrap shrink-0">
-            Explore Technologies <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+          >
+            <Link to="/solutions" className="text-primary font-bold flex items-center gap-2 group whitespace-nowrap shrink-0">
+              Explore Technologies <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+        </div>
 
         <div
           className="relative"
@@ -230,16 +116,11 @@ export const ProductsSlider: React.FC = () => {
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.6 }}
                 className="relative rounded-sm overflow-hidden border border-outline-variant bg-surface-container min-h-[280px] lg:min-h-[380px] group cursor-pointer"
-                data-slider-card
-                ref={cardRef}
               >
                 <img
-                  ref={(el) => {
-                    imageRef.current = el;
-                  }}
                   src={cat.image}
                   alt={cat.label}
-                  className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-700 will-change-transform"
+                  className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/15 to-transparent pointer-events-none" />
@@ -271,7 +152,6 @@ export const ProductsSlider: React.FC = () => {
                 exit={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.6 }}
                 className="rounded-sm border border-outline-variant bg-card p-6 sm:p-8 flex flex-col justify-between"
-                data-slider-card
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-6">
@@ -281,7 +161,6 @@ export const ProductsSlider: React.FC = () => {
                           key={`dot-${c.id}`}
                           onClick={() => setActive(i)}
                           aria-label={`Show ${c.label}`}
-                          data-dot-indicator
                           aria-current={i === active}
                           className={`h-2 rounded-sm transition-all duration-500 ${
                             i === active ? 'w-10 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'
@@ -330,7 +209,7 @@ export const ProductsSlider: React.FC = () => {
                         transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
                         className="flex items-center gap-3 rounded-sm border border-outline-variant bg-surface-container px-4 py-3 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
                       >
-                        <motion.span 
+                        <motion.span
                           className="w-10 h-10 rounded-sm bg-primary/10 text-primary flex items-center justify-center flex-shrink-0"
                           whileHover={{ scale: 1.15, rotate: 10 }}
                           transition={{ duration: 0.3 }}
@@ -352,16 +231,7 @@ export const ProductsSlider: React.FC = () => {
                   >
                     <Link
                       to={`/solutions?category=${cat.id}`}
-                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-sm font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 transition-all text-white"
-                      onClick={(e) => {
-                        const target = e.currentTarget;
-                        gsap.to(target, {
-                          scale: 0.95,
-                          duration: 0.1,
-                          yoyo: true,
-                          repeat: 1,
-                        });
-                      }}
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-sm font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 active:scale-95 transition-all text-white"
                     >
                       Learn More <ArrowRight size={16} />
                     </Link>
@@ -388,8 +258,3 @@ export const ProductsSlider: React.FC = () => {
     </section>
   );
 };
-
-
-
-
-

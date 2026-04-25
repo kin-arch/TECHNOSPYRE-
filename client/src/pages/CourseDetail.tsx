@@ -45,7 +45,7 @@ const CourseDetail = () => {
   };
 
   return (
-    <div className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+    <div className="pt-10 pb-16 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
       <SEO
         title={course.name}
         description={course.description}

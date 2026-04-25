@@ -35,7 +35,7 @@ export const Navbar = () => {
     };
   }, [coursesMegaOpen]);
 
-  const navLinks = [
+const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Courses', path: '/courses', isMegaMenu: true },
@@ -309,6 +309,7 @@ export const Footer = () => {
     Company: [
       { name: 'Home', to: '/' },
       { name: 'About Us', to: '/about' },
+      { name: 'Technologies', to: '/technologies' },
       { name: 'Contact Us', to: '/contact' },
     ],
     Products: [

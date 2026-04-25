@@ -45,10 +45,10 @@ export const AboutCTA: React.FC = () => {
             </div>
           </Link>
           <Link
-            to="/academy"
+            to="/courses"
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-sm font-semibold border border-primary text-primary hover:scale-105 hover:bg-primary/10 transition-all duration-200"
           >
-            Explore Academy
+            Explore Courses
           </Link>
         </div>
       </motion.div>

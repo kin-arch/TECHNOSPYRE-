@@ -9,6 +9,7 @@ import { ThemeProvider } from './components/ThemeProvider';
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
+import Services from './pages/Services';
 import Courses from './pages/Courses';
 import Contact from './pages/Contact';
 import CourseDetail from './pages/CourseDetail';
@@ -41,7 +42,7 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
       <Navbar />
@@ -129,6 +130,7 @@ export default function App() {
                                 <Route path="/courses" element={<Courses />} />
                                 <Route path="/courses/:id" element={<CourseDetail />} />
                                 <Route path="/offers/:id" element={<OfferDetail />} />
+                                <Route path="/services" element={<Services />} />
                                 <Route path="/contact" element={<Contact />} />
                               </Routes>
                             </MainLayout>

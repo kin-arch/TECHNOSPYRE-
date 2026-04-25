@@ -13,12 +13,6 @@ export const HomeCTA: React.FC = () => {
     <section
       className="relative py-12 md:py-16 px-6 text-center overflow-hidden bg-background border-t border-border/50"
     >
-      {/* Background Decorations - CSS pulse instead of GSAP */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none -z-0">
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 md:w-96 h-64 md:h-96 bg-primary/10 blur-[80px] md:blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-64 md:w-96 h-64 md:h-96 bg-accent/10 blur-[80px] md:blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-      </div>
-
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

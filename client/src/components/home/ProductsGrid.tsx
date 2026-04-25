@@ -4,174 +4,15 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
 import { productOffers } from '@/data/home';
 
-<<<<<<< HEAD
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
- export const ProductsGrid: React.FC = () => {
-   const gridRef = useRef<HTMLDivElement | null>(null);
-   const sectionRef = useRef<HTMLElement | null>(null);
-   const [showAll, setShowAll] = useState(false);
-   const visibleOffers = showAll ? productOffers : productOffers.slice(0, 3);
-
-  useLayoutEffect(() => {
-    if (!gridRef.current || !sectionRef.current) return;
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.product-card',
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current!,
-            start: 'top 75%',
-            end: 'top 25%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '[data-products-heading]',
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current!,
-            start: 'top 80%',
-          },
-        }
-      );
-    }, sectionRef);
-
-    const cards = gsap.utils.toArray<HTMLElement>('.product-card');
-
-    cards.forEach((card) => {
-      const icon = card.querySelector('.card-icon');
-      const title = card.querySelector('.card-title');
-      const link = card.querySelector('.card-link');
-
-      gsap.set([icon, title, link], { y: 0, opacity: 1 });
-
-      let rafId: number | null = null;
-      const handleMouseMove = (e: MouseEvent) => {
-        if (rafId) return;
-        
-        rafId = requestAnimationFrame(() => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty('--mouse-x', `${x}px`);
-          card.style.setProperty('--mouse-y', `${y}px`);
-          rafId = null;
-        });
-      };
-
-
-      const handleMouseEnter = () => {
-        const tl = gsap.timeline();
-
-        tl.to(
-          card,
-          {
-            y: -12,
-            scale: 1.03,
-            duration: 0.4,
-            ease: 'back.out(1.7)',
-          },
-          0,
-        )
-          .to(
-            icon,
-            {
-              scale: 1.2,
-              rotation: 12,
-              duration: 0.4,
-              ease: 'back.out(1.7)',
-            },
-            0,
-          )
-          .to(
-            title,
-            {
-              y: -3,
-              scale: 1.03,
-              duration: 0.3,
-              ease: 'power2.out',
-            },
-            0.05,
-          )
-          .to(
-            link,
-            {
-              x: 8,
-              scale: 1.1,
-              duration: 0.3,
-              ease: 'power2.out',
-            },
-            0.08,
-          );
-      };
-
-      const handleMouseLeave = () => {
-        gsap.to([card, icon, title, link], {
-          y: 0,
-          x: 0,
-          scale: 1,
-          rotation: 0,
-          duration: 0.4,
-          ease: 'power2.out',
-        });
-      };
-
-      card.addEventListener('mousemove', handleMouseMove);
-      card.addEventListener('mouseenter', handleMouseEnter);
-      card.addEventListener('mouseleave', handleMouseLeave);
-
-      (card as HTMLElement & {
-        __handleMouseMove?: (e: MouseEvent) => void;
-        __handleMouseEnter?: () => void;
-        __handleMouseLeave?: () => void;
-      }).__handleMouseMove = handleMouseMove;
-      (card as HTMLElement & { __handleMouseEnter?: () => void }).__handleMouseEnter = handleMouseEnter;
-      (card as HTMLElement & { __handleMouseLeave?: () => void }).__handleMouseLeave = handleMouseLeave;
-    });
-
-    return () => {
-      ctx.revert();
-      cards.forEach((card) => {
-        const currentCard = card as HTMLElement & {
-          __handleMouseMove?: (e: MouseEvent) => void;
-          __handleMouseEnter?: () => void;
-          __handleMouseLeave?: () => void;
-        };
-
-        if (currentCard.__handleMouseMove) {
-          card.removeEventListener('mousemove', currentCard.__handleMouseMove);
-        }
-        if (currentCard.__handleMouseEnter) {
-          card.removeEventListener('mouseenter', currentCard.__handleMouseEnter);
-        }
-        if (currentCard.__handleMouseLeave) {
-          card.removeEventListener('mouseleave', currentCard.__handleMouseLeave);
-        }
-      });
-    };
-  }, [showAll]);
-=======
 export const ProductsGrid: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [showAll, setShowAll] = useState(false);
   const visibleOffers = showAll ? productOffers : productOffers.slice(0, 3);
->>>>>>> bf4f46c55be49902978ce9731da20456181294b7
 
   return (
     <section
@@ -206,8 +47,8 @@ export const ProductsGrid: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
           >
-            <Link to="/solutions" className="md:mt-2 text-primary font-bold flex items-center gap-2 group whitespace-nowrap shrink-0">
-              View All Solutions <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            <Link to="/products" className="md:mt-2 text-primary font-bold flex items-center gap-2 group whitespace-nowrap shrink-0">
+              View All Products <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
@@ -216,10 +57,9 @@ export const ProductsGrid: React.FC = () => {
           {visibleOffers.map((c) => (
             <div
               key={c.id}
-<<<<<<< HEAD
               data-home-item
               className="product-card group relative rounded-sm border border-outline-variant bg-surface-container p-5 sm:p-6 min-h-[240px] flex flex-col justify-between hover:border-primary/45 transition-all duration-300 cursor-pointer overflow-hidden will-change-transform"
-              data-home-glow
+              data-home-glow  
             >
               <div
                 className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
@@ -228,19 +68,7 @@ export const ProductsGrid: React.FC = () => {
                 }}
               />
               <div className="flex items-center justify-between relative z-20">
-                <div className="card-icon w-14 h-14 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 shadow-sm">
-=======
-              className="product-card group relative rounded-sm border border-outline-variant bg-surface-container p-5 sm:p-6 min-h-[240px] flex flex-col justify-between hover:border-primary/45 hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
-            >
-              <div className="flex items-center justify-between">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-                  className="card-icon w-14 h-14 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300"
-                >
->>>>>>> bf4f46c55be49902978ce9731da20456181294b7
+                <motion.div className="card-icon w-14 h-14 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 shadow-sm">
                   {c.icon}
                 </motion.div>
                 <motion.span
@@ -263,29 +91,6 @@ export const ProductsGrid: React.FC = () => {
                   </p>
                 </div>
 
-<<<<<<< HEAD
-=======
-              <div className="mt-4">
-                <motion.h3
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-                  className="card-title font-headline text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors mb-1.5"
-                >
-                  {c.label}
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-                  className="text-sm text-muted-foreground leading-relaxed font-medium"
-                >
-                  {c.tagline}
-                </motion.p>
-              </div>
->>>>>>> bf4f46c55be49902978ce9731da20456181294b7
 
               {'pricingLabel' in c && c.pricingLabel && (
                 <motion.div

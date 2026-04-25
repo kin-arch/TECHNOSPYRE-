@@ -4,16 +4,29 @@ import { whyChooseUs } from '../../data/about';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.45, delay, ease: 'easeOut' as const } }),
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, delay, ease: 'easeOut' as const }
+  }),
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.1,
+    },
+  },
 };
 
 export const WhyChooseUs: React.FC = () => {
   return (
-    <section className="relative py-24 md:py-28 bg-muted/20 border-y border-border/60 overflow-hidden" aria-labelledby="why-choose-heading">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-48 left-[-120px] h-[520px] w-[520px] rounded-sm bg-primary/10 blur-3xl" />
-        <div className="absolute -bottom-48 right-[-140px] h-[520px] w-[520px] rounded-sm bg-primary/10 blur-3xl" />
-      </div>
+    <section className="relative py-24 md:py-28 bg-muted/20 border-y border-border/60" aria-labelledby="why-choose-heading">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,var(--primary)/10%,transparent)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,var(--primary)/8%,transparent)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-14 md:mb-16">
@@ -26,16 +39,19 @@ export const WhyChooseUs: React.FC = () => {
           </p>
         </div>
 
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 list-none p-0 m-0">
+        <motion.ul
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 list-none p-0 m-0"
+        >
           {whyChooseUs.map((item, i) => (
             <motion.li
               key={item.title}
               variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
-              custom={i * 0.05}
-              className="group relative rounded-sm border border-outline-variant bg-card p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-primary/35 hover:-translate-y-1 hover:bg-surface-container-high/60 hover:shadow-[0_18px_50px_-28px_color-mix(in_srgb,var(--color-primary)_45%,transparent)]"
+              className="group relative rounded-sm border border-outline-variant bg-card p-6 sm:p-7 shadow-sm will-change-transform hover:border-primary/35 hover:bg-surface-container-high/60"
+              style={{ transitionDelay: `${i * 40}ms` }}
             >
               <div className="absolute top-5 right-5 text-[10px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
                 0{i + 1}
@@ -52,7 +68,7 @@ export const WhyChooseUs: React.FC = () => {
               </div>
             </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </div>
     </section>
   );

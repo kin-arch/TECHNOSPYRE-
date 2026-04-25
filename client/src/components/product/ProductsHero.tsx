@@ -31,7 +31,6 @@
      <section className="relative pt-12 pb-16 md:pt-14 md:pb-18 mx-auto px-4 sm:px-6 xl:px-16 overflow-hidden bg-background">
        <div className="container-custom relative z-10">
 
-         {/* Main Value Proposition */}
          <motion.div
            className="max-w-4xl mx-auto text-center mb-10"
            variants={containerVars}

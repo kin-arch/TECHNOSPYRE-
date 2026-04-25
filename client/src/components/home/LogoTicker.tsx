@@ -1,5 +1,5 @@
 ﻿import React, { useRef, useEffect } from 'react';
-import { motion, useInView, animate } from 'framer-motion';
+import { motion, useInView, animate, useAnimation } from 'framer-motion';
 
 const partnerLogos = [
   '/partners/50ba9f98aaf8f8ded4d576a6969668f0.jpg',
@@ -47,7 +47,7 @@ const logos = partnerLogos.map(src => {
   };
 });
 
-export const AnimatedCounter: React.FC<{ from: number; to: number; duration?: number; decimals?: number; suffix?: string; className?: string }> = ({ from, to, duration = 2.5, decimals = 0, suffix = "", className }) => {
+export const AnimatedCounter: React.FC<{ from: number; to: number; duration?: number; decimals?: number; suffix?: string; className?: string }> = ({ from, to, duration = 5, decimals = 0, suffix = "", className }) => {
   const nodeRef = useRef<HTMLSpanElement>(null);
   const isInView = useInView(nodeRef, { once: true });
 
@@ -70,8 +70,12 @@ export const AnimatedCounter: React.FC<{ from: number; to: number; duration?: nu
 
 export const LogoTicker: React.FC = () => {
   const totalLogos = logos.length;
-  // Use 3 copies for seamless infinite scroll
   const duplicatedLogos = [...logos, ...logos, ...logos];
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({ x: '-33.333%' });
+  }, [controls]);
   
   return (
     <div className="w-full flex flex-col items-center py-12 md:py-16">
@@ -84,26 +88,31 @@ export const LogoTicker: React.FC = () => {
         </p>
       </div>
 
-      <div className="w-full overflow-hidden relative py-5 border-y border-border/50 bg-muted/25">
+      <div
+        className="w-full overflow-hidden relative py-5 border-y border-border/50 bg-muted/25"
+      >
         <motion.div
-          animate={{ x: [0, -100 / 3 + '%'] }}
-          transition={{ 
-            duration: 50, 
-            repeat: Infinity, 
-            ease: 'linear' 
+          animate={controls}
+          initial={{ x: 0 }}
+          transition={{
+            duration: 50,
+            repeat: Infinity,
+            ease: 'linear'
           }}
           className="flex items-center gap-6 md:gap-7 whitespace-nowrap will-change-transform"
           style={{ width: 'fit-content' }}
+          onMouseEnter={() => controls.stop()}
+          onMouseLeave={() => controls.start({ x: '-33.333%' })}
         >
           {duplicatedLogos.map((logo, idx) => (
-            <div
+             <div
               key={`logo-${idx}`}
-              className="flex shrink-0 items-center justify-center px-4 py-4 bg-card border border-border rounded-sm shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-300 w-[168px] h-[88px] md:w-[200px] md:h-[100px]"
+              className="group flex shrink-0 items-center justify-center px-4 py-4 bg-card border border-border rounded-sm shadow-sm hover:border-primary/30 hover:shadow-2xl transition-all duration-300 w-[168px] h-[88px] md:w-[200px] md:h-[100px] cursor-pointer hover:scale-110"
             >
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="max-h-full max-w-full object-contain"
+                className="max-h-full max-w-full object-contain group-hover:scale-110 transition-all duration-300"
                 onError={(e) => (e.currentTarget.style.display = 'none')}
               />
             </div>

@@ -4,7 +4,8 @@ import {
   Lightbulb, ShieldCheck, Star, Zap, 
   Users, Calendar, MapPin, 
   BadgeCheck, CreditCard, Headphones, Settings, Shield,
-  HeartHandshake
+  HeartHandshake,
+  Code2, Building, Tv2, Palette, Cloud, Smartphone, Package, Brain, Sparkles, GraduationCap, Bell
 } from 'lucide-react';
 
 /** Dummy social URLs (example.com) — replace with real profiles when available. */
@@ -13,6 +14,113 @@ export type LeadershipSocial = {
   x: string;
   web: string;
 };
+
+export const technologies = [
+  {
+    category: 'Web Development',
+    desc: 'Modern, responsive web applications',
+    icon: React.createElement(Code2, { size: 24 }),
+    items: [
+      { name: 'React', icon: React.createElement(Code2, { size: 20 }) },
+      { name: 'Next.js', icon: React.createElement(Zap, { size: 20 }) },
+      { name: 'TypeScript', icon: React.createElement(Settings, { size: 20 }) },
+      { name: 'Vue.js', icon: React.createElement(Globe, { size: 20 }) },
+      { name: 'Tailwind CSS', icon: React.createElement(Palette, { size: 20 }) },
+      { name: 'Node.js', icon: React.createElement(Code2, { size: 20 }) },
+    ],
+  },
+  {
+    category: 'Software Development',
+    desc: 'Custom enterprise software solutions',
+    icon: React.createElement(Building, { size: 24 }),
+    items: [
+      { name: 'Java', icon: React.createElement(Building, { size: 20 }) },
+      { name: 'Python', icon: React.createElement(Brain, { size: 20 }) },
+      { name: 'C#', icon: React.createElement(ShieldCheck, { size: 20 }) },
+      { name: 'Microservices', icon: React.createElement(Globe, { size: 20 }) },
+      { name: 'REST APIs', icon: React.createElement(Code2, { size: 20 }) },
+      { name: 'System Design', icon: React.createElement(Settings, { size: 20 }) },
+    ],
+  },
+  {
+    category: 'Video Editing',
+    desc: 'Professional video content creation',
+    icon: React.createElement(Tv2, { size: 24 }),
+    items: [
+      { name: 'Premiere Pro', icon: React.createElement(Tv2, { size: 20 }) },
+      { name: 'After Effects', icon: React.createElement(Sparkles, { size: 20 }) },
+      { name: 'DaVinci Resolve', icon: React.createElement(GraduationCap, { size: 20 }) },
+      { name: 'Final Cut Pro', icon: React.createElement(Tv2, { size: 20 }) },
+      { name: 'Motion Graphics', icon: React.createElement(Sparkles, { size: 20 }) },
+      { name: 'Color Grading', icon: React.createElement(Palette, { size: 20 }) },
+    ],
+  },
+  {
+    category: 'Graphic Design',
+    desc: 'Creative visual design solutions',
+    icon: React.createElement(Palette, { size: 24 }),
+    items: [
+      { name: 'Figma', icon: React.createElement(Palette, { size: 20 }) },
+      { name: 'Adobe Creative Suite', icon: React.createElement(Palette, { size: 20 }) },
+      { name: 'Photoshop', icon: React.createElement(Palette, { size: 20 }) },
+      { name: 'Illustrator', icon: React.createElement(Zap, { size: 20 }) },
+      { name: 'Logo Design', icon: React.createElement(Star, { size: 20 }) },
+      { name: 'Brand Identity', icon: React.createElement(ShieldCheck, { size: 20 }) },
+    ],
+  },
+  {
+    category: 'Cloud & DevOps',
+    desc: 'Scalable infrastructure & deployment',
+    icon: React.createElement(Cloud, { size: 24 }),
+    items: [
+      { name: 'AWS', icon: React.createElement(Cloud, { size: 20 }) },
+      { name: 'Docker', icon: React.createElement(Package, { size: 20 }) },
+      { name: 'Kubernetes', icon: React.createElement(Globe, { size: 20 }) },
+      { name: 'CI/CD', icon: React.createElement(Zap, { size: 20 }) },
+      { name: 'Terraform', icon: React.createElement(Settings, { size: 20 }) },
+      { name: 'Linux', icon: React.createElement(Code2, { size: 20 }) },
+    ],
+  },
+  {
+    category: 'Mobile Development',
+    desc: 'Cross-platform mobile applications',
+    icon: React.createElement(Smartphone, { size: 24 }),
+    items: [
+      { name: 'React Native', icon: React.createElement(Smartphone, { size: 20 }) },
+      { name: 'Flutter', icon: React.createElement(Zap, { size: 20 }) },
+      { name: 'Swift', icon: React.createElement(Code2, { size: 20 }) },
+      { name: 'Kotlin', icon: React.createElement(Building, { size: 20 }) },
+      { name: 'Firebase', icon: React.createElement(Cloud, { size: 20 }) },
+      { name: 'Push Notifications', icon: React.createElement(Bell, { size: 20 }) },
+    ],
+  },
+  {
+    category: 'Database Design',
+    desc: 'Efficient data storage & management',
+    icon: React.createElement(Package, { size: 24 }),
+    items: [
+      { name: 'PostgreSQL', icon: React.createElement(Package, { size: 20 }) },
+      { name: 'MongoDB', icon: React.createElement(Package, { size: 20 }) },
+      { name: 'Redis', icon: React.createElement(Zap, { size: 20 }) },
+      { name: 'MySQL', icon: React.createElement(Code2, { size: 20 }) },
+      { name: 'Prisma', icon: React.createElement(Settings, { size: 20 }) },
+      { name: 'Data Modeling', icon: React.createElement(Brain, { size: 20 }) },
+    ],
+  },
+  {
+    category: 'AI & Machine Learning',
+    desc: 'Intelligent automation solutions',
+    icon: React.createElement(Brain, { size: 24 }),
+    items: [
+      { name: 'OpenAI', icon: React.createElement(Brain, { size: 20 }) },
+      { name: 'TensorFlow', icon: React.createElement(Sparkles, { size: 20 }) },
+      { name: 'PyTorch', icon: React.createElement(Brain, { size: 20 }) },
+      { name: 'LLM Integration', icon: React.createElement(Globe, { size: 20 }) },
+      { name: 'Data Analysis', icon: React.createElement(Brain, { size: 20 }) },
+      { name: 'Predictive Models', icon: React.createElement(TrendingUp, { size: 20 }) },
+    ],
+  },
+];
 
 export const leadership: Array<{
   name: string;

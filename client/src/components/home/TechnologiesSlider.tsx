@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-=======
-import React, { useEffect, useState } from 'react';
->>>>>>> bf4f46c55be49902978ce9731da20456181294b7
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
@@ -98,8 +94,8 @@ export const ProductsSlider: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
           >
-            <Link to="/solutions" className="text-primary font-bold flex items-center gap-2 group whitespace-nowrap shrink-0">
-              Explore Technologies <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            <Link to="/services" className="text-primary font-bold flex items-center gap-2 group whitespace-nowrap shrink-0">
+              Explore Services <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
@@ -235,7 +231,7 @@ export const ProductsSlider: React.FC = () => {
                     className="w-full sm:w-auto"
                   >
                     <Link
-                      to={`/solutions?category=${cat.id}`}
+                      to="/services"
                       className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-sm font-bold text-sm hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--color-primary)_40%,transparent)] hover:-translate-y-0.5 active:scale-95 transition-all text-white"
                     >
                       Learn More <ArrowRight size={16} />

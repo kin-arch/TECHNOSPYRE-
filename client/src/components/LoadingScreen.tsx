@@ -10,7 +10,7 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] bg-background flex flex-col items-center justify-center gap-5"
+          className="fixed inset-0 z-[9999] bg-background flex flex-col items-center justify-center gap-2"
         >
           <motion.div
             layoutId="site-logo"
@@ -20,16 +20,6 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
             // className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-primary font-headline"
           >
             <img src="/CompanyLogo.png" alt="Logo" className="w-72 h-72" />
-          </motion.div>
-
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-            className="text-surface font-headline tracking-[0.2em] uppercase text-sm"
-          >
-            Initializing Experience...
           </motion.div>
           {/* Progress Bar */}
           <motion.div

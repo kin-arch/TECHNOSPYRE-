@@ -332,7 +332,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="w-full py-16 px-8 mt-20 border-t border-outline-variant bg-surface-container-low">
+    <footer className="w-full py-16 px-8 border-t border-outline-variant bg-surface-container-low">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           {/* Brand column */}

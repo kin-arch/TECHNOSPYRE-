@@ -1,62 +1,13 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Clock, Award, Sparkles, BookOpen, GraduationCap, Zap } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { reactCourse } from '@/data/courses';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export const ReactCourseDetails: React.FC = () => {
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  useLayoutEffect(() => {
-    if (!sectionRef.current) return;
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.react-heading',
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.react-card',
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.react-cards-wrapper',
-            start: 'top 80%',
-          },
-        }
-      );
-    }, sectionRef.current);
-
-    return () => ctx.revert();
-  }, []);
-
   const { beginner, professional } = reactCourse;
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-24 md:py-28 px-6 sm:px-8 relative overflow-hidden bg-surface-container border-b border-border/50"
-    >
+    <section className="py-24 md:py-28 px-6 sm:px-8 relative overflow-hidden bg-surface-container border-b border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="react-heading mb-12 text-center">
           <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 block inline-flex items-center gap-2">

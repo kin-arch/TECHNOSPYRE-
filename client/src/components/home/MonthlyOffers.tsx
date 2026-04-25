@@ -1,57 +1,12 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Gift, ArrowRight, Calendar, Sparkles } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { monthlyOffers } from '@/data/courses';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const offer = monthlyOffers[0];
 
 export const MonthlyOffers: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const cardRefs = useRef<HTMLDivElement[]>([]);
-
-  useLayoutEffect(() => {
-    if (!sectionRef.current) return;
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.offer-heading',
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.offer-card',
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.offers-grid',
-            start: 'top 80%',
-          },
-        }
-      );
-    }, sectionRef.current);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
@@ -85,12 +40,9 @@ export const MonthlyOffers: React.FC = () => {
         </div>
 
         <div className="offers-grid max-w-2xl mx-auto">
-          {offer.courses.map((course, i) => (
+          {offer.courses.map((course) => (
             <div
               key={course.id}
-              ref={(el) => {
-                if (el) cardRefs.current[i] = el;
-              }}
               className="offer-card group relative rounded-sm border-2 border-primary/30 bg-surface-container p-8 hover:border-primary/60 transition-all duration-300"
             >
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-bold px-4 py-1.5 rounded-full">

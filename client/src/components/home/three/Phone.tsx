@@ -16,16 +16,16 @@ export function Phone() {
   const screenTexture = useMemo(() => {
     const c = document.createElement("canvas");
     c.width = 600;
-    c.height = 1300;
+    c.height = 800;
     const ctx = c.getContext("2d")!;
 
     // Background
-    const grad = ctx.createLinearGradient(0, 0, 600, 1300);
+    const grad = ctx.createLinearGradient(0, 0, 600, 800);
     grad.addColorStop(0, "#0a1130");
     grad.addColorStop(0.5, "#0066FF");
     grad.addColorStop(1, "#00CFFF");
     ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 600, 1300);
+    ctx.fillRect(0, 0, 600, 800);
 
     // Status bar
     ctx.fillStyle = "rgba(255,255,255,0.95)";

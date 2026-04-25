@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React from 'react';
 import { Hero } from '../components/home/Hero';
 import { SectionLines } from '../components/SectionLines';
 import { LogoTicker } from '../components/home/LogoTicker';
@@ -8,10 +8,9 @@ import { SpecialOffer } from '../components/home/SpecialOffer';
 import { TestimonialsGrid } from '../components/home/TestimonialsGrid';
 import { HomeCTA } from '../components/home/HomeCTA';
 import SEO from '../components/SEO';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Home = () => {
+<<<<<<< HEAD
   const pageRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
@@ -159,37 +158,39 @@ const Home = () => {
     return () => ctx.revert();
   }, []);
 
+=======
+>>>>>>> bf4f46c55be49902978ce9731da20456181294b7
   return (
-    <div className="overflow-x-hidden" ref={pageRef}>
+    <div className="overflow-x-hidden">
       <SEO
         title="TechnoSpyre | Leading AI & Cloud Solutions"
         description="TechnoSpyre Inc. specializes in engineering, scaling, and managing resilient technology ecosystems for modern businesses."
       />
-      <div data-home-reveal>
+      <div>
         <Hero />
       </div>
       <SectionLines />
-      <div data-home-reveal>
+      <div>
         <LogoTicker />
       </div>
       <SectionLines />
-      <div data-home-reveal>
+      <div>
         <SpecialOffer />
       </div>
       <SectionLines />
-      <div data-home-reveal>
+      <div>
         <ProductsGrid />
       </div>
       <SectionLines />
-      <div data-home-reveal>
+      <div>
         <ProductsSlider />
       </div>
       <SectionLines />
-      <div data-home-reveal>
+      <div>
         <TestimonialsGrid />
       </div>
       <SectionLines />
-      <div data-home-reveal>
+      <div>
         <HomeCTA />
       </div>
     </div>

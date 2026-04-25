@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
@@ -183,9 +183,10 @@ export const ProductsSlider: React.FC = () => {
       className="py-16 md:py-20 px-6 sm:px-8 relative overflow-hidden bg-background border-y border-border/60"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-sm bg-primary/10 blur-3xl" />
-        <div className="absolute -bottom-48 right-[-120px] h-[520px] w-[520px] rounded-sm bg-primary/10 blur-3xl" />
+        <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/5 [mask-image:radial-gradient(circle,white_0%,transparent_70%)]" />
+        <div className="absolute -bottom-48 right-[-120px] h-[520px] w-[520px] rounded-full bg-primary/5 [mask-image:radial-gradient(circle,white_0%,transparent_70%)]" />
       </div>
+
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div

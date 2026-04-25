@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonials } from '../../data/home';
@@ -47,9 +47,11 @@ export const TestimonialsGrid: React.FC = () => {
   return (
     <section ref={sectionRef} className="py-16 md:py-20 px-6 sm:px-8 bg-surface-container-low border-t border-outline-variant relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
+      {/* Optimized background element - removed blur for performance */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/[0.03] rounded-full [mask-image:radial-gradient(circle,white_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +70,8 @@ export const TestimonialsGrid: React.FC = () => {
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-stretch">
           {/* Featured quote */}
-          <div data-testimonial-card className="relative rounded-sm border border-outline-variant bg-surface-container p-8 md:p-10 overflow-hidden min-h-[320px] flex flex-col justify-between">
+          <div data-testimonial-card className="relative rounded-sm border border-outline-variant bg-surface-container p-8 md:p-10 overflow-hidden min-h-[320px] flex flex-col justify-between will-change-transform">
+
             <Quote size={120} className="absolute -top-4 -right-4 text-primary/10" strokeWidth={1} />
             <AnimatePresence mode="wait">
               <motion.div

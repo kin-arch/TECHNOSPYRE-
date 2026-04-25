@@ -61,13 +61,20 @@ gsap.registerPlugin(ScrollTrigger);
 
       gsap.set([icon, title, link], { y: 0, opacity: 1 });
 
+      let rafId: number | null = null;
       const handleMouseMove = (e: MouseEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
+        if (rafId) return;
+        
+        rafId = requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+          rafId = null;
+        });
       };
+
 
       const handleMouseEnter = () => {
         const tl = gsap.timeline();
@@ -188,16 +195,16 @@ gsap.registerPlugin(ScrollTrigger);
             <div
               key={c.id}
               data-home-item
-              className="product-card group relative rounded-sm border border-outline-variant bg-surface-container p-5 sm:p-6 min-h-[240px] flex flex-col justify-between hover:border-primary/45 transition-all duration-300 cursor-pointer overflow-hidden"
+              className="product-card group relative rounded-sm border border-outline-variant bg-surface-container p-5 sm:p-6 min-h-[240px] flex flex-col justify-between hover:border-primary/45 transition-all duration-300 cursor-pointer overflow-hidden will-change-transform"
               data-home-glow
             >
               <div
                 className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                 style={{
-                  background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(233, 100%, 18%, 0.08), transparent 40%)`,
+                  background: `radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), hsla(var(--primary-h), var(--primary-s), var(--primary-l), 0.06), transparent 40%)`,
                 }}
               />
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between relative z-20">
                 <div className="card-icon w-14 h-14 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 shadow-sm">
                   {c.icon}
                 </div>
@@ -205,15 +212,16 @@ gsap.registerPlugin(ScrollTrigger);
                   {c.tag}
                 </span>
               </div>
+ 
+                <div className="mt-4 relative z-20">
+                  <h3 className="card-title font-headline text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors mb-1.5">
+                    {c.label}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed font-medium">
+                    {c.tagline}
+                  </p>
+                </div>
 
-               <div className="mt-4">
-                 <h3 className="card-title font-headline text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors mb-1.5">
-                   {c.label}
-                 </h3>
-                 <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-                   {c.tagline}
-                 </p>
-               </div>
 
                {/* Pricing indicator */}
                {'pricingLabel' in c && c.pricingLabel && (

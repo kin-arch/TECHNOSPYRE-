@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -119,7 +119,3 @@ export const AboutHero: React.FC = () => {
     </section>
   );
 };
-
-
-
-

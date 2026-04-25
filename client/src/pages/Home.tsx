@@ -140,19 +140,20 @@ const Home = () => {
       gsap.utils.toArray<HTMLElement>('[data-home-blur]').forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, filter: 'blur(10px)' },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
-            filter: 'blur(0px)',
-            duration: 1,
+            y: 0,
+            duration: 0.8,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 85%',
+              start: 'top 90%',
             },
           },
         );
       });
+
     }, pageRef);
 
     return () => ctx.revert();

@@ -1,4 +1,4 @@
-﻿ import React from 'react';
+ import React from 'react';
  import { motion, Variants } from 'motion/react';
  import { CheckCircle2, Settings, ShieldCheck, Sparkles, ArrowRight, Target } from 'lucide-react';
  import { Link } from 'react-router-dom';

@@ -10,13 +10,14 @@ import {
   CreditCard,
   LayoutDashboard,
   PlayCircle,
-  Shield,
   Sparkles,
   Zap,
 } from 'lucide-react';
 import { categories, type Product } from '../data/product';
+import { softwareSuite } from '../data/softwareSuite';
 import SEO from '../components/SEO';
 import { VideoPlayer } from '@/components/VideoPlayer';
+import { ProductDetailPricing } from '../components/product/detail/ProductDetailSections';
 
 const DEFAULT_VIDEO = '/solution.mp4';
 
@@ -107,14 +108,39 @@ const ProductDetail = () => {
       'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop&q=80',
     ];
 
-  const featureList = product?.features?.length
-    ? product.features
-    : [
-      'Role-based access & audit trails',
-      'Real-time dashboards & exports',
-      'Workflow automation & approvals',
-      'API-first integrations',
-    ];
+  const suite = useMemo(() => {
+    if (!product) return null;
+    return softwareSuite.find((item) => item.productId === product.id) ?? null;
+  }, [product]);
+
+  const featureList = suite?.featureHighlights?.length
+    ? suite.featureHighlights
+    : product?.features?.length
+      ? product.features
+      : [
+          'Role-based access & audit trails',
+          'Real-time dashboards & exports',
+          'Workflow automation & approvals',
+          'API-first integrations',
+        ];
+
+  const allModules = useMemo(() => {
+    if (suite?.keyFeatures?.length) return suite.keyFeatures;
+    return product?.features?.map((feature) => ({
+      title: feature,
+      category: 'Core Module',
+      description: `Comprehensive ${feature.toLowerCase()} capability tailored for your ${product.category === 'operations' ? 'operational' : 'business'} needs.`,
+    })) || [];
+  }, [product, suite]);
+
+  const defaultVisibleModules = 6;
+  const [showAllModules, setShowAllModules] = useState(false);
+  const visibleModules = showAllModules ? allModules : allModules.slice(0, defaultVisibleModules);
+  const hiddenModuleCount = Math.max(allModules.length - defaultVisibleModules, 0);
+
+  useEffect(() => {
+    setShowAllModules(false);
+  }, [id]);
 
   const faqs = useMemo(() => {
     if (!product) return baseFaqs;
@@ -230,72 +256,96 @@ const ProductDetail = () => {
                 <div className="max-w-3xl">
                   <p className="text-lg leading-relaxed text-on-surface-variant">{product.shortDescription}</p>
                   <p className="mt-4 text-base leading-relaxed text-on-surface-variant/90">{product.longDetails}</p>
+                  {suite?.moduleSummary && (
+                    <p className="mt-4 rounded-sm border border-primary/15 bg-primary/5 px-4 py-3 text-sm leading-relaxed text-on-surface-variant">
+                      {suite.moduleSummary}
+                    </p>
+                  )}
                 </div>
               </motion.div>
 
-              {/* Feature Section */}
-              <motion.section
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.55 }}
-                className="rounded-sm border border-outline-variant bg-gradient-to-br from-surface-container-low to-surface-container p-8 md:p-10"
-              >
-                <div className="mb-2 flex items-center gap-2 text-primary">
-                  <Zap size={20} />
-                  <span className="text-xs font-bold uppercase tracking-widest">Key Features</span>
-                </div>
-                <h2 className="mb-8 font-headline text-2xl font-bold text-on-surface md:text-3xl">Built for scale</h2>
-                <div className="grid gap-8 sm:grid-cols-2">
-                  <div className="flex gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
-                      <Shield size={24} className="text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="mb-2 text-lg font-bold text-on-surface">Enterprise Security</h3>
-                      <p className="text-sm leading-relaxed text-on-surface-variant">SOC2-compliant with end-to-end encryption, role-based access control, and comprehensive audit trails.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
-                      <Zap size={24} className="text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="mb-2 text-lg font-bold text-on-surface">Lightning Fast</h3>
-                      <p className="text-sm leading-relaxed text-on-surface-variant">Optimized performance with sub-second response times and real-time data synchronization across all endpoints.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
-                      <LayoutDashboard size={24} className="text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="mb-2 text-lg font-bold text-on-surface">Intuitive Dashboard</h3>
-                      <p className="text-sm leading-relaxed text-on-surface-variant">Customizable dashboards with drag-and-drop widgets, advanced filtering, and actionable insights at a glance.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-primary/20 bg-primary/10">
-                      <CheckCircle2 size={24} className="text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="mb-2 text-lg font-bold text-on-surface">Seamless Integrations</h3>
-                      <p className="text-sm leading-relaxed text-on-surface-variant">Connect with 100+ pre-built integrations and custom APIs to fit your existing tech stack perfectly.</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.section>
+               {/* Modules Section */}
+               <motion.section
+                 initial={{ opacity: 0, x: -30 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true, margin: '-40px' }}
+                 transition={{ duration: 0.55 }}
+                 className="rounded-sm border border-outline-variant bg-gradient-to-br from-surface-container-low to-surface-container p-8 md:p-10"
+               >
+                 <div className="mb-2 flex items-center gap-2 text-primary">
+                   <LayoutDashboard size={20} />
+                   <span className="text-xs font-bold uppercase tracking-widest">Modules</span>
+                 </div>
+                 <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                   <div>
+                     <h2 className="font-headline text-2xl font-bold text-on-surface md:text-3xl">Everything you need to operate</h2>
+                     <p className="mt-2 max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+                       {suite?.readMore || 'Purpose-built modules organized around the way your teams actually work.'}
+                     </p>
+                   </div>
+                   <div className="inline-flex items-center gap-2 rounded-sm border border-primary/20 bg-primary/10 px-3 py-2 text-sm font-semibold text-primary">
+                     <Sparkles size={16} />
+                     {allModules.length} operational modules
+                   </div>
+                 </div>
+                 <div className="grid gap-6 sm:grid-cols-2">
+                   {visibleModules.map((module, index) => (
+                     <motion.div
+                       key={index}
+                       initial={{ opacity: 0, y: 12 }}
+                       whileInView={{ opacity: 1, y: 0 }}
+                       viewport={{ once: true }}
+                       transition={{ duration: 0.4, delay: index * 0.06 }}
+                       className="flex gap-4 p-4 rounded-sm bg-surface-container/50 border border-border/40 hover:border-primary/30 transition-all"
+                     >
+                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary/10 border border-primary/20 text-primary">
+                         <CheckCircle2 size={20} />
+                       </div>
+                        <div>
+                          {'category' in module && module.category && (
+                            <span className="mb-2 inline-flex rounded-sm border border-primary/15 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
+                              {module.category}
+                            </span>
+                          )}
+                          <h3 className="text-base md:text-lg font-bold text-on-surface mb-1">{module.title}</h3>
+                          <p className="text-xs md:text-sm leading-relaxed text-on-surface-variant">
+                            {module.description}
+                          </p>
+                        </div>
+                     </motion.div>
+                   ))}
+                 </div>
 
-              {/* Highlights */}
-              <motion.section
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.55 }}
-                className="rounded-sm border border-outline-variant bg-surface-container p-8 md:p-10"
-              >
-                <h2 className="mb-6 font-headline text-2xl font-bold text-on-surface md:text-3xl">What you get</h2>
-                <div className="grid gap-4 sm:grid-cols-2">
+                  {allModules.length > defaultVisibleModules && (
+                    <div className="mt-6 flex justify-center">
+                      <button
+                        type="button"
+                        onClick={() => setShowAllModules((prev) => !prev)}
+                        className="inline-flex items-center gap-2 rounded-sm border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+                      >
+                        {showAllModules ? 'Show Fewer Modules' : `View More Modules${hiddenModuleCount ? ` (${hiddenModuleCount})` : ''}`}
+                        <ChevronDown
+                          size={16}
+                          className={`transition-transform duration-300 ${showAllModules ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                    </div>
+                  )}
+               </motion.section>
+
+               {/* Highlights */}
+               <motion.section
+                 initial={{ opacity: 0, x: 30 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true, margin: '-40px' }}
+                 transition={{ duration: 0.55 }}
+                 className="rounded-sm border border-outline-variant bg-surface-container p-6 md:p-8"
+               >
+                 <h2 className="mb-2 font-headline text-xl md:text-2xl font-bold text-on-surface">What you get</h2>
+                 <p className="mb-5 max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+                   Key capabilities that make {product.name} easier to adopt, easier to scale, and better aligned with real operational needs.
+                 </p>
+                 <div className="grid gap-3 sm:grid-cols-2">
                   {featureList.map((item, i) => (
                     <motion.div
                       key={i}
@@ -383,131 +433,7 @@ const ProductDetail = () => {
 
           <div className="flex flex-col gap-20">
             {/* Pricing Section */}
-            <motion.section
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6 }}
-              className="rounded-sm border border-outline-variant bg-gradient-to-br from-surface-container-low to-surface-container p-8 md:p-10"
-            >
-              <div className="mb-2 flex items-center gap-2 text-primary">
-                <CreditCard size={20} />
-                <span className="text-xs font-bold uppercase tracking-widest">Pricing Plans</span>
-              </div>
-              <h2 className="mb-8 font-headline text-2xl font-bold text-on-surface md:text-3xl">Choose your plan</h2>
-              <div className="grid gap-6 md:grid-cols-2">
-                {/* Lifetime Plan */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="relative overflow-hidden rounded-sm border-2 border-primary bg-surface-container p-6 shadow-lg"
-                >
-                  <div className="absolute right-0 top-0 rounded-bl-sm bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
-                    BEST VALUE
-                  </div>
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 text-lg font-bold text-on-surface">
-                      <Calendar size={20} className="text-primary" />
-                      <span>Lifetime Access</span>
-                    </div>
-                    <p className="mt-1 text-sm text-on-surface-variant">One-time payment, perpetual access</p>
-                  </div>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-on-surface">Rs. 699,999</span>
-                    <span className="ml-2 text-sm text-on-surface-variant line-through">Rs. 1,119,999</span>
-                    <span className="ml-2 text-sm font-bold text-emerald-600">Save 37%</span>
-                  </div>
-                  <ul className="mb-6 space-y-3">
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Full software license (perpetual)</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>All future updates included</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Priority 24/7 support</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Custom onboarding session</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Source code included</span>
-                    </li>
-                  </ul>
-                  <Link
-                    to="/contact"
-                    className="flex w-full items-center justify-center gap-2 bg-primary py-3 rounded-sm font-bold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95"
-                  >
-                    Get Lifetime Access <ArrowRight size={16} />
-                  </Link>
-                </motion.div>
-
-                {/* Monthly Plan */}
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="relative overflow-hidden rounded-sm border border-outline-variant bg-surface p-6 shadow-lg"
-                >
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 text-lg font-bold text-on-surface">
-                      <Zap size={20} className="text-primary" />
-                      <span>Monthly Plan</span>
-                    </div>
-                    <p className="mt-1 text-sm text-on-surface-variant">Flexible subscription, cancel anytime</p>
-                  </div>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-on-surface">Rs. 41,999</span>
-                    <span className="ml-2 text-sm text-on-surface-variant">/month</span>
-                  </div>
-                  <ul className="mb-6 space-y-3">
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Full feature access</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Regular updates & new features</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Email & chat support</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Standard onboarding</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-on-surface-variant">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>Cloud hosting included</span>
-                    </li>
-                  </ul>
-                  <Link
-                    to="/contact"
-                    className="flex w-full items-center justify-center gap-2 border border-primary py-3 rounded-sm font-bold text-primary transition-all duration-300 hover:bg-primary/10 active:scale-95"
-                  >
-                    Start Monthly Plan <ArrowRight size={16} />
-                  </Link>
-                </motion.div>
-              </div>
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                className="mt-6 text-center text-sm text-on-surface-variant"
-              >
-                Need a custom enterprise solution? <Link to="/contact" className="text-primary hover:underline">Contact us</Link> for tailored pricing.
-              </motion.p>
-            </motion.section>
+            <ProductDetailPricing productId={product.id} />
 
             {/* Clients */}
             <motion.section

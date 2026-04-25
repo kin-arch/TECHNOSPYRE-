@@ -1,0 +1,1451 @@
+{
+  "pricingVersion": "1.0",
+  "lastUpdated": "2026-04-25",
+  "currency": "PKR",
+  "products": [
+    {
+      "id": "hospital-management",
+      "name": "Hospital Management & Information System",
+      "displayName": "Hospital Management System (HMS)",
+      "fullSuite": {
+        "implementationFee": 2000000,
+        "monthlyMaintenanceFee": 50000,
+        "includes": [
+          "Patient Registration & Records",
+          "Appointment Scheduling",
+          "Electronic Health Records (EHR)",
+          "Billing & Invoicing",
+          "Pharmacy Management",
+          "Laboratory Management",
+          "Radiology Management",
+          "Inventory Management",
+          "Staff Management",
+          "Reports & Analytics",
+          "Multi-user Access (Unlimited)",
+          "Basic Training (2 sessions)",
+          "12 months premium support"
+        ],
+        "benefits": [
+          "~35% cost savings vs. purchasing all modules individually",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "patient_registration",
+          "name": "Patient Registration & Records",
+          "setupFee": 150000,
+          "monthlyFee": 8000,
+          "description": "Patient registration, demographic data, medical history, visit tracking"
+        },
+        {
+          "id": "appointment_scheduling",
+          "name": "Appointment Scheduling",
+          "setupFee": 100000,
+          "monthlyFee": 5000,
+          "description": "Online/offline appointment booking, calendar management, reminders"
+        },
+        {
+          "id": "ehr",
+          "name": "Electronic Health Records (EHR)",
+          "setupFee": 300000,
+          "monthlyFee": 12000,
+          "description": "Clinical documentation, prescriptions, progress notes, e-prescribing"
+        },
+        {
+          "id": "billing_invoicing",
+          "name": "Billing & Invoicing",
+          "setupFee": 120000,
+          "monthlyFee": 6000,
+          "description": "Invoice generation, payment tracking, insurance claims, financial reports"
+        },
+        {
+          "id": "pharmacy_management",
+          "name": "Pharmacy Management",
+          "setupFee": 180000,
+          "monthlyFee": 9000,
+          "description": "Drug inventory, dispensing, stock alerts, prescription management"
+        },
+        {
+          "id": "laboratory_management",
+          "name": "Laboratory Management",
+          "setupFee": 200000,
+          "monthlyFee": 10000,
+          "description": "Lab test ordering, sample tracking, results entry, LIS integration"
+        },
+        {
+          "id": "radiology_management",
+          "name": "Radiology Management",
+          "setupFee": 200000,
+          "monthlyFee": 10000,
+          "description": "Imaging orders, DICOM integration, report generation, film tracking"
+        },
+        {
+          "id": "inventory_management",
+          "name": "Inventory Management",
+          "setupFee": 150000,
+          "monthlyFee": 7000,
+          "description": "Stock tracking, purchase orders, vendor management, expiry alerts"
+        },
+        {
+          "id": "staff_management",
+          "name": "Staff Management",
+          "setupFee": 100000,
+          "monthlyFee": 5000,
+          "description": "Employee records, schedules, payroll integration, leave management"
+        },
+        {
+          "id": "reports_analytics",
+          "name": "Reports & Analytics",
+          "setupFee": 250000,
+          "monthlyFee": 11000,
+          "description": "Custom reports, dashboards, KPI tracking, data export (PDF/Excel)"
+        },
+        {
+          "id": "multi_user_access",
+          "name": "Multi-user Access (per 10 users)",
+          "setupFee": 50000,
+          "monthlyFee": 2000,
+          "description": "Additional user licenses beyond base package (10-user increments)",
+          "isAddon": true
+        },
+        {
+          "id": "basic_training",
+          "name": "Basic Training (per session)",
+          "setupFee": 75000,
+          "monthlyFee": 0,
+          "description": "On-site or virtual training session (4 hours max)",
+          "isAddon": true
+        },
+        {
+          "id": "premium_support",
+          "name": "Premium Support",
+          "setupFee": 0,
+          "monthlyFee": 15000,
+          "description": "24/7 phone & email support, 2-hour response SLA, dedicated manager",
+          "isAddon": true
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ],
+        "customDevelopment": {
+          "hourlyRate": 5000,
+          "minProjectFee": 50000,
+          "estimatedComplexityLevels": {
+            "low": {
+              "hours": "20-40",
+              "baseCost": 100000
+            },
+            "medium": {
+              "hours": "40-100",
+              "baseCost": 300000
+            },
+            "high": {
+              "hours": "100+",
+              "baseCost": 600000,
+              "customQuote": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "hr-management",
+      "name": "Human Resource Management (HRMS)",
+      "displayName": "Human Resource Management (HRMS)",
+      "fullSuite": {
+        "implementationFee": 1500000,
+        "monthlyMaintenanceFee": 35000,
+        "includes": [
+          "Employee Master Data",
+          "Recruitment & Onboarding",
+          "Payroll Management",
+          "Leave & Attendance",
+          "Performance Evaluation",
+          "Policy & Compliance",
+          "Training & Development",
+          "Employee Self Service Portal"
+        ],
+        "benefits": [
+          "~-53% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "employee_master_data_0",
+          "name": "Employee Master Data",
+          "setupFee": 120000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive employee master data capability for Human Resource Management (HRMS)"
+        },
+        {
+          "id": "recruitment_onboarding_1",
+          "name": "Recruitment & Onboarding",
+          "setupFee": 100000,
+          "monthlyFee": 5000,
+          "description": "Comprehensive recruitment & onboarding capability for Human Resource Management (HRMS)"
+        },
+        {
+          "id": "payroll_management_2",
+          "name": "Payroll Management",
+          "setupFee": 180000,
+          "monthlyFee": 9000,
+          "description": "Comprehensive payroll management capability for Human Resource Management (HRMS)"
+        },
+        {
+          "id": "leave_attendance_3",
+          "name": "Leave & Attendance",
+          "setupFee": 120000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive leave & attendance capability for Human Resource Management (HRMS)"
+        },
+        {
+          "id": "performance_evaluation_4",
+          "name": "Performance Evaluation",
+          "setupFee": 150000,
+          "monthlyFee": 7500,
+          "description": "Comprehensive performance evaluation capability for Human Resource Management (HRMS)"
+        },
+        {
+          "id": "policy_compliance_5",
+          "name": "Policy & Compliance",
+          "setupFee": 100000,
+          "monthlyFee": 5000,
+          "description": "Comprehensive policy & compliance capability for Human Resource Management (HRMS)"
+        },
+        {
+          "id": "training_development_6",
+          "name": "Training & Development",
+          "setupFee": 130000,
+          "monthlyFee": 6500,
+          "description": "Comprehensive training & development capability for Human Resource Management (HRMS)"
+        },
+        {
+          "id": "employee_self_service_portal_7",
+          "name": "Employee Self Service Portal",
+          "setupFee": 80000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive employee self service portal capability for Human Resource Management (HRMS)"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "employee-portal",
+      "name": "Employee Self Service Portal",
+      "displayName": "Employee Self Service Portal",
+      "fullSuite": {
+        "implementationFee": 300000,
+        "monthlyMaintenanceFee": 8000,
+        "includes": [
+          "Profile Management",
+          "Payslip & Tax Documents",
+          "Leave Application & Tracking",
+          "Attendance & Timesheet View",
+          "Task & Project Updates",
+          "Company Announcements"
+        ],
+        "benefits": [
+          "~6% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "profile_management_0",
+          "name": "Profile Management",
+          "setupFee": 50000,
+          "monthlyFee": 2000,
+          "description": "Comprehensive profile management capability for Employee Self Service Portal"
+        },
+        {
+          "id": "payslip_tax_documents_1",
+          "name": "Payslip & Tax Documents",
+          "setupFee": 60000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive payslip & tax documents capability for Employee Self Service Portal"
+        },
+        {
+          "id": "leave_application_tracking_2",
+          "name": "Leave Application & Tracking",
+          "setupFee": 70000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive leave application & tracking capability for Employee Self Service Portal"
+        },
+        {
+          "id": "attendance_timesheet_view_3",
+          "name": "Attendance & Timesheet View",
+          "setupFee": 50000,
+          "monthlyFee": 2000,
+          "description": "Comprehensive attendance & timesheet view capability for Employee Self Service Portal"
+        },
+        {
+          "id": "task_project_updates_4",
+          "name": "Task & Project Updates",
+          "setupFee": 60000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive task & project updates capability for Employee Self Service Portal"
+        },
+        {
+          "id": "company_announcements_5",
+          "name": "Company Announcements",
+          "setupFee": 30000,
+          "monthlyFee": 1500,
+          "description": "Comprehensive company announcements capability for Employee Self Service Portal"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "attendance-management",
+      "name": "Attendance Management System",
+      "displayName": "Attendance Management System",
+      "fullSuite": {
+        "implementationFee": 600000,
+        "monthlyMaintenanceFee": 12000,
+        "includes": [
+          "Biometric Device Integration",
+          "Shift & Schedule Management",
+          "Real-time Attendance Tracking",
+          "Late & Overtime Calculation",
+          "Reports & Analytics Dashboard",
+          "Mobile Attendance (GPS)"
+        ],
+        "benefits": [
+          "~14% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "biometric_device_integration_0",
+          "name": "Biometric Device Integration",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive biometric device integration capability for Attendance Management System"
+        },
+        {
+          "id": "shift_schedule_management_1",
+          "name": "Shift & Schedule Management",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive shift & schedule management capability for Attendance Management System"
+        },
+        {
+          "id": "real_time_attendance_tracking_2",
+          "name": "Real-time Attendance Tracking",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive real-time attendance tracking capability for Attendance Management System"
+        },
+        {
+          "id": "late_overtime_calculation_3",
+          "name": "Late & Overtime Calculation",
+          "setupFee": 80000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive late & overtime calculation capability for Attendance Management System"
+        },
+        {
+          "id": "reports_analytics_dashboard_4",
+          "name": "Reports & Analytics Dashboard",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive reports & analytics dashboard capability for Attendance Management System"
+        },
+        {
+          "id": "mobile_attendance_gps_5",
+          "name": "Mobile Attendance (GPS)",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive mobile attendance (gps) capability for Attendance Management System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "supply-chain",
+      "name": "Supply Chain Management",
+      "displayName": "Supply Chain Management",
+      "fullSuite": {
+        "implementationFee": 1200000,
+        "monthlyMaintenanceFee": 25000,
+        "includes": [
+          "Inventory Control & Tracking",
+          "Purchase Order Management",
+          "Vendor & Supplier Management",
+          "Stock Alerts & Reordering",
+          "Warehouse Management",
+          "Goods Receipt & Inspection",
+          "Demand Forecasting",
+          "Logistics & Dispatch"
+        ],
+        "benefits": [
+          "~2% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "inventory_control_tracking_0",
+          "name": "Inventory Control & Tracking",
+          "setupFee": 200000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive inventory control & tracking capability for Supply Chain Management"
+        },
+        {
+          "id": "purchase_order_management_1",
+          "name": "Purchase Order Management",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive purchase order management capability for Supply Chain Management"
+        },
+        {
+          "id": "vendor_supplier_management_2",
+          "name": "Vendor & Supplier Management",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive vendor & supplier management capability for Supply Chain Management"
+        },
+        {
+          "id": "stock_alerts_reordering_3",
+          "name": "Stock Alerts & Reordering",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive stock alerts & reordering capability for Supply Chain Management"
+        },
+        {
+          "id": "warehouse_management_4",
+          "name": "Warehouse Management",
+          "setupFee": 180000,
+          "monthlyFee": 5000,
+          "description": "Comprehensive warehouse management capability for Supply Chain Management"
+        },
+        {
+          "id": "goods_receipt_inspection_5",
+          "name": "Goods Receipt & Inspection",
+          "setupFee": 130000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive goods receipt & inspection capability for Supply Chain Management"
+        },
+        {
+          "id": "demand_forecasting_6",
+          "name": "Demand Forecasting",
+          "setupFee": 200000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive demand forecasting capability for Supply Chain Management"
+        },
+        {
+          "id": "logistics_dispatch_7",
+          "name": "Logistics & Dispatch",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive logistics & dispatch capability for Supply Chain Management"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "finance-system",
+      "name": "Finance & Accounting System",
+      "displayName": "Finance & Accounting System",
+      "fullSuite": {
+        "implementationFee": 1800000,
+        "monthlyMaintenanceFee": 40000,
+        "includes": [
+          "General Ledger",
+          "Accounts Payable/Receivable",
+          "Bank Reconciliation",
+          "Budgeting & Planning",
+          "Financial Reporting",
+          "Tax Management",
+          "Asset Management",
+          "Expense Tracking & Approval"
+        ],
+        "benefits": [
+          "~-29% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "general_ledger_0",
+          "name": "General Ledger",
+          "setupFee": 250000,
+          "monthlyFee": 8000,
+          "description": "Comprehensive general ledger capability for Finance & Accounting System"
+        },
+        {
+          "id": "accounts_payable_receivable_1",
+          "name": "Accounts Payable/Receivable",
+          "setupFee": 200000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive accounts payable/receivable capability for Finance & Accounting System"
+        },
+        {
+          "id": "bank_reconciliation_2",
+          "name": "Bank Reconciliation",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive bank reconciliation capability for Finance & Accounting System"
+        },
+        {
+          "id": "budgeting_planning_3",
+          "name": "Budgeting & Planning",
+          "setupFee": 180000,
+          "monthlyFee": 5500,
+          "description": "Comprehensive budgeting & planning capability for Finance & Accounting System"
+        },
+        {
+          "id": "financial_reporting_4",
+          "name": "Financial Reporting",
+          "setupFee": 220000,
+          "monthlyFee": 7000,
+          "description": "Comprehensive financial reporting capability for Finance & Accounting System"
+        },
+        {
+          "id": "tax_management_5",
+          "name": "Tax Management",
+          "setupFee": 160000,
+          "monthlyFee": 5000,
+          "description": "Comprehensive tax management capability for Finance & Accounting System"
+        },
+        {
+          "id": "asset_management_6",
+          "name": "Asset Management",
+          "setupFee": 140000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive asset management capability for Finance & Accounting System"
+        },
+        {
+          "id": "expense_tracking_approval_7",
+          "name": "Expense Tracking & Approval",
+          "setupFee": 130000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive expense tracking & approval capability for Finance & Accounting System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "project-management",
+      "name": "Project Management & Work Permit System",
+      "displayName": "Project Management & Work Permit System",
+      "fullSuite": {
+        "implementationFee": 800000,
+        "monthlyMaintenanceFee": 18000,
+        "includes": [
+          "Project Planning & Scheduling",
+          "Task Assignment & Tracking",
+          "Resource Allocation",
+          "Workflow Approvals",
+          "Gantt Charts & Timelines",
+          "Document Management",
+          "Time Tracking",
+          "Reporting Dashboard"
+        ],
+        "benefits": [
+          "~11% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "project_planning_scheduling_0",
+          "name": "Project Planning & Scheduling",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive project planning & scheduling capability for Project Management & Work Permit System"
+        },
+        {
+          "id": "task_assignment_tracking_1",
+          "name": "Task Assignment & Tracking",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive task assignment & tracking capability for Project Management & Work Permit System"
+        },
+        {
+          "id": "resource_allocation_2",
+          "name": "Resource Allocation",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive resource allocation capability for Project Management & Work Permit System"
+        },
+        {
+          "id": "workflow_approvals_3",
+          "name": "Workflow Approvals",
+          "setupFee": 80000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive workflow approvals capability for Project Management & Work Permit System"
+        },
+        {
+          "id": "gantt_charts_timelines_4",
+          "name": "Gantt Charts & Timelines",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive gantt charts & timelines capability for Project Management & Work Permit System"
+        },
+        {
+          "id": "document_management_5",
+          "name": "Document Management",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive document management capability for Project Management & Work Permit System"
+        },
+        {
+          "id": "time_tracking_6",
+          "name": "Time Tracking",
+          "setupFee": 80000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive time tracking capability for Project Management & Work Permit System"
+        },
+        {
+          "id": "reporting_dashboard_7",
+          "name": "Reporting Dashboard",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive reporting dashboard capability for Project Management & Work Permit System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "school-management",
+      "name": "School & College Management System",
+      "displayName": "School & College Management System",
+      "fullSuite": {
+        "implementationFee": 1000000,
+        "monthlyMaintenanceFee": 20000,
+        "includes": [
+          "Student Information System (SIS)",
+          "Admissions & Enrollment",
+          "Class & Section Management",
+          "Attendance Tracking",
+          "Examination & Results",
+          "Fee Management",
+          "Timetable & Schedule",
+          "Library Management",
+          "Staff & Payroll",
+          "Parent Portal"
+        ],
+        "benefits": [
+          "~27% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "student_information_system_sis_0",
+          "name": "Student Information System (SIS)",
+          "setupFee": 200000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive student information system (sis) capability for School & College Management System"
+        },
+        {
+          "id": "admissions_enrollment_1",
+          "name": "Admissions & Enrollment",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive admissions & enrollment capability for School & College Management System"
+        },
+        {
+          "id": "class_section_management_2",
+          "name": "Class & Section Management",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive class & section management capability for School & College Management System"
+        },
+        {
+          "id": "attendance_tracking_3",
+          "name": "Attendance Tracking",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive attendance tracking capability for School & College Management System"
+        },
+        {
+          "id": "examination_results_4",
+          "name": "Examination & Results",
+          "setupFee": 180000,
+          "monthlyFee": 5500,
+          "description": "Comprehensive examination & results capability for School & College Management System"
+        },
+        {
+          "id": "fee_management_5",
+          "name": "Fee Management",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive fee management capability for School & College Management System"
+        },
+        {
+          "id": "timetable_schedule_6",
+          "name": "Timetable & Schedule",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive timetable & schedule capability for School & College Management System"
+        },
+        {
+          "id": "library_management_7",
+          "name": "Library Management",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive library management capability for School & College Management System"
+        },
+        {
+          "id": "staff_payroll_8",
+          "name": "Staff & Payroll",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive staff & payroll capability for School & College Management System"
+        },
+        {
+          "id": "parent_portal_9",
+          "name": "Parent Portal",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive parent portal capability for School & College Management System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "lost-found",
+      "name": "Lost & Found Management System",
+      "displayName": "Lost & Found Management System",
+      "fullSuite": {
+        "implementationFee": 250000,
+        "monthlyMaintenanceFee": 5000,
+        "includes": [
+          "Item Logging & Cataloging",
+          "Claim Management",
+          "Owner matching",
+          "Notifications (SMS/Email)",
+          "Photo Upload & Gallery",
+          "Search & Filter",
+          "Reports & Analytics"
+        ],
+        "benefits": [
+          "~26% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "item_logging_cataloging_0",
+          "name": "Item Logging & Cataloging",
+          "setupFee": 50000,
+          "monthlyFee": 1500,
+          "description": "Comprehensive item logging & cataloging capability for Lost & Found Management System"
+        },
+        {
+          "id": "claim_management_1",
+          "name": "Claim Management",
+          "setupFee": 60000,
+          "monthlyFee": 1500,
+          "description": "Comprehensive claim management capability for Lost & Found Management System"
+        },
+        {
+          "id": "owner_matching_2",
+          "name": "Owner matching",
+          "setupFee": 50000,
+          "monthlyFee": 1500,
+          "description": "Comprehensive owner matching capability for Lost & Found Management System"
+        },
+        {
+          "id": "notifications_sms_email_3",
+          "name": "Notifications (SMS/Email)",
+          "setupFee": 50000,
+          "monthlyFee": 1500,
+          "description": "Comprehensive notifications (sms/email) capability for Lost & Found Management System"
+        },
+        {
+          "id": "photo_upload_gallery_4",
+          "name": "Photo Upload & Gallery",
+          "setupFee": 40000,
+          "monthlyFee": 1000,
+          "description": "Comprehensive photo upload & gallery capability for Lost & Found Management System"
+        },
+        {
+          "id": "search_filter_5",
+          "name": "Search & Filter",
+          "setupFee": 30000,
+          "monthlyFee": 1000,
+          "description": "Comprehensive search & filter capability for Lost & Found Management System"
+        },
+        {
+          "id": "reports_analytics_6",
+          "name": "Reports & Analytics",
+          "setupFee": 60000,
+          "monthlyFee": 1500,
+          "description": "Comprehensive reports & analytics capability for Lost & Found Management System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "legal-management",
+      "name": "Legal Case Management System",
+      "displayName": "Legal Case Management System",
+      "fullSuite": {
+        "implementationFee": 1000000,
+        "monthlyMaintenanceFee": 22000,
+        "includes": [
+          "Case File Management",
+          "Client & Matter Management",
+          "Document Repository",
+          "Hearing & Deadline Tracking",
+          "Time & Billing",
+          "Conflict Check",
+          "Court Rule Calculations",
+          "Alerts & Reminders"
+        ],
+        "benefits": [
+          "~4% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "case_file_management_0",
+          "name": "Case File Management",
+          "setupFee": 200000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive case file management capability for Legal Case Management System"
+        },
+        {
+          "id": "client_matter_management_1",
+          "name": "Client & Matter Management",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive client & matter management capability for Legal Case Management System"
+        },
+        {
+          "id": "document_repository_2",
+          "name": "Document Repository",
+          "setupFee": 180000,
+          "monthlyFee": 5500,
+          "description": "Comprehensive document repository capability for Legal Case Management System"
+        },
+        {
+          "id": "hearing_deadline_tracking_3",
+          "name": "Hearing & Deadline Tracking",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive hearing & deadline tracking capability for Legal Case Management System"
+        },
+        {
+          "id": "time_billing_4",
+          "name": "Time & Billing",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive time & billing capability for Legal Case Management System"
+        },
+        {
+          "id": "conflict_check_5",
+          "name": "Conflict Check",
+          "setupFee": 80000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive conflict check capability for Legal Case Management System"
+        },
+        {
+          "id": "court_rule_calculations_6",
+          "name": "Court Rule Calculations",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive court rule calculations capability for Legal Case Management System"
+        },
+        {
+          "id": "alerts_reminders_7",
+          "name": "Alerts & Reminders",
+          "setupFee": 60000,
+          "monthlyFee": 2000,
+          "description": "Comprehensive alerts & reminders capability for Legal Case Management System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "goods-transport",
+      "name": "Goods Transport / Bility System",
+      "displayName": "Goods Transport / Bility System",
+      "fullSuite": {
+        "implementationFee": 800000,
+        "monthlyMaintenanceFee": 18000,
+        "includes": [
+          "Shipment Tracking",
+          "Bilty & Consignment Notes",
+          "Vehicle & Fleet Management",
+          "Driver & Crew Management",
+          "Route Optimization",
+          "Freight Calculation",
+          "Customer & Booking Management",
+          "Delivery Proof & POD"
+        ],
+        "benefits": [
+          "~15% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "shipment_tracking_0",
+          "name": "Shipment Tracking",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive shipment tracking capability for Goods Transport / Bility System"
+        },
+        {
+          "id": "bilty_consignment_notes_1",
+          "name": "Bilty & Consignment Notes",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive bilty & consignment notes capability for Goods Transport / Bility System"
+        },
+        {
+          "id": "vehicle_fleet_management_2",
+          "name": "Vehicle & Fleet Management",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive vehicle & fleet management capability for Goods Transport / Bility System"
+        },
+        {
+          "id": "driver_crew_management_3",
+          "name": "Driver & Crew Management",
+          "setupFee": 100000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive driver & crew management capability for Goods Transport / Bility System"
+        },
+        {
+          "id": "route_optimization_4",
+          "name": "Route Optimization",
+          "setupFee": 120000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive route optimization capability for Goods Transport / Bility System"
+        },
+        {
+          "id": "freight_calculation_5",
+          "name": "Freight Calculation",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive freight calculation capability for Goods Transport / Bility System"
+        },
+        {
+          "id": "customer_booking_management_6",
+          "name": "Customer & Booking Management",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive customer & booking management capability for Goods Transport / Bility System"
+        },
+        {
+          "id": "delivery_proof_pod_7",
+          "name": "Delivery Proof & POD",
+          "setupFee": 80000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive delivery proof & pod capability for Goods Transport / Bility System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "insurance-system",
+      "name": "Insurance Integration System",
+      "displayName": "Insurance Integration System",
+      "fullSuite": {
+        "implementationFee": 2000000,
+        "monthlyMaintenanceFee": 45000,
+        "includes": [
+          "Policy Management",
+          "Claim Processing",
+          "Underwriting Support",
+          "Premium Billing",
+          "Renewal Management",
+          "Agent/Broker Portal",
+          "Regulatory Reporting",
+          "API Integration Hub"
+        ],
+        "benefits": [
+          "~9% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "policy_management_0",
+          "name": "Policy Management",
+          "setupFee": 300000,
+          "monthlyFee": 8000,
+          "description": "Comprehensive policy management capability for Insurance Integration System"
+        },
+        {
+          "id": "claim_processing_1",
+          "name": "Claim Processing",
+          "setupFee": 400000,
+          "monthlyFee": 10000,
+          "description": "Comprehensive claim processing capability for Insurance Integration System"
+        },
+        {
+          "id": "underwriting_support_2",
+          "name": "Underwriting Support",
+          "setupFee": 300000,
+          "monthlyFee": 7500,
+          "description": "Comprehensive underwriting support capability for Insurance Integration System"
+        },
+        {
+          "id": "premium_billing_3",
+          "name": "Premium Billing",
+          "setupFee": 250000,
+          "monthlyFee": 6500,
+          "description": "Comprehensive premium billing capability for Insurance Integration System"
+        },
+        {
+          "id": "renewal_management_4",
+          "name": "Renewal Management",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive renewal management capability for Insurance Integration System"
+        },
+        {
+          "id": "agent_broker_portal_5",
+          "name": "Agent/Broker Portal",
+          "setupFee": 200000,
+          "monthlyFee": 5000,
+          "description": "Comprehensive agent/broker portal capability for Insurance Integration System"
+        },
+        {
+          "id": "regulatory_reporting_6",
+          "name": "Regulatory Reporting",
+          "setupFee": 250000,
+          "monthlyFee": 6000,
+          "description": "Comprehensive regulatory reporting capability for Insurance Integration System"
+        },
+        {
+          "id": "api_integration_hub_7",
+          "name": "API Integration Hub",
+          "setupFee": 350000,
+          "monthlyFee": 8000,
+          "description": "Comprehensive api integration hub capability for Insurance Integration System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "pos-cloud",
+      "name": "Point of Sale (POS) System",
+      "displayName": "Point of Sale (POS) System",
+      "fullSuite": {
+        "implementationFee": 500000,
+        "monthlyMaintenanceFee": 15000,
+        "includes": [
+          "Sales & Checkout",
+          "Inventory Management",
+          "Barcode Scanning",
+          "Customer Management",
+          "Reporting & Analytics",
+          "Multi-store Support",
+          "Offline Mode",
+          "Integration Hub"
+        ],
+        "benefits": [
+          "~32% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "sales_checkout_0",
+          "name": "Sales & Checkout",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive sales & checkout capability for Point of Sale (POS) System"
+        },
+        {
+          "id": "inventory_management_1",
+          "name": "Inventory Management",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive inventory management capability for Point of Sale (POS) System"
+        },
+        {
+          "id": "barcode_scanning_2",
+          "name": "Barcode Scanning",
+          "setupFee": 50000,
+          "monthlyFee": 1500,
+          "description": "Comprehensive barcode scanning capability for Point of Sale (POS) System"
+        },
+        {
+          "id": "customer_management_3",
+          "name": "Customer Management",
+          "setupFee": 60000,
+          "monthlyFee": 2000,
+          "description": "Comprehensive customer management capability for Point of Sale (POS) System"
+        },
+        {
+          "id": "reporting_analytics_4",
+          "name": "Reporting & Analytics",
+          "setupFee": 80000,
+          "monthlyFee": 2500,
+          "description": "Comprehensive reporting & analytics capability for Point of Sale (POS) System"
+        },
+        {
+          "id": "multi_store_support_5",
+          "name": "Multi-store Support",
+          "setupFee": 150000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive multi-store support capability for Point of Sale (POS) System"
+        },
+        {
+          "id": "offline_mode_6",
+          "name": "Offline Mode",
+          "setupFee": 80000,
+          "monthlyFee": 2000,
+          "description": "Comprehensive offline mode capability for Point of Sale (POS) System"
+        },
+        {
+          "id": "integration_hub_7",
+          "name": "Integration Hub",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive integration hub capability for Point of Sale (POS) System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "hotel-management",
+      "name": "Hotel & Room Reservation System",
+      "displayName": "Hotel & Room Reservation System",
+      "fullSuite": {
+        "implementationFee": 700000,
+        "monthlyMaintenanceFee": 16000,
+        "includes": [
+          "Room Booking & Reservation",
+          "Front Desk & Check-in/out",
+          "Housekeeping Management",
+          "Guest Profile & CRM",
+          "Billing & Invoicing",
+          "Restaurant & F&B POS",
+          "Online Booking Integration",
+          "Reporting & Analytics"
+        ],
+        "benefits": [
+          "~27% cost savings vs. all modules",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "room_booking_reservation_0",
+          "name": "Room Booking & Reservation",
+          "setupFee": 150000,
+          "monthlyFee": 5000,
+          "description": "Comprehensive room booking & reservation capability for Hotel & Room Reservation System"
+        },
+        {
+          "id": "front_desk_check_in_out_1",
+          "name": "Front Desk & Check-in/out",
+          "setupFee": 120000,
+          "monthlyFee": 4000,
+          "description": "Comprehensive front desk & check-in/out capability for Hotel & Room Reservation System"
+        },
+        {
+          "id": "housekeeping_management_2",
+          "name": "Housekeeping Management",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive housekeeping management capability for Hotel & Room Reservation System"
+        },
+        {
+          "id": "guest_profile_crm_3",
+          "name": "Guest Profile & CRM",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive guest profile & crm capability for Hotel & Room Reservation System"
+        },
+        {
+          "id": "billing_invoicing_4",
+          "name": "Billing & Invoicing",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive billing & invoicing capability for Hotel & Room Reservation System"
+        },
+        {
+          "id": "restaurant_f_b_pos_5",
+          "name": "Restaurant & F&B POS",
+          "setupFee": 150000,
+          "monthlyFee": 4500,
+          "description": "Comprehensive restaurant & f&b pos capability for Hotel & Room Reservation System"
+        },
+        {
+          "id": "online_booking_integration_6",
+          "name": "Online Booking Integration",
+          "setupFee": 120000,
+          "monthlyFee": 3500,
+          "description": "Comprehensive online booking integration capability for Hotel & Room Reservation System"
+        },
+        {
+          "id": "reporting_analytics_7",
+          "name": "Reporting & Analytics",
+          "setupFee": 100000,
+          "monthlyFee": 3000,
+          "description": "Comprehensive reporting & analytics capability for Hotel & Room Reservation System"
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ]
+      }
+    }
+  ],
+  "configuration": {
+    "annualContractDiscount": 10,
+    "educationalInstitutionDiscount": 25,
+    "governmentDiscount": 15,
+    "nonProfitDiscount": 20
+  }
+}

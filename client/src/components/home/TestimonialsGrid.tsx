@@ -45,7 +45,7 @@ export const TestimonialsGrid: React.FC = () => {
   const t = testimonials[active];
 
   return (
-    <section ref={sectionRef} className="py-28 px-6 sm:px-8 bg-surface-container-low border-t border-outline-variant relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 md:py-20 px-6 sm:px-8 bg-surface-container-low border-t border-outline-variant relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
 
@@ -55,20 +55,20 @@ export const TestimonialsGrid: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="text-center mb-10"
         >
-          <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Client Stories</span>
+          <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Customer Reviews</span>
           <h2 className="text-4xl md:text-5xl font-headline font-bold">
-            Trusted by <span className="text-primary italic">Real Businesses</span>
+            Trusted by <span className="text-primary italic">Real Customers</span>
           </h2>
           <p className="text-on-surface-variant mt-4 max-w-xl mx-auto">
-            Short feedback from clients who used our services.
+            Real feedback from organizations that have worked with TechnoSpyre.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-stretch">
           {/* Featured quote */}
-          <div data-testimonial-card className="relative rounded-sm border border-outline-variant bg-surface-container p-8 md:p-12 overflow-hidden min-h-[360px] flex flex-col justify-between">
+          <div data-testimonial-card className="relative rounded-sm border border-outline-variant bg-surface-container p-8 md:p-10 overflow-hidden min-h-[320px] flex flex-col justify-between">
             <Quote size={120} className="absolute -top-4 -right-4 text-primary/10" strokeWidth={1} />
             <AnimatePresence mode="wait">
               <motion.div

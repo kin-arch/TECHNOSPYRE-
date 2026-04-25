@@ -74,8 +74,8 @@ export const LogoTicker: React.FC = () => {
   const duplicatedLogos = [...logos, ...logos, ...logos];
   
   return (
-    <div className="w-full flex flex-col items-center py-16">
-      <div className="container mx-auto px-8 mb-12 text-center">
+    <div className="w-full flex flex-col items-center py-12 md:py-16">
+      <div className="container mx-auto px-8 mb-8 md:mb-10 text-center">
         <h2 className="text-3xl md:text-3xl uppercase tracking-[0.35em] font-bold mb-3 text-foregorund">
           Trusted by industry <span className='text-primary'>leaders</span>
         </h2>

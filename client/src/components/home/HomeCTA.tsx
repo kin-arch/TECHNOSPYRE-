@@ -49,7 +49,7 @@ export const HomeCTA: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-20 py-4 px-8 text-center relative overflow-hidden bg-background border-t border-border/50">
+    <section ref={sectionRef} className="py-16 md:py-20 px-8 text-center relative overflow-hidden bg-background border-t border-border/50">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 blur-[140px] rounded-sm pointer-events-none" />
@@ -64,20 +64,20 @@ export const HomeCTA: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-sm bg-primary/10 border border-primary/20 mb-6 floating-element"
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-sm bg-primary/10 border border-primary/20 mb-5 floating-element"
         >
           <Sparkles size={14} className="text-primary" />
           <span className="text-xs font-bold text-primary uppercase tracking-widest">Ready to Begin?</span>
         </motion.div>
 
-        <h2 data-cta-heading className="flex flex-col gap-5 text-4xl md:text-5xl font-headline font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
+        <h2 data-cta-heading className="flex flex-col gap-4 text-4xl md:text-5xl font-headline font-bold text-foreground mb-5 leading-[1.1] tracking-tight">
           Let's build something{' '}
           <span className="relative inline-block text-primary ">
             extraordinary.
           </span>
         </h2>
 
-        <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-muted-foreground mb-5 max-w-2xl mx-auto leading-relaxed">
           From first consultation to global deployment we're with you every step of the way. No jargon, no complexity. Just results.
         </p>
 

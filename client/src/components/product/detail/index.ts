@@ -1,5 +1,4 @@
 export { ProductDetailHeader } from './ProductDetailHeader';
-export { ProductDetailFeatures } from './ProductDetailFeatures';
 export {
   ProductDetailHighlights,
   ProductDetailGallery,

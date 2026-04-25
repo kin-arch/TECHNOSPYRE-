@@ -1,0 +1,175 @@
+{
+  "pricingVersion": "1.0",
+  "lastUpdated": "2025-04-25",
+  "currency": "PKR",
+  "products": [
+    {
+      "id": "hospital-management",
+      "name": "Hospital Management & Information System",
+      "displayName": "Hospital Management System (HMS)",
+      "fullSuite": {
+        "implementationFee": 2000000,
+        "monthlyMaintenanceFee": 50000,
+        "includes": [
+          "Patient Registration & Records",
+          "Appointment Scheduling",
+          "Electronic Health Records (EHR)",
+          "Billing & Invoicing",
+          "Pharmacy Management",
+          "Laboratory Management",
+          "Radiology Management",
+          "Inventory Management",
+          "Staff Management",
+          "Reports & Analytics",
+          "Multi-user Access (Unlimited)",
+          "Basic Training (2 sessions)",
+          "12 months premium support"
+        ],
+        "benefits": [
+          "~35% cost savings vs. purchasing all modules individually",
+          "Unified implementation timeline",
+          "Single point of contact for support",
+          "Priority service level agreement"
+        ]
+      },
+      "modules": [
+        {
+          "id": "patient_registration",
+          "name": "Patient Registration & Records",
+          "setupFee": 150000,
+          "monthlyFee": 8000,
+          "description": "Patient registration, demographic data, medical history, visit tracking"
+        },
+        {
+          "id": "appointment_scheduling",
+          "name": "Appointment Scheduling",
+          "setupFee": 100000,
+          "monthlyFee": 5000,
+          "description": "Online/offline appointment booking, calendar management, reminders"
+        },
+        {
+          "id": "ehr",
+          "name": "Electronic Health Records (EHR)",
+          "setupFee": 300000,
+          "monthlyFee": 12000,
+          "description": "Clinical documentation, prescriptions, progress notes, e-prescribing"
+        },
+        {
+          "id": "billing_invoicing",
+          "name": "Billing & Invoicing",
+          "setupFee": 120000,
+          "monthlyFee": 6000,
+          "description": "Invoice generation, payment tracking, insurance claims, financial reports"
+        },
+        {
+          "id": "pharmacy_management",
+          "name": "Pharmacy Management",
+          "setupFee": 180000,
+          "monthlyFee": 9000,
+          "description": "Drug inventory, dispensing, stock alerts, prescription management"
+        },
+        {
+          "id": "laboratory_management",
+          "name": "Laboratory Management",
+          "setupFee": 200000,
+          "monthlyFee": 10000,
+          "description": "Lab test ordering, sample tracking, results entry, LIS integration"
+        },
+        {
+          "id": "radiology_management",
+          "name": "Radiology Management",
+          "setupFee": 200000,
+          "monthlyFee": 10000,
+          "description": "Imaging orders, DICOM integration, report generation, film tracking"
+        },
+        {
+          "id": "inventory_management",
+          "name": "Inventory Management",
+          "setupFee": 150000,
+          "monthlyFee": 7000,
+          "description": "Stock tracking, purchase orders, vendor management, expiry alerts"
+        },
+        {
+          "id": "staff_management",
+          "name": "Staff Management",
+          "setupFee": 100000,
+          "monthlyFee": 5000,
+          "description": "Employee records, schedules, payroll integration, leave management"
+        },
+        {
+          "id": "reports_analytics",
+          "name": "Reports & Analytics",
+          "setupFee": 250000,
+          "monthlyFee": 11000,
+          "description": "Custom reports, dashboards, KPI tracking, data export (PDF/Excel)"
+        },
+        {
+          "id": "multi_user_access",
+          "name": "Multi-user Access (per 10 users)",
+          "setupFee": 50000,
+          "monthlyFee": 2000,
+          "description": "Additional user licenses beyond base package (10-user increments)",
+          "isAddon": true
+        },
+        {
+          "id": "basic_training",
+          "name": "Basic Training (per session)",
+          "setupFee": 75000,
+          "monthlyFee": 0,
+          "description": "On-site or virtual training session (4 hours max)",
+          "isAddon": true
+        },
+        {
+          "id": "premium_support",
+          "name": "Premium Support",
+          "setupFee": 0,
+          "monthlyFee": 15000,
+          "description": "24/7 phone & email support, 2-hour response SLA, dedicated manager",
+          "isAddon": true
+        }
+      ],
+      "pricingRules": {
+        "minimumModulesForPurchase": 3,
+        "bulkDiscounts": [
+          {
+            "threshold": 5,
+            "discountPercentage": 10
+          },
+          {
+            "threshold": 8,
+            "discountPercentage": 15
+          },
+          {
+            "threshold": 12,
+            "discountPercentage": 20
+          }
+        ],
+        "customDevelopment": {
+          "hourlyRate": 5000,
+          "minProjectFee": 50000,
+          "estimatedComplexityLevels": {
+            "low": {
+              "hours": "20-40",
+              "baseCost": 100000
+            },
+            "medium": {
+              "hours": "40-100",
+              "baseCost": 300000
+            },
+            "high": {
+              "hours": "100+",
+              "baseCost": 600000,
+              "customQuote": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "annualContractDiscount": 10,
+    "educationalInstitutionDiscount": 25,
+    "governmentDiscount": 15,
+    "nonProfitDiscount": 20
+  }
+}

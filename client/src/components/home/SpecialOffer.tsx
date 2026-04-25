@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Clock, Award, Sparkles, Zap, Gift, Loader2 } from 'lucide-react';
+import { ArrowRight, Award, CheckCircle, Gift, Sparkles, Zap, Clock, MousePointer, BarChart3, Badge, Users } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { reactCourse } from '@/data/courses';
@@ -23,16 +23,15 @@ interface OfferData {
 
 const API_BASE = 'http://localhost:5000/api';
 
-// Fallback from static data file
 const fallback: OfferData = {
-  title: 'Master React.js & Build the Future',
-  subtitle: reactCourse.title,
+  title: 'Build Future with React',
+  subtitle: 'Complete React mastery program with projects, tools, and certificate.',
   duration: reactCourse.beginner.duration,
   certification: 'Industry Recognized',
   highlights: reactCourse.beginner.highlights.slice(0, 4),
-  originalPrice: reactCourse.beginner.originalFee,
-  discountedPrice: reactCourse.beginner.discountedFee,
-  discount: reactCourse.beginner.discount,
+  originalPrice: '40,000',
+  discountedPrice: '20,000',
+  discount: '50%',
   weeklyPrice: '1,999',
   image1: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop',
   image2: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop',
@@ -43,12 +42,15 @@ export const SpecialOffer: React.FC = () => {
   const [offer, setOffer] = useState<OfferData>(fallback);
   const [fetching, setFetching] = useState(true);
 
-  // Fetch live offer from server
   useEffect(() => {
     fetch(`${API_BASE}/offer`)
       .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (data) setOffer({ ...fallback, ...data }); })
-      .catch(() => {/* silently use fallback */})
+      .then((data) => {
+        if (data) setOffer({ ...fallback, ...data });
+      })
+      .catch(() => {
+        /* silently use fallback */
+      })
       .finally(() => setFetching(false));
   }, []);
 
@@ -59,12 +61,12 @@ export const SpecialOffer: React.FC = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.offer-animate-up',
-        { y: 40, opacity: 0 },
+        { y: 36, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          stagger: 0.15,
+          stagger: 0.1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -77,144 +79,144 @@ export const SpecialOffer: React.FC = () => {
     return () => ctx.revert();
   }, [fetching]);
 
+  const learningPreview = (offer.highlights || []).slice(0, 6);
+
   return (
     <section
       ref={sectionRef}
-      className="py-24 md:py-32 px-6 sm:px-8 relative overflow-hidden bg-gradient-to-br from-surface-container via-background to-surface-container border-b border-border/50"
+      className="relative overflow-hidden border-b border-border/50 bg-[linear-gradient(135deg,var(--color-background),var(--color-surface-container)_60%,var(--color-background))] px-4 sm:px-6 py-16 md:py-20"
     >
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-          {/* LEFT: Text */}
-          <div className="order-2 lg:order-1">
-            <div className="offer-animate-up inline-flex items-center gap-2 mb-6">
-              <span className="text-xs font-bold tracking-[0.2em] uppercase bg-primary/10 text-primary px-4 py-1.5 rounded-full border border-primary/20 flex items-center gap-2 shadow-[0_0_15px_rgba(var(--primary),0.15)]">
-                <Gift size={14} /> Limited Time Special Offer
-              </span>
-            </div>
-
-            <h2 className="offer-animate-up text-4xl md:text-5xl lg:text-6xl font-headline font-bold tracking-tight mb-6 leading-tight">
-              {offer.title.includes('React') ? (
-                <>
-                  {offer.title.split('React')[0]}
-                  <span className="text-primary to-purple-500">React</span>
-                  {offer.title.split('React')[1]}
-                </>
-              ) : offer.title}
-            </h2>
-
-            <p className="offer-animate-up text-lg text-muted-foreground mb-8 max-w-xl">
-              {offer.subtitle}
-            </p>
-
-            <div className="offer-animate-up grid sm:grid-cols-2 gap-4 mb-8">
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-background/50 border border-outline-variant shadow-sm backdrop-blur-sm">
-                <Clock className="text-primary shrink-0 mt-1" size={24} />
-                <div>
-                  <h4 className="font-bold text-foreground">Duration</h4>
-                  <p className="text-sm text-muted-foreground">{offer.duration} Intensive</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-background/50 border border-outline-variant shadow-sm backdrop-blur-sm">
-                <Award className="text-primary shrink-0 mt-1" size={24} />
-                <div>
-                  <h4 className="font-bold text-foreground">Certification</h4>
-                  <p className="text-sm text-muted-foreground">{offer.certification}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="offer-animate-up mb-8">
-              <h4 className="font-bold mb-4 flex items-center gap-2">
-                <Zap className="text-yellow-500" size={18} /> What you will learn:
-              </h4>
-              <ul className="grid sm:grid-cols-2 gap-3">
-                {(offer.highlights || []).slice(0, 4).map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm">
-                    <CheckCircle size={16} className="text-primary shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="offer-animate-up flex flex-wrap items-center gap-6 mt-8 pt-8 border-t border-border/50">
-              <div className="flex flex-col">
-                <span className="text-sm text-muted-foreground line-through decoration-red-500/50 mb-1">
-                  Regular Price: Rs.{offer.originalPrice}
-                </span>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl md:text-5xl font-bold text-foreground">
-                    Rs.{offer.discountedPrice}
-                  </span>
-                  <span className="text-sm font-bold text-green-600 bg-green-500/10 px-2 py-1 rounded-md border border-green-500/20">
-                    Save {offer.discount}
-                  </span>
-                </div>
-              </div>
-
-              <Link
-                to="/offers/react-course"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-bold rounded-lg overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:shadow-[0_0_30px_rgba(var(--primary),0.5)]"
-              >
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-                <span className="relative flex items-center gap-2">
-                  Learn More & Claim Offer <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            </div>
-          </div>
-
-          {/* RIGHT: Image */}
-          <div className="order-1 lg:order-2 offer-animate-up relative">
-            <div className="relative rounded-2xl overflow-hidden border border-outline-variant shadow-2xl group">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-              <img
-                src={offer.image1}
-                alt="React Development"
-                className="w-full h-auto aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute bottom-6 left-6 right-6 z-20">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
-                    <Sparkles size={12} /> Bestseller
-                  </span>
-                  <span className="bg-background/90 backdrop-blur text-foreground text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                    4.9/5 Average Rating
-                  </span>
-                </div>
-                <p className="text-white font-medium text-lg lg:text-xl drop-shadow-md">
-                  Join 5,000+ students who have transformed their careers.
-                </p>
-              </div>
-            </div>
-
-            {/* Floating badge */}
-            <div
-              className="absolute -top-6 -right-6 bg-background rounded-xl p-4 shadow-xl border border-outline-variant"
-              style={{ animation: 'float 3s ease-in-out infinite' }}
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
-                  <Zap className="text-blue-500" size={20} />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground font-medium">Job Success</p>
-                  <p className="text-sm font-bold">92% Rate</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute right-[10%] top-[10%] h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute left-[8%] bottom-[12%] h-32 w-32 rounded-full bg-primary/10 blur-3xl" />
       </div>
 
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-12px); }
-        }
-      `}</style>
+      <div className="relative z-10 mx-auto max-w-7xl">
+         <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8">
+           {/* Left Side - Offer Content */}
+           <div className="order-1 lg:order-1 flex h-full flex-col justify-between gap-4">
+             <div className="flex-grow">
+               <div className="offer-animate-up inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
+                 <Gift size={14} className="text-primary" />
+                 <span className="text-[11px] font-black uppercase tracking-[0.26em] text-primary">
+                   Limited Time Offer
+                 </span>
+               </div>
+
+               <h2 className="offer-animate-up mt-5 max-w-2xl text-2xl font-black leading-[1.04] tracking-[-0.03em] text-foreground sm:text-3xl lg:text-[3.2rem]">
+                 Build <span className="text-primary">future</span> with React
+               </h2>
+
+                <p className="offer-animate-up mt-4 max-w-2xl text-base leading-6 tracking-[0.01em] text-muted-foreground md:text-lg">
+                  The complete React mastery program for building production-grade applications. Learn by doing with real projects, expert guidance, and industry certification.
+                </p>
+
+                <div className="offer-animate-up mt-8 grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className="group rounded-[1.25rem] border border-border bg-background/95 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <MousePointer size={20} />
+                    </div>
+                    <h3 className="text-sm font-bold text-foreground">Hands-on Practice</h3>
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">Code-along sessions with real exercises</p>
+                  </div>
+
+                  <div className="group rounded-[1.25rem] border border-border bg-background/95 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <BarChart3 size={20} />
+                    </div>
+                    <h3 className="text-sm font-bold text-foreground">Real-Time Projects</h3>
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">Build production apps from day one</p>
+                  </div>
+
+                  <div className="group rounded-[1.25rem] border border-border bg-background/95 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Badge size={20} />
+                    </div>
+                    <h3 className="text-sm font-bold text-foreground">Industry Certification</h3>
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">Recognized credential employers value</p>
+                  </div>
+
+                  <div className="group rounded-[1.25rem] border border-border bg-background/95 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Users size={20} />
+                    </div>
+                    <h3 className="text-sm font-bold text-foreground">Expert Mentorship</h3>
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">1-on-1 guidance from senior developers</p>
+                  </div>
+                </div>
+
+                <ul className="offer-animate-up mt-6 grid gap-x-4 gap-y-3 sm:grid-cols-2">
+                 {learningPreview.slice(0, 4).map((item) => (
+                   <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-foreground/90">
+                     <CheckCircle size={15} className="mt-0.5 shrink-0 text-primary" />
+                     <span className="font-medium">{item}</span>
+                   </li>
+                 ))}
+               </ul>
+             </div>
+
+             <div className="offer-animate-up flex flex-col items-start gap-4">
+               <Link
+                 to="/offers/react-course"
+                 className="group inline-flex items-center justify-center gap-2 rounded-[1rem] bg-primary px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-primary-foreground shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-foreground"
+               >
+                 Start Learning
+                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+               </Link>
+               <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                 <Award size={14} />
+                 <span>Certificate included · Lifetime access · {offer.duration}</span>
+               </div>
+             </div>
+           </div>
+
+           {/* Right Side - Pricing Cards */}
+           <div className="order-1 lg:order-2 flex h-full flex-col justify-between gap-4">
+             <div className="offer-animate-up rounded-[2rem] border border-primary/20 bg-background/95 p-4 md:p-5 shadow-[0_26px_70px_rgba(15,23,42,0.12)]">
+               <div className="flex flex-col gap-4">
+                 <div>
+                   <span className="text-[10px] font-black uppercase tracking-[0.26em] text-primary">Offer</span>
+                   <h3 className="mt-3 text-4xl font-black leading-none text-foreground md:text-5xl">
+                     50% off
+                   </h3>
+                 </div>
+
+                 <div className="rounded-[1.6rem] border border-primary/15 bg-primary/5 px-4 py-4">
+                   <span className="text-xs font-semibold text-muted-foreground line-through decoration-red-500/70">
+                     PKR {offer.originalPrice}
+                   </span>
+                   <span className="block text-2xl font-black leading-none text-foreground md:text-3xl">
+                     PKR {offer.discountedPrice}
+                   </span>
+                 </div>
+               </div>
+
+               <p className="mt-4 max-w-md text-xs leading-5 text-muted-foreground md:text-sm">
+                 Build real projects · Get certified · Landing the job
+               </p>
+             </div>
+
+             <div className="offer-animate-up overflow-hidden rounded-[2rem] border border-outline-variant bg-card p-2.5 shadow-[0_24px_60px_rgba(15,23,42,0.10)]">
+               <div className="relative overflow-hidden rounded-[1.5rem]">
+                 <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                 <img
+                   src={offer.image1}
+                   alt="React Development"
+                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                 />
+                 <div className="absolute bottom-5 left-5 right-5 z-20">
+                   <span className="mb-3 inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground shadow-lg">
+                     <Sparkles size={12} /> Premium
+                   </span>
+                   <p className="max-w-sm text-sm font-semibold leading-6 text-white">
+                     Industry-relevant React training with portfolio projects
+                   </p>
+                 </div>
+               </div>
+             </div>
+           </div>
+        </div>
+      </div>
     </section>
   );
 };

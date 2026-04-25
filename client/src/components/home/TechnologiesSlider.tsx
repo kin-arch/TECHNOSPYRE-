@@ -180,7 +180,7 @@ export const ProductsSlider: React.FC = () => {
       ref={(el) => {
         rootRef.current = el;
       }}
-      className="py-24 md:py-28 px-6 sm:px-8 relative overflow-hidden bg-background border-y border-border/60"
+      className="py-16 md:py-20 px-6 sm:px-8 relative overflow-hidden bg-background border-y border-border/60"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-sm bg-primary/10 blur-3xl" />
@@ -229,7 +229,7 @@ export const ProductsSlider: React.FC = () => {
                 animate="visible"
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.6 }}
-                className="relative rounded-sm overflow-hidden border border-outline-variant bg-surface-container min-h-[320px] lg:min-h-[460px] group cursor-pointer"
+                className="relative rounded-sm overflow-hidden border border-outline-variant bg-surface-container min-h-[280px] lg:min-h-[380px] group cursor-pointer"
                 data-slider-card
                 ref={cardRef}
               >

@@ -6,22 +6,22 @@ import { DeviceMockupShowcase } from './DeviceMockupShowcase';
 
 const SLIDE_DATA = [
   {
-    title: 'Empowering Enterprise With',
-    highlight: 'Next-Gen Technology',
+    title: 'Welcome to Technospyre',
+    highlight: 'Your Best IT Partner',
     desc: 'We engineer, scale, and manage resilient technology ecosystems that empower modern businesses to operate securely and efficiently.',
     img: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=1200',
     device: 'monitor'
   },
   {
-    title: 'Architecting the Future of',
-    highlight: 'Cloud Infrastructure',
+    title: 'All-in-One HMS',
+    highlight:  'Software for Your Business',
     desc: 'Seamlessly migrate, optimize, and secure your enterprise operations with our state-of-the-art cloud management solutions.',
     img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
     device: 'mobile'
   },
   {
-    title: 'Driving Innovation Through',
-    highlight: 'Intelligent Systems',
+    title: 'Start Learning Today',
+    highlight: 'Build your future with IT skills',
     desc: 'Harness the power of AI-driven analytics, automation, and intelligent pipelines to unlock new business dimensions today.',
     img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200',
     device: 'laptop'
@@ -82,7 +82,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden w-full bg-background border-b border-border/50">
+    <section className="relative flex items-center justify-center overflow-hidden w-full bg-background border-b border-border/50 py-12 md:py-16">
       
       <button
         onClick={handlePrev}
@@ -99,7 +99,7 @@ export const Hero: React.FC = () => {
       </button>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-20 w-full">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center justify-center h-full">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center justify-center h-full">
           
           {/* Left: Text Content */}
           <div className="flex flex-col gap-4 lg:gap-6 order-2 lg:order-1 text-center lg:text-start items-center lg:items-start justify-center w-full mx-auto z-20">
@@ -133,7 +133,7 @@ export const Hero: React.FC = () => {
                     <span className="block">{SLIDE_DATA[currentIndex].title}</span>
                     <span className="block text-primary pt-1 min-h-[1.2em]">{typedText}</span>
                   </h1>
-                  <motion.p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-light max-w-lg mt-3">
+                  <motion.p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-light max-w-lg mt-2">
                     {SLIDE_DATA[currentIndex].desc}
                   </motion.p>
                 </motion.div>
@@ -160,7 +160,7 @@ export const Hero: React.FC = () => {
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
              transition={{ duration: 0.65, delay: 0.25 }}
-             className="relative order-1 lg:order-2 flex items-center justify-center w-full mx-auto h-full min-h-[300px] lg:min-h-[500px]"
+             className="relative order-1 lg:order-2 flex items-center justify-center w-full mx-auto h-full min-h-[240px] sm:min-h-[280px] lg:min-h-[400px]"
            >
              <DeviceMockupShowcase imageUrl={SLIDE_DATA[currentIndex].img} direction={direction} device={SLIDE_DATA[currentIndex].device as 'laptop' | 'mobile' | 'tablet' | 'monitor'} />
            </motion.div>
@@ -169,7 +169,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Mobile dot indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex sm:hidden gap-2 z-50">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex sm:hidden gap-2 z-50">
         {SLIDE_DATA.map((_, idx) => (
           <button
             key={idx}

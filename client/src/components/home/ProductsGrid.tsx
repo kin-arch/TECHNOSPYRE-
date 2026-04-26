@@ -104,7 +104,7 @@ export const ProductsGrid: React.FC = () => {
                       ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300'
                       : 'bg-primary/10 text-primary'
                     }`}>
-                    {('pricingFrom' in c && c.pricingFrom !== 0) ? `From Rs. ${c.pricingFrom}` : ''}
+                    {('pricingFrom' in c && c.pricingFrom !== 0) ? `From PKR ${c.pricingFrom}` : ''}
                     {c.pricingLabel}
                   </span>
                 </motion.div>

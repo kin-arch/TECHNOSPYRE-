@@ -172,7 +172,7 @@ export const productOffers = [
     to: '/products/hospital-management',
     icon: React.createElement(HeartPulse, { size: 22 }),
     pricingFrom: 5000,
-    pricingLabel: 'from Rs. 5K/mo',
+    pricingLabel: 'from PKR 5K/mo',
   },
   {
     id: 'school-management',
@@ -193,7 +193,7 @@ export const productOffers = [
     to: '/products/hr-management',
     icon: React.createElement(Building2, { size: 22 }),
     pricingFrom: 4000,
-    pricingLabel: 'from Rs. 4K/mo',
+    pricingLabel: 'from PKR 4K/mo',
   },
   {
     id: 'employee-portal',
@@ -203,7 +203,7 @@ export const productOffers = [
     to: '/products/employee-portal',
     icon: React.createElement(UserCheck, { size: 22 }),
     pricingFrom: 2000,
-    pricingLabel: 'from Rs. 2K/mo',
+    pricingLabel: 'from PKR 2K/mo',
   },
   {
     id: 'attendance-management',
@@ -213,7 +213,7 @@ export const productOffers = [
     to: '/products/attendance-management',
     icon: React.createElement(Clock, { size: 22 }),
     pricingFrom: 2500,
-    pricingLabel: 'from Rs. 2.5K/mo',
+    pricingLabel: 'from PKR 2.5K/mo',
   },
   {
     id: 'supply-chain',
@@ -223,7 +223,7 @@ export const productOffers = [
     to: '/products/supply-chain',
     icon: React.createElement(Truck, { size: 22 }),
     pricingFrom: 3000,
-    pricingLabel: 'from Rs. 3K/mo',
+    pricingLabel: 'from PKR 3K/mo',
   },
   {
     id: 'finance-system',
@@ -233,7 +233,7 @@ export const productOffers = [
     to: '/products/finance-system',
     icon: React.createElement(Wallet, { size: 22 }),
     pricingFrom: 3500,
-    pricingLabel: 'from Rs. 3.5K/mo',
+    pricingLabel: 'from PKR 3.5K/mo',
   },
   {
     id: 'project-management',
@@ -243,7 +243,7 @@ export const productOffers = [
     to: '/products/project-management',
     icon: React.createElement(ClipboardCheck, { size: 22 }),
     pricingFrom: 2500,
-    pricingLabel: 'from Rs. 2.5K/mo',
+    pricingLabel: 'from PKR 2.5K/mo',
   },
   {
     id: 'lost-found',
@@ -253,7 +253,7 @@ export const productOffers = [
     to: '/products/lost-found',
     icon: React.createElement(Search, { size: 22 }),
     pricingFrom: 1000,
-    pricingLabel: 'from Rs. 1K/mo',
+    pricingLabel: 'from PKR 1K/mo',
   },
   {
     id: 'legal-management',
@@ -263,7 +263,7 @@ export const productOffers = [
     to: '/products/legal-management',
     icon: React.createElement(Scale, { size: 22 }),
     pricingFrom: 2500,
-    pricingLabel: 'from Rs. 2.5K/mo',
+    pricingLabel: 'from PKR 2.5K/mo',
   },
   {
     id: 'goods-transport',
@@ -273,7 +273,7 @@ export const productOffers = [
     to: '/products/goods-transport',
     icon: React.createElement(Truck, { size: 22 }),
     pricingFrom: 2500,
-    pricingLabel: 'from Rs. 2.5K/mo',
+    pricingLabel: 'from PKR 2.5K/mo',
   },
   {
     id: 'insurance-system',
@@ -283,7 +283,7 @@ export const productOffers = [
     to: '/products/insurance-system',
     icon: React.createElement(Shield, { size: 22 }),
     pricingFrom: 4000,
-    pricingLabel: 'from Rs. 4K/mo',
+    pricingLabel: 'from PKR 4K/mo',
   },
   {
     id: 'pos-cloud',
@@ -293,7 +293,7 @@ export const productOffers = [
     to: '/products/pos-cloud',
     icon: React.createElement(ShoppingCart, { size: 22 }),
     pricingFrom: 3000,
-    pricingLabel: 'from Rs. 3K/mo',
+    pricingLabel: 'from PKR 3K/mo',
   },
   {
     id: 'hotel-management',
@@ -303,7 +303,7 @@ export const productOffers = [
     to: '/products/hotel-management',
     icon: React.createElement(Hotel, { size: 22 }),
     pricingFrom: 3500,
-    pricingLabel: 'from Rs. 3.5K/mo',
+    pricingLabel: 'from PKR 3.5K/mo',
   },
 ];
 
@@ -342,7 +342,7 @@ export const whyChooseUs = [
 
 export const testimonials = [
   {
-    quote: 'We, ASL, have been working with TSI for more than 4 years. It was the most pleasant experience working with them. They are dedicated, highly professional, motivated, innovating and client-caring team. We aim to carry on this joint venture in future.',
+    quote: 'We, ASL, have been working with TSI for more than 4 yeaPKR It was the most pleasant experience working with them. They are dedicated, highly professional, motivated, innovating and client-caring team. We aim to carry on this joint venture in future.',
     author: 'COL Iftikhar Ahmad AC',
     role: 'Customer Review',
     company: 'Army School of Logistic Murree',
@@ -383,7 +383,7 @@ export const faqs = [
   },
   {
     q: 'How much does it cost?',
-    a: 'Pricing depends on modules and users. Contact us for a custom quote.',
+    a: 'Pricing depends on modules and usePKR Contact us for a custom quote.',
   },
   {
     q: 'Can I get a demo first?',

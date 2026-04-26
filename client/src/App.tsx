@@ -22,6 +22,7 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminOfferEditor from './pages/admin/AdminOfferEditor';
 import AdminProtectedRoute from './components/admin/AdminProtectedRoute';
+import NotFound from './pages/NotFound';
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -134,6 +135,7 @@ export default function App() {
                                 <Route path="/services" element={<Services />} />
                                 <Route path="/contact" element={<Contact />} />
                                 <Route path="/legal" element={<Legal />} />
+                                <Route path="*" element={<NotFound />} />
                               </Routes>
                             </MainLayout>
                           </SmoothScroll>

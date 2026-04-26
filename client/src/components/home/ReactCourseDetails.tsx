@@ -41,10 +41,10 @@ export const ReactCourseDetails: React.FC = () => {
 
               <div className="flex items-baseline gap-4 mb-4">
                 <span className="text-3xl font-bold text-primary">
-                  ₹{beginner.discountedFee}
+                  PKR {beginner.discountedFee}
                 </span>
                 <span className="text-base text-muted-foreground line-through">
-                  ₹{beginner.originalFee}
+                  PKR {beginner.originalFee}
                 </span>
                 <span className="text-sm font-bold text-green-600 bg-green-600/10 px-2 py-1 rounded">
                   {beginner.discount} OFF
@@ -99,10 +99,10 @@ export const ReactCourseDetails: React.FC = () => {
 
               <div className="flex items-baseline gap-4 mb-4">
                 <span className="text-3xl font-bold text-primary">
-                  ₹{professional.discountedFee}
+                  PKR {professional.discountedFee}
                 </span>
                 <span className="text-base text-muted-foreground line-through">
-                  ₹{professional.originalFee}
+                  PKR {professional.originalFee}
                 </span>
                 <span className="text-sm font-bold text-green-600 bg-green-600/10 px-2 py-1 rounded">
                   {professional.discount} OFF

@@ -1,70 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAdminAuth } from '@/context/AdminAuthContext';
-import { Save, Loader2, CheckCircle2, AlertCircle, RefreshCw, ImageIcon, Tag, Type, DollarSign, List, BookOpen, Video, Award, Target, MessageSquare, Link as LinkIcon } from 'lucide-react';
 
-const API_BASE = 'http://localhost:5000/api';
+import { Save, Loader2, CheckCircle2, AlertCircle, RefreshCw, ImageIcon, Tag, Type, DollarSign, List, BookOpen, Video, Award, Target, MessageSquare, Sparkles, Eye, EyeOff, Link as LinkIcon } from 'lucide-react';
+import { getOffer, saveOffer, defaultOffer } from '@/data/offerStore';
+import type { OfferData } from '@/data/offerStore';
 
-interface SyllabusItem {
-  week: string;
-  topic: string;
-}
 
-interface OfferData {
-  title: string;
-  subtitle: string;
-  description: string;
-  duration: string;
-  certification: string;
-  highlights: string[];
-  requirements: string[];
-  videosCount: string;
-  projectsCount: string;
-  syllabus: SyllabusItem[];
-  guarantee: string;
-  originalPrice: string;
-  discountedPrice: string;
-  discount: string;
-  weeklyPrice: string;
-  monthlyPrice: string;
-  image1: string;
-  image2: string;
-  heroBadge: string;
-  ctaHeading: string;
-  ctaDescription: string;
-  ctaPrimaryBtn: string;
-  ctaSecondaryBtn: string;
-}
 
-const defaultOffer: OfferData = {
-  title: '',
-  subtitle: '',
-  description: '',
-  duration: '',
-  certification: '',
-  highlights: ['', '', '', ''],
-  requirements: ['', '', ''],
-  videosCount: '100+',
-  projectsCount: '15+',
-  syllabus: [
-    { week: 'Week 1-2', topic: 'React Fundamentals & JSX' },
-    { week: 'Week 3-4', topic: 'Hooks & State Management' },
-    { week: 'Week 5-6', topic: 'React Router & Navigation' },
-    { week: 'Week 7-8', topic: 'Real-world Projects' },
-  ],
-  guarantee: '100% satisfaction guaranteed. If you\'re not learning, let us know within the first 7 days for a full refund.',
-  originalPrice: '',
-  discountedPrice: '',
-  discount: '',
-  weeklyPrice: '',
-  monthlyPrice: '',
-  image1: '',
-  image2: '',
-  heroBadge: 'Exclusive Masterclass',
-  ctaHeading: 'Ready to Start Building?',
-  ctaDescription: 'Join thousands of developers who have leveled up their careers. Don\'t miss out on this exclusive offer.',
-  ctaPrimaryBtn: 'Claim Your Discount Now',
-  ctaSecondaryBtn: 'Contact Sales',
-};
 
 const SectionHeader: React.FC<{ icon: React.ReactNode; title: string; desc?: string }> = ({ icon, title, desc }) => (
   <div className="flex items-center gap-3 mb-5 pb-4 border-b border-outline-variant">
@@ -121,39 +63,24 @@ const TextAreaField: React.FC<{
 );
 
 const AdminOfferEditor: React.FC = () => {
-  const { token } = useAdminAuth();
+  useAdminAuth(); // ensures we're inside the auth context
   const [offer, setOffer] = useState<OfferData>(defaultOffer);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMsg, setStatusMsg] = useState('');
 
-  const fetchOffer = useCallback(async () => {
+  const fetchOffer = useCallback(() => {
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/offer`);
-      if (res.ok) {
-        const data: OfferData = await res.json();
-        const highlights = Array.isArray(data.highlights)
-          ? [...data.highlights, '', '', '', ''].slice(0, 4)
-          : ['', '', '', ''];
-        const requirements = Array.isArray(data.requirements)
-          ? [...data.requirements, '', '', ''].slice(0, 3)
-          : ['', '', ''];
-        const syllabus = Array.isArray(data.syllabus) && data.syllabus.length > 0
-          ? data.syllabus
-          : [{ week: 'Week 1-2', topic: '' }, { week: 'Week 3-4', topic: '' }];
-        setOffer({
-          ...defaultOffer,
-          ...data,
-          highlights,
-          requirements,
-          syllabus,
-        });
-      }
+      const data = getOffer();
+      const highlights    = [...(data.highlights    ?? []), '', '', '', ''].slice(0, 4);
+      const requirements  = [...(data.requirements  ?? []), '', '', ''].slice(0, 3);
+      const syllabus      = data.syllabus?.length ? data.syllabus : [{ week: 'Week 1-2', topic: '' }, { week: 'Week 3-4', topic: '' }];
+      setOffer({ ...data, highlights, requirements, syllabus });
     } catch {
       setStatus('error');
-      setStatusMsg('Could not load offer data from server.');
+      setStatusMsg('Could not load offer data.');
     } finally {
       setLoading(false);
     }
@@ -211,42 +138,25 @@ const AdminOfferEditor: React.FC = () => {
     }));
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     setSaving(true);
     setStatus('idle');
     try {
       const cleaned = {
         ...offer,
-        highlights: offer.highlights.filter(Boolean),
+        highlights:   offer.highlights.filter(Boolean),
         requirements: offer.requirements.filter(Boolean),
-        syllabus: offer.syllabus.filter(s => s.week && s.topic),
+        syllabus:     offer.syllabus.filter(s => s.week && s.topic),
       };
-      const res = await fetch(`${API_BASE}/offer`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(cleaned),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('success');
-        setStatusMsg('Offer updated successfully! Changes are now live.');
-        const savedHighlights = [...(data.offer.highlights ?? []), '', '', '', ''].slice(0, 4);
-        const savedRequirements = [...(data.offer.requirements ?? []), '', '', ''].slice(0, 3);
-        setOffer({
-          ...data.offer,
-          highlights: savedHighlights,
-          requirements: savedRequirements,
-        });
-      } else {
-        setStatus('error');
-        setStatusMsg(data.message || 'Failed to save. Try again.');
-      }
+      const saved = saveOffer(cleaned);
+      const savedHighlights    = [...(saved.highlights    ?? []), '', '', '', ''].slice(0, 4);
+      const savedRequirements  = [...(saved.requirements  ?? []), '', '', ''].slice(0, 3);
+      setOffer({ ...saved, highlights: savedHighlights, requirements: savedRequirements });
+      setStatus('success');
+      setStatusMsg('Offer updated successfully! Changes are now live.');
     } catch {
       setStatus('error');
-      setStatusMsg('Server error. Make sure the backend is running.');
+      setStatusMsg('Failed to save. Please try again.');
     } finally {
       setSaving(false);
       setTimeout(() => setStatus('idle'), 5000);
@@ -300,6 +210,48 @@ const AdminOfferEditor: React.FC = () => {
           {statusMsg}
         </div>
       )}
+
+      {/* ── SECTION: Visibility Control ── */}
+      <div className="bg-surface-container rounded-2xl border border-outline-variant p-6 space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${offer.hidden ? 'bg-destructive/10 text-destructive' : 'bg-green-500/10 text-green-500'}`}>
+              {offer.hidden ? <EyeOff size={18} /> : <Eye size={18} />}
+            </div>
+            <div>
+              <h3 className="font-bold">Visibility Control</h3>
+              <p className="text-xs text-muted-foreground">Toggle the entire offer section on/off across the site</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setOffer(prev => ({ ...prev, hidden: !prev.hidden }))}
+            className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+              offer.hidden 
+                ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90' 
+                : 'bg-green-500 text-white hover:bg-green-600'
+            }`}
+          >
+            {offer.hidden ? 'Offer is HIDDEN' : 'Offer is VISIBLE'}
+          </button>
+        </div>
+      </div>
+      <div className="bg-surface-container rounded-2xl border border-outline-variant p-6 space-y-4">
+        <SectionHeader icon={<Sparkles size={18} />} title="Homepage Special Offer" desc="Configure the content shown in the big offer section on the homepage" />
+        <InputField 
+          label="Offer Title" 
+          value={offer.title} 
+          onChange={(v) => setField('title', v)} 
+          placeholder="e.g. Master {React.js} & Build the Future" 
+          hint="Use curly braces { } to highlight text (e.g. {React.js})"
+        />
+        <TextAreaField label="Offer Description" value={offer.description} onChange={(v) => setField('description', v)} placeholder="A compelling description for the homepage section..." rows={3} />
+        <div className="grid sm:grid-cols-3 gap-4">
+          <InputField label="Original Price (PKR)" value={offer.originalPrice} onChange={(v) => setField('originalPrice', v)} placeholder="16,000" />
+          <InputField label="Discounted Price (PKR)" value={offer.discountedPrice} onChange={(v) => setField('discountedPrice', v)} placeholder="7,999" />
+          <InputField label="Discount Percentage" value={offer.discount} onChange={(v) => setField('discount', v)} placeholder="50%" />
+        </div>
+        <InputField label="Offer Image URL" value={offer.image1} onChange={(v) => setField('image1', v)} placeholder="https://images.unsplash.com/..." hint="The primary image shown on the homepage card" />
+      </div>
 
       {/* ── SECTION: Hero Text ── */}
       <div className="bg-surface-container rounded-2xl border border-outline-variant p-6 space-y-4">
@@ -421,13 +373,13 @@ const AdminOfferEditor: React.FC = () => {
       <div className="bg-surface-container rounded-2xl border border-outline-variant p-6 space-y-4">
         <SectionHeader icon={<DollarSign size={18} />} title="Pricing" desc="All prices shown on the course detail page" />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <InputField label="Original Price (₹)" value={offer.originalPrice} onChange={(v) => setField('originalPrice', v)} placeholder="16,000" />
-          <InputField label="Discounted Price (₹)" value={offer.discountedPrice} onChange={(v) => setField('discountedPrice', v)} placeholder="7,999" />
+          <InputField label="Original Price (PKR)" value={offer.originalPrice} onChange={(v) => setField('originalPrice', v)} placeholder="16,000" />
+          <InputField label="Discounted Price (PKR)" value={offer.discountedPrice} onChange={(v) => setField('discountedPrice', v)} placeholder="7,999" />
           <InputField label="Discount %" value={offer.discount} onChange={(v) => setField('discount', v)} placeholder="50%" />
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
-          <InputField label="Weekly Price (₹)" value={offer.weeklyPrice} onChange={(v) => setField('weeklyPrice', v)} placeholder="1,999" hint="Shown on Weekly Plan card" />
-          <InputField label="Monthly Price (₹)" value={offer.monthlyPrice} onChange={(v) => setField('monthlyPrice', v)} placeholder="7,999" hint="Shown on Monthly Plan card" />
+          <InputField label="Weekly Price (PKR)" value={offer.weeklyPrice} onChange={(v) => setField('weeklyPrice', v)} placeholder="1,999" hint="Shown on Weekly Plan card" />
+          <InputField label="Monthly Price (PKR)" value={offer.monthlyPrice} onChange={(v) => setField('monthlyPrice', v)} placeholder="7,999" hint="Shown on Monthly Plan card" />
         </div>
       </div>
 

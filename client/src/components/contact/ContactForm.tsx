@@ -2,9 +2,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useSearchParams } from 'react-router-dom';
 import { Send, Check, AlertCircle, Loader2, Sparkles, Mail, ChevronDown } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { buildHtmlEmail } from '../../utils/emailTemplate';
 import { RichTextEditor } from '../ui/RichTextEditor';
 import { getAllProducts } from '../../data/product';
 import { courseCategories } from '../../data/courses';
+
+// ─── EmailJS configuration ─────────────────────────────────────────────────
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  || 'service_vcwqy4c';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_b9fgl1d';
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  || 'uuOM0h7B2N_gtpIhs';
 
 const fadeLeft = {
   hidden: { opacity: 0, x: -40 },
@@ -168,30 +175,48 @@ export const ContactForm: React.FC = () => {
     setStatus('loading');
     setErrorMessage('');
     try {
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subSubject ? `${formData.subject} - ${formData.subSubject}` : formData.subject,
-        message: formData.message,
-      };
+      const subject = formData.subSubject
+        ? `${formData.subject} - ${formData.subSubject}`
+        : formData.subject;
 
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+      // Generate the professional HTML template
+      const message_html = buildHtmlEmail(
+        formData.name,
+        formData.email,
+        subject,
+        formData.message
+      );
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          name: formData.name,      // Alias for easier template use
+          email: formData.email,    // Alias
+          subject: subject,
+          message_html: message_html, // The full branded design (use {{{message_html}}})
+          message: formData.message,  // Plain text fallback
+          reply_to: formData.email,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: 'Enterprise Solutions',
+        subSubject: products[0]?.name || '',
+        message: '',
       });
-      const result = await response.json();
-      if (response.ok) {
-        setFormData({ name: '', email: '', subject: 'Enterprise Solutions', subSubject: products[0]?.name || '', message: '' });
-        setErrors({});
-        setStatus('success');
-      } else {
-        setStatus('error');
-        setErrorMessage(result.error || 'Failed to send. Please try again.');
-      }
-    } catch {
+      setErrors({});
+      setStatus('success');
+    } catch (err: any) {
+      console.error('EmailJS error:', err);
+      const errorMsg = err?.text || err?.message || 'Failed to send message.';
       setStatus('error');
-      setErrorMessage('A network error occurred. Please check your connection.');
+      setErrorMessage(`${errorMsg}. Please check your Service ID, Template ID, and Public Key.`);
     }
   };
 

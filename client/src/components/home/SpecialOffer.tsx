@@ -1,30 +1,19 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, CheckCircle, Gift, Sparkles, Zap, MousePointer, BarChart3, Badge, Users } from 'lucide-react';
+import { getOffer } from '@/data/offerStore';
 
 interface SpecialOfferProps {
   offer?: any;
   fetching?: boolean;
 }
 
-const DEFAULT_OFFER = {
-  originalPrice: '16,000',
-  discountedPrice: '7,999',
-  duration: '8 Weeks',
-  image1: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
-  highlights: [
-    'React Fundamentals & JSX',
-    'Hooks & State Management',
-    'React Router & Navigation',
-    'Real-world Projects'
-  ]
-};
 
 export const SpecialOffer: React.FC<SpecialOfferProps> = ({ offer: propOffer }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Use prop offer if provided, otherwise use default
-  const offer = propOffer || DEFAULT_OFFER;
+  // Load offer from store if no prop provided
+  const offer = propOffer || getOffer();
 
   const learningPreview = (offer.highlights || []).slice(0, 6);
 
@@ -50,12 +39,17 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({ offer: propOffer }) 
                   </span>
                 </div>
 
-                <h2 className="mt-5 max-w-2xl text-2xl font-bold leading-[0.4] tracking-[-0.03em] text-foreground sm:text-3xl lg:text-[3.2rem]">
-                  Build future with<span className='text-secondary'> React</span>
+                <h2 className="mt-5 max-w-2xl text-2xl font-bold leading-tight tracking-[-0.02em] text-foreground sm:text-3xl lg:text-[3.2rem]">
+                  {offer.title.split(/(\{.*?\})/).map((part, i) => {
+                    if (part.startsWith('{') && part.endsWith('}')) {
+                      return <span key={i} className="text-secondary">{part.slice(1, -1)}</span>;
+                    }
+                    return part;
+                  })}
                 </h2>
 
                 <p className="mt-4 max-w-2xl text-base leading-6 tracking-[0.01em] text-muted-foreground md:text-lg">
-                  The complete React mastery program for building production-grade applications. Learn by doing with real projects, expert guidance, and industry certification.
+                  {offer.description}
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">

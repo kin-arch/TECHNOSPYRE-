@@ -8,8 +8,11 @@ import { SpecialOffer } from '../components/home/SpecialOffer';
 import { TestimonialsGrid } from '../components/home/TestimonialsGrid';
 import { HomeCTA } from '../components/home/HomeCTA';
 import SEO from '../components/SEO';
+import { getOffer } from '../data/offerStore';
 
 const Home = () => {
+  const offer = getOffer();
+
   return (
     <div className="overflow-x-hidden">
       <SEO
@@ -23,10 +26,16 @@ const Home = () => {
       <div>
         <LogoTicker />
       </div>
-      <SectionLines />
-      <div>
-        <SpecialOffer />
-      </div>
+      
+      {!offer.hidden && (
+        <>
+          <SectionLines />
+          <div>
+            <SpecialOffer />
+          </div>
+        </>
+      )}
+
       <SectionLines />
       <div>
         <ProductsGrid />

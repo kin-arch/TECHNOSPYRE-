@@ -1,10 +1,18 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const API_BASE = 'http://localhost:5000/api';
+// ─── Credentials (mirror of server env vars) ─────────────────────────────────
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'admin@technospyre2026';
+const SESSION_KEY    = 'technospyre_admin_session';
+
+interface AdminSession {
+  username: string;
+  expiresAt: number; // Unix ms
+}
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;
-  token: string | null;
+  token: string | null;   // kept for API compatibility with existing UI code
   username: string | null;
   loading: boolean;
   login: (username: string, password: string) => Promise<{ success: boolean; message: string }>;
@@ -14,66 +22,56 @@ interface AdminAuthContextType {
 const AdminAuthContext = createContext<AdminAuthContextType | null>(null);
 
 export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('admin_token'));
-  const [username, setUsername] = useState<string | null>(() => localStorage.getItem('admin_username'));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [username, setUsername]               = useState<string | null>(null);
+  const [loading, setLoading]                 = useState(true);
 
-  // Verify token on mount
+  // Restore session on mount
   useEffect(() => {
-    const verify = async () => {
-      const storedToken = localStorage.getItem('admin_token');
-      if (!storedToken) { setLoading(false); return; }
-      try {
-        const res = await fetch(`${API_BASE}/admin/verify`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
-        if (res.ok) {
-          setToken(storedToken);
-          setUsername(localStorage.getItem('admin_username'));
+    try {
+      const raw = localStorage.getItem(SESSION_KEY);
+      if (raw) {
+        const session: AdminSession = JSON.parse(raw);
+        if (Date.now() < session.expiresAt) {
+          setUsername(session.username);
           setIsAuthenticated(true);
         } else {
-          localStorage.removeItem('admin_token');
-          localStorage.removeItem('admin_username');
+          localStorage.removeItem(SESSION_KEY);
         }
-      } catch {
-        // server offline — still allow if token exists (offline-first)
-      } finally {
-        setLoading(false);
       }
-    };
-    verify();
-  }, []);
-
-  const login = useCallback(async (u: string, p: string) => {
-    try {
-      const res = await fetch(`${API_BASE}/admin/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, password: p }),
-      });
-      const data = await res.json();
-      if (res.ok && data.token) {
-        localStorage.setItem('admin_token', data.token);
-        localStorage.setItem('admin_username', data.username);
-        setToken(data.token);
-        setUsername(data.username);
-        setIsAuthenticated(true);
-        return { success: true, message: 'Login successful' };
-      }
-      return { success: false, message: data.message || 'Invalid credentials' };
     } catch {
-      return { success: false, message: 'Cannot connect to server.' };
+      localStorage.removeItem(SESSION_KEY);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
+  const login = useCallback(async (u: string, p: string): Promise<{ success: boolean; message: string }> => {
+    // Simulate slight async delay for UX
+    await new Promise(r => setTimeout(r, 400));
+
+    if (u !== ADMIN_USERNAME || p !== ADMIN_PASSWORD) {
+      return { success: false, message: 'Invalid credentials.' };
+    }
+
+    const session: AdminSession = {
+      username: u,
+      expiresAt: Date.now() + 24 * 60 * 60 * 1000, // 24 h
+    };
+    localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    setUsername(u);
+    setIsAuthenticated(true);
+    return { success: true, message: 'Login successful.' };
+  }, []);
+
   const logout = useCallback(() => {
-    localStorage.removeItem('admin_token');
-    localStorage.removeItem('admin_username');
-    setToken(null);
+    localStorage.removeItem(SESSION_KEY);
     setUsername(null);
     setIsAuthenticated(false);
   }, []);
+
+  // token is a dummy string kept for interface compatibility
+  const token = isAuthenticated ? 'local-session' : null;
 
   return (
     <AdminAuthContext.Provider value={{ isAuthenticated, token, username, loading, login, logout }}>

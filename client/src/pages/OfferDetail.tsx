@@ -1,90 +1,37 @@
-import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useLayoutEffect, useRef } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { 
   ArrowRight, CheckCircle, Clock, Award, Sparkles, Zap, 
-  Shield, GraduationCap, Video, BookOpen, Loader2
+  Shield, GraduationCap, Video, BookOpen
 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SEO from '../components/SEO';
-import { reactCourse, courseCategories } from '@/data/courses';
+import { courseCategories } from '@/data/courses';
+
+import { getOffer } from '@/data/offerStore';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface SyllabusItem {
-  week: string;
-  topic: string;
-}
 
-interface OfferData {
-  title: string;
-  subtitle: string;
-  description: string;
-  duration: string;
-  certification: string;
-  highlights: string[];
-  requirements: string[];
-  videosCount: string;
-  projectsCount: string;
-  syllabus: SyllabusItem[];
-  guarantee: string;
-  originalPrice: string;
-  discountedPrice: string;
-  discount: string;
-  weeklyPrice: string;
-  monthlyPrice: string;
-  image1: string;
-  image2: string;
-  heroBadge: string;
-  ctaHeading: string;
-  ctaDescription: string;
-  ctaPrimaryBtn: string;
-  ctaSecondaryBtn: string;
-}
 
-const API_BASE = 'http://localhost:5000/api';
 
-const fallback: OfferData = {
-  title: 'Master React.js & Build the Future',
-  subtitle: reactCourse.title,
-  description: reactCourse.beginner.description,
-  duration: reactCourse.beginner.duration,
-  certification: 'Industry Recognized',
-  highlights: reactCourse.beginner.highlights,
-  requirements: reactCourse.beginner.requirements,
-  videosCount: '100+ HD Videos',
-  projectsCount: '15+ Projects',
-  syllabus: reactCourse.beginner.syllabus,
-  guarantee: '100% satisfaction guaranteed. If you\'re not learning, let us know within the first 7 days for a full refund.',
-  originalPrice: reactCourse.beginner.originalFee,
-  discountedPrice: reactCourse.beginner.discountedFee,
-  discount: reactCourse.beginner.discount,
-  weeklyPrice: '1,999',
-  monthlyPrice: reactCourse.beginner.discountedFee,
-  image1: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop',
-  image2: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop',
-  heroBadge: 'Exclusive Masterclass',
-  ctaHeading: 'Ready to Start Building?',
-  ctaDescription: 'Join thousands of developers who have leveled up their careers. Don\'t miss out on this exclusive offer.',
-  ctaPrimaryBtn: 'Claim Your Discount Now',
-  ctaSecondaryBtn: 'Contact Sales',
-};
+
+
 
 const OfferDetail = () => {
+  const { id } = useParams<{ id: string }>();
   const pageRef = useRef<HTMLDivElement | null>(null);
-  const [offer, setOffer] = useState<OfferData>(fallback);
-  const [fetching, setFetching] = useState(true);
+  // Load offer synchronously from localStorage (falls back to defaults automatically)
+  const offer = getOffer();
 
-  useEffect(() => {
-    fetch(`${API_BASE}/offer`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (data) setOffer({ ...fallback, ...data }); })
-      .catch(() => {})
-      .finally(() => setFetching(false));
-  }, []);
+  // If offer is hidden or ID doesn't match, redirect to 404
+  if (offer.hidden || id !== 'react-course') {
+    return <Navigate to="/404" replace />;
+  }
 
   useLayoutEffect(() => {
-    if (!pageRef.current || fetching) return;
+    if (!pageRef.current) return;
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
 
     const ctx = gsap.context(() => {
@@ -123,20 +70,8 @@ const OfferDetail = () => {
     }, pageRef);
 
     return () => ctx.revert();
-  }, [fetching]);
+  }, []);
 
-  // Find professional courses for the "More Offers" section
-  const softwareCourses = courseCategories.find(c => c.id === 'software')?.courses || [];
-  const webCourses = courseCategories.find(c => c.id === 'web')?.courses || [];
-  const moreOffers = [...softwareCourses.slice(0, 2), ...webCourses.slice(0, 1)];
-
-  if (fetching) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="animate-spin text-primary" size={48} />
-      </div>
-    );
-  }
 
   return (
     <div className="pt-0 overflow-x-hidden" ref={pageRef}>
@@ -268,7 +203,7 @@ const OfferDetail = () => {
               <p className="text-muted-foreground text-sm">Perfect for intensive, fast-paced learners.</p>
             </div>
             <div className="mb-6 flex items-baseline gap-2">
-              <span className="text-4xl font-bold">₹{offer.weeklyPrice}</span>
+              <span className="text-4xl font-bold">PKR {offer.weeklyPrice}</span>
               <span className="text-muted-foreground">/week</span>
             </div>
             <ul className="space-y-4 mb-8">
@@ -301,10 +236,10 @@ const OfferDetail = () => {
             </div>
             <div className="mb-6">
               <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-4xl font-bold">₹{offer.monthlyPrice || offer.discountedPrice}</span>
+                <span className="text-4xl font-bold">PKR {offer.monthlyPrice || offer.discountedPrice}</span>
                 <span className="text-muted-foreground">/month</span>
               </div>
-              <span className="text-xs text-green-600 font-bold bg-green-500/10 px-2 py-1 rounded">Save {offer.discount} vs original ₹{offer.originalPrice}</span>
+              <span className="text-xs text-green-600 font-bold bg-green-500/10 px-2 py-1 rounded">Save {offer.discount} vs original PKR {offer.originalPrice}</span>
             </div>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center gap-3 text-sm">
@@ -323,46 +258,6 @@ const OfferDetail = () => {
             <button className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-colors shadow-lg">
               Get Monthly Plan
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Professional Courses / More Offers */}
-      <section className="bg-surface-container py-20 px-6 sm:px-8 border-t border-border/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal-up">
-            <div>
-              <h2 className="text-3xl font-headline font-bold mb-2">More Professional Offers</h2>
-              <p className="text-muted-foreground">Expand your skill set with our top-rated professional courses.</p>
-            </div>
-            <Link to="/courses" className="text-primary font-bold hover:underline inline-flex items-center gap-2">
-              View All Courses <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-up">
-            {moreOffers.map((course) => (
-              <div key={course.id} className="bg-background rounded-xl p-6 border border-outline-variant shadow-sm hover:border-primary/40 hover:shadow-md transition-all group">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold px-2 py-1 bg-surface-container rounded text-muted-foreground">
-                    {course.category}
-                  </span>
-                  <span className="text-primary font-bold">₹{course.fee}</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                  {course.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {course.description}
-                </p>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6">
-                  <span className="flex items-center gap-1"><Clock size={14} /> {course.duration}</span>
-                </div>
-                <Link to="/courses" className="w-full block text-center py-2 rounded border border-outline-variant hover:border-primary hover:text-primary transition-colors font-medium text-sm">
-                  Explore Course
-                </Link>
-              </div>
-            ))}
           </div>
         </div>
       </section>

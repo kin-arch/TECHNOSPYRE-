@@ -55,10 +55,10 @@ export const MonthlyOffers: React.FC = () => {
 
               <div className="flex items-baseline justify-center gap-4 mb-6">
                 <span className="text-4xl font-bold text-primary">
-                  Rs.{course.discountedFee}
+                  PKR {course.discountedFee}
                 </span>
                 <span className="text-lg text-muted-foreground line-through">
-                  Rs.{course.originalFee}
+                  PKR {course.originalFee}
                 </span>
               </div>
 

@@ -188,7 +188,7 @@ export function ProductDetailPricing({ productId, productName }: ProductDetailPr
               <div className="mb-8 p-5 rounded-sm bg-surface-container border border-outline-variant/40">
                 <p className="text-xs font-semibold text-on-surface-variant mb-1 uppercase tracking-wide">Starting Setup Fee</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-3xl md:text-4xl font-bold text-on-surface">Rs. {formatPKR(pricing.fullSuite.implementationFee)}</span>
+                  <span className="text-3xl md:text-4xl font-bold text-on-surface">PKR {formatPKR(pricing.fullSuite.implementationFee)}</span>
                 </div>
                 <p className="text-[10px] text-on-surface-variant mt-2 font-medium">One-time payment to get **all modules** and full software setup.</p>
               </div>
@@ -252,7 +252,7 @@ export function ProductDetailPricing({ productId, productName }: ProductDetailPr
               <div className="mb-8 p-5 rounded-sm bg-primary/5 border border-primary/10">
                 <p className="text-xs font-semibold text-primary mb-1 uppercase tracking-wide">Monthly Bill</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-3xl md:text-4xl font-bold text-on-surface">Rs. {formatPKR(pricing.fullSuite.monthlyMaintenanceFee)}</span>
+                  <span className="text-3xl md:text-4xl font-bold text-on-surface">PKR {formatPKR(pricing.fullSuite.monthlyMaintenanceFee)}</span>
                   <span className="text-xs font-semibold text-on-surface-variant">/ month</span>
                 </div>
                 <p className="text-[10px] text-on-surface-variant mt-2 font-medium">Regular monthly payment for help and updates.</p>

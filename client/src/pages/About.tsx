@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { AboutHero } from '../components/about/AboutHero';
 import { AboutCompany } from '../components/about/AboutCompany';
-import { LeadershipGrid } from '../components/about/LeadershipGrid';
+import { CeoSection } from '../components/about/CeoSection';
 import { WhyChooseUs } from '../components/about/WhyChooseUs';
 import { ExpertiseSection } from '../components/about/ExpertiseSection';
 import { FAQSection } from '../components/about/FAQSection';
@@ -166,15 +166,11 @@ const About = () => {
       </div>
       <SectionLines />
       <div data-about-reveal>
-        <LeadershipGrid />
+        <CeoSection />
       </div>
       <SectionLines />
       <div data-about-reveal>
         <FAQSection />
-      </div>
-      <SectionLines />
-      <div data-about-reveal>
-        <JourneyTimeline />
       </div>
       <SectionLines />
       <div data-about-reveal>

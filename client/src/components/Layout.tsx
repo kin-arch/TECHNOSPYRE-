@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
@@ -319,11 +319,11 @@ export const Footer = () => {
       { name: 'Cybersecurity', to: '/products' },
     ],
     Courses: [
-      { name: 'Academy all courses', to: '/courses' },
-      { name: 'Full-Stack Immersive', to: '/courses#courses' },
-      { name: 'Cloud Engineering', to: '/courses#courses' },
-      { name: 'UI/UX Design', to: '/courses#courses' },
-      { name: 'Cyber Bootcamps', to: '/courses#courses' },
+      { name: 'View All Courses', to: '/courses' },
+      { name: 'Software & Web', to: '/courses' },
+      { name: 'Freelancing Skills', to: '/courses' },
+      { name: 'Data & AI', to: '/courses' },
+      { name: 'Short Term', to: '/courses' },
     ],
     Legal: [
       { name: 'Privacy Policy', to: '#' },

@@ -11,13 +11,10 @@ import { CoursesCTA } from '../components/course/CoursesCTA';
 import SEO from '../components/SEO';
 
 const iconMap: Record<string, React.ReactNode> = {
-  business: <Briefcase size={20} />,
-  software: <Code size={20} />,
-  web: <Globe size={20} />,
-  mobile: <Smartphone size={20} />,
-  ai: <Brain size={20} />,
-  database: <Database size={20} />,
-  short: <Layers size={20} />,
+  'software-web': <Code size={20} />,
+  'freelance-digital': <Briefcase size={20} />,
+  'data-ai-db': <Brain size={20} />,
+  'short-term': <Layers size={20} />,
 };
 
 const Academy = () => {

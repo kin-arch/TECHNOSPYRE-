@@ -51,13 +51,13 @@ export const services = [
 export const categories = [
   {
     id: 'frontend',
-    label: 'Making Websites',
+    label: 'Website Development',
     tag: 'WEB',
     icon: React.createElement(Code2, { size: 22 }),
     count: 4,
     desc: 'We build beautiful websites for you.',
     image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=900',
-    items: ['React', 'Next.js', 'Vue', 'TypeScript'],
+    items: ['React', 'Next.js', '.NET', 'TypeScript'],
     itemIcons: [
       React.createElement(Code2, { size: 16 }),
       React.createElement(Zap, { size: 16 }),
@@ -73,7 +73,7 @@ export const categories = [
     count: 4,
     desc: 'Strong systems to keep your app running.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900',
-    items: ['Node.js', 'Python', 'Java', 'Go'],
+    items: ['Node.js', 'Python', 'ASP.NET Core', 'Go'],
     itemIcons: [
       React.createElement(Code2, { size: 16 }),
       React.createElement(Brain, { size: 16 }),
@@ -89,7 +89,7 @@ export const categories = [
     count: 4,
     desc: 'Moving your business to the cloud.',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900',
-    items: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'],
+    items: ['AWS', 'Docker', 'Vercel', 'CI/CD'],
     itemIcons: [
       React.createElement(Cloud, { size: 16 }),
       React.createElement(Package, { size: 16 }),
@@ -99,7 +99,7 @@ export const categories = [
   },
   {
     id: 'mobile',
-    label: 'Phone Apps',
+    label: 'Andriod & iOS Apps',
     tag: 'APP',
     icon: React.createElement(Smartphone, { size: 22 }),
     count: 4,
@@ -111,6 +111,22 @@ export const categories = [
       React.createElement(Zap, { size: 16 }),
       React.createElement(Code2, { size: 16 }),
       React.createElement(Settings, { size: 16 }),
+    ],
+  },
+  {
+    id: 'desktop',
+    label: 'Desktop Software',
+    tag: 'DESKTOP',
+    icon: React.createElement(Tv2, { size: 22 }),
+    count: 4,
+    desc: 'Powerful applications for Windows & Mac.',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900',
+    items: ['C# (WinForms)', 'C++ (Qt)', 'Electron', 'Java (JavaFX)'],
+    itemIcons: [
+      React.createElement(Code2, { size: 16 }),
+      React.createElement(Settings, { size: 16 }),
+      React.createElement(Globe, { size: 16 }),
+      React.createElement(Briefcase, { size: 16 }),
     ],
   },
   {
@@ -131,13 +147,13 @@ export const categories = [
   },
   {
     id: 'database',
-    label: 'Saving Data',
+    label: 'Database Management',
     tag: 'STORAGE',
     icon: React.createElement(Package, { size: 22 }),
     count: 4,
     desc: 'Storing your details safely.',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900',
-    items: ['PostgreSQL', 'MongoDB', 'Redis', 'MySQL'],
+    items: ['PostgreSQL', 'Oracle', 'SQL Server', 'MySQL'],
     itemIcons: [
       React.createElement(Package, { size: 16 }),
       React.createElement(FileText, { size: 16 }),

@@ -1,5 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useSearchParams } from 'react-router-dom';
 import { Send, Check, AlertCircle, Loader2, Sparkles, Mail } from 'lucide-react';
 import { RichTextEditor } from '../ui/RichTextEditor';
 
@@ -9,7 +10,20 @@ const fadeLeft = {
 };
 
 export const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: 'Enterprise Solutions', message: '' });
+  const [searchParams] = useSearchParams();
+  const topicParam = searchParams.get('topic');
+
+  const defaultSubjects = ['Enterprise Solutions', 'Academy Enrollment', 'Career Opportunities', 'Other Inquiry'];
+  const subjectOptions = topicParam && !defaultSubjects.includes(topicParam) 
+    ? [topicParam, ...defaultSubjects] 
+    : defaultSubjects;
+
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    subject: topicParam || 'Enterprise Solutions', 
+    message: '' 
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -117,10 +131,9 @@ export const ContactForm: React.FC = () => {
                   onChange={handleChange}
                   className="w-full bg-surface-container-low border-0 border-b border-outline-variant/40 focus:border-primary focus:ring-0 transition-all px-4 py-3 text-on-surface outline-none"
                 >
-                  <option>Enterprise Solutions</option>
-                  <option>Academy Enrollment</option>
-                  <option>Career Opportunities</option>
-                  <option>Other Inquiry</option>
+                  {subjectOptions.map(opt => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
                 </select>
               </div>
 

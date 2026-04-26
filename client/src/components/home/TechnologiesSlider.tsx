@@ -43,8 +43,8 @@ export const ProductsSlider: React.FC = () => {
   const prev = () => setActive((p) => (p - 1 + total) % total);
 
   const cat = categories[active];
-  const highlights = cat.items.slice(0, 3);
-  const highlightIcons = cat.itemIcons.slice(0, 3);
+  const highlights = cat.items.slice(0, 4);
+  const highlightIcons = cat.itemIcons.slice(0, 4);
 
   return (
     <section

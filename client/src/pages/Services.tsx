@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Code2, Building, Tv2, Palette, Cloud, Smartphone, Package, Brain, ArrowRight } from 'lucide-react';
 import { technologies } from '@/data/about';
 import SEO from '../components/SEO';
 
 const Technologies: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <>
       <SEO
@@ -184,6 +185,7 @@ const Technologies: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
+                onClick={() => navigate(`/contact?topic=${encodeURIComponent(service.title)}`)}
                 className="group relative rounded-sm border border-outline-variant bg-card p-6 sm:p-7 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-primary/30 cursor-pointer"
               >
                 <div className="absolute -inset-px rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0" />
@@ -240,6 +242,7 @@ const Technologies: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
+                onClick={() => navigate(`/contact?topic=${encodeURIComponent(service.title)}`)}
                 className="group relative rounded-sm border border-outline-variant bg-card p-6 sm:p-7 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-primary/30 cursor-pointer"
               >
                 <div className="absolute -inset-px rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0" />

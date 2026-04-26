@@ -2,91 +2,57 @@ import { CourseCategory } from '../types/courses';
 
 export const courseCategories: CourseCategory[] = [
   {
-    id: 'business',
-    title: 'Online Business Courses',
+    id: 'software-web',
+    title: 'Software & Web Development Track',
+    icon: 'software',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80',
+    courses: [
+      { id: 'sw1', name: '.NET Professional', duration: '12 Weeks', fee: '45,000', category: 'Software & Web', description: 'C# Programming & OOP, ASP.NET (Web Forms / MVC / Web API), SQL Server & Database Design, Real-World Project' },
+      { id: 'sw2', name: 'Web Development (MERN / Laravel)', duration: '12 Weeks', fee: '50,000', category: 'Software & Web', description: 'HTML5, CSS3, JavaScript, MERN Stack (MongoDB, Express, React, Node), Laravel & REST APIs, Full-Stack Project' },
+      { id: 'sw3', name: 'Mobile App Development', duration: '12 Weeks', fee: '50,000', category: 'Software & Web', description: 'Cross-Platform App Development, API Integration & Firebase, App UI/UX Design, Play Store Deployment' },
+      { id: 'sw4', name: 'WordPress / Shopify Development', duration: '8 Weeks', fee: '15,000', category: 'Software & Web', description: 'Learn to build professional websites and ecommerce stores.' },
+    ]
+  },
+  {
+    id: 'freelance-digital',
+    title: 'Freelancing & Digital Skills',
     icon: 'business',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
     courses: [
-      { id: 'b1', name: 'Advance SEO Course', duration: '10 Weeks', fee: '20,000', category: 'Business', description: 'Master technical SEO, backlink strategies, and search engine algorithms to dominate rankings.' },
-      { id: 'b2', name: 'Shopify Ecommerce Course', duration: '08 Weeks', fee: '15,000', category: 'Business', description: 'Build and scale high-converting online stores using the world\'s leading ecommerce platform.' },
-      { id: 'b3', name: 'Digital Marketing', duration: '08 Weeks', fee: '20,000', category: 'Business', description: 'Complete mastery of social media, PPC, and content strategies for modern brand growth.' },
-      { id: 'b4', name: 'Amazon Expert Course', duration: '08 Weeks', fee: '30,000', category: 'Business', description: 'From product sourcing to FBA logistics — everything you need to succeed on Amazon.' },
-      { id: 'b5', name: 'Freelancing', duration: '04 Weeks', fee: '10,000', category: 'Business', description: 'Transform your skills into a high-income freelance career on Upwork and Fiverr.' },
+      { id: 'fd1', name: 'Digital Marketing', duration: '8 Weeks', fee: '20,000', category: 'Freelance & Digital', description: 'Complete digital marketing strategies.' },
+      { id: 'fd2', name: 'Advance SEO', duration: '8 Weeks', fee: '15,000', category: 'Freelance & Digital', description: 'Search Engine Optimization mastery.' },
+      { id: 'fd3', name: 'Amazon Expert', duration: '12 Weeks', fee: '24,000', category: 'Freelance & Digital', description: 'Complete Amazon selling and FBA expertise.' },
+      { id: 'fd4', name: 'Copywriting', duration: '4 Weeks', fee: '10,000', category: 'Freelance & Digital', description: 'Learn professional copywriting techniques.' },
+      { id: 'fd5', name: 'UI / UX Design', duration: '12 Weeks', fee: '24,000', category: 'Freelance & Digital', description: 'User interface and user experience design.' },
+      { id: 'fd6', name: 'Freelancing Platforms', duration: '4 Weeks', fee: '10,000', category: 'Freelance & Digital', description: 'Master platforms like Upwork and Fiverr.' },
     ]
   },
   {
-    id: 'software',
-    title: 'Software Development',
-    icon: 'software',
-    image: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=800&auto=format&fit=crop&q=80',
-    courses: [
-      { id: 'sw1', name: 'C# ASP.NET/ CORE/ MVC', duration: '12 Weeks', fee: '35,000', category: 'Software', description: 'Architect robust backend systems and enterprise web applications with modern C#.' },
-      { id: 'sw2', name: 'C# Desktop application Development', duration: '08 Weeks', fee: '20,000', category: 'Software', description: 'Engineer high-performance native Windows applications using WinForms and WPF.' },
-      { id: 'sw3', name: 'Java & Spring Development Program', duration: '08 Weeks', fee: '20,000', category: 'Software', description: 'Master Java enterprise development with Spring Boot and microservices architecture.' },
-      { id: 'sw4', name: 'Object Oriented Analysis and Design Course', duration: '08 Weeks', fee: '20,000', category: 'Software', description: 'Learn to design scalable, maintainable software systems using SOLID principles and design patterns.' },
-    ]
-  },
-  {
-    id: 'web',
-    title: 'Web Development',
-    icon: 'web',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80',
-    courses: [
-      { id: 'w1', name: 'Web Development for Beginners', duration: '08 Weeks', fee: '10,000', category: 'Web', description: 'The fundamental journey from HTML basics to building your first interactive websites.' },
-      { id: 'w2', name: 'WordPress Web, Theme & Plugin Development', duration: '08 Weeks', fee: '15,000', category: 'Web', description: 'Go beyond templates — build custom themes and professional plugins for the WordPress ecosystem.' },
-      { id: 'w3', name: 'PHP & Laravel', duration: '08 Weeks', fee: '15,000', category: 'Web', description: 'Master the elegant PHP framework for building modern, expressive web applications.' },
-      { id: 'w4', name: 'Shopify Ecommerce Course', duration: '08 Weeks', fee: '15,000', category: 'Web', description: 'Specialized focus on Liquid templating and headless Shopify development.' },
-      { id: 'w5', name: 'Full Stack Web Development', duration: '08 Weeks', fee: '15,000', category: 'Web', description: 'The complete path: Frontend React, Backend Node.js, and DevOps foundations.' },
-    ]
-  },
-  {
-    id: 'mobile',
-    title: 'Mobile App Development',
-    icon: 'mobile',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=80',
-    courses: [
-      { id: 'm1', name: 'Flutter', duration: '12 Weeks', fee: '50,000', category: 'Mobile', description: 'Build beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.' },
-      { id: 'm2', name: 'Java & Android Mobile App Development', duration: '08 Weeks', fee: '30,000', category: 'Mobile', description: 'Master native Android development with Java and modern Android SDKs.' },
-      { id: 'm3', name: 'iOS Mobile App Development', duration: '08 Weeks', fee: '50,000', category: 'Mobile', description: 'Engineer premium iOS experiences using Swift and SwiftUI architecture.' },
-    ]
-  },
-  {
-    id: 'ai',
-    title: 'AI & Data Science',
+    id: 'data-ai-db',
+    title: 'Data, AI & Databases',
     icon: 'ai',
     image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&auto=format&fit=crop&q=80',
     courses: [
-      { id: 'ai1', name: 'Machine Learning using MATLAB', duration: '12 Weeks', fee: '50,000', category: 'AI', description: 'Advanced mathematical modeling and prediction using MATLAB\'s deep learning toolboxes.' },
-      { id: 'ai2', name: 'AI and Machine Learning using Python', duration: '12 Weeks', fee: '50,000', category: 'AI', description: 'The industry-standard path: Scikit-learn, TensorFlow, and PyTorch for real-world AI.' },
-      { id: 'ai3', name: 'Business Intelligence using Power BI', duration: '08 Weeks', fee: '50,000', category: 'AI', description: 'Transform raw data into interactive, actionable business dashboards with Power BI.' },
+      { id: 'dad1', name: 'AI & Machine Learning', duration: '8 Weeks', fee: '50,000', category: 'Data & AI', description: 'Artificial Intelligence and Machine Learning fundamentals.' },
+      { id: 'dad2', name: 'Data Analytics & Power BI', duration: '4 Weeks', fee: '50,000', category: 'Data & AI', description: 'Data analysis and visualization with Power BI.' },
+      { id: 'dad3', name: 'SQL Server/Oracle, MySQL', duration: '4 Weeks', fee: '20,000', category: 'Data & AI', description: 'Database management systems.' },
+      { id: 'dad4', name: 'Big Data & Cloud Basics', duration: '8 Weeks', fee: '40,000', category: 'Data & AI', description: 'Introduction to big data and cloud technologies.' },
+      { id: 'dad5', name: 'Advance Python Course', duration: '8 Weeks', fee: '30,000', category: 'Data & AI', description: 'Advanced Python programming.' },
     ]
   },
   {
-    id: 'database',
-    title: 'Database & Big Data',
-    icon: 'database',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80',
-    courses: [
-      { id: 'db1', name: 'Oracle DBA Course (OCP: DBA Oracle 12C)', duration: '12 Weeks', fee: '45,000', category: 'Database', description: 'Master-level database administration and optimization for Oracle enterprise systems.' },
-      { id: 'db2', name: 'Certified SQL Server Specialist', duration: '12 Weeks', fee: '45,000', category: 'Database', description: 'Comprehensive management, security, and performance tuning for Microsoft SQL Server.' },
-      { id: 'db3', name: 'Essentials of Big Data', duration: '08 Weeks', fee: '50,000', category: 'Database', description: 'Introduction to Hadoop, Spark, and processing petabyte-scale datasets.' },
-      { id: 'db4', name: 'MySQL', duration: '08 Weeks', fee: '20,000', category: 'Database', description: 'Fundamental relational database implementation for web and business apps.' },
-      { id: 'db5', name: 'MongoDB', duration: '08 Weeks', fee: '20,000', category: 'Database', description: 'Building scalable applications with NoSQL and document-oriented data models.' },
-      { id: 'db6', name: 'Firebase', duration: '08 Weeks', fee: '20,000', category: 'Database', description: 'Real-time databases and serverless backend architecture for modern apps.' },
-    ]
-  },
-  {
-    id: 'short',
-    title: 'Short Courses',
+    id: 'short-term',
+    title: 'Short Term Certifications',
     icon: 'short',
     image: 'https://images.unsplash.com/photo-1454165833767-027ffea9e77b?w=800&auto=format&fit=crop&q=80',
     courses: [
-      { id: 's1', name: 'Data Entry Operator', duration: '08 Weeks', fee: '14,000', category: 'Short Course', description: 'Precision data management and professional typing skills for administrative roles.' },
-      { id: 's2', name: 'Graphics Designing', duration: '08 Weeks', fee: '12,000', category: 'Short Course', description: 'Visual storytelling and brand identity using Adobe Photoshop and Illustrator.' },
-      { id: 's3', name: 'Spoken English', duration: '08 Weeks', fee: '15,000', category: 'Short Course', description: 'Fluent communication and professional presentation skills for the global tech market.' },
-      { id: 's4', name: 'Typing Master', duration: '04 Weeks', fee: '4,000', category: 'Short Course', description: 'Intensive training for high-speed, accurate touch-typing.' },
-      { id: 's5', name: 'Advance Excel', duration: '08 Weeks', fee: '10,000', category: 'Short Course', description: 'From pivot tables to macros — master financial modeling and data analysis.' },
-      { id: 's6', name: 'Cyber Security', duration: '08 Weeks', fee: '40,000', category: 'Short Course', description: 'Ethical hacking foundations and network security protocols for modern enterprises.' },
+      { id: 'st1', name: 'Office Automation', duration: '6 Weeks', fee: '12,000', category: 'Short Term', description: 'MS Office and general computer automation.' },
+      { id: 'st2', name: 'Data Entry', duration: '12 Weeks', fee: '18,000', category: 'Short Term', description: 'Professional data entry skills.' },
+      { id: 'st3', name: 'Graphics Designing', duration: '6 Weeks', fee: '20,000', category: 'Short Term', description: 'Graphic design fundamentals.' },
+      { id: 'st4', name: 'Spoken English', duration: '12 Weeks', fee: '24,000', category: 'Short Term', description: 'English communication skills.' },
+      { id: 'st5', name: 'Programming Languages', duration: '6 Weeks', fee: '16,000', category: 'Short Term', description: 'Basics of various programming languages.' },
+      { id: 'st6', name: 'HTML/CSS/Javascript', duration: '8 Weeks', fee: '16,000', category: 'Short Term', description: 'Frontend web basics.' },
+      { id: 'st7', name: 'AutoCad (Mechanical/Civil)', duration: '12 Weeks', fee: '24,000', category: 'Short Term', description: 'AutoCad design for engineering.' },
     ]
   }
 ];
@@ -196,12 +162,10 @@ export const diplomasData = [
       }
     ],
     feeStructure: [
-      { label: 'Registration Fee', amount: '1,000' },
-      { label: 'Monthly Tuition Fee', amount: '4,000' },
-      { label: 'Stationary Charges', amount: '3,000' },
-      { label: 'Security Fee (Refundable)', amount: '4,000' },
-      { label: 'Board Registration Fee', amount: '3,700' },
-      { label: 'Exam Fee', amount: '3,000' }
+      { label: 'Institute Reg Fee', amount: '1,000' },
+      { label: 'Tuition Fee', amount: '4,500' },
+      { label: 'Board Reg Fee', amount: '4,800' },
+      { label: 'Board Examination Fee', amount: '5,000' }
     ]
   },
   {
@@ -228,9 +192,8 @@ export const diplomasData = [
       }
     ],
     feeStructure: [
-      { label: 'Registration Fee', amount: '500' },
-      { label: 'Total Course Fee', amount: '3,500' },
-      { label: 'Exam Fee', amount: '1,000' }
+      { label: 'Reg Fee Institute', amount: '1,000' },
+      { label: 'Monthly Fee', amount: '4,000' }
     ]
   },
   {
@@ -257,9 +220,8 @@ export const diplomasData = [
       }
     ],
     feeStructure: [
-      { label: 'Registration Fee', amount: '1,000' },
-      { label: 'Total Course Fee', amount: '18,000' },
-      { label: 'Exam Fee', amount: '2,000' }
+      { label: 'Reg Fee Institute', amount: '1,000' },
+      { label: 'Monthly Fee', amount: '6,000' }
     ]
   }
 ];

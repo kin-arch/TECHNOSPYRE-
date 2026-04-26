@@ -1,11 +1,9 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { AboutHero } from '../components/about/AboutHero';
 import { AboutCompany } from '../components/about/AboutCompany';
-import { CeoSection } from '../components/about/CeoSection';
 import { WhyChooseUs } from '../components/about/WhyChooseUs';
 import { ExpertiseSection } from '../components/about/ExpertiseSection';
 import { FAQSection } from '../components/about/FAQSection';
-import { JourneyTimeline } from '../components/about/JourneyTimeline';
 import { AboutCTA } from '../components/about/AboutCTA';
 import { SectionLines } from '../components/SectionLines';
 
@@ -163,10 +161,6 @@ const About = () => {
       <SectionLines />
       <div>
         <ExpertiseSection />
-      </div>
-      <SectionLines />
-      <div data-about-reveal>
-        <CeoSection />
       </div>
       <SectionLines />
       <div data-about-reveal>

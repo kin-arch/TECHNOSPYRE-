@@ -63,7 +63,7 @@ export const MonthlyOffers: React.FC = () => {
               </div>
 
               <Link
-                to="/courses"
+                to={`/contact?topic=${encodeURIComponent(course.name)}#contact-form`}
                 className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground font-bold rounded-sm hover:bg-primary/90 transition-colors"
               >
                 Enroll Now

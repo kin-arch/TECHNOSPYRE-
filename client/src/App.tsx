@@ -15,6 +15,7 @@ import Contact from './pages/Contact';
 import CourseDetail from './pages/CourseDetail';
 import ProductDetail from './pages/ProductDetail';
 import OfferDetail from './pages/OfferDetail';
+import Legal from './pages/Legal';
 import { AdminAuthProvider } from './context/AdminAuthContext';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
@@ -132,6 +133,7 @@ export default function App() {
                                 <Route path="/offers/:id" element={<OfferDetail />} />
                                 <Route path="/services" element={<Services />} />
                                 <Route path="/contact" element={<Contact />} />
+                                <Route path="/legal" element={<Legal />} />
                               </Routes>
                             </MainLayout>
                           </SmoothScroll>

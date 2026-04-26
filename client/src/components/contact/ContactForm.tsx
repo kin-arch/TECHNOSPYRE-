@@ -1,29 +1,146 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useSearchParams } from 'react-router-dom';
-import { Send, Check, AlertCircle, Loader2, Sparkles, Mail } from 'lucide-react';
+import { Send, Check, AlertCircle, Loader2, Sparkles, Mail, ChevronDown } from 'lucide-react';
 import { RichTextEditor } from '../ui/RichTextEditor';
+import { getAllProducts } from '../../data/product';
+import { courseCategories } from '../../data/courses';
 
 const fadeLeft = {
   hidden: { opacity: 0, x: -40 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: 'easeOut' as const } },
 };
 
+const CustomSelect = ({ 
+  name, 
+  value, 
+  options, 
+  onChange 
+}: { 
+  name: string, 
+  value: string, 
+  options: { value: string, label: string }[], 
+  onChange: (e: { target: { name: string, value: string } }) => void 
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative w-full" ref={containerRef}>
+      <div 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full bg-surface-container-low border-0 border-b border-outline-variant/40 hover:border-primary/60 transition-all px-4 py-3 text-on-surface outline-none flex justify-between items-center cursor-pointer"
+      >
+        <span className={value ? "text-on-surface line-clamp-1 text-left" : "text-on-surface-variant/30 text-left"}>
+          {options.find(o => o.value === value)?.label || "Select an option"}
+        </span>
+        <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </div>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.15 }}
+            className="absolute z-50 w-full mt-1 bg-surface-container-high border border-outline-variant/20 shadow-xl rounded-sm max-h-60 overflow-y-auto top-full left-0 origin-top"
+          >
+            {options.map((opt) => (
+              <div
+                key={opt.value}
+                onClick={() => {
+                  onChange({ target: { name, value: opt.value } });
+                  setIsOpen(false);
+                }}
+                className={`px-4 py-3 cursor-pointer hover:bg-primary/10 transition-colors text-left text-sm ${value === opt.value ? 'bg-primary/10 text-primary font-medium' : 'text-on-surface'}`}
+              >
+                {opt.label}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 export const ContactForm: React.FC = () => {
   const [searchParams] = useSearchParams();
   const topicParam = searchParams.get('topic');
 
-  const defaultSubjects = ['Enterprise Solutions', 'Academy Enrollment', 'Career Opportunities', 'Other Inquiry'];
-  const subjectOptions = topicParam && !defaultSubjects.includes(topicParam) 
-    ? [topicParam, ...defaultSubjects] 
-    : defaultSubjects;
+  const products = getAllProducts();
+  const allCourses = courseCategories.flatMap(c => c.courses);
 
-  const [formData, setFormData] = useState({ 
-    name: '', 
-    email: '', 
-    subject: topicParam || 'Enterprise Solutions', 
-    message: '' 
+  const defaultSubjects = ['Enterprise Solutions', 'Academy Enrollment', 'Career Opportunities', 'Other Inquiry'];
+
+  const getRandomMessage = (name: string, type: 'course' | 'product') => {
+    const courseTemplates = [
+      `<p>I would like to enroll in the <strong>${name}</strong> program. Could you please provide me with more details regarding the schedule and next steps?</p>`,
+      `<p>I'm interested in starting the <strong>${name}</strong> course. Please let me know how I can proceed with the enrollment process.</p>`,
+      `<p>Hello, I want to sign up for <strong>${name}</strong>. What are the prerequisites and when does the next batch start?</p>`,
+      `<p>I am reaching out to express my interest in enrolling in the <strong>${name}</strong>. Looking forward to hearing from you soon!</p>`
+    ];
+
+    const productTemplates = [
+      `<p>I am interested in the <strong>${name}</strong> solution. Could we schedule a demo or a call to discuss how it fits our requirements?</p>`,
+      `<p>We are looking into implementing <strong>${name}</strong> for our business operations. Please provide us with more information and pricing details.</p>`,
+      `<p>Hello, I would like to learn more about the features and capabilities of <strong>${name}</strong>. Let me know when you are available to discuss.</p>`,
+      `<p>I'm reaching out regarding the <strong>${name}</strong>. Can you share some use cases or a demonstration of how it works?</p>`
+    ];
+
+    const templates = type === 'course' ? courseTemplates : productTemplates;
+    return templates[Math.floor(Math.random() * templates.length)];
+  };
+
+  const getInitialState = () => {
+    let subject = 'Enterprise Solutions';
+    let subSubject = products[0]?.name || '';
+    let message = '';
+
+    if (topicParam) {
+      const isProduct = products.some(p => p.name === topicParam);
+      const isCourse = allCourses.some(c => c.name === topicParam);
+      
+      if (isProduct) {
+        subject = 'Enterprise Solutions';
+        subSubject = topicParam;
+        message = getRandomMessage(topicParam, 'product');
+      } else if (isCourse) {
+        subject = 'Academy Enrollment';
+        subSubject = topicParam;
+        message = getRandomMessage(topicParam, 'course');
+      } else if (defaultSubjects.includes(topicParam)) {
+        subject = topicParam;
+        if (topicParam === 'Enterprise Solutions') subSubject = products[0]?.name || '';
+        else if (topicParam === 'Academy Enrollment') subSubject = allCourses[0]?.name || '';
+        else if (topicParam === 'Career Opportunities') subSubject = 'Job';
+        else subSubject = '';
+      } else {
+        subject = topicParam;
+        subSubject = '';
+      }
+    }
+    return { subject, subSubject, message };
+  };
+
+  const [formData, setFormData] = useState(() => {
+    const { subject, subSubject, message } = getInitialState();
+    return { name: '', email: '', subject, subSubject, message };
   });
+
+  const subjectOptions = formData.subject && !defaultSubjects.includes(formData.subject) 
+    ? [formData.subject, ...defaultSubjects] 
+    : defaultSubjects;
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -51,14 +168,21 @@ export const ContactForm: React.FC = () => {
     setStatus('loading');
     setErrorMessage('');
     try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subSubject ? `${formData.subject} - ${formData.subSubject}` : formData.subject,
+        message: formData.message,
+      };
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
       const result = await response.json();
       if (response.ok) {
-        setFormData({ name: '', email: '', subject: 'Enterprise Solutions', message: '' });
+        setFormData({ name: '', email: '', subject: 'Enterprise Solutions', subSubject: products[0]?.name || '', message: '' });
         setErrors({});
         setStatus('success');
       } else {
@@ -71,9 +195,18 @@ export const ContactForm: React.FC = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> | { target: { name: string, value: string } }) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      const newData = { ...prev, [name]: value };
+      if (name === 'subject') {
+        if (value === 'Enterprise Solutions') newData.subSubject = products[0]?.name || '';
+        else if (value === 'Academy Enrollment') newData.subSubject = allCourses[0]?.name || '';
+        else if (value === 'Career Opportunities') newData.subSubject = 'Job';
+        else newData.subSubject = '';
+      }
+      return newData;
+    });
     if (errors[name]) setErrors((prev) => { const n = { ...prev }; delete n[name]; return n; });
   };
 
@@ -123,19 +256,54 @@ export const ContactForm: React.FC = () => {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2 relative z-20">
                 <label className="font-label text-sm text-on-surface-variant ml-1">Subject</label>
-                <select
+                <CustomSelect
                   name="subject"
                   value={formData.subject}
+                  options={subjectOptions.map(opt => ({ value: opt, label: opt }))}
                   onChange={handleChange}
-                  className="w-full bg-surface-container-low border-0 border-b border-outline-variant/40 focus:border-primary focus:ring-0 transition-all px-4 py-3 text-on-surface outline-none"
-                >
-                  {subjectOptions.map(opt => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  ))}
-                </select>
+                />
               </div>
+
+              {formData.subject === 'Enterprise Solutions' && (
+                <div className="space-y-2 relative z-10">
+                  <label className="font-label text-sm text-on-surface-variant ml-1">Product</label>
+                  <CustomSelect
+                    name="subSubject"
+                    value={formData.subSubject || ''}
+                    options={products.map(p => ({ value: p.name, label: p.name }))}
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
+
+              {formData.subject === 'Academy Enrollment' && (
+                <div className="space-y-2 relative z-10">
+                  <label className="font-label text-sm text-on-surface-variant ml-1">Course</label>
+                  <CustomSelect
+                    name="subSubject"
+                    value={formData.subSubject || ''}
+                    options={allCourses.map(c => ({ value: c.name, label: c.name }))}
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
+
+              {formData.subject === 'Career Opportunities' && (
+                <div className="space-y-2 relative z-10">
+                  <label className="font-label text-sm text-on-surface-variant ml-1">Opportunity Type</label>
+                  <CustomSelect
+                    name="subSubject"
+                    value={formData.subSubject || ''}
+                    options={[
+                      { value: 'Job', label: 'Job' },
+                      { value: 'Internship', label: 'Internship' }
+                    ]}
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
 
               <div className="space-y-2">
                 <label className="font-label text-sm text-on-surface-variant ml-1">Message <span className="text-red-500 ml-0.5">*</span></label>
@@ -298,7 +466,7 @@ export const ContactForm: React.FC = () => {
                     type="button"
                     onClick={() => {
                       setStatus('idle');
-                      setFormData({ name: '', email: '', subject: 'Enterprise Solutions', message: '' });
+                      setFormData({ name: '', email: '', subject: 'Enterprise Solutions', subSubject: products[0]?.name || '', message: '' });
                       setErrors({});
                     }}
                     className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-lg transition hover:opacity-95 active:scale-[0.98]"

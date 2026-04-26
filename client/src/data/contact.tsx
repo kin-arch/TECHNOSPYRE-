@@ -3,23 +3,26 @@ import { MessageSquare, Mail, Phone, Clock, Shield, Zap, Users } from 'lucide-re
 
 export const contacts = [
   { 
-    title: 'Chat with us', 
+    title: 'Contact on WhatsApp', 
     desc: 'Instant support for technical inquiries and academy enrollment assistance.', 
-    action: 'Start a live chat', 
+    action: 'Chat on WhatsApp',
+    href: 'https://wa.me/923109999549',
     icon: <MessageSquare className="text-primary w-6 h-6" />, 
     color: 'primary' 
   },
   { 
     title: 'Send an Email', 
     desc: 'For partnerships, media requests, or custom enterprise solutions.', 
-    action: 'hello@technospyre.io', 
+    action: 'info@technospyre.com',
+    href: 'mailto:info@technospyre.com',
     icon: <Mail className="text-primary w-6 h-6" />, 
     color: 'primary' 
   },
   { 
     title: 'Give us a Call', 
     desc: 'Speak directly with our specialized account managers and tech consultants.', 
-    action: '+1 (800) TECH-SPYRE', 
+    action: '+92 3109999549',
+    href: 'tel:+923109999549',
     icon: <Phone className="text-primary w-6 h-6" />, 
     color: 'primary' 
   },

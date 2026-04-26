@@ -2,9 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
-import { Globe, Linkedin, Mail, Twitter, Github, Menu, X, Moon, Sun, ChevronDown, ArrowRight } from 'lucide-react';
+import { Globe, Linkedin, Mail, Twitter, Github, Menu, X, Moon, Sun, ChevronDown, ArrowRight, Phone } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { courseCategories } from '../data/courses';
+import { categories as productCategories } from '../data/product';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -305,6 +306,9 @@ const navLinks = [
 };
 
 export const Footer = () => {
+  const topProducts = productCategories.flatMap(c => c.products).slice(0, 4);
+  const topCourses = courseCategories.flatMap(c => c.courses).slice(0, 4);
+
   const footerLinks = {
     Company: [
       { name: 'Home', to: '/' },
@@ -312,23 +316,18 @@ export const Footer = () => {
       { name: 'Technologies', to: '/technologies' },
       { name: 'Contact Us', to: '/contact' },
     ],
-    Products: [
-      { name: 'Enterprise Cloud', to: '/products' },
-      { name: 'AI & Data Science', to: '/products' },
-      { name: 'Custom Software', to: '/products' },
-      { name: 'Cybersecurity', to: '/products' },
-    ],
-    Courses: [
-      { name: 'View All Courses', to: '/courses' },
-      { name: 'Software & Web', to: '/courses' },
-      { name: 'Freelancing Skills', to: '/courses' },
-      { name: 'Data & AI', to: '/courses' },
-      { name: 'Short Term', to: '/courses' },
-    ],
+    Products: topProducts.map(p => ({
+      name: p.name,
+      to: `/products/${p.id}`
+    })),
+    Courses: topCourses.map(c => ({
+      name: c.name,
+      to: `/courses/${c.id}`
+    })),
     Legal: [
-      { name: 'Privacy Policy', to: '#' },
-      { name: 'Terms of Service', to: '#' },
-      { name: 'Cookie Policy', to: '#' },
+      { name: 'Privacy Policy', to: '/legal#privacy' },
+      { name: 'Terms of Service', to: '/legal#terms' },
+      { name: 'Cookie Policy', to: '/legal#cookies' },
     ],
   };
 
@@ -342,6 +341,14 @@ export const Footer = () => {
             <p className="text-on-surface-variant text-sm leading-relaxed mb-6">
               Architecting digital futures through premium IT services and elite engineering education.
             </p>
+            <div className="flex flex-col gap-3 mb-6 text-sm text-on-surface-variant">
+              <a href="mailto:info@technospyre.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Mail size={16} /> info@technospyre.com
+              </a>
+              <a href="tel:+923109999549" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Phone size={16} /> +92 3109999549
+              </a>
+            </div>
             <div className="flex gap-3">
               <a href="#" aria-label="Website" className="w-9 h-9 rounded-sm bg-white/5 flex items-center justify-center hover:text-primary hover:bg-white/10 transition-all">
                 <Globe size={16} />

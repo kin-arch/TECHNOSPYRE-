@@ -72,7 +72,7 @@ export const ReactCourseDetails: React.FC = () => {
               </ul>
 
               <Link
-                to="/courses"
+                to={`/contact?topic=${encodeURIComponent(beginner.name)}#contact-form`}
                 className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground font-bold rounded-sm hover:bg-primary/90 transition-colors"
               >
                 Enroll Now <ArrowRight size={18} className="inline ml-2" />
@@ -130,7 +130,7 @@ export const ReactCourseDetails: React.FC = () => {
               </ul>
 
               <Link
-                to="/courses"
+                to={`/contact?topic=${encodeURIComponent(professional.name)}#contact-form`}
                 className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground font-bold rounded-sm hover:bg-primary/90 transition-colors"
               >
                 Enroll Now <ArrowRight size={18} className="inline ml-2" />

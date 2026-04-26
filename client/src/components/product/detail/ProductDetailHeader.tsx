@@ -1,4 +1,4 @@
-﻿import { motion } from 'motion/react';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, PlayCircle } from 'lucide-react';
 import { VideoPlayer } from '@/components/VideoPlayer';
@@ -37,7 +37,7 @@ export function ProductDetailHeader({
             <div className="mb-4 flex items-center justify-between text-sm font-semibold text-on-surface">
               <PlayCircle size={18} className="text-primary" />
               <Link
-                to="/contact"
+                to={`/contact?topic=${encodeURIComponent(productName)}#contact-form`}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95 text-center"
               >
                 Get In Touch <ArrowRight size={16} />

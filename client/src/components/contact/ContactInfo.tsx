@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { contacts, features } from '../../data/contact';
@@ -21,7 +21,7 @@ export const ContactInfo: React.FC = () => {
             viewport={{ once: true }}
             custom={i * 0.12}
             whileHover={{ y: -6 }}
-            className="glass-card border border-outline-variant rounded-sm p-8 flex flex-col justify-between group hover:border-primary/30 transition-all duration-400 cursor-pointer inner-highlight"
+            className="glass-card border border-outline-variant rounded-sm p-8 flex flex-col justify-between group hover:border-primary/30 transition-all duration-400 inner-highlight"
           >
             <div>
               <div className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center mb-7 group-hover:scale-110 transition-transform">
@@ -30,9 +30,20 @@ export const ContactInfo: React.FC = () => {
               <h3 className="font-headline text-xl font-bold mb-3 text-on-surface">{item.title}</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-7">{item.desc}</p>
             </div>
-            <button className="flex items-center gap-2 text-primary font-label font-bold text-sm group-hover:gap-4 transition-all duration-300">
-              {item.action} <ArrowRight className="w-4 h-4" />
-            </button>
+            {item.href ? (
+              <a
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="flex items-center gap-2 text-primary font-label font-bold text-sm group-hover:gap-4 transition-all duration-300 cursor-pointer"
+              >
+                {item.action} <ArrowRight className="w-4 h-4" />
+              </a>
+            ) : (
+              <span className="flex items-center gap-2 text-primary font-label font-bold text-sm select-text">
+                {item.action}
+              </span>
+            )}
           </motion.div>
         ))}
       </div>
@@ -55,6 +66,5 @@ export const ContactInfo: React.FC = () => {
     </section>
   );
 };
-
 
 

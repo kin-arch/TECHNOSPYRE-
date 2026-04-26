@@ -1,7 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X } from 'lucide-react';
 import { Course } from '../../types/courses';
+import { Link } from 'react-router-dom';
 
 interface CourseModalProps {
   selectedCourse: Course | null;
@@ -79,9 +80,12 @@ const CourseModal: React.FC<CourseModalProps> = ({ selectedCourse, onClose }) =>
               </div>
 
               <div className="pt-6 flex gap-4">
-                <button className="flex-grow py-4 bg-primary text-on-primary font-bold rounded-sm hover:brightness-110 transition-all">
+                <Link 
+                  to={`/contact?topic=${encodeURIComponent(selectedCourse.name)}#contact-form`}
+                  className="flex-grow flex items-center justify-center py-4 bg-primary text-on-primary font-bold rounded-sm hover:brightness-110 transition-all"
+                >
                   Enroll Now
-                </button>
+                </Link>
                 <button className="px-6 py-4 border border-outline text-on-surface font-bold rounded-sm hover:bg-white/5 transition-all">
                   Download Syllabus
                 </button>

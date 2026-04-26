@@ -119,9 +119,10 @@ export function ProductDetailCTA({ category }: ProductDetailCTAProps) {
 
 interface ProductDetailPricingProps {
   productId?: string;
+  productName?: string;
 }
 
-export function ProductDetailPricing({ productId }: ProductDetailPricingProps) {
+export function ProductDetailPricing({ productId, productName }: ProductDetailPricingProps) {
   const productPricing = productId ? pricingData.products.find((p) => p.id === productId) : undefined;
 
   // Fallback pricing
@@ -288,7 +289,7 @@ export function ProductDetailPricing({ productId }: ProductDetailPricingProps) {
 
               <div className="mt-8">
                 <Link
-                  to="/contact"
+                  to={`/contact?topic=${encodeURIComponent(productName || pricing.name)}#contact-form`}
                   className="group flex w-full items-center justify-center gap-3 bg-primary py-4 rounded-sm font-bold text-white text-sm transition-all hover:shadow-[0_10px_30px_-10px_rgba(var(--primary),0.5)] active:scale-95"
                 >
                   Contact Us <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -303,7 +304,7 @@ export function ProductDetailPricing({ productId }: ProductDetailPricingProps) {
               Every business is different. Contact us for a price that works for you.
             </p>
             <Link
-              to="/contact"
+              to={`/contact?topic=${encodeURIComponent(productName || pricing.name)}#contact-form`}
               className="inline-flex items-center gap-2 bg-primary px-8 py-3 rounded-sm font-semibold text-white transition-all"
             >
               Contact Us <ArrowRight size={18} />

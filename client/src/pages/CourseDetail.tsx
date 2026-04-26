@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Clock, Banknote, BookOpen, CheckCircle, MonitorPlay, Users, Award } from 'lucide-react';
@@ -164,7 +164,7 @@ const CourseDetail = () => {
 
             <div className="space-y-4 pt-6 border-t border-outline-variant/50">
               <Link
-                to="/contact"
+                to={`/contact?topic=${encodeURIComponent(course.name)}#contact-form`}
                 className="w-full py-4 bg-primary hover:bg-primary-hover text-primary-foreground font-bold rounded-sm outline outline-primary/30 transition-all duration-300 flex justify-center items-center gap-2 shadow-md hover:shadow-xl shadow-primary/10 hover:shadow-primary/50 active:scale-95 hover:scale-105"
               >
                 Enroll Now

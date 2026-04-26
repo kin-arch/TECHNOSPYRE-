@@ -222,7 +222,7 @@ const ProductDetail = () => {
                 >
                   <div className="mb-4 flex items-center justify-between text-sm font-semibold text-on-surface">
                     <PlayCircle size={18} className="text-primary" />
-                    <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95 text-center">
+                    <Link to={`/contact?topic=${encodeURIComponent(product.name)}#contact-form`} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95 text-center">
                       Get In Touch <ArrowRight size={16} />
                     </Link>
                   </div>
@@ -414,7 +414,7 @@ const ProductDetail = () => {
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-4">
                     <Link
-                      to="/contact"
+                      to={`/contact?topic=${encodeURIComponent(product.name)}#contact-form`}
                       className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-sm font-bold text-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(251,146,60,0.4)] active:scale-95"
                     >
                       Start Your Journey <ArrowRight size={16} />
@@ -433,7 +433,7 @@ const ProductDetail = () => {
 
           <div className="flex flex-col gap-20 mb-16">
             {/* Pricing Section */}
-            <ProductDetailPricing productId={product.id} />
+            <ProductDetailPricing productId={product.id} productName={product.name} />
           </div>
         </div>
       </div>

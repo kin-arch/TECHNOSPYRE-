@@ -170,8 +170,8 @@
       "name": "Human Resource Management (HRMS)",
       "displayName": "Human Resource Management (HRMS)",
       "fullSuite": {
-        "implementationFee": 1500000,
-        "monthlyMaintenanceFee": 35000,
+        "implementationFee": 400000,
+        "monthlyMaintenanceFee": 15000,
         "includes": [
           "Employee Master Data",
           "Recruitment & Onboarding",
@@ -436,10 +436,10 @@
     {
       "id": "supply-chain",
       "name": "Supply Chain Management",
-      "displayName": "Supply Chain Management",
+      "displayName": "Supply Chain Management (ERP)",
       "fullSuite": {
-        "implementationFee": 1200000,
-        "monthlyMaintenanceFee": 25000,
+        "implementationFee": 500000,
+        "monthlyMaintenanceFee": 20000,
         "includes": [
           "Inventory Control & Tracking",
           "Purchase Order Management",

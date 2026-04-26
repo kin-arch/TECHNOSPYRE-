@@ -375,7 +375,7 @@ const ProductDetail = () => {
                 </div>
                 <h2 className="mb-3 font-headline text-2xl font-bold text-on-surface md:text-3xl">Dashboards & workspaces</h2>
                 <p className="mb-8 max-w-2xl text-on-surface-variant">
-                  Representative UI layers your teams interact with dailyÃ¢â‚¬â€analytics, operations, and collaboration in one
+                  Representative UI layers your teams interact with daily analytics, operations, and collaboration in one
                   coherent experience.
                 </p>
                 <div className="grid gap-6 md:grid-cols-2">

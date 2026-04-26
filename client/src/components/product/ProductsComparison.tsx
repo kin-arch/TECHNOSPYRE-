@@ -11,7 +11,7 @@ export const ComparisonSection = () => {
       <div className="container-custom relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-sm font-semibold tracking-wider text-primary uppercase mb-2">The Technospyre Difference</h2>
-          <h3 className="text-3xl md:text-5xl font-bold mb-6">Why Choose Our Solutions?</h3>
+          <h3 className="text-3xl md:text-5xl font-bold mb-6">Why Choose Our <span className="text-secondary">Products?</span></h3>
           <p className="text-lg text-muted-foreground">
             We don't just provide software. We provide resilient architectures tailored uniquely to your workflow, outperforming conventional market alternatives.
           </p>

@@ -25,7 +25,7 @@ export const LeadershipGrid: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-14">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary mb-3">Our Team</p>
           <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            Meet Our Team
+            Meet <span className="text-secondary">Our Team</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
             We're a cross-functional crew product, engineering, design, and customer success working as one team with our clients.

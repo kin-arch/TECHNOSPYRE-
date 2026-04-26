@@ -54,7 +54,7 @@ export const FAQSection: React.FC = () => {
               <HelpCircle size={14} /> FAQ
             </span>
             <h2 className="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">
-              Got <span className="text-primary italic">Questions?</span>
+              Got <span className="text-secondary italic">Questions?</span>
             </h2>
             <p className="text-on-surface-variant mb-8 leading-relaxed">
               Quick, simple answers to the most common things people ask before working with us.

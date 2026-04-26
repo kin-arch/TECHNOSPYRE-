@@ -1,159 +1,114 @@
-﻿import React, { useRef, useLayoutEffect } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { CheckCircle2, ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { services } from '../../data/about';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
+    opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    scale: 1,
-    transition: { 
-      duration: 0.7, 
-      ease: [0.25, 0.46, 0.45, 0.94] as const
-    }
-  }
-};
-
-const headingVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'easeOut' as const }
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
   }
 };
 
 export const ExpertiseSection: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start']
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, -30]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.3, 1, 1, 0.3]);
-
-  useLayoutEffect(() => {
-    if (!sectionRef.current) return;
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Removed conflicting GSAP fromTo animations that were overriding Framer Motion's whileInView
-
-      gsap.utils.toArray<HTMLElement>('.expertise-card').forEach((card) => {
-        card.addEventListener('mouseenter', () => {
-          gsap.to(card, {
-            y: -8,
-            scale: 1.02,
-            duration: 0.3,
-            ease: 'power2.out',
-          });
-        });
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card, {
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: 'power2.out',
-          });
-        });
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="py-24 md:py-28 relative overflow-hidden bg-background border-y border-border/60" id="what-we-do">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div style={{ y, opacity }} className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-sm bg-primary/5 blur-[120px]" />
-        <div className="absolute -bottom-40 right-[-100px] w-[500px] h-[500px] rounded-sm bg-primary/5 blur-[100px]" />
-      </div>
+    <section className="py-16 md:py-20 relative overflow-hidden bg-surface-container-lowest border-y border-outline-variant/30" id="what-we-do">
+      {/* Background Ornaments */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <motion.div
-          variants={headingVariants}
-          initial="visible"
-          animate="visible"
-          viewport={{ once: true }}
-          className="text-center mb-14 md:mb-16 max-w-3xl mx-auto expertise-heading"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary mb-3">Why choose us</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-headline font-bold tracking-tight text-foreground">
-            Why People Trust Us
-          </h2>
-          <p className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed">
-            We have 20+ years of experience, happy clients, and the fastest support to help you grow.
-          </p>
-        </motion.div>
+        <div className="flex flex-col justify-cetner items-center gap-6 mb-12 md:mb-14">
+          <div className="max-w-2xl text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              Trusted Globally
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-headline font-extrabold tracking-tight text-foreground"
+            >
+              Why People <span className="text-secondary">Trust Us</span>
+            </motion.h2>
+          </div>
+        </div>
 
         <motion.div
           variants={containerVariants}
-          initial="visible"
-          animate="visible"
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6"
         >
           {services.map((service, i) => (
             <motion.article
               key={service.title}
               variants={itemVariants}
-              className="group flex flex-col rounded-sm border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:border-primary/35 hover:shadow-lg expertise-card"
-              
+              className="group relative flex flex-col rounded-2xl border border-outline-variant/40 bg-card/50 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
             >
-              <div className="relative h-40 overflow-hidden bg-muted shrink-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="relative h-40 md:h-44 overflow-hidden shrink-0">
                 <img
                   src={service.image}
-                  alt=""
-                  width={600}
-                  height={240}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt={service.title}
+                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-90 pointer-events-none" />
-                <div className="absolute bottom-3 left-3 flex h-12 w-12 items-center justify-center rounded-sm bg-primary text-primary-foreground">
-                  {service.icon}
-                </div>
-                <div className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-sm border border-border bg-background/90 opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
-                  <ArrowUpRight size={16} className="text-primary" aria-hidden />
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent opacity-95" />
+
+                 {/* Floating Icon */}
+                 <div className="absolute bottom-4 left-5 flex h-12 w-12 items-center justify-center rounded-xl bg-card border border-outline-variant/50 shadow-lg text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-500 ease-out">
+                  {React.cloneElement(service.icon as React.ReactElement, { className: 'w-6 h-6 text-current transition-colors duration-500' } as React.Attributes) }
+                 </div>
               </div>
-              <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <h3 className="text-lg font-bold font-headline text-foreground group-hover:text-primary transition-colors mb-3">
+
+              <div className="flex flex-col flex-1 p-5 pt-3 md:p-6 md:pt-4 relative z-10">
+                <h3 className="text-lg font-bold font-headline text-foreground group-hover:text-primary transition-colors duration-300 mb-4">
                   {service.title}
                 </h3>
-                <ul className="text-sm text-muted-foreground space-y-2.5 flex-1">
+
+                <ul className="space-y-2 mb-6 flex-1 text-sm">
                   {service.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 leading-snug">
-                      <CheckCircle2 size={15} className="text-primary shrink-0 mt-0.5" aria-hidden />
-                      <span>{item}</span>
+                    <li key={item} className="flex items-start gap-2 text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300">
+                      <CheckCircle2 size={16} className="text-primary/70 shrink-0 mt-0.5" aria-hidden />
+                      <span className="font-medium leading-snug">{item}</span>
                     </li>
                   ))}
                 </ul>
+
                 <Link
                   to="/contact"
-                  className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:gap-1.5 transition-all"
+                  className="inline-flex items-center justify-between w-full p-3 rounded-lg bg-surface-container-low border border-outline-variant/50 text-foreground font-semibold text-sm group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 shadow-sm"
                 >
                   Discuss this service
-                  <ArrowUpRight size={14} className="shrink-0" aria-hidden />
+                  <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" aria-hidden />
                 </Link>
               </div>
             </motion.article>
@@ -163,6 +118,3 @@ export const ExpertiseSection: React.FC = () => {
     </section>
   );
 };
-
-
-

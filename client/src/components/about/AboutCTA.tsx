@@ -27,7 +27,7 @@ export const AboutCTA: React.FC = () => {
         </div>
 
         <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-foreground">
-          Want to be <span className='text-primary'>part of the story?</span>
+          Want to be <span className='text-secondary'>part of the story?</span>
         </h2>
 
         <p className="text-base md:text-lg text-on-surface/90 mb-10 max-w-xl mx-auto leading-relaxed">

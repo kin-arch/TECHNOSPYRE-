@@ -1,14 +1,14 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { whyChooseUs } from '../../data/about';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.35, delay, ease: 'easeOut' as const }
-  }),
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+  },
 };
 
 const containerVariants = {
@@ -16,64 +16,99 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
     },
   },
 };
 
 export const WhyChooseUs: React.FC = () => {
   return (
-    <section className="relative py-24 md:py-28 bg-muted/20 border-y border-border/60" aria-labelledby="why-choose-heading">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,var(--primary)/10%,transparent)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,var(--primary)/8%,transparent)] pointer-events-none" />
+    <section className="relative py-24 md:py-32 bg-background border-y border-outline-variant/30 overflow-hidden" aria-labelledby="why-choose-heading">
+      {/* Background Glow Effects */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-50" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[300px] bg-secondary/10 blur-[100px] rounded-full pointer-events-none opacity-40" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-14 md:mb-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary mb-3">Why Technospyre</p>
-          <h2 id="why-choose-heading" className="font-headline text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Why people choose us
-          </h2>
-          <p className="mt-4 text-muted-foreground text-base md:text-lg leading-relaxed">
-            Easy process, strong results, and reliable support.
-          </p>
+        <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            Why Technospyre
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            id="why-choose-heading" 
+            className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground"
+          >
+            Why people <span className="text-secondary">Choose us</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
+          >
+            Experience seamless processes, powerful results, and dedicated support. We blend innovation with expertise to propel your business forward.
+          </motion.p>
         </div>
 
-        <motion.ul
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 list-none p-0 m-0"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {whyChooseUs.map((item, i) => (
-            <motion.li
+            <motion.div
               key={item.title}
               variants={fadeUp}
-              className="group relative rounded-sm border border-outline-variant bg-card p-6 sm:p-7 shadow-sm will-change-transform hover:border-primary/35 hover:bg-surface-container-high/60"
-              style={{ transitionDelay: `${i * 40}ms` }}
+              className="group relative"
             >
-              <div className="absolute top-5 right-5 text-[10px] font-bold tracking-[0.22em] uppercase text-muted-foreground">
-                0{i + 1}
-              </div>
+              {/* Card Hover Glow */}
+              <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-primary to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-lg" />
+              
+              <div className="relative h-full flex flex-col justify-between rounded-2xl border border-outline-variant/40 bg-card/80 backdrop-blur-xl p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 overflow-hidden">
+                
+                {/* Decorative background element inside card */}
+                <div className="absolute -right-12 -top-12 w-40 h-40 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 ease-out" />
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-primary/10 text-primary ring-1 ring-primary/15 group-hover:bg-primary group-hover:text-primary-foreground transition-colors shrink-0">
-                  {item.icon}
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/15 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-500 ease-out">
+                      {item.icon}
+                    </div>
+                    <div className="text-6xl font-black text-outline-variant/20 group-hover:text-primary/10 transition-colors duration-500 select-none">
+                      0{i + 1}
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-headline text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-headline text-lg font-bold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
+
+                {/* Animated bottom line accent */}
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-500 ease-out" />
               </div>
-            </motion.li>
+            </motion.div>
           ))}
-        </motion.ul>
+        </motion.div>
       </div>
     </section>
   );
 };
-
-
-
-

@@ -38,7 +38,7 @@ export const ProductsGrid: React.FC = () => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="max-w-2xl text-3xl md:text-4xl lg:text-[2.8rem] font-headline font-bold tracking-[-0.03em] leading-[1.05] text-foreground"
             >
-              Software Built To Run Your <span className="text-primary">Daily Operations</span> With Confidence
+              Software Built To Run Your <span className="text-secondary">Daily Operations</span> With Confidence
             </motion.h2>
           </div>
           <motion.div

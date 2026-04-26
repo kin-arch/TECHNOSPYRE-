@@ -59,7 +59,7 @@ export const AboutHero: React.FC = () => {
 
             <h1 className="font-headline text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.08] tracking-tight text-foreground mb-6 text-balance">
               We build{' '}
-              <span className="text-primary inline-block min-w-[3ch]">
+              <span className="text-secondary inline-block min-w-[3ch]">
                 {typedText}
                 <motion.span
                   animate={{ opacity: [1, 0] }}
@@ -86,7 +86,7 @@ export const AboutHero: React.FC = () => {
                 </div>
               </Link>
               <Link
-                to="/solutions"
+                to="/products"
                 className="inline-flex items-center gap-3 px-6 py-2.5 rounded-sm font-semibold text-sm border border-primary bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-200 hover:scale-105"
               >
                 <span>See products</span>

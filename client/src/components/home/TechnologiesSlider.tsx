@@ -76,7 +76,7 @@ export const ProductsSlider: React.FC = () => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="text-4xl md:text-5xl font-headline font-bold tracking-tight text-foreground"
             >
-              Modern <span className="text-primary">Technologies</span>
+              Modern <span className="text-secondary">Technologies</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

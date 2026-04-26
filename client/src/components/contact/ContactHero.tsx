@@ -20,7 +20,7 @@ export const ContactHero: React.FC = () => {
             <Globe size={12} /> Global Connectivity
           </span>
           <h1 className="font-headline text-5xl md:text-7xl font-bold leading-tight tracking-tight text-on-surface mb-8">
-            Architecting <span className="text-primary italic">Connections</span>
+            Architecting <span className="text-secondary italic">Connections</span>
           </h1>
           <p className="text-on-surface-variant text-xl max-w-2xl mx-auto leading-relaxed font-light">
             The next chapter of your digital evolution starts with a conversation. Reach out to our engineering hubs or connect with our academy leads.

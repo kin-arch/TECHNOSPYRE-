@@ -16,7 +16,7 @@ export const AboutCompany: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <header className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
           <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            About the company
+            About the <span className='text-secondary'>Company</span>
           </h2>
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             Learn more about who we are, how we work, and the outcomes we drive for teams across Pakistan and beyond.

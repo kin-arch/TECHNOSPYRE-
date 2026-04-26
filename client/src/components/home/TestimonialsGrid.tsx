@@ -40,7 +40,7 @@ export const TestimonialsGrid: React.FC = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
                 className="text-4xl md:text-5xl font-headline font-bold"
               >
-                Trusted by <span className="text-primary">Real Customers</span>
+                Trusted by <span className="text-secondary">Real Customers</span>
               </motion.h2>
             </div>
 

@@ -51,7 +51,7 @@ export const SpecialOffer: React.FC<SpecialOfferProps> = ({ offer: propOffer }) 
                 </div>
 
                 <h2 className="mt-5 max-w-2xl text-2xl font-bold leading-[0.4] tracking-[-0.03em] text-foreground sm:text-3xl lg:text-[3.2rem]">
-                  Build <span className="text-primary">future</span> with React
+                  Build future with<span className='text-secondary'> React</span>
                 </h2>
 
                 <p className="mt-4 max-w-2xl text-base leading-6 tracking-[0.01em] text-muted-foreground md:text-lg">

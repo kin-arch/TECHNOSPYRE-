@@ -43,7 +43,7 @@ export const JourneyTimeline: React.FC = () => {
       <div className="max-w-5xl mx-auto px-6 sm:px-8 relative z-10">
         <SectionHeading
           eyebrow="Timeline"
-          title={<>Our <span className="text-primary italic">Journey</span></>}
+          title={<>Our <span className="text-secondary italic">Journey</span></>}
           description="From a small idea to a global technology company, built with passion and precision."
           align="center"
         />

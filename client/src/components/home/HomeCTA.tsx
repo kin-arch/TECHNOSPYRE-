@@ -38,7 +38,7 @@ export const HomeCTA: React.FC = () => {
           className="text-4xl md:text-6xl font-headline font-bold text-foreground mb-8 leading-[1.1] tracking-tight"
         >
           Let's build something <br className="hidden md:block" />
-          <span className="text-primary">
+          <span className="text-secondary">
             extraordinary.
           </span>
         </motion.h2>

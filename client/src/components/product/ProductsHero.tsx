@@ -50,7 +50,7 @@
            >
              Powerful Software for
              <br />
-             <span className="text-primary">Real Business Results</span>
+             <span className="text-secondary">Real Business Results</span>
            </motion.h1>
 
            <motion.p
@@ -72,7 +72,7 @@
                <ArrowRight size={16} className="md:w-5 md:h-5" />
              </Link>
              <a
-               href="#solutions"
+               href="#prodcuts"
                className="inline-flex items-center justify-center gap-2 border border-border bg-card hover:bg-primary/5 text-foreground px-6 py-2.5 md:px-8 md:py-3 rounded-sm font-bold text-sm md:text-base transition-all duration-300"
              >
                View Solutions

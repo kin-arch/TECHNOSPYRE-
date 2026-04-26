@@ -28,7 +28,7 @@ export const CoursesExploration: React.FC<CoursesExplorationProps> = ({
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-6xl font-headline font-bold tracking-tight">Technical <span className="text-primary italic">Certifications</span></h2>
+            <h2 className="text-4xl md:text-6xl font-headline font-bold tracking-tight">Technical <span className="text-secondary italic">Certifications</span></h2>
             <p className="text-on-surface-variant text-lg mt-6">From short specializations to intensive development tracks, choose the path that resonates with your career goals.</p>
           </div>
 

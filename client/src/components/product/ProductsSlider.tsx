@@ -20,7 +20,7 @@ const cardVariants: Variants = {
 
 const ProductCard = ({ product, index }: { product: any; index: number }) => {
   return (
-    <Link to={`/products/${product.id}`} className="block h-full">
+    <Link id='prodcuts' to={`/products/${product.id}`} className="block h-full">
       <motion.div
         className="product-card group relative rounded-sm border border-outline-variant bg-surface-container overflow-hidden h-full flex flex-col cursor-pointer hover:border-primary/45 hover:bg-surface-container-high transition-all duration-300 min-h-[280px]"
         variants={cardVariants}
@@ -145,7 +145,7 @@ export const ProductsSlider = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.7 }}
           >
-            Discover Our <span className="text-primary">Software </span>Suite
+            Discover Our <span className="text-secondary">Software </span>Suite
           </motion.h2>
 
           <motion.p

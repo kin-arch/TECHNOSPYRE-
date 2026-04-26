@@ -8,7 +8,7 @@ export const AdvantagesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <span className="font-label text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Why Choose Us</span>
-          <h2 className="font-headline text-4xl md:text-5xl font-bold">The <span className="text-primary italic">Technospyre</span> Advantage</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold">The <span className="text-secondary italic">Technospyre</span> Advantage</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {advantages.map((item, idx) => (

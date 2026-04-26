@@ -13,7 +13,7 @@ export const CoursesCTA: React.FC = () => {
     <section className="py-10 px-8 relative overflow-hidden">
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <h2 className="text-5xl md:text-7xl font-headline font-bold tracking-tight mb-8">Ready to Accelerate <br />Your <span className="text-primary italic">Career?</span></h2>
+          <h2 className="text-5xl md:text-7xl font-headline font-bold tracking-tight mb-8">Ready to Accelerate <br />Your <span className="text-secondary italic">Career?</span></h2>
           <p className="text-on-surface-variant text-xl mb-12 max-w-2xl mx-auto font-light">Join the TechnoSpyre Academy today and gain the technical edge that industry leaders demand.</p>
           <div className="flex flex-wrap justify-center gap-6">
             <Button

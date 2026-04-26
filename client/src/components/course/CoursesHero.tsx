@@ -24,7 +24,7 @@ export const CoursesHero: React.FC = () => {
 
               <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-foreground mb-5">
                 Master the Code.<br />
-                <span className="text-primary">Architect the Future.</span>
+                <span className="text-secondary">Architect the Future.</span>
               </h1>
               
               <p className="text-muted-foreground text-lg md:text-xl max-w-xl leading-relaxed mb-5">

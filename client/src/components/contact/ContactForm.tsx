@@ -272,7 +272,7 @@ export const ContactForm: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.34, duration: 0.45 }}
                 >
-                  Thank you for reaching out. Your message is on its way to our team. We typically respond within one business day.
+                  Thank you for reaching out. Your message has been received. We will get back to you as soon as possible.
                 </motion.p>
 
                 <motion.div

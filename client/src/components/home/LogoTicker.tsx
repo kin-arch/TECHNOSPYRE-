@@ -81,7 +81,7 @@ export const LogoTicker: React.FC = () => {
     <div className="w-full flex flex-col items-center py-12 md:py-16">
       <div className="container mx-auto px-8 mb-8 md:mb-10 text-center">
         <h2 className="text-3xl md:text-3xl uppercase tracking-[0.35em] font-bold mb-3 text-foregorund">
-          Trusted by industry <span className='text-primary'>leaders</span>
+          Trusted by industry <span className='text-secondary'>leaders</span>
         </h2>
         <p className="text-lg sm:text-xl font-medium text-muted-foreground max-w-2xl mx-auto text-pretty">
           Join Us Be Part of Our Growing Network of Partners.

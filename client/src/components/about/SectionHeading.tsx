@@ -28,7 +28,7 @@ export const SectionHeading: React.FC<Props> = ({
       className={`max-w-3xl mb-12 md:mb-16 ${alignCls} ${className}`}
     >
       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary mb-3">{eyebrow}</p>
-      <h2 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight text-foreground text-balance leading-[1.15]">
+      <h2 className="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-foreground text-balance leading-[1.15]">
         {title}
       </h2>
       {description ? (
